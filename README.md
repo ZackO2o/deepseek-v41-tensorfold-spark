@@ -155,12 +155,14 @@ the MiaAI-Lab kit (`./start.sh pack`), which writes the same format; `--check` c
 **4. Build, check, start:**
 
 ```bash
-scripts/serve.sh build        # docker/Dockerfile: TensorFold v0.6.0 + patches/, shipped to the worker
+scripts/serve.sh build        # docker/Dockerfile: TensorFold v0.6.0 + patches/, shipped to the worker, then prebuild
 scripts/serve.sh preflight    # image on both nodes, weights, Engram shards, RoCE ports, free ports, idle GPUs
 scripts/serve.sh start        # memory gate, rank 1 then rank 0, /v1/models, slot check, canary
 ```
 
-The first start compiles the CUDA / Triton kernels into the `CACHE_VOL` volume and writes the prepared rank folders
+`build` ends with `scripts/serve.sh prebuild`: the CUDA extensions (15, the G13 kernels included) are compiled into
+the `CACHE_VOL` volume on both nodes with no weights loaded, so no extension is built beside the weights. Run it again
+after clearing the volume. The first start compiles the Triton kernels and writes the prepared rank folders
 (`TF_DSV41_PREPARED_WRITE=1`, ~95 GB a node, several minutes); later starts read them back in ~40 s. Then:
 
 ```bash
@@ -248,7 +250,8 @@ TP=2 split.
 | `patches/` | the engine changes ([`docs/ENGINE.md`](docs/ENGINE.md)) |
 | `docker/Dockerfile` | the image: NVIDIA PyTorch 26.07 + xgrammar + TensorFold with the patches |
 | `config/prod.env.example` | the measured configuration, with placeholders for your hosts and paths |
-| `scripts/serve.sh` | build / preflight / start / stop / status / watchdog / `run` (engine benchmarks on both ranks) |
+| `scripts/serve.sh` | build / prebuild / preflight / start / stop / status / watchdog / `run` (engine benchmarks on both ranks) |
+| `scripts/prebuild_ext.py` | builds every CUDA extension a rank loads (`scripts/serve.sh prebuild` runs it in the image on both nodes) |
 | `scripts/pack_engram.py` | the per-rank Engram shards from DeepSeek's checkpoint |
 | `scripts/canary.py`, `scripts/boot-start.sh`, `scripts/systemd/` | post-start canary, start at boot, watchdog units |
 | `scripts/check-public.sh` | the sanitizer this repository was checked with |

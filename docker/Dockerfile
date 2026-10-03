@@ -20,7 +20,8 @@ ENV PIP_NO_CACHE_DIR=1 \
     CUDA_CACHE_MAXSIZE=4294967296
 # Every kernel cache lives in the /cache volume (scripts/serve.sh: CACHE_VOL), so a new container reuses them:
 # torch C++ / CUDA extensions, Triton's compiled kernels, the driver's PTX JIT cache, the native Engram reader and
-# the measured verify-cost tables. The first start after a build compiles them (a few minutes).
+# the measured verify-cost tables. scripts/serve.sh build prebuilds the CUDA extensions on both nodes with no weights
+# loaded (scripts/serve.sh prebuild, scripts/prebuild_ext.py); the first start compiles the Triton kernels.
 
 # The RoCE all-gather (GLM53_TF_COMM_BACKEND=roce) builds its RDMA proxy against libibverbs at first use. The 26.07
 # base ships libibverbs-dev + ibverbs-providers; install them only if a base ever drops them.

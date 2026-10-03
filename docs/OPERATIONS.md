@@ -18,6 +18,12 @@
 
 `scripts/serve.sh args 0|1` prints the exact `docker run` arguments without starting anything.
 
+A start does not build the CUDA extensions on purpose: `scripts/serve.sh build` ends with `scripts/serve.sh prebuild`,
+which compiles them into `CACHE_VOL` on both nodes with no weights loaded (a build next to ~100 GB of weights once
+took the worker to 1.26 GiB MemAvailable). Run `scripts/serve.sh prebuild` yourself after `PREBUILD=0 scripts/serve.sh
+build`, after deleting the cache volume, or before turning on a lever whose extension was never built. A start that
+finds an extension missing builds it at load time, slowly and beside the weights.
+
 ## Knobs
 
 Every `TF_DSV41_*`, `GLM53_TF_*`, `MALLOC_*` and `MIMALLOC_*` line of the config reaches both ranks. A non-empty caller export wins

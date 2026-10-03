@@ -33,6 +33,16 @@ No code differs. The G13 files (`mhc_cuda.*`, `csa2/attn_cuda.*`, `csa2/topk_cud
 `branches.py` and their tests) are byte for byte `767ad9f`'s; of the files they touch, only `mhc.py` carries a
 reworded docstring.
 
+## The CUDA extensions
+
+The family compiles its CUDA extensions with `torch.utils.cpp_extension` at first use, into `TORCH_EXTENSIONS_DIR`
+(`/cache/torch_extensions` in the `CACHE_VOL` volume). Building them beside ~100 GB of weights once took the worker
+to 1.26 GiB MemAvailable (G6), so `scripts/serve.sh build` ends with `scripts/serve.sh prebuild`: on both nodes, with
+no weights loaded, it removes stale build locks and runs [`scripts/prebuild_ext.py`](../scripts/prebuild_ext.py),
+which builds every extension a rank can load (15, the G13 ones included: `mhc_cuda`, `csa2.attn_cuda` with the
+top-k kernels, `moe_fused`, `dense3`, and `l2pf`). A build that fails is reported and makes the command fail. Run
+`scripts/serve.sh prebuild` again after changing the image or clearing the volume.
+
 ## The same tree as a git branch
 
 ```bash

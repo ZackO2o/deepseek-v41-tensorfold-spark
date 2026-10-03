@@ -6,7 +6,9 @@ mods = ["tensorfold.cuda.exl3.experts", "tensorfold.cuda.exl3.linear", "tensorfo
         "tensorfold.families.deepseek_v41.cuda.x3gm", "tensorfold.families.deepseek_v41.cuda.expert_loads",
         "tensorfold.families.deepseek_v41.cuda.expert_prefill", "tensorfold.families.deepseek_v41.cuda.fused_proj",
         "tensorfold.families.deepseek_v41.cuda.router_gemv", "tensorfold.families.deepseek_v41.cuda.engram_gate",
-        "tensorfold.families.deepseek_v41.cuda.dense"]
+        "tensorfold.families.deepseek_v41.cuda.dense", "tensorfold.families.deepseek_v41.cuda.mhc_cuda",
+        "tensorfold.families.deepseek_v41.cuda.csa2.attn_cuda", "tensorfold.families.deepseek_v41.cuda.moe_fused",
+        "tensorfold.families.deepseek_v41.cuda.dense3", "tensorfold.families.deepseek_v41.cuda.l2pf"]
 for m in mods:
     t = time.time()
     try:

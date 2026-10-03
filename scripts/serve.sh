@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 # Start / stop / inspect the two DeepSeek-V4.1-Flash TensorFold ranks. Run on the head Spark (rank 0).
 #
-#   scripts/serve.sh build       build the image here (docker/Dockerfile) and ship it to the worker (save | ssh load)
+#   scripts/serve.sh build       build the image here (docker/Dockerfile), ship it to the worker (save | ssh load), then
+#                                prebuild (PREBUILD=0 skips it)
+#   scripts/serve.sh prebuild    build the CUDA extensions into CACHE_VOL on both nodes, no weights loaded
+#                                (scripts/prebuild_ext.py; stale build locks removed first); the server must be stopped
 #   scripts/serve.sh preflight [static]   read-only checks of both nodes (image, weights, Engram shards, RoCE ports;
 #                                not static: the HTTP / rendezvous ports, GPUs idle, the RoCE-failed marker)
 #   scripts/serve.sh start       preflight, drop caches, memory gate, rank 1 on the worker then rank 0 here, wait for
@@ -312,6 +315,32 @@ cmd_build() { # the image here from docker/Dockerfile (vendor/TensorFold + patch
     docker save "$IMAGE" | wssh docker load
     local h w; h=$(image_key "$IMAGE"); w=$(wimage_key "$IMAGE")
     [[ "$h" == "$w" ]] && log "$IMAGE on both nodes (content key $h)" || { log "image contents differ: head $h worker $w"; exit 1; }
+    if [[ "${PREBUILD:-1}" != 0 ]]; then cmd_prebuild; else log "PREBUILD=0: the first start compiles the extensions"; fi
+}
+
+cmd_prebuild() { # both nodes: the CUDA extensions into CACHE_VOL with nothing else in memory (a build beside the
+    # weights once took the worker to 1.26 GiB MemAvailable). The script goes in on stdin, so nothing is copied.
+    if [[ "$(running 0)" == true || "$(running 1)" == true ]]; then log "the server is running: scripts/serve.sh stop first"; exit 1; fi
+    if gpu_busy; then log "a CUDA process is running on a node; stop it first"; exit 1; fi
+    local env_args="-e TORCH_EXTENSIONS_DIR=/cache/torch_extensions -e TRITON_CACHE_DIR=/cache/triton"
+    env_args+=" -e CUDA_CACHE_PATH=/cache/nv/ComputeCache -e PYTHONDONTWRITEBYTECODE=1"
+    local unlock="docker run --rm -v $CACHE_VOL:/cache --entrypoint find $IMAGE /cache/torch_extensions -name lock -delete"
+    local run="docker run --rm -i --name $NAME-prebuild --gpus all --ipc=host -v $CACHE_VOL:/cache $env_args --entrypoint python $IMAGE -"
+    local tmp rc0 rc1; tmp=$(mktemp -d)
+    bash -c "$unlock" 2>/dev/null || true
+    wssh "$unlock" 2>/dev/null || true
+    log "prebuild: the CUDA extensions on both nodes (a few minutes on a fresh volume)"
+    # shellcheck disable=SC2029
+    timeout 1500 ssh -o BatchMode=yes -o ConnectTimeout=10 "$WORKER_SSH" "$run" < scripts/prebuild_ext.py > "$tmp/r1.txt" 2>&1 &
+    local p1=$!
+    timeout 1500 bash -c "$run" < scripts/prebuild_ext.py > "$tmp/r0.txt" 2>&1 && rc0=0 || rc0=$?
+    wait "$p1" && rc1=0 || rc1=$?
+    grep -E '^(FAIL|prebuild:)' "$tmp/r0.txt" | sed 's/^/[head] /' || true
+    grep -E '^(FAIL|prebuild:)' "$tmp/r1.txt" | sed 's/^/[worker] /' || true
+    if [[ $rc0 != 0 || $rc1 != 0 ]]; then
+        log "prebuild failed (head rc=$rc0, worker rc=$rc1); full output in $tmp"; exit 1
+    fi
+    rm -rf "$tmp"; log "prebuild: every extension built on both nodes"
 }
 
 cmd_run() { # MODULE [ARGS...]: an engine module on both ranks (rank 1 on the worker in the background, rank 0 here)
@@ -336,6 +365,7 @@ cmd_run() { # MODULE [ARGS...]: an engine module on both ranks (rank 1 on the wo
 
 case "${1:-}" in
 build) cmd_build ;;
+prebuild) cmd_prebuild ;;
 run) shift; cmd_run "$@" ;;
 start) cmd_start ;;
 restart) take_lock; stop_both; log "stopped"; cmd_start ;;
@@ -352,5 +382,5 @@ watch)
     if [[ "${2:-}" == --once ]]; then watch_tick; exit $?; fi
     while :; do watch_tick || true; sleep "${WATCH_INTERVAL:-60}"; done ;;
 args) IMAGE_ID="${IMAGE_ID:-$IMAGE}" run_args "${2:-0}"; echo ;;
-*) sed -n '2,16p' "$0"; exit 2 ;;
+*) sed -n '2,18p' "$0"; exit 2 ;;
 esac
