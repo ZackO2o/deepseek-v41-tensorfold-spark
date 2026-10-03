@@ -1,4 +1,4 @@
-# G7: every G7 lever in one window, ship gates, DeepSeek to production (2026-10-02, 13:33- +07)
+# G7: every G7 lever in one window, ship gates, DeepSeek to production (2026-10-02, 13:33-)
 
 One held campaign window, opened right after a storm power outage rebooted both Sparks (~13:30) and killed G6
 mid-run. User direction: every latest optimization in a single run; GLM downtime does not matter; DeepSeek becomes

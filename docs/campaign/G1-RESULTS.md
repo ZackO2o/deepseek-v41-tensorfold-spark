@@ -1,4 +1,4 @@
-# G1: the DeepSeek-V4.1 kernels on the GPU (2026-10-02, 02:46-03:04 +07)
+# G1: the DeepSeek-V4.1 kernels on the GPU (2026-10-02, 02:46-03:04)
 
 The first GPU window of the family on branch `dsv41-060` of TensorFold. It ran as the first half of one campaign
 with G2 (and then G3), with GLM prod down from 02:42:59 for the whole campaign (`scripts/windows/campaign.sh`).

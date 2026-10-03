@@ -1,4 +1,4 @@
-# G8: host-side decode fixes (DECODE-ROOFLINE section 6), inside the G7 window (2026-10-02, 16:54- +07)
+# G8: host-side decode fixes (DECODE-ROOFLINE section 6), inside the G7 window (2026-10-02, 16:54-)
 
 The window opened for G7 at 13:33 stays held: lease + refresher, deadman 23:33, GLM's timers stopped, no prod on
 :8000 (direction: performance first, prod after G8). Branch `dsv41-060` staged at `0933b77`. Base: G7's adopted

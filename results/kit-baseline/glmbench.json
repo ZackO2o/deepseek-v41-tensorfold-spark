@@ -2,7 +2,7 @@
  "label": "dsv41-kit",
  "base": "http://127.0.0.1:8888",
  "model": "DeepSeek-v4.1-Flash-EXL3",
- "started": "2026-10-01T21:20:06+0700",
+ "started": "2026-10-01T21:20:06",
  "args": {
   "base": "http://127.0.0.1:8888",
   "model": "DeepSeek-v4.1-Flash-EXL3",
@@ -486,5 +486,5 @@
    }
   ]
  },
- "finished": "2026-10-01T21:24:31+0700"
+ "finished": "2026-10-01T21:24:31"
 }

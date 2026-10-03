@@ -1,4 +1,4 @@
-# G11: DSpark self-distillation (2026-10-03, 01:48-04:20 +07, inside the G9 window)
+# G11: DSpark self-distillation (2026-10-03, 01:48-04:20, inside the G9 window)
 
 - **What it trains.** A separate drafter delta (LoRA + heads) behind `TF_DSV41_DSPARK_DELTA`, default off. Drafts
   never change a reply (exact verification).

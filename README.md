@@ -311,3 +311,21 @@ format (file-format facts), and implements DeepSeek's prompt encoding from DeepS
   [Weschera/spark-bench](https://github.com/Weschera/spark-bench): the tool-calling benchmarks.
 - [MMLU](https://github.com/hendrycks/test) (Hendrycks et al.): the 200 questions in `bench/data/`.
 - NVIDIA: the DGX Spark and the PyTorch container.
+
+## Current focus: memory bugs
+
+Work in progress on the engine, being fixed now:
+
+- **Host memory grows during very long prompts.** During a 299K-token prefill while three other streams decode, both
+  ranks' host memory (anonymous RSS) grows by about 5 GB and is not returned afterwards, so the worker's free memory
+  dips to about 3-4 GiB for a minute (the stress row above). Every stream still completes. It is not allocator
+  fragmentation (swapping in mimalloc gives the same growth) and not the knobs this recipe adopts (it reproduces with
+  L2 prefetch, expert pruning, the session tier and prefetch-ahead each turned off). Two prompt-length-proportional
+  host buffers have been bounded so far (an Engram hash cache and the native reader's index temporaries); the rest is
+  being traced with allocation tracing on both ranks.
+- **A one-off 19-minute stall** early in a 299K prefill (both GPUs idle-spinning, nothing logged) did not reproduce.
+  A stall watchdog (per-rank phase and stack dump when a round exceeds a deadline) and deadlines on the remaining
+  unbounded waits are being added.
+- **Fast-prefill segmentation dependence** (a 1-ulp difference in a few rows when the same prompt is prefilled in
+  different segment sizes) is found and fixed in the engine branch: the RoPE table was rebuilt at a length that
+  depended on the segment split. The fix lands in the next patch update.

@@ -1,4 +1,4 @@
-# G5: prefill adoption on both Sparks (2026-10-02, 09:03-10:40 +07, inside G4's held window)
+# G5: prefill adoption on both Sparks (2026-10-02, 09:03-10:40, inside G4's held window)
 
 The user asked for every prefill (PP) change to become the baseline. G5 ran inside G4's window after G4's
 kitgreedy / forced steps, with sources restaged at `dfc5684` (the offline prefill commits `e499fef..c81a8e9` plus

@@ -1,4 +1,4 @@
-# G6: router, x3gm routed-expert prefill, speed table, ship gates, prod switch (2026-10-02, 11:15- +07)
+# G6: router, x3gm routed-expert prefill, speed table, ship gates, prod switch (2026-10-02, 11:15-)
 
 One held campaign window (`campaign.sh open` 11:15:24; worker rebooted 11:15-11:17, then head 11:17), GLM prod
 down for the whole window (direction: GLM downtime does not matter). Branch `dsv41-060`, staged several times

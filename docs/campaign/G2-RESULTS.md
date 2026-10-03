@@ -1,4 +1,4 @@
-# G2: M1 bring-up and gates on both Sparks (2026-10-02, 03:04-03:51 +07)
+# G2: M1 bring-up and gates on both Sparks (2026-10-02, 03:04-03:51)
 
 DeepSeek-V4.1-Flash on our engine (branch `dsv41-060`, TP=2, one slot, serial path), against the kit's oracle from
 the baseline window (`results/BASELINE-20261001/oracle-kit.json`: 8 prompts x 2,048 tokens of `prompt_logprobs`).

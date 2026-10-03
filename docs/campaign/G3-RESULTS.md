@@ -1,4 +1,4 @@
-# G3: M2 decode with DSpark on both Sparks (2026-10-02, 03:50-05:09 +07)
+# G3: M2 decode with DSpark on both Sparks (2026-10-02, 03:50-05:09)
 
 The third window of the campaign, run straight after G2 in the same held window (lead's request; see
 "Why G3 ran" below). M2 is the other track's work: commits `b0a6a79`, `adf1db6`, `d9d57ad` on `dsv41-060` and

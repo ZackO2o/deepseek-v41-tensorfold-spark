@@ -217,7 +217,7 @@ head):
 
 GPU steps: `scripts/windows/G10-draft.sh tests | capture | analyze | speed | pick | train (TRAIN_OK=1) | all`.
 
-## 6. G11: self-distillation of the drafter (lead GO, 2026-10-03 00:45 +07)
+## 6. G11: self-distillation of the drafter (lead GO, 2026-10-03 00:45)
 
 **What G10 measured** (`results/G10-20261002`: 34,753 passes, `analyze.txt`):
 - conditional acceptance by position: 0.506 / 0.415 / 0.359 / 0.349 / 0.385;

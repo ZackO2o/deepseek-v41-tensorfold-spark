@@ -246,7 +246,7 @@ MemAvailable minimum:
   (spin-waiting), no error. It did not recur on 38f6500 without nvidia-smi (6 later stress runs). Cause unknown:
   either G11's commits or nvidia-smi polling; open.
 
-**Prod switched (2026-10-03 09:00 +07).** With the user's approval ("4 GB memory is fine"), production runs 38f6500,
+**Prod switched (2026-10-03 09:00).** With the user's approval ("4 GB memory is fine"), production runs 38f6500,
 the best exact config. The 08:00 deadman restored dsv41. At 08:59, `campaign.sh close` (G9 campaign dir) ran
 `prod-switch.sh restore` (rc=0): sources 38f65008e323, 4 slots, canary ok. Verified: :8000 and https list
 DeepSeek-V4.1-Flash-TF, deepseek-v4.1-flash and the GLM-5.3-Flash-EXL3 alias. 17*23 = 391, also via the GLM alias.

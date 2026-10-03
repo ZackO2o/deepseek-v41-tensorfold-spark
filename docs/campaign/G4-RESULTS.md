@@ -1,4 +1,4 @@
-# G4: decode performance, correctness, prefill, memory on both Sparks (2026-10-02, 06:26-10:42 +07)
+# G4: decode performance, correctness, prefill, memory on both Sparks (2026-10-02, 06:26-10:42)
 
 One held campaign window (`campaign.sh open` 06:26:22, both nodes rebooted 06:26-06:29, worker first), GLM prod
 down for the whole window, G5 (prefill adoption, [G5-RESULTS.md](G5-RESULTS.md)) run in the same window at the

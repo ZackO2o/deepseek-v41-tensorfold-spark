@@ -1,4 +1,4 @@
-# G9: where the decode window goes (profiling for prose and 2 streams), 2026-10-02 19:30- +07
+# G9: where the decode window goes (profiling for prose and 2 streams), 2026-10-02 19:30-
 
 User direction: "We can't go live till we get prose and 2 stream better."
 

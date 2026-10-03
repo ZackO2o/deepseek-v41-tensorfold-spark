@@ -1,4 +1,4 @@
-# Baseline: the MiaAI kit on our 2 Sparks (window 2026-10-01, 20:56-21:26 +07)
+# Baseline: the MiaAI kit on our 2 Sparks (window 2026-10-01, 20:56-21:26)
 
 The first measured baseline of DeepSeek-V4.1-Flash on our pair. It replaces the "kit anchor" column of
 [`TARGETS.md`](TARGETS.md) wherever a cell below covers it. Raw files are in
@@ -103,7 +103,7 @@ where the model is not just copying.
 
 ## Window
 
-| Time (+07) | Step |
+| Time  | Step |
 | --- | --- |
 | 20:56:57 | lease, watchdog timer stopped, `serve.sh stop` (GLM prod down) |
 | 20:57-20:58 | worker rebooted (back in 80 s) |

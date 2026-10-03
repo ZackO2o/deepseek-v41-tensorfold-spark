@@ -1,6 +1,6 @@
 # M1 status: the DeepSeek-V4.1-Flash family on TensorFold (2026-10-02)
 
-**G7 + G8 and G4 + G5 (2026-10-02) summarised in the next sections.** **Updated after the G1 + G2 (+ G3) campaign of 2026-10-02 (02:43-05:18 +07, GLM prod down 155 min):** see "M1 gates on the GPU" below,
+**G7 + G8 and G4 + G5 (2026-10-02) summarised in the next sections.** **Updated after the G1 + G2 (+ G3) campaign of 2026-10-02 (02:43-05:18, GLM prod down 155 min):** see "M1 gates on the GPU" below,
 [G1-RESULTS.md](G1-RESULTS.md), [G2-RESULTS.md](G2-RESULTS.md) and [G3-RESULTS.md](G3-RESULTS.md). The text from
 "What is implemented" on is the offline state before the windows, apart from the blockers list.
 
@@ -11,7 +11,7 @@ Best exact config (`38f6500`): code 79-81.5, prose 41, structured 117, C1 / C2 /
 pass. Stress memory 4.01 GiB (< 5): prod.env stays on `5ace28b` (G8) for the 08:00 restore. Not adopted: joint,
 dense v2, PDL, the lossy verify budget, draft trees, DRAFT_K, the G11 drafter deltas (prose +5.5% but code -4.4%).
 
-## G7 + G8 on the GPU (2026-10-02, 13:33- +07, after the storm outage; [G7-RESULTS.md](G7-RESULTS.md), [G8-RESULTS.md](G8-RESULTS.md))
+## G7 + G8 on the GPU (2026-10-02, 13:33-, after the storm outage; [G7-RESULTS.md](G7-RESULTS.md), [G8-RESULTS.md](G8-RESULTS.md))
 
 | | result |
 | --- | --- |
@@ -24,7 +24,7 @@ dense v2, PDL, the lossy verify budget, draft trees, DRAFT_K, the G11 drafter de
 | G8 (all on: Engram gate, row graphs, TCP plan link, speculative DSpark) | code 72.7, prose 39.0, structured 109.1, C1 / C2 / C4 69.1 / 58.9 / 77.5; dense x3dn slower (off); gate 0.9958 |
 | Prod | **DeepSeek serves :8000 since 18:52** on `5ace28b` + G7 / G8 knobs (dsv41 `f058cbe`); GLM automation disabled, dsv41's enabled |
 
-## G4 + G5 on the GPU (2026-10-02, 06:26-10:42 +07, GLM prod down 256 min; [G4-RESULTS.md](G4-RESULTS.md), [G5-RESULTS.md](G5-RESULTS.md))
+## G4 + G5 on the GPU (2026-10-02, 06:26-10:42, GLM prod down 256 min; [G4-RESULTS.md](G4-RESULTS.md), [G5-RESULTS.md](G5-RESULTS.md))
 
 | | G4 / G5 result |
 | --- | --- |
