@@ -1,0 +1,148 @@
+deepseek-v41-tensorfold-spark
+Copyright 2026 Jay Leaton (https://x.com/jayleaton)
+
+This project's own code, scripts, benchmarks and documentation are licensed under the Apache License,
+Version 2.0 (see LICENSE). If you redistribute this project or a modified version of it, keep this NOTICE
+file and the copyright line above, and state what you changed (Apache-2.0, section 4).
+
+This project builds on third-party work that keeps its own license:
+
+TensorFold
+  https://github.com/ashhart/TensorFold
+  Copyright 2026 TensorFold contributors. Apache License 2.0 from 0.6.0; code written before 0.6.0 keeps its
+  MIT notice. Included as the unmodified git submodule vendor/TensorFold (pinned at tag v0.6.0, commit c464617).
+  The files in patches/ are modifications of TensorFold source; they are applied at image build time.
+  TensorFold's license texts are in vendor/TensorFold/LICENSE and vendor/TensorFold/LICENSES/, and its own
+  third-party notices in vendor/TensorFold/THIRD_PARTY_NOTICES.md (extended by the patches). The changes in
+  patches/ are this project's work under Apache-2.0; the TensorFold code they modify, and quote as diff
+  context, stays under TensorFold's license, so keep TensorFold's copyright and permission notices with any
+  copy of a patched tree. Files the patches add keep the SPDX notice written in them on the engine branch they
+  come from: the DeepSeek-V4.1-Flash family (src/tensorfold/families/deepseek_v41/ and its tests) says MIT,
+  Copyright (c) 2026 Jay Leaton, and the GLM Spark engine (src/tensorfold/families/glm5_next/spark/) is MIT as
+  recorded in the patched THIRD_PARTY_NOTICES.md (MIT text: vendor/TensorFold/LICENSES/MIT.txt).
+
+GLM-5.3-Flash two-Spark engine (patches/0001-spark-stack-060.patch, src/tensorfold/families/glm5_next/spark/)
+  TensorFold 0.3.4's GLM CUDA engine (MIT, Copyright (c) 2026 TensorFold contributors) with the
+  glm53-tensorfold-spark patch series (https://github.com/jayleaton/glm53-tensorfold-spark, MIT for the engine
+  changes, Copyright (c) 2026 Jay Leaton), rebased onto TensorFold 0.6.0. It contains code adapted from:
+
+  b12x "RoCEnante" RoCE collectives and fast-prefill kernels
+    local-inference-lab/b12x (https://github.com/local-inference-lab/b12x), Copyright 2026 Luke Alonso and the
+    b12x contributors, Apache License 2.0 (b12x ships no NOTICE file). roce.cpp, roce.cu, roce_common.h and
+    roce.py adapt its RDMA proxy, all-gather kernel, PTX intrinsics and one-shot protocol (b12x/comm/roce/);
+    b12x_kda.py, b12x_mhc.py and b12x_attn.py re-implement algorithms of b12x's kda_prefill, norm.mhc and
+    attention.sparse_mla in Triton without copying code. The changes are listed in the files' headers.
+
+  GLM-5.3-Flash EXL3 2x DGX Spark serving kits
+    Reederey87/glm53-flash-exl3-2x-dgx-spark (commit 6c337d2), Apache License 2.0, itself based on the kit by
+    Mia's AI Lab (https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks), MIT License for the
+    contributions made before 2026-09-07 (Copyright (c) 2026 Mia's AI Lab; that repository is AGPL-3.0 since
+    then). The "fat" expert kernels in exl3_fast.cu (namespace fat) adapt the structure of that kit's grouped
+    fat-expert MoE (cp.async-staged trellis tiles, gate/up sharing one rotated input, XOR-swizzled stages, the
+    ticket scheduler); the arithmetic is the engine's own. The KDA bf16 projection copy re-implements the idea of
+    MiaAI-Lab PR #233 (AGPL-3.0) without its code. Reederey87's NOTICE is reproduced at the end of this file.
+
+  kindlingai/glm-5.3-flash-gx10 (ideas only)
+    The repository has no licence; exl3_fat2.cu re-implements the structure of its fused prefill MoE kernel on
+    the engine's arithmetic, and NCCL over both CX7 functions follows its notes. No code is included.
+
+  log / exp of ARM Optimized Routines as built into glibc 2.39
+    gpusample.py re-implements for the GPU the float64 log and exp numpy calls on aarch64 (glibc 2.39's __log /
+    __exp, from https://github.com/ARM-software/optimized-routines; Copyright (c) Arm Limited; MIT OR Apache-2.0
+    WITH LLVM-exception), with their coefficient and lookup tables, so the GPU sampler's bits equal the host's.
+
+  Later upstream TensorFold releases (0.3.6.2, 0.5.0)
+    server/cancellation.py, image_fetch.py, grammar.py's closed_json / parse_numbers and the /health totals port
+    MIT code of those releases (Copyright (c) 2026 TensorFold contributors); each ported piece names its source
+    commit.
+
+  Public text behind the shipped GLM draft-vocabulary ranking (draft_vocab.txt)
+    Token ids ordered by frequency, counted by the GLM recipe's bench/draftvocab_public.py in OpenAssistant/oasst1
+    (Apache-2.0), SWE-Gym/OpenHands-SFT-Trajectories (MIT), CPython 3.14.7 Lib/ and Doc/ (PSF License 2.0),
+    denoland/std (MIT) and BurntSushi/ripgrep 14.1.1 (MIT OR Unlicense). No text of these sources is included.
+
+DeepSeek-V4.1-Flash (patches/0002)
+  tests/fixtures/dsv41_encoding_ref.py is DeepSeek's encoding/encoding.py of deepseek-ai/DeepSeek-V4.1-Flash, copied
+  unchanged as test data (MIT License, Copyright (c) 2023 DeepSeek). The family's math follows vLLM's DeepSeek-V4 /
+  V4.1 model code (https://github.com/vllm-project/vllm, Apache License 2.0), cited in each module; no code is
+  copied. The EXL3 pack layout and the packed Engram shard format are read from the files (file-format facts);
+  nothing is taken from the MiaAI-Lab DeepSeek kit's AGPL-3.0 overlay or chat template.
+
+DeepSeek-V4.1-Flash encoding reference (tests/serving/data/encoding_dsv41_ref.py)
+  DeepSeek's encoding/encoding.py of deepseek-ai/DeepSeek-V4.1-Flash, copied unchanged as test data (MIT License,
+  Copyright (c) 2023 DeepSeek). The development reference model in engine/reference/ follows vLLM's and DeepSeek's
+  reference math (cited per module); no code is copied.
+
+MiaAI-Lab DeepSeek-V4.1 kit output (results/campaign/, results/kit-baseline/)
+  Logs, metrics and benchmark output of the kit (https://github.com/MiaAI-Lab/DeepSeek-v4.1-Flash-EXL3-2x-DGX-Sparks)
+  as measured on our pair, including its effective configuration; no kit code.
+
+MMLU (bench/data/mmlu200.jsonl)
+  200 questions of the MMLU test set (Hendrycks et al., https://github.com/hendrycks/test), MIT License.
+
+xgrammar (structured output)
+  mlc-ai/xgrammar 0.2.8 (https://github.com/mlc-ai/xgrammar), Apache License 2.0, installed into the image by
+  docker/Dockerfile with pip, with transformers (Apache-2.0); not vendored.
+
+NVIDIA PyTorch container (nvcr.io/nvidia/pytorch:26.07-py3)
+  The Docker image is built FROM this container and is subject to the NVIDIA Deep Learning Container License.
+  PyTorch (BSD-3-Clause) and Triton (MIT) come from it.
+
+Not included; each user downloads these under their own terms:
+
+  DeepSeek-V4.1-Flash (deepseek-ai/DeepSeek-V4.1-Flash): the original checkpoint, used for the Engram tables
+  (scripts/pack_engram.py). Mia-AiLab/DeepSeek-V4.1-Flash-EXL3-2.9bpw: the 2.9 bpw EXL3 pack.
+  dealignai/DeepSeek-V4.1-Flash-UNCENSORED-EXL3-2.9bpw: its uncensored variant, on which the results in this
+  repository were measured. Each keeps the license stated on its model card.
+
+NOTICE of Reederey87/glm53-flash-exl3-2x-dgx-spark (commit 6c337d2), reproduced verbatim:
+--------------------------------------------------------------------------------------------------------
+GLM-5.3-Flash-EXL3 on 2x DGX Spark
+Copyright 2026 the glm53-2x-dgx-spark contributors
+
+Original work in this repository (docs/, local/, env.example, and the README) is
+licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This repository is based on the GLM-5.3-Flash 2x-DGX-Sparks serving kit by
+Mia's AI Lab (https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-dgx-sparks),
+vendored at upstream commit b5ab8091 (originally 32db610). Local modifications
+to vendored files are marked with "# LOCAL:" comments and carry the
+repository's Apache-2.0 license. The vendored kit is MIT-licensed; its license
+is reproduced in full below.
+
+Since 2026-08-30 the serving image is built by this repository's Dockerfile
+(previously a prebuilt image was pulled from
+ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks). The build starts FROM the
+official vLLM day-0 GLM-5.3 preview image (vllm/vllm-openai:glm53-flash-
+arm64-cu130, pinned by digest; vLLM is Apache-2.0-licensed by its
+contributors) and compiles in exllamav3 by turboderp
+(https://github.com/turboderp-org/exllamav3, MIT-licensed) at a pinned
+commit.
+
+Model weights (brandonmusic/GLM-5.3-Flash-tr3-4bpw), the DFlash2 drafter
+(incoai/GLM-5.3-Flash-DFlash2), and the base GLM-5.3-Flash model (zai-org) are
+distributed under their own licenses on Hugging Face and are not part of this
+repository.
+
+----------------------------------------------------------------------------
+MIT License (the vendored serving kit)
+
+Copyright (c) 2026 Mia's AI Lab
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
