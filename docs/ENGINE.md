@@ -14,22 +14,24 @@
 
 The engine was developed on a private branch: 219 commits on `v0.6.0` up to the first publication (85 for the GLM
 stack, 134 for the DeepSeek family), then 9 more (G11's drafter self-distillation tooling and G12's host-memory, stall
-and RoPE fixes). Production runs commit `a6f5792` of that branch (it ran `38f6500` until G12). For publication the
-branch was squashed into the two commits above and re-authored; the G12 update regenerated `0002` the same way (`0001`
-is unchanged). Every engine change production runs is in them, plus `a20be14`, a later test-only commit (two G12
-tests made independent of the suite's order).
+and RoPE fixes), then 8 more (G13: a test-order fix, the five decode rewrites behind levers that default to 0, and
+test fixes made on the hardware). Production runs commit `767ad9f` of that branch (it ran `38f6500` until G12 and
+`a6f5792` until G13). For publication the branch was squashed into the two commits above and re-authored; the G12 and
+G13 updates regenerated `0002` the same way (`0001` is unchanged). Every engine change production runs is in them
+(390 files over v0.6.0).
 
-Applying `patches/` to v0.6.0 and diffing the result against `a6f5792` leaves exactly these differences:
+Applying `patches/` to v0.6.0 and diffing the result against `767ad9f` leaves exactly these differences:
 
 | file | difference | why |
 | --- | --- | --- |
 | 25 Python files in `families/deepseek_v41/` (14), `families/glm5_next/spark/` (`decode_stream.py`, `l2pf.py`, `roce.py`) and `tests/` (8) | comments and docstrings only (checked: identical syntax trees once docstrings are dropped) | machine names, development paths, link addresses and agent / development-process wording reworded |
-| `tests/test_dsv41_long_prefill_memory.py` | `a20be14`'s version | the test-only fix after the production commit (the huge-page test in a fresh interpreter, every tensor group) |
 | `families/deepseek_v41/cuda/draft_vocab.txt` | absent | counted from private chat transcripts. Only `TF_DSV41_DRAFT_HEAD=trim` reads it (off, not adopted); `test_dsv41_draft_head.py::test_shipped_ranking` fails without it |
 | `families/glm5_next/spark/draft_vocab.txt` | replaced | same origin; replaced by the public-text ranking the GLM recipe publishes (its `patches/0420`, `bench/draftvocab_public.py`). Read only with `GLM53_TF_DRAFT_VOCAB` (GLM engine) |
 | `NOTICE`, `THIRD_PARTY_NOTICES.md` | an entry for the DeepSeek family; the deployment names | licensing record |
 
-No production code differs. Against `a20be14` the same list holds without the test row.
+No code differs. The G13 files (`mhc_cuda.*`, `csa2/attn_cuda.*`, `csa2/topk_cuda.cu`, `dense3*`, `moe_fused.*`,
+`branches.py` and their tests) are byte for byte `767ad9f`'s; of the files they touch, only `mhc.py` carries a
+reworded docstring.
 
 ## The same tree as a git branch
 
