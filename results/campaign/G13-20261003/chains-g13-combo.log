@@ -1,0 +1,7 @@
+[chains off rep 0] weather-then-flight: 2/2 (calls True, answer True, 2 calls, 3 turns, 4.4 s)
+[chains off rep 0] user-orders-total: 2/2 (calls True, answer True, 3 calls, 4 turns, 4.3 s)
+[chains off rep 0] edit-config: 1/2 (calls True, answer False, 8 calls, 8 turns, 10.3 s)
+[chains off rep 0] compound-interest: 2/2 (calls True, answer True, 2 calls, 3 turns, 3.7 s)
+[chains off rep 0] retry-after-error: 2/2 (calls True, answer True, 2 calls, 3 turns, 4.1 s)
+[chains off rep 0] geo-timezone: 2/2 (calls True, answer True, 2 calls, 3 turns, 4.0 s)
+[chains off] score [11] of 12 (pass line 10): PASS

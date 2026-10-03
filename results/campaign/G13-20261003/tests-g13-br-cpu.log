@@ -1,0 +1,17 @@
+...............................................................          [100%]
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+tests/test_dsv41_branches_interp.py::test_branched_forward_equals_serial[True]
+tests/test_dsv41_branches_interp.py::test_branched_forward_equals_serial[False]
+tests/test_dsv41_rowmode_interp.py::test_attention_equals_per_segment
+tests/test_dsv41_csa2_interp.py::test_attention_swa_only_replay_and_dspark
+tests/test_dsv41_csa2_interp.py::test_packed_pool_rows_equal_separate_tensors
+  /usr/local/lib/python3.12/dist-packages/triton/runtime/interpreter.py:491: RuntimeWarning: invalid value encountered in subtract
+    output = op(lhs.data, rhs.data)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+63 passed, 6 warnings in 283.10s (0:04:43)

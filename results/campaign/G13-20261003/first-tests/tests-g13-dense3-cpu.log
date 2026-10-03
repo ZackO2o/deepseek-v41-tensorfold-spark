@@ -1,0 +1,12 @@
+...........................................[tensorfold] dense3: an attention stays on x3seg: plan: 9 k steps a warp, not whole 2-step groups
+.sss[G13] dense3 sm_121: K2 10 WK 4 MINB 3: 168 regs, 0 B spill; K2 10 WK 4 MINB 4: 128 regs, 124 B spill; K2 10 WK 8 MINB 1: 212 regs, 0 B spill; K2 10 WK 8 MINB 2: 128 regs, 112 B spill; K2 12 WK 4 MINB 3: 168 regs, 0 B spill; K2 12 WK 4 MINB 4: 128 regs, 216 B spill; K2 12 WK 8 MINB 1: 222 regs, 0 B spill; K2 12 WK 8 MINB 2: 128 regs, 188 B spill; K2 4 WK 4 MINB 3: 168 regs, 0 B spill; K2 4 WK 4 MINB 4: 128 regs, 12 B spill; K2 4 WK 8 MINB 1: 192 regs, 0 B spill; K2 4 WK 8 MINB 2: 128 regs, 12 B spill; K2 6 WK 4 MINB 3: 168 regs, 0 B spill; K2 6 WK 4 MINB 4: 128 regs, 28 B spill; K2 6 WK 8 MINB 1: 196 regs, 0 B spill; K2 6 WK 8 MINB 2: 128 regs, 20 B spill; K2 8 WK 4 MINB 3: 166 regs, 0 B spill; K2 8 WK 4 MINB 4: 128 regs, 40 B spill; K2 8 WK 8 MINB 1: 206 regs, 0 B spill; K2 8 WK 8 MINB 2: 128 regs, 24 B spill
+.[G13] dense3 SASS K2 10 / 4 warps / 3 blocks: 10 LDG.E.128 (weights), 12 LDG.E 4-byte (input fragments), 8 SHFL.IDX, 32 HMMA a 2-step group, no LDL / STL
+..................ss....s.......
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+74 passed, 6 skipped, 1 warning in 19.42s

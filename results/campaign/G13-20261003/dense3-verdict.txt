@@ -1,0 +1,7 @@
+tests: pass
+bench: bitwise True, row invariant True; R=1 GB/s a class (x3seg -> dense3): x 142.5->149.9, x4 117.1->220.8, q 206.1->246.2, q+ix 191.7->196.8, o 146.5->199.6, wo_b 195.7->205.7; estimate -1.443 ms a window: pass
+window 1-row verify vs off: on -0.20 ms (2 rows -1.2000000000000028), on42 -0.30 ms (2 rows -0.10000000000000142); exact {'off': True, 'on': True, 'on42': True}
+speed on vs off: not run; exact None: pass
+gate top-1: {'on': None, 'on42': None, 'off': None} (>= 0.96; prod 0.9963 expected exactly: the same bits): pass
+window line (1-row verify <= off - 0.5 ms, exact, 2 rows below off): NOT met
+adopt: nothing (TF_DSV41_DENSE_V3 stays 0)

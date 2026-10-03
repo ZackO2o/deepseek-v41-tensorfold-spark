@@ -1,0 +1,5 @@
+tests: pass
+window (PHASES=1, means of 2 runs): 1 rows +2.25 ms, 2 rows +0.40 ms, 4 rows +0.10 ms, 16 rows -0.55 ms; exact True; 1-row <= -0.3 (target -0.5), 2-row < 0: FAIL or not run
+speed on vs off: not run; exact None, replies == off None: pass
+target (1-row verify <= -0.5 ms): not met
+adopt: nothing (TF_DSV41_BRANCHES stays 0)

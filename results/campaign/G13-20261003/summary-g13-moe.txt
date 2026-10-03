@@ -1,0 +1,47 @@
+G13 moe 2026-10-03T08:56:32Z, sources b7b12010ca9df6f9be045c36bd342e5a3bc09915, image glm53-tensorfold:b13-060
+GPU tests: 79 passed, 1 skipped, 1 warning in 37.26s
+CPU tests: 155 passed, 11 warnings in 100.64s (0:01:40)
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 384 top-6 rule off: R 1..16 bit for bit (0 slots pruned)
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 384 top-6 rule p85k: R 1..16 bit for bit (6 slots pruned)
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 384 top-6 rule p85: R 1..16 bit for bit (6 slots pruned)
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 384 top-6 rule w10k: R 1..16 bit for bit (0 slots pruned)
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 128 top-3 rule off: R 1..16 bit for bit (0 slots pruned)
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 128 top-3 rule p85k: R 1..16 bit for bit (0 slots pruned)
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 128 top-3 rule p85: R 1..16 bit for bit (0 slots pruned)
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 128 top-3 rule w10k: R 1..16 bit for bit (0 slots pruned)
+...............[G13] moe_fused bench real layer 1 p85k R=1: old 292.9 us, fused 272.3 us (-20.5)
+[G13] moe_fused bench real layer 1 p85k R=2: old 421.7 us, fused 395.3 us (-26.3)
+[G13] moe_fused bench real layer 1 p85k R=4: old 754.7 us, fused 724.8 us (-29.9)
+[G13] moe_fused bench real layer 1 p85k R=8: old 1413.2 us, fused 1433.1 us (+19.9)
+[G13] moe_fused bench real layer 1 p85k R=16: old 2196.4 us, fused 2111.2 us (-85.3)
+[G13] moe_fused real layer 1: on == off, R 1..16, p85k and off, bit for bit
+[G13] moe_fused bench real layer 20 p85k R=1: old 249.6 us, fused 203.2 us (-46.4)
+[G13] moe_fused bench real layer 20 p85k R=2: old 357.0 us, fused 336.6 us (-20.4)
+[G13] moe_fused bench real layer 20 p85k R=4: old 598.9 us, fused 576.2 us (-22.7)
+[G13] moe_fused bench real layer 20 p85k R=8: old 1057.7 us, fused 1041.1 us (-16.6)
+[G13] moe_fused bench real layer 20 p85k R=16: old 1880.7 us, fused 1853.3 us (-27.4)
+[G13] moe_fused real layer 20: on == off, R 1..16, p85k and off, bit for bit
+[G13] moe_fused bench real layer 39 p85k R=1: old 294.7 us, fused 263.7 us (-31.0)
+[G13] moe_fused bench real layer 39 p85k R=2: old 424.1 us, fused 408.7 us (-15.4)
+[G13] moe_fused bench real layer 39 p85k R=4: old 798.4 us, fused 766.3 us (-32.1)
+[G13] moe_fused bench real layer 39 p85k R=8: old 1399.1 us, fused 1407.1 us (+8.0)
+[G13] moe_fused bench real layer 39 p85k R=16: old 2613.4 us, fused 2590.5 us (-22.9)
+[G13] moe_fused real layer 39: on == off, R 1..16, p85k and off, bit for bit
+[G13] moe_fused sm_121: 21 kernels, registers 40..216, no spills / stack
+== moe-window.txt
+config    1 row  2 rows  4 rows  16 rows    code   prose      C2  exact  replies==off  (vs off)
+early     26.70   31.60   39.40    72.90       -   40.75       -  True  True  1 row +0.00 ms, 2 rows -0.60 ms; prose +1.0%
+off       26.70   32.20   39.70    72.90       -   40.35       -  True  None  
+on        27.40   32.20   39.60    72.60       -   40.55       -  True  True  1 row +0.70 ms, 2 rows +0.00 ms; prose +0.5%
+== moe-verdict.txt
+tests: pass
+nsys 1-row DRAM-idle us a layer: off None -> on None (target <= 35): FAIL or not run; launches a chain None -> None
+window 1-row verify ms: early 26.7 (+0.00), off 26.7, on 27.4 (+0.70); on exact + replies == off: True
+speed on vs off: not run; exact + replies == off: None / None: pass
+gate top-1: off None, on 0.9960918417195896: NOT equal or not run
+target (DRAM-idle <= 35 us a layer and 1-row verify <= -0.4 ms): not met
+adopt: nothing (TF_DSV41_MOE_FUSED stays 0)
+[dsv41 15:56:32] gate g13moe-on rc=1: top1 0.9961 first copy 0.9502 (G2 exact: 0.9963 / 0.9535)
+[dsv41 15:51:33] g13mw-off memory: head MemFree min 8.82, MemAvailable min 10.02 GiB; worker MemFree min 7.11, MemAvailable min 8.10 GiB
+[dsv41 15:53:15] g13mw-on memory: head MemFree min 8.66, MemAvailable min 9.74 GiB; worker MemFree min 7.06, MemAvailable min 8.05 GiB
+[dsv41 15:54:57] g13mw-early memory: head MemFree min 9.05, MemAvailable min 10.11 GiB; worker MemFree min 8.18, MemAvailable min 9.19 GiB

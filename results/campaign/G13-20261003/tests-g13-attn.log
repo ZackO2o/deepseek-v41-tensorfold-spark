@@ -1,0 +1,95 @@
+...................................
+[G13] attn_cuda: Triton's _chunks kWidth on this GPU 4; device {'sms': 48, 'smem_optin': 101376, 'cluster_launch': True, 'attn_ctas_per_sm': 1, 'attn_smem': 98816}
+...
+[G13] attn_cuda emulator vs GPU: max |d| 0.000977, 99.8% identical
+..........................................
+[G13] attn layer R=1: triton 23.1 us, cuda 29.1 us (1.26x; saved -6.0 us a layer)
+
+[G13] attn layer R=2: triton 24.3 us, cuda 30.9 us (1.27x; saved -6.6 us a layer)
+
+[G13] attn layer R=4: triton 25.5 us, cuda 34.4 us (1.35x; saved -8.9 us a layer)
+
+[G13] attn layer R=8: triton 46.0 us, cuda 56.3 us (1.22x; saved -10.3 us a layer)
+
+[G13] attn layer R=16: triton 85.0 us, cuda 89.8 us (1.06x; saved -4.8 us a layer)
+.
+[G13] topk n=2048 R=1: select dtopk 11.0 -> cuda 10.4 us; select+blocks 13.7 -> 10.3; reindex top-k (16,384) 59.6 -> 18.6
+
+[G13] topk n=2048 R=4: select dtopk 14.4 -> cuda 12.4 us; select+blocks 16.5 -> 17.0; reindex top-k (16,384) 64.2 -> 21.9
+
+[G13] topk n=2048 R=16: select dtopk 14.4 -> cuda 12.3 us; select+blocks 16.5 -> 12.3; reindex top-k (16,384) 72.1 -> 23.7
+
+[G13] topk n=16384 R=1: select dtopk 47.8 -> cuda 18.4 us; select+blocks 53.3 -> 18.4; reindex top-k (16,384) 59.5 -> 20.6
+
+[G13] topk n=16384 R=4: select dtopk 48.2 -> cuda 18.4 us; select+blocks 53.6 -> 18.4; reindex top-k (16,384) 58.8 -> 20.8
+
+[G13] topk n=16384 R=16: select dtopk 48.9 -> cuda 21.4 us; select+blocks 54.0 -> 22.5; reindex top-k (16,384) 71.5 -> 25.3
+
+[G13] topk n=32768 R=1: select dtopk 91.1 -> cuda 24.7 us; select+blocks 184.4 -> 24.7; reindex top-k (16,384) 44.6 -> 18.9
+
+[G13] topk n=32768 R=4: select dtopk 113.8 -> cuda 28.7 us; select+blocks 206.5 -> 34.1; reindex top-k (16,384) 59.3 -> 20.6
+
+[G13] topk n=32768 R=16: select dtopk 114.3 -> cuda 57.6 us; select+blocks 206.9 -> 98.2; reindex top-k (16,384) 58.9 -> 24.6
+
+[G13] topk n=75000 R=1: select dtopk 222.5 -> cuda 30.8 us; select+blocks 481.1 -> 33.3; reindex top-k (16,384) 62.9 -> 22.7
+
+[G13] topk n=75000 R=4: select dtopk 223.3 -> cuda 30.8 us; select+blocks 493.6 -> 38.4; reindex top-k (16,384) 58.8 -> 20.5
+
+[G13] topk n=75000 R=16: select dtopk 223.2 -> cuda 68.9 us; select+blocks 548.6 -> 102.9; reindex top-k (16,384) 59.3 -> 24.6
+................................
+[DTOPK] n=4096 R=1: select us by TILE/WARPS 1024/4: 43.2, 2048/8: 33.1, 4096/8: 29.4, 4096/16: 33.5, 8192/16: 45.4
+
+[DTOPK] n=4096 R=1: select old 156.9 us, new 29.5 (RB 8) / 109.1 (RB 11); blocks old 98.3 new 14.2; reindex top-k old 155.9 new 60.0
+
+[DTOPK] n=4096 R=4: select us by TILE/WARPS 1024/4: 43.0, 2048/8: 33.0, 4096/8: 29.7, 4096/16: 33.1, 8192/16: 45.3
+
+[DTOPK] n=4096 R=4: select old 149.6 us, new 29.7 (RB 8) / 108.8 (RB 11); blocks old 90.7 new 14.0; reindex top-k old 164.2 new 59.8
+
+[DTOPK] n=4096 R=16: select us by TILE/WARPS 1024/4: 43.1, 2048/8: 33.0, 4096/8: 29.8, 4096/16: 33.0, 8192/16: 45.3
+
+[DTOPK] n=4096 R=16: select old 150.9 us, new 29.9 (RB 8) / 108.9 (RB 11); blocks old 89.5 new 14.1; reindex top-k old 191.1 new 59.2
+.
+[DTOPK] n=16384 R=1: select us by TILE/WARPS 1024/4: 80.1, 2048/8: 55.5, 4096/8: 47.4, 4096/16: 47.3, 8192/16: 37.6
+
+[DTOPK] n=16384 R=1: select old 177.7 us, new 47.4 (RB 8) / 141.3 (RB 11); blocks old 106.2 new 13.9; reindex top-k old 162.8 new 59.7
+
+[DTOPK] n=16384 R=4: select us by TILE/WARPS 1024/4: 80.2, 2048/8: 55.5, 4096/8: 47.4, 4096/16: 47.4, 8192/16: 38.2
+
+[DTOPK] n=16384 R=4: select old 171.0 us, new 47.4 (RB 8) / 141.6 (RB 11); blocks old 112.7 new 14.0; reindex top-k old 172.8 new 59.7
+
+[DTOPK] n=16384 R=16: select us by TILE/WARPS 1024/4: 80.2, 2048/8: 55.6, 4096/8: 47.4, 4096/16: 47.8, 8192/16: 39.1
+
+[DTOPK] n=16384 R=16: select old 177.6 us, new 47.5 (RB 8) / 205.4 (RB 11); blocks old 122.6 new 13.8; reindex top-k old 207.5 new 59.2
+.
+[DTOPK] n=32768 R=1: select us by TILE/WARPS 1024/4: 155.7, 2048/8: 104.7, 4096/8: 90.3, 4096/16: 92.4, 8192/16: 74.0
+
+[DTOPK] n=32768 R=1: select old 234.0 us, new 90.4 (RB 8) / 282.3 (RB 11); blocks old 118.7 new 94.5; reindex top-k old 161.2 new 58.7
+
+[DTOPK] n=32768 R=4: select us by TILE/WARPS 1024/4: 155.9, 2048/8: 104.7, 4096/8: 90.4, 4096/16: 92.4, 8192/16: 73.9
+
+[DTOPK] n=32768 R=4: select old 227.5 us, new 90.5 (RB 8) / 281.6 (RB 11); blocks old 123.1 new 94.5; reindex top-k old 175.0 new 59.7
+
+[DTOPK] n=32768 R=16: select us by TILE/WARPS 1024/4: 190.8, 2048/8: 131.2, 4096/8: 112.9, 4096/16: 115.0, 8192/16: 92.4
+
+[DTOPK] n=32768 R=16: select old 252.9 us, new 112.9 (RB 8) / 411.4 (RB 11); blocks old 140.0 new 94.6; reindex top-k old 194.2 new 59.4
+.
+[DTOPK] n=75000 R=1: select us by TILE/WARPS 1024/4: 387.3, 2048/8: 313.8, 4096/8: 222.4, 4096/16: 248.2, 8192/16: 205.0
+
+[DTOPK] n=75000 R=1: select old 234.2 us, new 222.5 (RB 8) / 694.1 (RB 11); blocks old 109.9 new 260.5; reindex top-k old 165.8 new 59.7
+
+[DTOPK] n=75000 R=4: select us by TILE/WARPS 1024/4: 387.5, 2048/8: 313.5, 4096/8: 223.3, 4096/16: 248.1, 8192/16: 205.0
+
+[DTOPK] n=75000 R=4: select old 232.0 us, new 223.4 (RB 8) / 688.3 (RB 11); blocks old 112.8 new 260.5; reindex top-k old 171.4 new 59.9
+
+[DTOPK] n=75000 R=16: select us by TILE/WARPS 1024/4: 479.2, 2048/8: 387.5, 4096/8: 276.6, 4096/16: 306.7, 8192/16: 250.2
+
+[DTOPK] n=75000 R=16: select old 305.5 us, new 276.7 (RB 8) / 1007.2 (RB 11); blocks old 130.0 new 266.5; reindex top-k old 195.4 new 58.5
+.
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+117 passed, 1 warning in 26.76s

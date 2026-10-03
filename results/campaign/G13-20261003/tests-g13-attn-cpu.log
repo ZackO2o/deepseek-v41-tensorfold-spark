@@ -1,0 +1,18 @@
+.........................................[G13] attn_cuda sm_121 _ZN10dsv41_topk11topk_kernelENS_4ArgsE: 55 registers, 0 spills
+[G13] attn_cuda sm_121 _ZN10dsv41_attn11attn_kernelILi4ELb1ELb1EEEvNS_4ArgsE: 111 registers, 0 spills
+[G13] attn_cuda sm_121 _ZN10dsv41_attn11attn_kernelILi4ELb1ELb0EEEvNS_4ArgsE: 111 registers, 0 spills
+[G13] attn_cuda sm_121 _ZN10dsv41_attn11attn_kernelILi4ELb0ELb1EEEvNS_4ArgsE: 111 registers, 0 spills
+[G13] attn_cuda sm_121 _ZN10dsv41_attn11attn_kernelILi4ELb0ELb0EEEvNS_4ArgsE: 111 registers, 0 spills
+[G13] attn_cuda sm_121 _ZN10dsv41_attn11attn_kernelILi2ELb1ELb1EEEvNS_4ArgsE: 114 registers, 0 spills
+[G13] attn_cuda sm_121 _ZN10dsv41_attn11attn_kernelILi2ELb1ELb0EEEvNS_4ArgsE: 114 registers, 0 spills
+[G13] attn_cuda sm_121 _ZN10dsv41_attn11attn_kernelILi2ELb0ELb1EEEvNS_4ArgsE: 114 registers, 0 spills
+[G13] attn_cuda sm_121 _ZN10dsv41_attn11attn_kernelILi2ELb0ELb0EEEvNS_4ArgsE: 114 registers, 0 spills
+.......
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+48 passed, 1 warning in 8.03s

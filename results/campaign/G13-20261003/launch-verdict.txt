@@ -1,0 +1,4 @@
+graph mode: window launch idle L None us (call None us, host gap before it None us)
+node mode (G9's reference): idle None us, call None us
+no profiler: graph.replay host wall H 0.02 ms a round
+verdict: d1 CLOSED: graph.replay host wall 0.02 ms a round without a profiler (rule H <= 0.05; no graph-mode nsys run)

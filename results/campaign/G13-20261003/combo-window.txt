@@ -1,0 +1,8 @@
+config    1 row  2 rows  4 rows  16 rows    code   prose      C2  exact  replies==off
+off       26.80   32.30   39.70    73.40       -   40.40       -  True  None
+off2      27.00   32.20   39.80    72.00       -   40.40       -  True  None
+combo     24.80   29.70   37.90    72.70       -   43.47       -  True  True
+combo2    23.70   29.70   38.00    73.30       -   43.24       -  True  True
+minus-ATTN_CUDA_PARTS   23.40   29.30   37.50    71.90       -   43.41       -  True  True
+minus-DENSE_V3   24.90   30.80   39.10    73.80       -   42.01       -  True  True
+plus-MHC_CUDA_ROWS-8   23.80   29.80   38.00    72.80       -   43.57       -  True  True

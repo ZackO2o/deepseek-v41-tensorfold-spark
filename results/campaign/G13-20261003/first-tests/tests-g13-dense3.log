@@ -1,0 +1,78 @@
+.............F[G13] dense3 x4 (9.0 MB, random weights) R=1 cold L2: x3seg 72.8 us 124 GB/s -> dense3 164.2 us 55 GB/s
+[G13] dense3 x2_l0 (6.9 MB, random weights) R=1 cold L2: x3seg 41.7 us 165 GB/s -> dense3 49.1 us 140 GB/s
+[G13] dense3 q (16.4 MB, random weights) R=1 cold L2: x3seg 91.4 us 179 GB/s -> dense3 82.2 us 199 GB/s
+[G13] dense3 o (10.5 MB, random weights) R=1 cold L2: x3seg 71.8 us 146 GB/s -> dense3 54.2 us 193 GB/s
+.[G13] dense3 real layers 0..39 rank 0: 335 matrices repacked; every dense output == x3seg at R = 1..16, rows of a window == alone, to_strips == the loaded words
+......[G7] fused_proj x4 R=1 (eager, random weights): 81.3 -> 38.9 us
+[G7] fused_proj x2_l0 R=1 (eager, random weights): 42.3 -> 30.3 us
+[G7] fused_proj q R=1 (eager, random weights): 86.4 -> 61.4 us
+[G7] fused_proj o R=1 (eager, random weights): 87.3 -> 40.1 us
+.[G7] fused_proj plan upstream, real layers [0, 1, 2]..39 rank 0: R = 1..16 fused == unfused and rows of a window == alone, bit for bit; drift vs upstream 0.00e+00; dense ms (eager, R=1, sum) 12.55 -> 10.67
+.[G7] fused_proj plan long, real layers [0, 1, 2]..39 rank 0: R = 1..16 fused == unfused and rows of a window == alone, bit for bit; drift vs upstream 3.62e-03; dense ms (eager, R=1, sum) 15.33 -> 10.74
+.
+=================================== FAILURES ===================================
+______________________ test_graph_replay_and_single_calls ______________________
+
+groups = {'x4': (<tensorfold.families.deepseek_v41.cuda.fused_proj.Fused object at 0xfe9a1c9f90d0>, <tensorfold.families.deepse...0',
+       dtype=torch.float16), bias=None, bits=5.0, codebook='mul1', k=4096, n=1024, layout='lanes', split=(8, 4))])}
+
+    def test_graph_replay_and_single_calls(groups):
+        from tensorfold.families.deepseek_v41.cuda import dense3 as D3
+    
+        ref, d3, _ = groups["x4"]
+        gen = torch.Generator(device="cuda").manual_seed(4)
+        x = torch.randn((3, 5120), generator=gen, device="cuda").to(BF)
+        s = torch.cuda.Stream()
+        s.wait_stream(torch.cuda.current_stream())
+        with torch.cuda.stream(s):
+            d3(x, BF)
+        torch.cuda.current_stream().wait_stream(s)
+        g = torch.cuda.CUDAGraph()
+        with torch.cuda.graph(g):
+            ys = d3(x, BF)
+        for _ in range(3):
+            x.copy_(torch.randn((3, 5120), generator=gen, device="cuda").to(BF))
+            g.replay()
+            torch.cuda.synchronize()
+            assert all(torch.equal(a, b) for a, b in zip(ys, ref(x, BF)))
+            assert not (d3.counters != 0).any()
+        up, ln = _twin(_lin(4096, 5120, 10, 7)[0])                       # wo_b: linear.Exl3 -> Lanes.__call__
+        assert isinstance(ln, D3.Lanes)
+        for R in (1, 2, 7, 130):
+            z = torch.randn((R, 4096), generator=gen, device="cuda").to(BF)
+>           assert torch.equal(ln(z, out_dtype=F32), up(z, out_dtype=F32))
+                                                     ^^^^^^^^^^^^^^^^^^^^
+
+tests/cuda/test_dsv41_dense3_gpu.py:143: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Exl3Linear(words=tensor([[[[-1627945928,   -73528894,  1262519935,  ...,  1851049209,
+           -1452694129,  1589964...a:0',
+       dtype=torch.float16), bias=None, bits=5.0, codebook='mul1', k=4096, n=5120, layout='strips', split=(8, 4))
+x = tensor([[ 1.5156, -0.1895,  0.1807,  ...,  0.0615, -0.6328, -0.3750],
+        [-1.8125,  0.9531, -1.5938,  ...,  0.793...],
+        [-0.9375,  2.0156, -0.1338,  ..., -0.2285, -0.6445,  0.6719]],
+       device='cuda:0', dtype=torch.bfloat16)
+out = None, out_dtype = torch.float32, xh = None, z = None, skip = None
+
+    def __call__(self, x: torch.Tensor, out: torch.Tensor | None = None, out_dtype: torch.dtype | None = None,
+                 xh: torch.Tensor | None = None, z: torch.Tensor | None = None,
+                 skip: torch.Tensor | None = None) -> torch.Tensor:
+        """y [M, N] = x [M, K] @ W + bias for M = 1..128; scratch ``xh`` fp16 [M, K] and ``z`` fp32 (SK > 1) allocated when not given.
+        ``skip``: int32 [>= 1] on the device; nonzero at run time = the matmul returns at once, ``out`` untouched (graph-safe)."""
+    
+        if x.dim() != 2 or x.shape[1] != self.k or not 1 <= x.shape[0] <= 128:
+>           raise ValueError(f"x must be [1..128, {self.k}], got {tuple(x.shape)}")
+E           ValueError: x must be [1..128, 4096], got (130, 4096)
+
+src/tensorfold/cuda/exl3/linear.py:172: ValueError
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/cuda/test_dsv41_dense3_gpu.py::test_graph_replay_and_single_calls
+1 failed, 23 passed, 1 warning in 20.71s
