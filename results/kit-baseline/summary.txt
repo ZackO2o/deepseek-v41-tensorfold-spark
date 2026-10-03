@@ -1,0 +1,40 @@
+DSpark over the window (log): accepted 9849 / drafted 23178 = 0.425; mean tokens a round (k=3) 2.27
+DSpark per phase (/metrics deltas): phase  drafts  draft_tokens  accepted  accept/draft_token  tokens_a_round  per-position
+  mmlu200             916       2748       417    0.152     1.46  [0.344, 0.074, 0.037]
+  long-8192            33         99        97    0.980     3.94  [1.0, 0.97, 0.97]
+  long-32768           32         96        96    1.000     4.00  [1.0, 1.0, 1.0]
+  long-65536           33         99        97    0.980     3.94  [1.0, 0.97, 0.97]
+  long-131072          32         96        96    1.000     4.00  [1.0, 1.0, 1.0]
+  long-262144          32         96        95    0.990     3.97  [1.0, 1.0, 0.969]
+  multiturn          2940       8820      2448    0.278     1.83  [0.369, 0.269, 0.195]
+  glmbench           3751      11253      6733    0.598     2.79  [0.678, 0.6, 0.517]
+memory r0 (GiB): phase  min MemFree  min MemAvailable
+  glm-down         115.52 116.37
+  memory           116.99 116.53
+  kit-up             0.56   5.29
+  oracle             4.11   5.14
+  mmlu200            3.75   4.97
+  long-8192          3.73   4.95
+  long-32768         3.73   4.95
+  long-65536         3.81   5.03
+  long-131072        3.83   5.05
+  long-262144        3.79   5.01
+  multiturn          3.81   5.05
+  glmbench           3.70   4.94
+  benches-done       3.81   5.05
+  collect            3.81   5.05
+memory r1 (GiB): phase  min MemFree  min MemAvailable
+  glm-down         114.37 114.92
+  memory           114.38 114.93
+  kit-up             0.58   5.18
+  oracle             4.04   4.62
+  mmlu200            3.88   4.47
+  long-8192          3.89   4.49
+  long-32768         3.90   4.49
+  long-65536         3.91   4.51
+  long-131072        3.92   4.52
+  long-262144        3.86   4.46
+  multiturn          3.87   4.48
+  glmbench           3.78   4.40
+  benches-done       3.91   4.52
+  collect            3.90   4.52

@@ -1,0 +1,26 @@
+G6-ship 2026-10-02T18:25:50Z, sources 38f65008e323b8b1c19c44fff50897f6f90a7611, image <the image of docker/Dockerfile>
+G6 ship gates
+
+| gate | result | detail |
+| --- | --- | --- |
+| replay: teacher-forced top-1 vs kit oracle >= 96% (aim 98%) | MISSING | - |
+| replay: MMLU replay vs full vs kit | MISSING | no compare-mmlu*.json |
+| replay: needles (replay) | MISSING | - |
+| replay: needles (full) | MISSING | - |
+| tooleval: multi-step chains (off) >= 10/12 | PASS | score [11] of 12, malformed calls 0 |
+| tooleval: multi-step chains (high) >= 10/12 | PASS | score [11] of 12, malformed calls 0 |
+| tooleval: tool-eval-bench C >= 8/8 | MISSING | not run here (no install); run separately: results/best-config/tool-eval-bench-C (8/8) |
+| structured: schemas + tool choice suites all pass | PASS | schemas ok; tools ok |
+| stress: decode streams reach 2,048 tokens (ignore_eos) | PASS | 2048 tok (None tok/s during the long prefill), 2048 tok (None tok/s during the long prefill), 2048 tok (None tok/s during the long prefill); long first token 216.61 s |
+| stress: MemAvailable >= 5.0 GiB both nodes | FAIL | head 5.5, worker 4.01 GiB (hard stop 4.0) |
+| soak: 0 errors, inflight back to 0, 17*23, no fatal | PASS | 529 requests, 0 errors, 77 cancelled, 0 content checks failed, drained True in 0.0 s, 17*23 -> '391' |
+| soak: MemAvailable >= 4.0 GiB (target 5.0) | PASS | head 5.11, worker 4.07 GiB |
+| speed: code / prose / C4 >= 97% of G4, drafted == serial | MISSING | - |
+
+memory minima per step (MemAvailable GiB, head / worker)
+  structured: 8.11 / 6.79
+  tooleval: 7.78 / 6.28
+  stress: 5.5 / 4.01
+  soak: 5.11 / 4.07
+
+verdict: NOT YET (1 FAIL, 6 MISSING)

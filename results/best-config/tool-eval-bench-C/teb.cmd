@@ -1,0 +1,1 @@
+~/.cache/tooleval/tool-eval-bench/.venv/bin/tool-eval-bench --base-url http://127.0.0.1:18001/v1 --model DeepSeek-V4.1-Flash-TF --no-live --temperature 0.0 --output-dir results/best-config/tool-eval-bench-C/teb --json-file results/best-config/tool-eval-bench-C/teb.json --no-think --timeout 300 --categories C 

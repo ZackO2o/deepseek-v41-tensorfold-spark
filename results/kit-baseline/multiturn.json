@@ -1,0 +1,501 @@
+{
+ "label": "dsv41-kit",
+ "args": {
+  "base": "http://127.0.0.1:8888",
+  "model": "DeepSeek-v4.1-Flash-EXL3",
+  "modes": "concurrent",
+  "doc": 30000,
+  "system": 2000,
+  "append": 2000,
+  "tokens": 64,
+  "long_tokens": 256,
+  "streams": "1,2,4",
+  "reps": 3,
+  "delay": 3.0,
+  "extra": "{}",
+  "stress_target": 250000,
+  "stress_step": 60000,
+  "stress_final": 32000,
+  "mem_hosts": "local,<worker-ssh>",
+  "mem_log": null,
+  "mem_min": 8.0,
+  "label": "dsv41-kit",
+  "out": "results/kit-baseline/multiturn.json"
+ },
+ "concurrent": [
+  {
+   "streams": 1,
+   "rep": 0,
+   "aggregate_tps": 35.016889168846795,
+   "per_stream_tps": [
+    34.88010444553099
+   ],
+   "tokens": [
+    256
+   ],
+   "ttft_s": [
+    0.17530281499989542
+   ],
+   "sha": [
+    "e7da95c031f46772"
+   ],
+   "tokens_per_round": [
+    null
+   ],
+   "drafters": [
+    null
+   ],
+   "round_kinds": {},
+   "stats": [
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    }
+   ]
+  },
+  {
+   "streams": 1,
+   "rep": 1,
+   "aggregate_tps": 29.322927763144524,
+   "per_stream_tps": [
+    29.20838507656974
+   ],
+   "tokens": [
+    256
+   ],
+   "ttft_s": [
+    0.2421107759998904
+   ],
+   "sha": [
+    "b0363c2c5c825a11"
+   ],
+   "tokens_per_round": [
+    null
+   ],
+   "drafters": [
+    null
+   ],
+   "round_kinds": {},
+   "stats": [
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    }
+   ]
+  },
+  {
+   "streams": 1,
+   "rep": 2,
+   "aggregate_tps": 32.54834551241166,
+   "per_stream_tps": [
+    32.4212035377538
+   ],
+   "tokens": [
+    256
+   ],
+   "ttft_s": [
+    0.24121104200003174
+   ],
+   "sha": [
+    "0df1cce9c86d3f42"
+   ],
+   "tokens_per_round": [
+    null
+   ],
+   "drafters": [
+    null
+   ],
+   "round_kinds": {},
+   "stats": [
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    }
+   ]
+  },
+  {
+   "streams": 2,
+   "rep": 0,
+   "aggregate_tps": 47.39231608350524,
+   "per_stream_tps": [
+    26.12073971297409,
+    23.604086185372203
+   ],
+   "tokens": [
+    256,
+    256
+   ],
+   "ttft_s": [
+    0.2790009140001075,
+    0.27871657300011066
+   ],
+   "sha": [
+    "d912250a581a8e58",
+    "e52a525de4c68c32"
+   ],
+   "tokens_per_round": [
+    null,
+    null
+   ],
+   "drafters": [
+    null,
+    null
+   ],
+   "round_kinds": {},
+   "stats": [
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    },
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    }
+   ]
+  },
+  {
+   "streams": 2,
+   "rep": 1,
+   "aggregate_tps": 44.578187570656674,
+   "per_stream_tps": [
+    22.2020270127294,
+    23.701703831528924
+   ],
+   "tokens": [
+    256,
+    256
+   ],
+   "ttft_s": [
+    0.17938495899988993,
+    0.3938770550000754
+   ],
+   "sha": [
+    "4cec2f672bd15d51",
+    "2ef3d477bee24913"
+   ],
+   "tokens_per_round": [
+    null,
+    null
+   ],
+   "drafters": [
+    null,
+    null
+   ],
+   "round_kinds": {},
+   "stats": [
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    },
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    }
+   ]
+  },
+  {
+   "streams": 2,
+   "rep": 2,
+   "aggregate_tps": 48.11626518554723,
+   "per_stream_tps": [
+    23.964513427458456,
+    30.418655901279948
+   ],
+   "tokens": [
+    256,
+    256
+   ],
+   "ttft_s": [
+    0.2598013599999831,
+    0.2593228270000054
+   ],
+   "sha": [
+    "808998f6250f95f1",
+    "097e9e9643b117df"
+   ],
+   "tokens_per_round": [
+    null,
+    null
+   ],
+   "drafters": [
+    null,
+    null
+   ],
+   "round_kinds": {},
+   "stats": [
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    },
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    }
+   ]
+  },
+  {
+   "streams": 4,
+   "rep": 0,
+   "aggregate_tps": 37.994493610538264,
+   "per_stream_tps": [
+    9.728090909985317,
+    9.461571418332365,
+    9.66027965297396,
+    10.243501905578377
+   ],
+   "tokens": [
+    256,
+    256,
+    256,
+    256
+   ],
+   "ttft_s": [
+    0.39327903600019454,
+    0.3925280470000416,
+    0.39208763099986754,
+    0.39223689400000694
+   ],
+   "sha": [
+    "3ac26a97677a1573",
+    "93d9bce6063660c5",
+    "488f0e03296f02ea",
+    "097e9e9643b117df"
+   ],
+   "tokens_per_round": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "drafters": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "round_kinds": {},
+   "stats": [
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    },
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    },
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    },
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    }
+   ]
+  },
+  {
+   "streams": 4,
+   "rep": 1,
+   "aggregate_tps": 36.946976812635555,
+   "per_stream_tps": [
+    9.200764491290718,
+    9.340727668595454,
+    10.008829474967802,
+    9.433683252585768
+   ],
+   "tokens": [
+    256,
+    256,
+    256,
+    256
+   ],
+   "ttft_s": [
+    0.4576044150001053,
+    0.4570929230001184,
+    0.4568299530001241,
+    0.4558912009999858
+   ],
+   "sha": [
+    "a3e94b3a2ac98624",
+    "9a59bfc1d269461f",
+    "097e9e9643b117df",
+    "79a1eb0bd9b99b30"
+   ],
+   "tokens_per_round": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "drafters": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "round_kinds": {},
+   "stats": [
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    },
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    },
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    },
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    }
+   ]
+  },
+  {
+   "streams": 4,
+   "rep": 2,
+   "aggregate_tps": 37.96819438253564,
+   "per_stream_tps": [
+    9.455038759694986,
+    10.029647207246395,
+    9.643550726352967,
+    9.602243757970838
+   ],
+   "tokens": [
+    256,
+    256,
+    256,
+    256
+   ],
+   "ttft_s": [
+    0.4439553289998912,
+    0.44328837900002327,
+    0.4428284559999156,
+    0.44289597200008757
+   ],
+   "sha": [
+    "08559892188dff86",
+    "097e9e9643b117df",
+    "a9818813ff1364be",
+    "69cbddea99956c27"
+   ],
+   "tokens_per_round": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "drafters": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "round_kinds": {},
+   "stats": [
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    },
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    },
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    },
+    {
+     "rounds": null,
+     "round_kinds": null,
+     "keeps": null,
+     "slot": null,
+     "prefill_s": null,
+     "queued_s": null
+    }
+   ]
+  }
+ ]
+}
