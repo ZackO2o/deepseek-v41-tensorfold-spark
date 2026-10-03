@@ -1,0 +1,96 @@
+G7 prefill levers 2 2026-10-02T08:31:25Z, sources e87e813218537efa82f1b6f27b5f579f03bcf784; base: TF_DSV41_FAST_EXPERTS=gm
+interpreter tests: 63 passed, 8 warnings in 317.44s (0:05:17)
+knob vs base (tok/s, x base) at each size
+  ahead      8K 1408 (1.061x); 32K 1538
+  all4       8K 1830 (1.378x); 32K 1897; 64K 1516; 128K 854
+  attn       8K 1414 (1.065x); 32K 1497
+  attn32     8K 1470 (1.107x); 32K 1567
+  attn32w16  8K 1431 (1.078x); 32K 1518
+  base       8K 1328 (1.000x)
+  basefull   8K 756 (0.570x); 32K 772; 64K 764; 128K 739
+  full4      8K 969 (0.730x); 32K 1004; 64K 1003; 128K 876
+  gather     8K 1390 (1.047x); 32K 1447
+  mhc32      8K 1348 (1.015x); 32K 1424
+  mhc32w16   8K 1352 (1.018x); 32K 1416
+  mhc64      8K 1378 (1.038x); 32K 1448
+  mhc64w16   8K 1348 (1.015x); 32K 1411
+  rope       8K 1370 (1.032x); 32K 1434
+  stream4k   8K 1341 (1.010x); 32K 1391
+cold prefill tok/s (TTFT s), one slot
+| config | 8K | 32K | 64K | 128K |
+| --- | ---: | ---: | ---: | ---: |
+| g7-ahead | 1408 (5.8) | 1538 (21.3) |  |  |
+| g7-all4 | 1830 (4.5) | 1897 (17.3) | 1516 (43.2) | 854 (153.5) |
+| g7-attn | 1414 (5.8) | 1497 (21.9) |  |  |
+| g7-attn32 | 1470 (5.6) | 1567 (20.9) |  |  |
+| g7-attn32w16 | 1431 (5.7) | 1518 (21.6) |  |  |
+| g7-base | 1328 (6.2) |  |  |  |
+| g7-basefull | 756 (10.8) | 772 (42.5) | 764 (85.7) | 739 (177.4) |
+| g7-full4 | 969 (8.4) | 1004 (32.6) | 1003 (65.3) | 876 (149.7) |
+| g7-gather | 1390 (5.9) | 1447 (22.6) |  |  |
+| g7-mhc32 | 1348 (6.1) | 1424 (23.0) |  |  |
+| g7-mhc32w16 | 1352 (6.1) | 1416 (23.1) |  |  |
+| g7-mhc64 | 1378 (5.9) | 1448 (22.6) |  |  |
+| g7-mhc64w16 | 1348 (6.1) | 1411 (23.2) |  |  |
+| g7-rope | 1370 (6.0) | 1434 (22.9) |  |  |
+| g7-stream4k | 1341 (6.1) | 1391 (23.6) |  |  |
+| g7x-prgemv | 1428 (5.7) | 1508 (21.7) |  |  |
+| kit (vLLM) | 1073 | 1075 | 1060 | 1031 |
+| target | full 1500 / replay 2200 | | | |
+
+fastest: g7-all4 at 32K: 1897 tok/s (1.77x kit)
+
+phases of g7-all4 at 32K (host-timed; TF_DSV41_PHASES=1):
+  mode: 1
+  wall_ms: 17270.94
+  candidates: {'ms': 0.64, 'n': 1, 'ms_avg': 0.636}
+  commit: {'ms': 1.32, 'n': 18, 'ms_avg': 0.074}
+  engram.wait: {'ms': 431.57, 'n': 38, 'ms_avg': 11.357}
+  execute: {'ms': 16928.26, 'n': 18, 'ms_avg': 940.459}
+  forward: {'ms': 125.82, 'n': 1, 'ms_avg': 125.817}
+  graph.capture: {'ms': 85.22, 'n': 1, 'ms_avg': 85.224}
+  plan: {'ms': 3.81, 'n': 18, 'ms_avg': 0.212}
+  prefetch: {'ms': 1.12, 'n': 1, 'ms_avg': 1.115}
+  prefill: {'ms': 16556.54, 'n': 17, 'ms_avg': 973.914}
+  round: {'ms': 17282.64, 'n': 18, 'ms_avg': 960.147}
+  sample: {'ms': 0.19, 'n': 18, 'ms_avg': 0.01}
+  share: {'ms': 350.09, 'n': 18, 'ms_avg': 19.449}
+  window: {'ms': 126.49, 'n': 1, 'ms_avg': 126.494}
+
+gate g7all4: top-1 0.995847581827064, first copy 0.9601328903654485 (G2 exact: 0.9963 / 0.9535)
+
+gate xbase: top-1 0.9962750366389839, first copy 0.9601328903654485 (G2 exact: 0.9963 / 0.9535)
+
+gate xgemv: top-1 0.9957865168539326, first copy 0.9601328903654485 (G2 exact: 0.9963 / 0.9535)
+
+gate xlong: top-1 0.9957865168539326, first copy 0.9568106312292359 (G2 exact: 0.9963 / 0.9535)
+[dsv41 14:19:48] ab-base memory: head MemFree min 9.60, MemAvailable min 10.80 GiB; worker MemFree min 8.30, MemAvailable min 9.30 GiB
+[dsv41 14:22:35] ab-rgemv memory: head MemFree min 9.54, MemAvailable min 10.61 GiB; worker MemFree min 8.13, MemAvailable min 9.13 GiB
+[dsv41 14:25:32] ab-rsplit memory: head MemFree min 9.71, MemAvailable min 10.92 GiB; worker MemFree min 8.71, MemAvailable min 9.73 GiB
+[dsv41 14:28:30] ab-plong memory: head MemFree min 9.65, MemAvailable min 10.79 GiB; worker MemFree min 8.30, MemAvailable min 9.30 GiB
+[dsv41 14:31:40] ab-xold memory: head MemFree min 8.98, MemAvailable min 10.50 GiB; worker MemFree min 7.11, MemAvailable min 8.57 GiB
+[dsv41 14:34:38] ab-q4 memory: head MemFree min 9.33, MemAvailable min 10.53 GiB; worker MemFree min 8.17, MemAvailable min 9.18 GiB
+[dsv41 14:37:35] ab-trim memory: head MemFree min 9.86, MemAvailable min 10.94 GiB; worker MemFree min 7.83, MemAvailable min 8.84 GiB
+[dsv41 14:40:31] ab-skip0 memory: head MemFree min 10.30, MemAvailable min 11.49 GiB; worker MemFree min 8.38, MemAvailable min 9.38 GiB
+[dsv41 14:42:07] gate xbase rc=1: top1 0.9963 first copy 0.9601 (G2 exact: 0.9963 / 0.9535)
+[dsv41 14:43:48] gate xgemv rc=1: top1 0.9958 first copy 0.9601 (G2 exact: 0.9963 / 0.9535)
+[dsv41 14:45:23] gate xlong rc=1: top1 0.9958 first copy 0.9568 (G2 exact: 0.9963 / 0.9535)
+[dsv41 14:50:44] ab-adopted memory: head MemFree min 9.38, MemAvailable min 10.63 GiB; worker MemFree min 7.82, MemAvailable min 8.86 GiB
+[dsv41 14:53:30] pf-g7-base memory: head MemFree min 6.17, MemAvailable min 8.24 GiB; worker MemFree min 4.79, MemAvailable min 6.74 GiB
+[dsv41 14:54:51] pf-g7-ahead memory: head MemFree min 6.17, MemAvailable min 8.20 GiB; worker MemFree min 3.99, MemAvailable min 6.01 GiB
+[dsv41 14:56:14] pf-g7-gather memory: head MemFree min 6.28, MemAvailable min 8.31 GiB; worker MemFree min 4.67, MemAvailable min 6.55 GiB
+[dsv41 14:57:37] pf-g7-rope memory: head MemFree min 5.88, MemAvailable min 7.90 GiB; worker MemFree min 4.30, MemAvailable min 6.25 GiB
+[dsv41 14:59:01] pf-g7-mhc32 memory: head MemFree min 5.97, MemAvailable min 8.13 GiB; worker MemFree min 4.15, MemAvailable min 6.13 GiB
+[dsv41 15:00:24] pf-g7-mhc64 memory: head MemFree min 6.07, MemAvailable min 8.12 GiB; worker MemFree min 4.24, MemAvailable min 6.29 GiB
+[dsv41 15:01:47] pf-g7-mhc32w16 memory: head MemFree min 6.19, MemAvailable min 8.22 GiB; worker MemFree min 4.31, MemAvailable min 6.28 GiB
+[dsv41 15:03:13] pf-g7-mhc64w16 memory: head MemFree min 6.04, MemAvailable min 8.19 GiB; worker MemFree min 4.40, MemAvailable min 6.40 GiB
+[dsv41 15:04:38] pf-g7-attn memory: head MemFree min 6.25, MemAvailable min 8.29 GiB; worker MemFree min 4.23, MemAvailable min 6.13 GiB
+[dsv41 15:06:03] pf-g7-attn32 memory: head MemFree min 6.45, MemAvailable min 8.41 GiB; worker MemFree min 4.36, MemAvailable min 6.33 GiB
+[dsv41 15:07:28] pf-g7-attn32w16 memory: head MemFree min 6.40, MemAvailable min 8.35 GiB; worker MemFree min 4.23, MemAvailable min 6.20 GiB
+[dsv41 15:08:51] pf-g7-stream4k memory: head MemFree min 6.85, MemAvailable min 8.93 GiB; worker MemFree min 5.48, MemAvailable min 7.50 GiB
+[dsv41 15:10:13] pf-g7x-prgemv memory: head MemFree min 6.34, MemAvailable min 8.37 GiB; worker MemFree min 4.41, MemAvailable min 6.34 GiB
+[dsv41 15:17:15] pf-g7-all4 memory: head MemFree min 3.28, MemAvailable min 7.60 GiB; worker MemFree min 4.55, MemAvailable min 6.35 GiB
+[dsv41 15:23:30] pf-g7-basefull memory: head MemFree min 2.60, MemAvailable min 8.70 GiB; worker MemFree min 1.67, MemAvailable min 6.79 GiB
+[dsv41 15:28:41] pf-g7-full4 memory: head MemFree min 2.56, MemAvailable min 8.29 GiB; worker MemFree min 1.89, MemAvailable min 6.06 GiB
+[dsv41 15:30:19] gate g7all4 rc=1: top1 0.9958 first copy 0.9601 (G2 exact: 0.9963 / 0.9535)
+[dsv41 15:31:24] pf-g7-base memory: head MemFree min 7.54, MemAvailable min 9.18 GiB; worker MemFree min 6.21, MemAvailable min 7.78 GiB

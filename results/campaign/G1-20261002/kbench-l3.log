@@ -1,0 +1,10 @@
+[tensorfold] building CUDA extension tensorfold_exl3_experts_v1 (first start after an install or update; later starts reuse it)
+[tensorfold] building CUDA extension tf_dsv41_x3ld_v1 (first start after an install or update; later starts reuse it)
+R=1: 6 experts, upstream 198.9 GB/s, x3ld 8,1 217.1 GB/s ==, 8,2 208.5 GB/s ==, 4,2 214.7 GB/s ==, probe 3 243.2 GB/s
+R=2: 12 experts, upstream 210.0 GB/s, x3ld 8,1 220.2 GB/s ==, 8,2 220.2 GB/s ==, 4,2 220.9 GB/s ==, probe 3 236.9 GB/s
+R=4: 24 experts, upstream 211.6 GB/s, x3ld 8,1 231.9 GB/s ==, 8,2 239.2 GB/s ==, 4,2 233.9 GB/s ==, probe 3 245.4 GB/s
+R=6: 35 experts, upstream 216.1 GB/s, x3ld 8,1 237.3 GB/s ==, 8,2 242.0 GB/s ==, 4,2 238.5 GB/s ==, probe 3 254.1 GB/s
+R=8: 44 experts, upstream 220.5 GB/s, x3ld 8,1 239.1 GB/s ==, 8,2 243.3 GB/s ==, 4,2 242.3 GB/s ==, probe 3 255.5 GB/s
+R=12: 61 experts, upstream 220.4 GB/s, x3ld 8,1 241.9 GB/s ==, 8,2 243.5 GB/s ==, 4,2 242.0 GB/s ==, probe 3 249.5 GB/s
+R=16: 81 experts, upstream 219.0 GB/s, x3ld 8,1 242.3 GB/s ==, 8,2 245.0 GB/s ==, 4,2 242.8 GB/s ==, probe 3 252.2 GB/s
+{"layer": 3, "rank": 0, "k2_gu": [6, 10], "k2_d": [6, 10], "bitwise": true, "probe3_best_gbps": 255.5, "pass": true}

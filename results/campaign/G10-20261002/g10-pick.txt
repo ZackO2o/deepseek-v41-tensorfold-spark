@@ -1,0 +1,13 @@
+both: PASS
+l2pf-f: fail: verify-1 28.5 vs off 28.0 (need <= off - 0.25); code 78.9 vs off 79.6 (need >= +1%); prose 39.4 vs off 39.8 (need >= +1%)
+l2pf: PASS
+l2pf-mb12: PASS
+l2pf-mb4: fail: verify-1 28.3 vs off 28.0 (need <= off - 0.25); code 78.8 vs off 79.6 (need >= +1%); prose 39.5 vs off 39.8 (need >= +1%)
+l2pf-o: fail: verify-1 29.2 vs off 28.0 (need <= off - 0.25); code 79.0 vs off 79.6 (need >= +1%); prose 39.4 vs off 39.8 (need >= +1%)
+l2pf-x: fail: verify-1 28.3 vs off 28.0 (need <= off - 0.25); code 79.4 vs off 79.6 (need >= +1%); prose 39.8 vs off 39.8 (need >= +1%)
+pdl-experts: fail: verify-1 28.0 vs off 28.0 (need <= off - 0.25); code 80.0 vs off 79.6 (need >= +1%); prose 40.1 vs off 39.8 (need >= +1%)
+pdl: fail: verify-1 27.8 vs off 28.0 (need <= off - 0.25); code 79.6 vs off 79.6 (need >= +1%); prose 39.7 vs off 39.8 (need >= +1%); C2 64.2 vs off 65.8 (need >= -1%)
+pdl-seg: fail: verify-1 28.1 vs off 28.0 (need <= off - 0.25); code 79.5 vs off 79.6 (need >= +1%); prose 39.6 vs off 39.8 (need >= +1%)
+pdl-single: fail: verify-1 27.9 vs off 28.0 (need <= off - 0.25); code 79.7 vs off 79.6 (need >= +1%); prose 40.0 vs off 39.8 (need >= +1%)
+pdl-triton: fail: verify-1 28.0 vs off 28.0 (need <= off - 0.25); code 79.4 vs off 79.6 (need >= +1%); prose 40.1 vs off 39.8 (need >= +1%)
+adopt: l2pf-mb12

@@ -1,0 +1,164 @@
+{
+ "knobs": {
+  "GLM53_TF_COMM_BACKEND": "roce",
+  "GLM53_TF_ROCE_MAX_KB": "1024",
+  "TF_DSV41_CALIB": "real",
+  "TF_DSV41_CALIB_DIR": "/cache/dsv41-calib",
+  "TF_DSV41_ENGRAM_DIR": "/engram",
+  "TF_DSV41_EXPERT_LOADS": "1",
+  "TF_DSV41_EXPERT_PREFILL": "0",
+  "TF_DSV41_INDEX_KV": "fp8",
+  "TF_DSV41_LAUNCH_T0": "1790898741.057630058",
+  "TF_DSV41_PHASES": "nvtx",
+  "TF_DSV41_PREPARED": "/prepared",
+  "TF_DSV41_PREPARED_WRITE": "1"
+ },
+ "m2": "DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 0, 'hits': 168, 'misses': 42, 'dropped': 0, 'reads': 5367, 'cached': 21496, 'waited': 0}; graphs on: 16 held (6 at boot in 9.27 s, 10 on first use), 69 replays, 10 eager windows; RoCE exchanges 4209 fast / 324 on NCCL; phases (nvtx, ms a round over 0 rounds): candidates 3960.69, engram.wait 1261.78, forward 2490.09, graph.capture 1562.62, graph.replay 122.61, graph.stage 225.78",
+ "workloads": {},
+ "kit": {
+  "mixed": 2.27,
+  "mmlu": 1.46,
+  "multiturn": 1.83,
+  "tf": 1.78,
+  "kit": 2.17,
+  "tweet": 3.08,
+  "edit": 3.84,
+  "c4_tok_s": 37.6,
+  "code_tok_s": 36.4,
+  "prose_tok_s": 25.1
+ },
+ "targets": {
+  "code_tok_s": 52.0,
+  "prose_tok_s": 38.0,
+  "tokens_per_round_k3": 3.1
+ },
+ "profile": {
+  "mode": "single",
+  "wall_s": 16.54,
+  "runs": {
+   "code": {
+    "tok_s": 51.48,
+    "drafting": {
+     "windows": 43,
+     "rows": 212,
+     "dspark_rounds": 42,
+     "dspark_drafts": 169,
+     "dspark_kept": 117,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 1,
+     "dspark_tokens_per_round": 3.786,
+     "tokens_per_round": 3.721
+    }
+   },
+   "prose": {
+    "tok_s": 26.65,
+    "drafting": {
+     "windows": 94,
+     "rows": 250,
+     "dspark_rounds": 94,
+     "dspark_drafts": 156,
+     "dspark_kept": 66,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 0,
+     "dspark_tokens_per_round": 1.702,
+     "tokens_per_round": 1.702
+    }
+   }
+  },
+  "phases": {
+   "mode": "nvtx",
+   "wall_ms": 17022.55,
+   "candidates": {
+    "ms": 6475.8,
+    "n": 137,
+    "ms_avg": 47.269
+   },
+   "commit": {
+    "ms": 165.19,
+    "n": 139,
+    "ms_avg": 1.188
+   },
+   "draft": {
+    "ms": 1076.92,
+    "n": 136,
+    "ms_avg": 7.919
+   },
+   "draft.depth": {
+    "ms": 2.74,
+    "n": 136,
+    "ms_avg": 0.02
+   },
+   "draft.pass": {
+    "ms": 1073.12,
+    "n": 136,
+    "ms_avg": 7.891
+   },
+   "engram.wait": {
+    "ms": 744.7,
+    "n": 278,
+    "ms_avg": 2.679
+   },
+   "execute": {
+    "ms": 9605.17,
+    "n": 139,
+    "ms_avg": 69.102
+   },
+   "forward": {
+    "ms": 1267.2,
+    "n": 137,
+    "ms_avg": 9.25
+   },
+   "graph.replay": {
+    "ms": 594.23,
+    "n": 137,
+    "ms_avg": 4.337
+   },
+   "graph.stage": {
+    "ms": 666.22,
+    "n": 137,
+    "ms_avg": 4.863
+   },
+   "plan": {
+    "ms": 3.8,
+    "n": 139,
+    "ms_avg": 0.027
+   },
+   "prefetch": {
+    "ms": 79.43,
+    "n": 137,
+    "ms_avg": 0.58
+   },
+   "prefill": {
+    "ms": 483.48,
+    "n": 2,
+    "ms_avg": 241.742
+   },
+   "round": {
+    "ms": 10191.25,
+    "n": 139,
+    "ms_avg": 73.318
+   },
+   "sample": {
+    "ms": 4.81,
+    "n": 139,
+    "ms_avg": 0.035
+   },
+   "share": {
+    "ms": 575.83,
+    "n": 139,
+    "ms_avg": 4.143
+   },
+   "window": {
+    "ms": 7744.58,
+    "n": 137,
+    "ms_avg": 56.53
+   }
+  }
+ },
+ "exact_all": true,
+ "boot_s": 40.0
+}

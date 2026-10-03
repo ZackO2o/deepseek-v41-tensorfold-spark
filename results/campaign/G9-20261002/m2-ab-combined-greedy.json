@@ -1,0 +1,1825 @@
+{
+ "knobs": {
+  "GLM53_TF_COMM_BACKEND": "roce",
+  "GLM53_TF_ROCE_MAX_KB": "1024",
+  "TF_DSV41_CALIB": "real",
+  "TF_DSV41_CALIB_DIR": "/cache/dsv41-calib",
+  "TF_DSV41_DEFAULT_EFFORT": "high",
+  "TF_DSV41_DENSE": "0",
+  "TF_DSV41_DEPTH_JOINT": "0",
+  "TF_DSV41_DISCONNECT": "1",
+  "TF_DSV41_ENGRAM_DIR": "/engram",
+  "TF_DSV41_ENGRAM_FUSE_DEC": "1",
+  "TF_DSV41_ENGRAM_GATE": "1",
+  "TF_DSV41_ENGRAM_NATIVE": "1",
+  "TF_DSV41_EXPERT_LOADS": "1",
+  "TF_DSV41_EXPERT_MIN_K": "3",
+  "TF_DSV41_EXPERT_PREFILL": "0",
+  "TF_DSV41_EXPERT_RENORM": "kept",
+  "TF_DSV41_EXPERT_TOPP": "0.85",
+  "TF_DSV41_FAST_EXPERTS": "gm",
+  "TF_DSV41_FLOOR_GIB": "5",
+  "TF_DSV41_FLOOR_HARD_GIB": "4",
+  "TF_DSV41_GRAMMAR": "1",
+  "TF_DSV41_GRAPH_MODE": "rows",
+  "TF_DSV41_INDEX_DTOPK": "1",
+  "TF_DSV41_INDEX_KV": "fp8",
+  "TF_DSV41_INDEX_STREAM_MIN": "16384",
+  "TF_DSV41_LAUNCH_T0": "1790954545.374769197",
+  "TF_DSV41_MHC_BM": "64",
+  "TF_DSV41_MHC_DEC": "1",
+  "TF_DSV41_MHC_FIN2": "1",
+  "TF_DSV41_MHC_FN": "bf16",
+  "TF_DSV41_MHC_WARPS": "8",
+  "TF_DSV41_NATIVE_DIR": "/cache/dsv41-native",
+  "TF_DSV41_PARTIAL_BF16": "1",
+  "TF_DSV41_PHASES": "1",
+  "TF_DSV41_PLAIN_TRITON": "1",
+  "TF_DSV41_PLAN_LINK": "tcp",
+  "TF_DSV41_PREFETCH_AHEAD": "1",
+  "TF_DSV41_PREFILL": "replay",
+  "TF_DSV41_PREFILL_ATTN": "fused",
+  "TF_DSV41_PREFILL_ATTN_BMQ": "32",
+  "TF_DSV41_PREFILL_ATTN_WARPS": "8",
+  "TF_DSV41_PREFILL_CHUNK": "2048",
+  "TF_DSV41_PREFILL_GATHER": "bf16",
+  "TF_DSV41_PREFILL_KERNELS": "fast",
+  "TF_DSV41_PREFILL_ROUTER": "gemv",
+  "TF_DSV41_PREFILL_ROWS": "2048",
+  "TF_DSV41_PREPARED": "/prepared",
+  "TF_DSV41_PREPARED_WRITE": "1",
+  "TF_DSV41_RG_NARROW": "2",
+  "TF_DSV41_RG_TAIL": "1",
+  "TF_DSV41_RMS_PAIR": "1",
+  "TF_DSV41_ROPE_INPLACE": "1",
+  "TF_DSV41_ROUTER": "gemv",
+  "TF_DSV41_SCHEMA_PROMPT": "1",
+  "TF_DSV41_SESSIONS": "1",
+  "TF_DSV41_SESSION_RAM_MIB": "256",
+  "TF_DSV41_SPEC_DRAFT": "1",
+  "TF_DSV41_THINKING": "1",
+  "TF_DSV41_TOOL_GRAMMAR": "0"
+ },
+ "m2": "DSpark on (depth cost, cap 5, joint off, costs measured); draft head full; draft graphs on: 3 held (3 at boot in 0.17 s, 0 on first use), 4 replays, 0 eager windows; Engram prefetch {'issued': 0, 'hits': 14, 'misses': 2, 'dropped': 0, 'reads': 4943, 'cached': 32752, 'waited': 0, 'ahead': 0, 'kept': 0}; Engram gate: 89 rounds (0 reissued), 0 warm jobs, rows 9224 (7688 cached, 1536 read), 88 syncs; first layer ready p50/p90/p99 2.10 / 3.00 / 11.89 ms, all 2.16 / 3.03 / 11.99 ms after queueing; speculative DSpark passes 0 launched, 0 used, 0 dropped, 0 without a graph; graphs on: 14 held (8 at boot in 2.64 s, 6 on first use), 138 replays, 6 eager windows; RoCE exchanges 3038 fast / 664 on NCCL; phases (1, ms a round over 0 rounds): candidates 7190.66, engram.wait 480.02, forward 1965.68, graph.capture 1141.07, graph.replay 5.64, graph.stage 31.49, spec 0.09",
+ "workloads": {
+  "code": {
+   "prompt_tokens": 54,
+   "t0": {
+    "tok_s": 78.49,
+    "completion": 384,
+    "drafting": {
+     "windows": 100,
+     "rows": 468,
+     "dspark_rounds": 100,
+     "dspark_drafts": 368,
+     "dspark_kept": 284,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 3.84,
+     "tokens_per_round": 3.84
+    },
+    "reply": [
+     5,
+     46360,
+     55,
+     69717,
+     41218,
+     271,
+     43606,
+     344,
+     260,
+     5553,
+     14,
+     4606,
+     20518,
+     9963,
+     294,
+     411,
+     46360,
+     55,
+     343,
+     107529,
+     40120,
+     30259,
+     11,
+     23809,
+     1812,
+     260,
+     19657,
+     6403,
+     362,
+     541,
+     10,
+     19,
+     11,
+     1747,
+     13953,
+     305,
+     260,
+     103421,
+     12268,
+     2310,
+     362,
+     541,
+     10,
+     19,
+     11,
+     927,
+     4131,
+     26432,
+     121769,
+     339,
+     9854,
+     36490,
+     201,
+     63356,
+     26853,
+     55,
+     69717,
+     9963,
+     418,
+     541,
+     10,
+     19,
+     11,
+     1178,
+     305,
+     3065,
+     7574,
+     56299,
+     4707,
+     5356,
+     7854,
+     70925,
+     848,
+     1662,
+     71134,
+     271,
+     5356,
+     32917,
+     1662,
+     41222,
+     6328,
+     3767,
+     944,
+     5973,
+     1137,
+     361,
+     26495,
+     35,
+     6758,
+     295,
+     270,
+     103421,
+     12268,
+     2310,
+     1505,
+     513,
+     46360,
+     19183,
+     6634,
+     56299,
+     4707,
+     361,
+     7854,
+     8981,
+     3153,
+     848,
+     438,
+     12951,
+     4989,
+     1760,
+     582,
+     5197,
+     1760,
+     582,
+     34574,
+     1760,
+     582,
+     6695,
+     18548,
+     361,
+     1351,
+     7854,
+     7025,
+     16797,
+     2161,
+     14,
+     3077,
+     28,
+     688,
+     438,
+     223,
+     18,
+     14,
+     1990,
+     28,
+     688,
+     438,
+     223,
+     18,
+     11,
+     6248,
+     9952,
+     1137,
+     528,
+     2280,
+     39574,
+     438,
+     3077,
+     201,
+     528,
+     2280,
+     17540,
+     438,
+     1990,
+     201,
+     528,
+     2280,
+     92754,
+     28,
+     41222,
+     78056,
+     5973,
+     63,
+     438,
+     9952,
+     201,
+     528,
+     2280,
+     10929,
+     28,
+     41222,
+     78056,
+     5973,
+     63,
+     438,
+     9952,
+     6328,
+     3767,
+     46360,
+     19183,
+     6634,
+     1137,
+     361,
+     26495,
+     35,
+     9305,
+     54532,
+     15912,
+     58989,
+     40120,
+     30259,
+     343,
+     26853,
+     55,
+     11,
+     23809,
+     339,
+     361,
+     49112,
+     260,
+     20513,
+     362,
+     541,
+     10,
+     19,
+     11,
+     3077,
+     64018,
+     305,
+     260,
+     103421,
+     12268,
+     2310,
+     304,
+     201,
+     361,
+     4997,
+     1270,
+     2914,
+     34396,
+     16,
+     455,
+     1473,
+     8028,
+     1505,
+     7389,
+     33591,
+     1438,
+     201,
+     361,
+     1561,
+     270,
+     2578,
+     3667,
+     50606,
+     29,
+     270,
+     3396,
+     8028,
+     1505,
+     7389,
+     33591,
+     1438,
+     201,
+     361,
+     1936,
+     270,
+     11104,
+     3667,
+     50606,
+     339,
+     361,
+     86450,
+     1137,
+     528,
+     7768,
+     28,
+     43116,
+     1167,
+     294,
+     23914,
+     270,
+     23809,
+     588,
+     3959,
+     603,
+     361,
+     68612,
+     361,
+     1351,
+     7854,
+     7025,
+     16797,
+     2161,
+     14,
+     7768,
+     28,
+     688,
+     11,
+     6248,
+     9952,
+     1137,
+     528,
+     26495,
+     97458,
+     270,
+     23809,
+     339,
+     528,
+     93634,
+     1137,
+     775,
+     7768,
+     28,
+     43116,
+     1167,
+     294,
+     23914,
+     16,
+     25023,
+     366,
+     4337,
+     339,
+     528,
+     62984,
+     273,
+     1137,
+     775,
+     74418,
+     28,
+     2052,
+     7768,
+     344,
+     554,
+     4337,
+     603,
+     528,
+     16786,
+     528,
+     855,
+     7768,
+     8593,
+     223,
+     18,
+     1137,
+     775,
+     11493,
+     74418,
+     1698,
+     88346,
+     2231,
+     366,
+     260,
+     4337,
+     9132,
+     18548,
+     528,
+     2280,
+     4001,
+     88366,
+     438,
+     7768,
+     201,
+     528,
+     2280,
+     3730,
+     10865,
+     28,
+     15932,
+     39647,
+     14,
+     944,
+     5973,
+     63,
+     438,
+     49256,
+     528,
+     1823,
+     20605,
+     261,
+     1713,
+     28,
+     2578,
+     818,
+     2105,
+     4588,
+     818,
+     2105,
+     11104,
+     201,
+     528,
+     2280,
+     3730,
+     3846,
+     438,
+     944,
+     5973,
+     3390,
+     528,
+     2280,
+     3730,
+     27837,
+     438,
+     944
+    ],
+    "depth": {
+     "rounds": 99,
+     "zero_depth": 2,
+     "reached": [
+      97,
+      79,
+      59,
+      47,
+      36
+     ],
+     "kept": [
+      84,
+      69,
+      52,
+      42,
+      33
+     ],
+     "q1_bins": [
+      [
+       0,
+       0
+      ],
+      [
+       0,
+       0
+      ],
+      [
+       0,
+       0
+      ],
+      [
+       0,
+       0
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       10,
+       6
+      ],
+      [
+       12,
+       8
+      ],
+      [
+       10,
+       10
+      ],
+      [
+       56,
+       53
+      ]
+     ],
+     "joint": [
+      0,
+      0,
+      0
+     ]
+    },
+    "phases": {
+     "mode": "1",
+     "wall_ms": 5384.17,
+     "candidates": {
+      "ms": 4496.87,
+      "n": 100,
+      "ms_avg": 44.969
+     },
+     "commit": {
+      "ms": 52.68,
+      "n": 100,
+      "ms_avg": 0.527
+     },
+     "draft": {
+      "ms": 399.48,
+      "n": 100,
+      "ms_avg": 3.995
+     },
+     "draft.depth": {
+      "ms": 1.67,
+      "n": 100,
+      "ms_avg": 0.017
+     },
+     "draft.pass": {
+      "ms": 377.34,
+      "n": 100,
+      "ms_avg": 3.773
+     },
+     "engram.wait": {
+      "ms": 17.62,
+      "n": 2,
+      "ms_avg": 8.811
+     },
+     "execute": {
+      "ms": 5373.36,
+      "n": 100,
+      "ms_avg": 53.734
+     },
+     "forward": {
+      "ms": 12.8,
+      "n": 100,
+      "ms_avg": 0.128
+     },
+     "graph.replay": {
+      "ms": 2.16,
+      "n": 100,
+      "ms_avg": 0.022
+     },
+     "graph.stage": {
+      "ms": 6.72,
+      "n": 100,
+      "ms_avg": 0.067
+     },
+     "plan": {
+      "ms": 2.18,
+      "n": 101,
+      "ms_avg": 0.022
+     },
+     "prefetch": {
+      "ms": 19.45,
+      "n": 100,
+      "ms_avg": 0.195
+     },
+     "prefill": {
+      "ms": 234.65,
+      "n": 1,
+      "ms_avg": 234.648
+     },
+     "round": {
+      "ms": 5383.53,
+      "n": 100,
+      "ms_avg": 53.835
+     },
+     "sample": {
+      "ms": 2.12,
+      "n": 100,
+      "ms_avg": 0.021
+     },
+     "share": {
+      "ms": 5.45,
+      "n": 101,
+      "ms_avg": 0.054
+     },
+     "spec": {
+      "ms": 249.47,
+      "n": 100,
+      "ms_avg": 2.495
+     },
+     "window": {
+      "ms": 4511.01,
+      "n": 100,
+      "ms_avg": 45.11
+     }
+    },
+    "serial_tok_s": 34.37,
+    "exact": true
+   },
+   "t07": {
+    "tok_s": 68.95,
+    "completion": 384,
+    "drafting": {
+     "windows": 109,
+     "rows": 515,
+     "dspark_rounds": 108,
+     "dspark_drafts": 406,
+     "dspark_kept": 275,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 1,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 3.546,
+     "tokens_per_round": 3.523
+    },
+    "reply": [
+     5,
+     46360,
+     55,
+     69717,
+     41218,
+     271,
+     43606,
+     344,
+     260,
+     5553,
+     14,
+     4606,
+     20518,
+     9963,
+     294,
+     411,
+     46360,
+     55,
+     343,
+     107529,
+     40120,
+     30259,
+     11,
+     23809,
+     1812,
+     260,
+     19657,
+     6403,
+     362,
+     541,
+     10,
+     19,
+     11,
+     1747,
+     13953,
+     305,
+     260,
+     103421,
+     12268,
+     2310,
+     362,
+     541,
+     10,
+     19,
+     11,
+     1270,
+     2914,
+     17745,
+     339,
+     9854,
+     36490,
+     201,
+     63356,
+     26853,
+     55,
+     69717,
+     9963,
+     418,
+     541,
+     10,
+     19,
+     11,
+     1178,
+     305,
+     3065,
+     7574,
+     56299,
+     4707,
+     5356,
+     7854,
+     70925,
+     848,
+     1662,
+     71134,
+     271,
+     5356,
+     32917,
+     1662,
+     41222,
+     6328,
+     3767,
+     944,
+     5973,
+     1137,
+     361,
+     26495,
+     35,
+     6758,
+     295,
+     270,
+     103421,
+     12268,
+     2310,
+     1505,
+     362,
+     19873,
+     1270,
+     2914,
+     56299,
+     4707,
+     361,
+     7854,
+     8981,
+     3153,
+     848,
+     438,
+     12951,
+     4989,
+     1760,
+     582,
+     5197,
+     1760,
+     582,
+     34574,
+     1760,
+     582,
+     6695,
+     18548,
+     361,
+     1351,
+     7854,
+     7025,
+     16797,
+     2161,
+     14,
+     3077,
+     28,
+     688,
+     438,
+     223,
+     18,
+     14,
+     1990,
+     28,
+     688,
+     438,
+     223,
+     18,
+     11,
+     6248,
+     9952,
+     1137,
+     528,
+     2280,
+     39574,
+     438,
+     3077,
+     201,
+     528,
+     2280,
+     17540,
+     438,
+     1990,
+     201,
+     528,
+     2280,
+     92754,
+     28,
+     41222,
+     78056,
+     5973,
+     63,
+     438,
+     9952,
+     201,
+     528,
+     2280,
+     10929,
+     28,
+     41222,
+     78056,
+     5973,
+     63,
+     438,
+     9952,
+     6328,
+     3767,
+     46360,
+     19183,
+     6634,
+     1137,
+     361,
+     26495,
+     35,
+     9305,
+     54532,
+     15912,
+     23809,
+     396,
+     927,
+     1435,
+     85,
+     270,
+     3396,
+     8028,
+     1505,
+     7389,
+     339,
+     361,
+     49112,
+     260,
+     20513,
+     343,
+     35261,
+     6403,
+     11,
+     362,
+     541,
+     10,
+     19,
+     11,
+     3077,
+     1747,
+     13953,
+     305,
+     260,
+     103421,
+     12268,
+     201,
+     361,
+     2310,
+     362,
+     541,
+     10,
+     19,
+     11,
+     23814,
+     304,
+     582,
+     4070,
+     8028,
+     1505,
+     4,
+     305,
+     927,
+     4131,
+     294,
+     270,
+     201,
+     361,
+     582,
+     90007,
+     8028,
+     1505,
+     4,
+     10451,
+     339,
+     361,
+     93901,
+     2578,
+     9543,
+     879,
+     14485,
+     32744,
+     9449,
+     54690,
+     17363,
+     28,
+     29617,
+     3846,
+     10929,
+     5230,
+     201,
+     361,
+     344,
+     3165,
+     270,
+     1473,
+     8028,
+     1505,
+     6758,
+     14,
+     305,
+     29617,
+     27837,
+     92754,
+     5230,
+     344,
+     3165,
+     201,
+     361,
+     270,
+     3396,
+     8028,
+     1505,
+     6758,
+     603,
+     361,
+     68612,
+     361,
+     1351,
+     7854,
+     7025,
+     16797,
+     2161,
+     14,
+     7768,
+     28,
+     688,
+     11,
+     6248,
+     9952,
+     1137,
+     528,
+     26495,
+     97458,
+     270,
+     23809,
+     418,
+     260,
+     8173,
+     7768,
+     339,
+     528,
+     93634,
+     1137,
+     775,
+     7768,
+     28,
+     43116,
+     1167,
+     294,
+     23914,
+     16,
+     25023,
+     366,
+     4337,
+     339,
+     528,
+     62984,
+     273,
+     1137,
+     775,
+     74418,
+     28,
+     2052,
+     7768,
+     344,
+     554,
+     260,
+     4337,
+     9132,
+     603,
+     528,
+     16786,
+     528,
+     855,
+     7768,
+     8593,
+     223,
+     18,
+     1137,
+     775,
+     11493,
+     74418,
+     1698,
+     88346,
+     2231,
+     366,
+     260,
+     4337,
+     9132,
+     18548,
+     528,
+     2280,
+     3730,
+     88346,
+     438,
+     7768,
+     201,
+     528,
+     2280,
+     3730,
+     10865,
+     28,
+     15932,
+     39647,
+     14,
+     944,
+     5973,
+     63,
+     438,
+     49256,
+     528
+    ],
+    "depth": {
+     "rounds": 108,
+     "zero_depth": 2,
+     "reached": [
+      106,
+      78,
+      62,
+      49,
+      38
+     ],
+     "kept": [
+      81,
+      66,
+      53,
+      43,
+      32
+     ],
+     "q1_bins": [
+      [
+       0,
+       0
+      ],
+      [
+       0,
+       0
+      ],
+      [
+       0,
+       0
+      ],
+      [
+       2,
+       2
+      ],
+      [
+       8,
+       1
+      ],
+      [
+       8,
+       3
+      ],
+      [
+       7,
+       2
+      ],
+      [
+       13,
+       9
+      ],
+      [
+       26,
+       25
+      ],
+      [
+       44,
+       41
+      ]
+     ],
+     "joint": [
+      0,
+      0,
+      0
+     ]
+    },
+    "phases": {
+     "mode": "1",
+     "wall_ms": 5908.11,
+     "candidates": {
+      "ms": 4908.35,
+      "n": 109,
+      "ms_avg": 45.031
+     },
+     "commit": {
+      "ms": 65.72,
+      "n": 110,
+      "ms_avg": 0.597
+     },
+     "draft": {
+      "ms": 499.07,
+      "n": 108,
+      "ms_avg": 4.621
+     },
+     "draft.depth": {
+      "ms": 1.89,
+      "n": 108,
+      "ms_avg": 0.018
+     },
+     "draft.pass": {
+      "ms": 474.06,
+      "n": 108,
+      "ms_avg": 4.389
+     },
+     "engram.wait": {
+      "ms": 15.75,
+      "n": 2,
+      "ms_avg": 7.874
+     },
+     "execute": {
+      "ms": 5873.75,
+      "n": 110,
+      "ms_avg": 53.398
+     },
+     "forward": {
+      "ms": 14.85,
+      "n": 109,
+      "ms_avg": 0.136
+     },
+     "graph.replay": {
+      "ms": 1.73,
+      "n": 109,
+      "ms_avg": 0.016
+     },
+     "graph.stage": {
+      "ms": 8.96,
+      "n": 109,
+      "ms_avg": 0.082
+     },
+     "nucleus": {
+      "ms": 80.51,
+      "n": 109,
+      "ms_avg": 0.739
+     },
+     "plan": {
+      "ms": 2.25,
+      "n": 110,
+      "ms_avg": 0.02
+     },
+     "prefetch": {
+      "ms": 19.92,
+      "n": 109,
+      "ms_avg": 0.183
+     },
+     "prefill": {
+      "ms": 144.1,
+      "n": 1,
+      "ms_avg": 144.098
+     },
+     "round": {
+      "ms": 5908.08,
+      "n": 110,
+      "ms_avg": 53.71
+     },
+     "sample": {
+      "ms": 25.26,
+      "n": 110,
+      "ms_avg": 0.23
+     },
+     "share": {
+      "ms": 6.27,
+      "n": 109,
+      "ms_avg": 0.058
+     },
+     "spec": {
+      "ms": 0.06,
+      "n": 109,
+      "ms_avg": 0.001
+     },
+     "window": {
+      "ms": 5005.28,
+      "n": 109,
+      "ms_avg": 45.92
+     }
+    },
+    "serial_tok_s": 33.86,
+    "exact": true
+   }
+  }
+ },
+ "kit": {
+  "mixed": 2.27,
+  "mmlu": 1.46,
+  "multiturn": 1.83,
+  "tf": 1.78,
+  "kit": 2.17,
+  "tweet": 3.08,
+  "edit": 3.84,
+  "c4_tok_s": 37.6,
+  "code_tok_s": 36.4,
+  "prose_tok_s": 25.1
+ },
+ "targets": {
+  "code_tok_s": 52.0,
+  "prose_tok_s": 38.0,
+  "tokens_per_round_k3": 3.1
+ },
+ "concurrent": {
+  "C1": {
+   "streams": 1,
+   "sampling": "greedy",
+   "tokens": 384,
+   "wall_s": 5.07,
+   "aggregate_tok_s": 75.75,
+   "decode_aggregate_tok_s": 80.96,
+   "per_stream_tok_s": [
+    80.75
+   ],
+   "kit_c4": 37.6,
+   "drafting": [
+    {
+     "windows": 100,
+     "rows": 468,
+     "dspark_rounds": 100,
+     "dspark_drafts": 368,
+     "dspark_kept": 284,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 3.84,
+     "tokens_per_round": 3.84
+    }
+   ],
+   "phases": {
+    "mode": "1",
+    "wall_ms": 5069.1,
+    "candidates": {
+     "ms": 4276.41,
+     "n": 100,
+     "ms_avg": 42.764
+    },
+    "commit": {
+     "ms": 51.1,
+     "n": 101,
+     "ms_avg": 0.506
+    },
+    "draft": {
+     "ms": 402.99,
+     "n": 100,
+     "ms_avg": 4.03
+    },
+    "draft.depth": {
+     "ms": 1.6,
+     "n": 100,
+     "ms_avg": 0.016
+    },
+    "draft.pass": {
+     "ms": 380.58,
+     "n": 100,
+     "ms_avg": 3.806
+    },
+    "engram.wait": {
+     "ms": 13.88,
+     "n": 2,
+     "ms_avg": 6.938
+    },
+    "execute": {
+     "ms": 5059.01,
+     "n": 101,
+     "ms_avg": 50.089
+    },
+    "forward": {
+     "ms": 21.68,
+     "n": 100,
+     "ms_avg": 0.217
+    },
+    "graph.replay": {
+     "ms": 3.15,
+     "n": 100,
+     "ms_avg": 0.031
+    },
+    "graph.stage": {
+     "ms": 14.92,
+     "n": 100,
+     "ms_avg": 0.149
+    },
+    "plan": {
+     "ms": 2.38,
+     "n": 101,
+     "ms_avg": 0.024
+    },
+    "prefetch": {
+     "ms": 19.35,
+     "n": 100,
+     "ms_avg": 0.193
+    },
+    "prefill": {
+     "ms": 143.58,
+     "n": 1,
+     "ms_avg": 143.581
+    },
+    "round": {
+     "ms": 5069.06,
+     "n": 101,
+     "ms_avg": 50.189
+    },
+    "sample": {
+     "ms": 2.05,
+     "n": 101,
+     "ms_avg": 0.02
+    },
+    "share": {
+     "ms": 5.26,
+     "n": 101,
+     "ms_avg": 0.052
+    },
+    "spec": {
+     "ms": 119.51,
+     "n": 100,
+     "ms_avg": 1.195
+    },
+    "window": {
+     "ms": 4299.41,
+     "n": 100,
+     "ms_avg": 42.994
+    }
+   }
+  },
+  "C2": {
+   "streams": 2,
+   "sampling": "greedy",
+   "tokens": 768,
+   "wall_s": 12.63,
+   "aggregate_tok_s": 60.8,
+   "decode_aggregate_tok_s": 63.76,
+   "per_stream_tok_s": [
+    60.93,
+    31.79
+   ],
+   "kit_c4": 37.6,
+   "drafting": [
+    {
+     "windows": 98,
+     "rows": 463,
+     "dspark_rounds": 98,
+     "dspark_drafts": 365,
+     "dspark_kept": 286,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 3.918,
+     "tokens_per_round": 3.918
+    },
+    {
+     "windows": 241,
+     "rows": 605,
+     "dspark_rounds": 240,
+     "dspark_drafts": 364,
+     "dspark_kept": 143,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 1,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 1.596,
+     "tokens_per_round": 1.593
+    }
+   ],
+   "phases": {
+    "mode": "1",
+    "wall_ms": 12632.45,
+    "candidates": {
+     "ms": 10754.29,
+     "n": 241,
+     "ms_avg": 44.624
+    },
+    "commit": {
+     "ms": 151.94,
+     "n": 242,
+     "ms_avg": 0.628
+    },
+    "draft": {
+     "ms": 1035.66,
+     "n": 240,
+     "ms_avg": 4.315
+    },
+    "draft.depth": {
+     "ms": 4.25,
+     "n": 240,
+     "ms_avg": 0.018
+    },
+    "draft.pass": {
+     "ms": 966.54,
+     "n": 240,
+     "ms_avg": 4.027
+    },
+    "engram.wait": {
+     "ms": 44.08,
+     "n": 2,
+     "ms_avg": 22.039
+    },
+    "execute": {
+     "ms": 12608.85,
+     "n": 242,
+     "ms_avg": 52.103
+    },
+    "forward": {
+     "ms": 29.69,
+     "n": 241,
+     "ms_avg": 0.123
+    },
+    "graph.replay": {
+     "ms": 3.11,
+     "n": 241,
+     "ms_avg": 0.013
+    },
+    "graph.stage": {
+     "ms": 18.21,
+     "n": 241,
+     "ms_avg": 0.076
+    },
+    "plan": {
+     "ms": 3.97,
+     "n": 242,
+     "ms_avg": 0.016
+    },
+    "prefetch": {
+     "ms": 96.89,
+     "n": 241,
+     "ms_avg": 0.402
+    },
+    "prefill": {
+     "ms": 232.1,
+     "n": 1,
+     "ms_avg": 232.103
+    },
+    "round": {
+     "ms": 12631.67,
+     "n": 242,
+     "ms_avg": 52.197
+    },
+    "sample": {
+     "ms": 4.84,
+     "n": 242,
+     "ms_avg": 0.02
+    },
+    "share": {
+     "ms": 12.83,
+     "n": 242,
+     "ms_avg": 0.053
+    },
+    "spec": {
+     "ms": 341.38,
+     "n": 241,
+     "ms_avg": 1.417
+    },
+    "window": {
+     "ms": 10786.85,
+     "n": 241,
+     "ms_avg": 44.759
+    }
+   }
+  },
+  "C4": {
+   "streams": 4,
+   "sampling": "greedy",
+   "tokens": 1455,
+   "wall_s": 17.07,
+   "aggregate_tok_s": 85.26,
+   "decode_aggregate_tok_s": 92.16,
+   "per_stream_tok_s": [
+    37.36,
+    24.26,
+    45.46,
+    53.58
+   ],
+   "kit_c4": 37.6,
+   "drafting": [
+    {
+     "windows": 99,
+     "rows": 464,
+     "dspark_rounds": 99,
+     "dspark_drafts": 365,
+     "dspark_kept": 285,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 3.879,
+     "tokens_per_round": 3.879
+    },
+    {
+     "windows": 241,
+     "rows": 605,
+     "dspark_rounds": 240,
+     "dspark_drafts": 364,
+     "dspark_kept": 143,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 1,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 1.596,
+     "tokens_per_round": 1.593
+    },
+    {
+     "windows": 49,
+     "rows": 327,
+     "dspark_rounds": 43,
+     "dspark_drafts": 190,
+     "dspark_kept": 175,
+     "lookup_rounds": 6,
+     "lookup_drafts": 88,
+     "lookup_kept": 80,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 5.07,
+     "tokens_per_round": 6.204
+    },
+    {
+     "windows": 57,
+     "rows": 395,
+     "dspark_rounds": 50,
+     "dspark_drafts": 248,
+     "dspark_kept": 246,
+     "lookup_rounds": 7,
+     "lookup_drafts": 90,
+     "lookup_kept": 81,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 5.92,
+     "tokens_per_round": 6.737
+    }
+   ],
+   "phases": {
+    "mode": "1",
+    "wall_ms": 17065.71,
+    "candidates": {
+     "ms": 13977.98,
+     "n": 241,
+     "ms_avg": 58.0
+    },
+    "commit": {
+     "ms": 201.08,
+     "n": 242,
+     "ms_avg": 0.831
+    },
+    "draft": {
+     "ms": 1234.69,
+     "n": 240,
+     "ms_avg": 5.145
+    },
+    "draft.depth": {
+     "ms": 5.22,
+     "n": 240,
+     "ms_avg": 0.022
+    },
+    "draft.pass": {
+     "ms": 1147.9,
+     "n": 240,
+     "ms_avg": 4.783
+    },
+    "engram.wait": {
+     "ms": 11.4,
+     "n": 4,
+     "ms_avg": 2.85
+    },
+    "execute": {
+     "ms": 17032.07,
+     "n": 242,
+     "ms_avg": 70.38
+    },
+    "forward": {
+     "ms": 38.58,
+     "n": 241,
+     "ms_avg": 0.16
+    },
+    "graph.replay": {
+     "ms": 6.34,
+     "n": 241,
+     "ms_avg": 0.026
+    },
+    "graph.stage": {
+     "ms": 21.64,
+     "n": 241,
+     "ms_avg": 0.09
+    },
+    "plan": {
+     "ms": 7.45,
+     "n": 242,
+     "ms_avg": 0.031
+    },
+    "prefetch": {
+     "ms": 87.07,
+     "n": 241,
+     "ms_avg": 0.361
+    },
+    "prefill": {
+     "ms": 755.6,
+     "n": 2,
+     "ms_avg": 377.802
+    },
+    "round": {
+     "ms": 17065.04,
+     "n": 242,
+     "ms_avg": 70.517
+    },
+    "sample": {
+     "ms": 6.82,
+     "n": 242,
+     "ms_avg": 0.028
+    },
+    "share": {
+     "ms": 17.6,
+     "n": 242,
+     "ms_avg": 0.073
+    },
+    "spec": {
+     "ms": 2434.69,
+     "n": 241,
+     "ms_avg": 10.102
+    },
+    "window": {
+     "ms": 14019.81,
+     "n": 241,
+     "ms_avg": 58.173
+    }
+   }
+  }
+ },
+ "c4": {
+  "streams": 4,
+  "sampling": "greedy",
+  "tokens": 1455,
+  "wall_s": 17.07,
+  "aggregate_tok_s": 85.26,
+  "decode_aggregate_tok_s": 92.16,
+  "per_stream_tok_s": [
+   37.36,
+   24.26,
+   45.46,
+   53.58
+  ],
+  "kit_c4": 37.6,
+  "drafting": [
+   {
+    "windows": 99,
+    "rows": 464,
+    "dspark_rounds": 99,
+    "dspark_drafts": 365,
+    "dspark_kept": 285,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.879,
+    "tokens_per_round": 3.879
+   },
+   {
+    "windows": 241,
+    "rows": 605,
+    "dspark_rounds": 240,
+    "dspark_drafts": 364,
+    "dspark_kept": 143,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.596,
+    "tokens_per_round": 1.593
+   },
+   {
+    "windows": 49,
+    "rows": 327,
+    "dspark_rounds": 43,
+    "dspark_drafts": 190,
+    "dspark_kept": 175,
+    "lookup_rounds": 6,
+    "lookup_drafts": 88,
+    "lookup_kept": 80,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.07,
+    "tokens_per_round": 6.204
+   },
+   {
+    "windows": 57,
+    "rows": 395,
+    "dspark_rounds": 50,
+    "dspark_drafts": 248,
+    "dspark_kept": 246,
+    "lookup_rounds": 7,
+    "lookup_drafts": 90,
+    "lookup_kept": 81,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.92,
+    "tokens_per_round": 6.737
+   }
+  ],
+  "phases": {
+   "mode": "1",
+   "wall_ms": 17065.71,
+   "candidates": {
+    "ms": 13977.98,
+    "n": 241,
+    "ms_avg": 58.0
+   },
+   "commit": {
+    "ms": 201.08,
+    "n": 242,
+    "ms_avg": 0.831
+   },
+   "draft": {
+    "ms": 1234.69,
+    "n": 240,
+    "ms_avg": 5.145
+   },
+   "draft.depth": {
+    "ms": 5.22,
+    "n": 240,
+    "ms_avg": 0.022
+   },
+   "draft.pass": {
+    "ms": 1147.9,
+    "n": 240,
+    "ms_avg": 4.783
+   },
+   "engram.wait": {
+    "ms": 11.4,
+    "n": 4,
+    "ms_avg": 2.85
+   },
+   "execute": {
+    "ms": 17032.07,
+    "n": 242,
+    "ms_avg": 70.38
+   },
+   "forward": {
+    "ms": 38.58,
+    "n": 241,
+    "ms_avg": 0.16
+   },
+   "graph.replay": {
+    "ms": 6.34,
+    "n": 241,
+    "ms_avg": 0.026
+   },
+   "graph.stage": {
+    "ms": 21.64,
+    "n": 241,
+    "ms_avg": 0.09
+   },
+   "plan": {
+    "ms": 7.45,
+    "n": 242,
+    "ms_avg": 0.031
+   },
+   "prefetch": {
+    "ms": 87.07,
+    "n": 241,
+    "ms_avg": 0.361
+   },
+   "prefill": {
+    "ms": 755.6,
+    "n": 2,
+    "ms_avg": 377.802
+   },
+   "round": {
+    "ms": 17065.04,
+    "n": 242,
+    "ms_avg": 70.517
+   },
+   "sample": {
+    "ms": 6.82,
+    "n": 242,
+    "ms_avg": 0.028
+   },
+   "share": {
+    "ms": 17.6,
+    "n": 242,
+    "ms_avg": 0.073
+   },
+   "spec": {
+    "ms": 2434.69,
+    "n": 241,
+    "ms_avg": 10.102
+   },
+   "window": {
+    "ms": 14019.81,
+    "n": 241,
+    "ms_avg": 58.173
+   }
+  }
+ },
+ "dspark_tokens_per_round_mixed": 3.84,
+ "exact_all": true,
+ "m2_after": "DSpark on (depth cost, cap 5, joint off, costs measured); draft head full; draft graphs on: 3 held (3 at boot in 0.17 s, 0 on first use), 814 replays, 0 eager windows; Engram prefetch {'issued': 16, 'hits': 30, 'misses': 2, 'dropped': 0, 'reads': 7127, 'cached': 39144, 'waited': 2184, 'ahead': 0, 'kept': 0}; Engram gate: 1648 rounds (0 reissued), 2650 warm jobs, rows 328416 (276180 cached, 52236 read), 1647 syncs; first layer ready p50/p90/p99 0.64 / 2.66 / 10.99 ms, all 0.70 / 2.70 / 11.13 ms after queueing; speculative DSpark passes 680 launched, 658 used, 22 dropped (reset 2, slots 18, unused 2), 0 without a graph; graphs on: 14 held (8 at boot in 2.64 s, 6 on first use), 1697 replays, 6 eager windows; RoCE exchanges 5791 fast / 747 on NCCL; phases (1, ms a round over 242 rounds): candidates 57.76, commit 0.83, draft 5.10, draft.depth 0.02, draft.pass 4.74, engram.wait 0.05, execute 70.38, forward 0.16, graph.replay 0.03, graph.stage 0.09, plan 0.03, prefetch 0.36, prefill 3.12, round 70.52, sample 0.03, share 0.07, spec 10.06, window 57.93",
+ "comm": {
+  "backend": "RoceComm",
+  "fast_ops": 5791,
+  "slow_ops": 747
+ },
+ "boot_s": 39.1
+}

@@ -1,0 +1,12 @@
+{
+  "requested_tokens": 262144,
+  "prompt_tokens": 262144,
+  "prompt_exact": true,
+  "completion_tokens": 128,
+  "ttft_s": 266.67459803099985,
+  "prefill_tok_s": 983.0107626881163,
+  "decode_tok_s": 62.19005407451532,
+  "events": 32,
+  "wall_s": 268.71683170699987,
+  "ended": 1790864265.2272184
+}

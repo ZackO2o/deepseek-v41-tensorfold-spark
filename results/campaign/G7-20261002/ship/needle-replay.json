@@ -1,0 +1,27 @@
+{
+ "label": "replay",
+ "needles": [
+  {
+   "size": 32768,
+   "prompt_tokens": 32473,
+   "found": true,
+   "reply": "77479162",
+   "seconds": 19.9
+  },
+  {
+   "size": 131072,
+   "prompt_tokens": 130696,
+   "found": true,
+   "reply": "16636298",
+   "seconds": 74.0
+  },
+  {
+   "size": 299000,
+   "prompt_tokens": 298876,
+   "found": true,
+   "reply": "16423158",
+   "seconds": 195.4
+  }
+ ],
+ "ok": true
+}

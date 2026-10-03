@@ -1,0 +1,6 @@
+  image glm53-tensorfold:b13-060 (head f6682c060597, worker a412df8a7ea9)
+  sources dsv41-060 @ e8c936562364 on both nodes
+  packed Engram rows on both nodes
+  disk free for prepared folders: head 1142 GiB, worker 2442 GiB (need 110, or PREPARE=0)
+  lease: 50; watchdog timer: inactive; :8000 none; :8001 none
+check: OK

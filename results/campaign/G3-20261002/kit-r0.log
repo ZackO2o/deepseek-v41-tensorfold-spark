@@ -1,0 +1,24 @@
+[boot] r0 +3.5s start: imports, CLI (3.5s) | MemFree 117.3 GiB, MemAvailable 117.2 GiB
+[boot] r0 +6.0s NCCL (both ranks up) (2.6s) | MemFree 114.8 GiB, MemAvailable 114.8 GiB
+[tensorfold] weights: no usable prepared folder (no folder): building from the checkpoint; will write it
+[tensorfold] prepared folder written: /prepared/model/3c52fb1b8d6c90e6/rank0 (101.8 GB in 79.5s)
+[tensorfold] removed an older prepared folder: /prepared/model/5cd84013c11d2944/rank0
+[boot] r0 +307.0s weights: 101.8 GB (301.0s) | MemFree 7.6 GiB, MemAvailable 16.7 GiB
+[tensorfold] dspark: no usable prepared folder (no folder): building from the checkpoint; will write it
+[tensorfold] prepared folder written: /prepared/model/5cd84013c11d2944/rank0 (3.7 GB in 3.4s)
+[tensorfold] removed an older prepared folder: /prepared/model/3c52fb1b8d6c90e6/rank0
+[boot] r0 +319.3s forward built: 99.0 GiB allocated (12.3s) | MemFree 3.5 GiB, MemAvailable 12.9 GiB
+[tensorfold] structured output: on (xgrammar, 129280 columns, DSML tool tag deepseek_v4_1; built in 3.1 s)
+[tensorfold] serving: 4 slot(s) x 16448 tokens; 0 of 4 slots busy; pool 260 of 260 pages free, 0 reserved, 0 mapped; sessions: 0 RAM entries (0 pool pages, 0.0 MiB bounded state); prefill full; floor 5.0 GiB
+[boot] r0 +322.5s M2 boot: DSpark on (depth static, cap 3, costs cached); Engram prefetch {'issued': 0, 'hits': 0, 'misses': 0, 'dropped': 0} (3.2s) | MemFree 3.2 GiB, MemAvailable 12.7 GiB
+[boot] r0 +322.5s serving (0.0s) | MemFree 3.2 GiB, MemAvailable 12.7 GiB
+[tensorfold] admission waits for memory (1 queued): usable free 0.84 + allocator cache 0.00 + page cache credit 8.12 (MemAvailable 11.06, MemFree 0.84, Dirty+Writeback 0.00, Mapped 2.10) = 8.96 GiB, less the session store's unused 0.00 GiB, is under 4.00 GiB (GLM53_TF_BATCH_ADMIT_GB + scratch), or free now 0.84 GiB is under the floor
+[tensorfold] admission resumed after 4.7 s waiting for memory
+[m2bench] code: T0 33.72 tok/s, 3.254 tok/round (DSpark 3.254), exact True/True
+[m2bench] prose: T0 20.045 tok/s, 1.803 tok/round (DSpark 1.807), exact True/True
+[m2bench] tweet: T0 42.085 tok/s, 3.859 tok/round (DSpark 3.859), exact True/True
+[m2bench] mmlu: T0 0.0 tok/s, 3.0 tok/round (DSpark 3.0), exact True/True
+[m2bench] edit: T0 41.86 tok/s, 3.984 tok/round (DSpark 3.984), exact True/True
+[m2bench] long: T0 24.745 tok/s, 2.34 tok/round (DSpark 2.34), exact True/True
+[m2bench] 4 streams: 14.08 tok/s aggregate (kit C4 37.6)
+[m2bench] report /out/m2-kit.json: exact True, DSpark mixed 3.1 tok/round

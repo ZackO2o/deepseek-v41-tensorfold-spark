@@ -1,0 +1,130 @@
+G9 glue 2026-10-02T15:08:32Z, sources 29059595efcfec6b0990da3d5cca23ed5adeb6a9
+GPU tests: 193 passed, 1 warning in 40.22s
+CPU tests: 5 failed, 159 passed, 3 warnings in 260.98s (0:04:20)
+..................[G9G] finish warps 1 R=1: coefficients bit for bit
+[G9G] finish warps 2 R=1: coefficients bit for bit
+[G9G] finish warps 8 R=1: coefficients bit for bit
+.[G9G] finish warps 1 R=4: coefficients bit for bit
+[G9G] finish warps 2 R=4: coefficients bit for bit
+[G9G] finish warps 8 R=4: coefficients bit for bit
+.[G9G] finish warps 1 R=16: coefficients bit for bit
+[G9G] finish warps 2 R=16: coefficients bit for bit
+[G9G] finish warps 8 R=16: coefficients bit for bit
+.[G9G] mhc R=1: split site 25.1 + finish 10.3 = 35.4; dec site 26.9 + finish 10.3 = 37.2; dec-bf16 site 26.8 + finish 10.1 = 37.0; dec-bf16-8w site 20.9 + finish 10.3 = 31.2; dec-bf16-rolled site 28.1 + finish 10.1 = 38.1; dec-bf16-fin1 site 26.9 + finish 9.7 = 36.6; dec-bf16-finw1 site 26.9 + finis
+[G9G] mhc R=2: split site 25.2 + finish 10.4 = 35.6; dec site 27.4 + finish 10.3 = 37.7; dec-bf16 site 26.6 + finish 10.4 = 37.0; dec-bf16-8w site 21.1 + finish 10.1 = 31.3; dec-bf16-rolled site 28.8 + finish 10.2 = 39.1; dec-bf16-fin1 site 26.8 + finish 9.6 = 36.3; dec-bf16-finw1 site 26.6 + finish
+[G9G] mhc R=4: split site 26.1 + finish 10.0 = 36.1; dec site 28.7 + finish 10.1 = 38.7; dec-bf16 site 26.9 + finish 10.2 = 37.1; dec-bf16-8w site 22.2 + finish 9.8 = 32.0; dec-bf16-rolled site 29.0 + finish 10.1 = 39.1; dec-bf16-fin1 site 26.9 + finish 9.9 = 36.8; dec-bf16-finw1 site 26.9 + finish 
+[G9G] mhc R=8: split site 27.3 + finish 10.0 = 37.3; dec site 27.9 + finish 10.1 = 38.0; dec-bf16 site 26.9 + finish 10.3 = 37.2; dec-bf16-8w site 22.8 + finish 10.2 = 33.1; dec-bf16-rolled site 29.1 + finish 10.2 = 39.3; dec-bf16-fin1 site 26.9 + finish 9.8 = 36.7; dec-bf16-finw1 site 26.9 + finish
+[G9G] mhc R=16: split site 27.8 + finish 10.4 = 38.1; dec site 29.1 + finish 10.3 = 39.4; dec-bf16 site 29.0 + finish 10.2 = 39.2; dec-bf16-8w site 26.7 + finish 10.2 = 36.9; dec-bf16-rolled site 33.1 + finish 10.2 = 43.2; dec-bf16-fin1 site 28.9 + finish 10.3 = 39.2; dec-bf16-finw1 site 29.0 + fini
+.[G9G] rms R=1: two launches 27.8 us, pair 19.8 us (host-bound eager; graphs: kernel times)
+.[G9G] rms R=2: two launches 30.6 us, pair 19.7 us (host-bound eager; graphs: kernel times)
+.[G9G] rms R=4: two launches 27.8 us, pair 19.8 us (host-bound eager; graphs: kernel times)
+.[G9G] rms R=16: two launches 27.6 us, pair 20.2 us (host-bound eager; graphs: kernel times)
+....[G9G] engram fuse R=1: engram.fuse 103.3 us, engram_dec 74.7 us
+.[G9G] engram fuse R=2: engram.fuse 102.6 us, engram_dec 73.9 us
+.[G9G] engram fuse R=4: engram.fuse 102.6 us, engram_dec 73.9 us
+.[G9G] engram fuse R=16: engram.fuse 102.7 us, engram_dec 73.9 us
+..........................[G10] router E 384 R 1: old 25.9 us | narrow nw1 30.1 nw2 30.1 nw4 30.0 nw8 30.0 | best nw8 0.86x | 40 a window: old 1.04 ms, best 1.20 ms
+[G10] router + kit casts + group, E 384 R 1: today 31.3 us, narrow nw8 + folded tail 31.4 us a layer (-0.00 ms a 40-layer window)
+[G10] router E 384 R 2: old 26.2 us | narrow nw1 35.5 nw2 30.4 nw4 30.4 nw8 30.6 | best nw2 0.86x | 40 a window: old 1.05 ms, best 1.22 ms
+[G10] router + kit casts + group, E 384 R 2: today 33.9 us, narrow nw2 + folded tail 32.4 us a layer (0.06 ms a 40-layer window)
+[G10] router E 384 R 4: old 26.7 us | narrow nw1 48.3 nw2 37.7 nw4 32.4 nw8 32.7 | best nw4 0.82x | 40 a window: old 1.07 ms, best 1.30 ms
+[G10] router + kit casts + group, E 384 R 4: today 38.4 us, narrow nw4 + folded tail 34.5 us a layer (0.16 ms a 40-layer window)
+[G10] router E 384 R 8: old 28.4 us | narrow nw1 75.8 nw2 54.7 nw4 43.5 nw8 38.6 | best nw8 0.74x | 40 a window: old 1.14 ms, best 1.54 ms
+[G10] router E 384 R 16: old 37.5 us | narrow nw1 130.7 nw2 86.9 nw4 64.9 nw8 54.3 | best nw8 0.69x | 40 a window: old 1.50 ms, best 2.17 ms
+[G10] router E 128 R 1: old 10.9 us | narrow nw1 12.1 nw2 12.3 nw4 12.3 nw8 12.0 | best nw8 0.91x | 40 a window: old 0.43 ms, best 0.48 ms
+[G10] router E 128 R 2: old 11.5 us | narrow nw1 14.9 nw2 12.8 nw4 12.9 nw8 12.8 | best nw8 0.90x | 40 a window: old 0.46 ms, best 0.51 ms
+[G10] router E 128 R 4: old 12.9 us | narrow nw1 21.3 nw2 16.2 nw4 14.0 nw8 14.4 | best nw4 0.92x | 40 a window: old 0.51 ms, best 0.56 ms
+[G10] router E 128 R 8: old 16.9 us | narrow nw1 36.4 nw2 26.0 nw4 21.0 nw8 19.1 | best nw8 0.89x | 40 a window: old 0.68 ms, best 0.76 ms
+[G10] router E 128 R 16: old 27.4 us | narrow nw1 63.0 nw2 50.4 nw4 36.6 nw8 31.6 | best nw8 0.87x | 40 a window: old 1.10 ms, best 1.26 ms
+[DTOPK] n=4096 R=1: select us by TILE/WARPS 1024/4: 43.4, 2048/8: 33.3, 4096/8: 30.7, 4096/16: 33.2, 8192/16: 45.7
+[DTOPK] n=4096 R=1: select old 163.8 us, new 30.6 (RB 8) / 110.1 (RB 11); blocks old 108.6 new 14.2; reindex top-k old 161.1 new 59.7
+[DTOPK] n=4096 R=4: select us by TILE/WARPS 1024/4: 43.2, 2048/8: 33.0, 4096/8: 30.7, 4096/16: 33.0, 8192/16: 45.3
+[DTOPK] n=4096 R=4: select old 166.1 us, new 30.7 (RB 8) / 108.8 (RB 11); blocks old 110.4 new 14.0; reindex top-k old 174.6 new 59.7
+[DTOPK] n=4096 R=16: select us by TILE/WARPS 1024/4: 43.3, 2048/8: 33.0, 4096/8: 30.7, 4096/16: 33.1, 8192/16: 45.3
+[DTOPK] n=4096 R=16: select old 165.4 us, new 30.7 (RB 8) / 108.8 (RB 11); blocks old 110.6 new 14.0; reindex top-k old 197.5 new 72.5
+[DTOPK] n=16384 R=1: select us by TILE/WARPS 1024/4: 80.2, 2048/8: 55.5, 4096/8: 48.2, 4096/16: 47.4, 8192/16: 37.8
+[DTOPK] n=16384 R=1: select old 194.2 us, new 48.3 (RB 8) / 141.6 (RB 11); blocks old 117.0 new 14.0; reindex top-k old 178.7 new 59.7
+[DTOPK] n=16384 R=4: select us by TILE/WARPS 1024/4: 80.2, 2048/8: 55.6, 4096/8: 49.3, 4096/16: 47.4, 8192/16: 38.7
+[DTOPK] n=16384 R=4: select old 188.7 us, new 49.3 (RB 8) / 141.6 (RB 11); blocks old 121.0 new 14.0; reindex top-k old 184.2 new 59.7
+[DTOPK] n=16384 R=16: select us by TILE/WARPS 1024/4: 80.2, 2048/8: 55.5, 4096/8: 47.4, 4096/16: 47.9, 8192/16: 39.2
+[DTOPK] n=16384 R=16: select old 193.2 us, new 47.5 (RB 8) / 205.3 (RB 11); blocks old 124.1 new 14.1; reindex top-k old 213.1 new 72.3
+[DTOPK] n=32768 R=1: select us by TILE/WARPS 1024/4: 160.2, 2048/8: 104.8, 4096/8: 91.6, 4096/16: 92.3, 8192/16: 73.4
+[DTOPK] n=32768 R=1: select old 241.8 us, new 91.5 (RB 8) / 281.0 (RB 11); blocks old 129.2 new 94.8; reindex top-k old 174.6 new 44.9
+[DTOPK] n=32768 R=4: select us by TILE/WARPS 1024/4: 155.9, 2048/8: 105.0, 4096/8: 92.3, 4096/16: 92.4, 8192/16: 73.9
+[DTOPK] n=32768 R=4: select old 243.9 us, new 92.4 (RB 8) / 281.3 (RB 11); blocks old 131.4 new 94.5; reindex top-k old 190.3 new 74.1
+[DTOPK] n=32768 R=16: select us by TILE/WARPS 1024/4: 190.9, 2048/8: 131.3, 4096/8: 117.8, 4096/16: 114.8, 8192/16: 92.5
+[DTOPK] n=32768 R=16: select old 271.4 us, new 112.9 (RB 8) / 411.6 (RB 11); blocks old 134.6 new 94.5; reindex top-k old 203.8 new 59.5
+[DTOPK] n=75000 R=1: select us by TILE/WARPS 1024/4: 387.4, 2048/8: 313.9, 4096/8: 223.3, 4096/16: 248.4, 8192/16: 205.2
+[DTOPK] n=75000 R=1: select old 241.8 us, new 223.4 (RB 8) / 693.9 (RB 11); blocks old 123.1 new 261.8; reindex top-k old 171.5 new 59.7
+[DTOPK] n=75000 R=4: select us by TILE/WARPS 1024/4: 387.6, 2048/8: 313.6, 4096/8: 223.3, 4096/16: 248.2, 8192/16: 205.0
+[DTOPK] n=75000 R=4: select old 250.6 us, new 223.5 (RB 8) / 688.5 (RB 11); blocks old 121.1 new 260.5; reindex top-k old 182.8 new 59.7
+[DTOPK] n=75000 R=16: select us by TILE/WARPS 1024/4: 479.3, 2048/8: 387.1, 4096/8: 276.7, 4096/16: 307.2, 8192/16: 250.3
+[DTOPK] n=75000 R=16: select old 327.0 us, new 276.8 (RB 8) / 1007.5 (RB 11); blocks old 136.6 new 260.5; reindex top-k old 214.2 new 59.3
+config     1 row  2 rows  4 rows  16 rows   prose  exact  (vs off)
+fn16        28.7    35.0    43.3     80.2   39.61  True  1 row -0.8 ms, 2 rows -1.2 ms, prose +4.9%
+gsplit      28.9    35.4    43.7     79.9   38.58  True  1 row -0.6 ms, 2 rows -0.8 ms, prose +2.2%
+off         29.5    36.2    44.4     79.0   37.75  True  
+on          28.7    35.5    43.7     80.3   38.54  True  1 row -0.8 ms, 2 rows -0.7 ms, prose +2.1%
+== target 1 row(s): off 16 windows span 30.767 ms, on 18 windows span 30.237 ms
+   class                                         off       on
+   experts                                     9.562    9.553
+   dense linear (wo_b, head, wk, drafter)      6.876    6.881
+   dense seg (x / q / o groups)                4.717    4.739
+   mhc site                                    2.222    2.343
+   router                                      1.276    1.370
+   exchange                                    1.164    1.363
+   attention                                   1.299    1.259
+   mhc finish                                  0.832    0.905
+   torch topk / sort                           0.904    0.586
+   copies / elementwise                        0.890    0.585
+   norms                                       0.404    0.273
+   indexer                                     0.183    0.173
+   other                                       0.143    0.000
+== target 2 row(s): off 47 windows span 36.604 ms, on 46 windows span 35.867 ms
+   class                                         off       on
+   experts                                    14.470   14.409
+   dense linear (wo_b, head, wk, drafter)      7.051    7.045
+   dense seg (x / q / o groups)                4.815    4.812
+   mhc site                                    2.242    2.364
+   router                                      1.304    1.456
+   exchange                                    1.403    1.320
+   attention                                   1.311    1.284
+   copies / elementwise                        1.153    0.975
+   mhc finish                                  0.832    0.924
+   torch topk / sort                           0.899    0.590
+   norms                                       0.407    0.276
+   other                                       0.223    0.000
+   indexer                                     0.207    0.199
+== draft pass (5 rows): off 98 windows span 3.721 ms, on 98 windows span 3.733 ms
+   class                                         off       on
+   dense linear (wo_b, head, wk, drafter)      1.372    1.369
+   experts                                     0.997    0.992
+   exchange                                    0.396    0.394
+   dense seg (x / q / o groups)                0.253    0.258
+   other                                       0.177    0.155
+   mhc site                                    0.158    0.172
+   router                                      0.086    0.115
+   attention                                   0.082    0.081
+   copies / elementwise                        0.067    0.061
+   mhc finish                                  0.062    0.064
+   norms                                       0.027    0.028
+   indexer                                     0.009    0.009
+   torch topk / sort                           0.006    0.006
+tests: pass
+off: verify 1 / 2 rows 29.5 / 36.2 ms; exact True; gate top-1 None; speed {'code': 71.85, 'prose': 37.47}
+on: verify 1 / 2 rows 28.7 / 35.5 ms; exact True; gate top-1 0.9957865168539326; speed {'code': 73.55, 'prose': 38.31}
+fn16: verify 1 / 2 rows 28.7 / 35.0 ms; exact True; gate top-1 0.9963361016121153; speed {'code': 73.31, 'prose': 39.24}
+adopt: TF_DSV41_MHC_DEC=1 TF_DSV41_MHC_FIN2=1 TF_DSV41_RMS_PAIR=1 TF_DSV41_PARTIAL_BF16=1 TF_DSV41_RG_NARROW=2 TF_DSV41_RG_TAIL=1 TF_DSV41_INDEX_DTOPK=1 TF_DSV41_ENGRAM_FUSE_DEC=1
+[dsv41 21:58:58] gate g9glue-on rc=1: top1 0.9958 first copy 0.9601 (G2 exact: 0.9963 / 0.9535)
+[dsv41 22:00:32] gate g9glue-fn16 rc=1: top1 0.9963 first copy 0.9502 (G2 exact: 0.9963 / 0.9535)
+[dsv41 22:03:14] glue speed off: [m2bench] code: T0 71.85 tok/s, 3.802 tok/round (DSpark 3.802), exact True/True [m2bench] prose: T0 37.47 tok/s, 1.613 tok/round (DSpark 1.616), exact True/True [m2bench] C1: 70.03 tok/s aggregate, 74.58 decode (mixed; kit C1 / C2 / C4 32.2 / 46.7 / 37.6) [m2bench] C2: 59.0 tok/s aggregate, 61.59 decode (mixed; kit C1 / C2 / C4 32.2 / 46.7 / 37.6) 
+[dsv41 22:05:53] glue speed on: [m2bench] code: T0 73.55 tok/s, 3.802 tok/round (DSpark 3.802), exact True/True [m2bench] prose: T0 38.31 tok/s, 1.607 tok/round (DSpark 1.609), exact True/True [m2bench] C1: 70.49 tok/s aggregate, 75.06 decode (mixed; kit C1 / C2 / C4 32.2 / 46.7 / 37.6) [m2bench] C2: 59.78 tok/s aggregate, 62.36 decode (mixed; kit C1 / C2 / C4 32.2 / 46.7 / 37.6) 
+[dsv41 22:08:31] glue speed fn16: [m2bench] code: T0 73.31 tok/s, 3.802 tok/round (DSpark 3.802), exact True/True [m2bench] prose: T0 39.24 tok/s, 1.648 tok/round (DSpark 1.651), exact True/True [m2bench] C1: 70.18 tok/s aggregate, 74.61 decode (mixed; kit C1 / C2 / C4 32.2 / 46.7 / 37.6) [m2bench] C2: 59.34 tok/s aggregate, 61.96 decode (mixed; kit C1 / C2 / C4 32.2 / 46.7 / 37.6) 
+[dsv41 21:50:50] g9g-on memory: head MemFree min 9.70, MemAvailable min 10.90 GiB; worker MemFree min 7.81, MemAvailable min 8.86 GiB
+[dsv41 21:52:58] g9g-fn16 memory: head MemFree min 9.26, MemAvailable min 10.41 GiB; worker MemFree min 7.34, MemAvailable min 8.41 GiB
+[dsv41 21:54:43] g9g-gsplit memory: head MemFree min 9.40, MemAvailable min 10.55 GiB; worker MemFree min 8.19, MemAvailable min 9.24 GiB
+[dsv41 21:56:00] g9gn-off memory: head MemFree min 6.35, MemAvailable min 7.93 GiB; worker MemFree min 8.33, MemAvailable min 9.34 GiB
+[dsv41 21:57:20] g9gn-on memory: head MemFree min 6.50, MemAvailable min 7.97 GiB; worker MemFree min 8.25, MemAvailable min 9.29 GiB
+[dsv41 22:03:14] g9gs-off memory: head MemFree min 9.48, MemAvailable min 10.69 GiB; worker MemFree min 8.24, MemAvailable min 9.26 GiB
+[dsv41 22:05:53] g9gs-on memory: head MemFree min 9.30, MemAvailable min 10.48 GiB; worker MemFree min 8.13, MemAvailable min 9.18 GiB
+[dsv41 22:08:31] g9gs-fn16 memory: head MemFree min 9.51, MemAvailable min 10.60 GiB; worker MemFree min 8.16, MemAvailable min 9.21 GiB

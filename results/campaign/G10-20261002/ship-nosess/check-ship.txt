@@ -1,0 +1,8 @@
+  image glm53-tensorfold:b13-060 (prod.env BASE_IMAGE glm53-tensorfold:b13-060); comm roce (RoCE 1024 KiB)
+  sources dsv41-060 @ 38f65008e323 on both nodes
+  knob TF_DSV41_ROUTER present
+  knob TF_DSV41_DEPTH present
+  knob TF_DSV41_DRAFT_SKIP present
+  no tool-eval-bench here (~/.cache/tooleval): tooleval runs chains.py only (scripts/tooleval/run.sh setup beforehand)
+  lease: 44; watchdog timer: inactive; :8000 none
+check: OK

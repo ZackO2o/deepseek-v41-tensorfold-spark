@@ -1,0 +1,2 @@
+joint: FAIL: off-mixed exact_all True; on-mixed exact_all True; off-greedy exact_all True; on-greedy exact_all True; C1 75.01 vs 75.56 (-0.7%); C2 61.06 vs 62.37 (-2.1%); C4 88.27 vs 87.74 (+0.6%); prose-in-C2 30.45 vs 31.11 (-2.1%); calibration 64 rows + slot > 0: True
+adopt: TF_DSV41_DEPTH_JOINT=0 into config/prod.env

@@ -1,0 +1,185 @@
+{
+ "layer": 20,
+ "rank": 0,
+ "k2_gu": [
+  4,
+  8
+ ],
+ "k2_d": [
+  4,
+  8
+ ],
+ "rows": {
+  "1": {
+   "distinct": 6,
+   "bytes": 35389440,
+   "upstream_ms": 0.1891,
+   "upstream_gbps": 187.1,
+   "x3ld": {
+    "8,1": {
+     "bitwise": true,
+     "ms": 0.1966,
+     "gbps": 180.0
+    },
+    "8,2": {
+     "bitwise": true,
+     "ms": 0.1923,
+     "gbps": 184.0
+    },
+    "4,2": {
+     "bitwise": true,
+     "ms": 0.1748,
+     "gbps": 202.5
+    }
+   },
+   "probe3_gu_gbps": 514.6
+  },
+  "2": {
+   "distinct": 12,
+   "bytes": 61931520,
+   "upstream_ms": 0.3208,
+   "upstream_gbps": 193.0,
+   "x3ld": {
+    "8,1": {
+     "bitwise": true,
+     "ms": 0.3052,
+     "gbps": 202.9
+    },
+    "8,2": {
+     "bitwise": true,
+     "ms": 0.3069,
+     "gbps": 201.8
+    },
+    "4,2": {
+     "bitwise": true,
+     "ms": 0.3064,
+     "gbps": 202.1
+    }
+   },
+   "probe3_gu_gbps": 238.5
+  },
+  "4": {
+   "distinct": 23,
+   "bytes": 110592000,
+   "upstream_ms": 0.5612,
+   "upstream_gbps": 197.1,
+   "x3ld": {
+    "8,1": {
+     "bitwise": true,
+     "ms": 0.5192,
+     "gbps": 213.0
+    },
+    "8,2": {
+     "bitwise": true,
+     "ms": 0.5143,
+     "gbps": 215.1
+    },
+    "4,2": {
+     "bitwise": true,
+     "ms": 0.4868,
+     "gbps": 227.2
+    }
+   },
+   "probe3_gu_gbps": 233.3
+  },
+  "6": {
+   "distinct": 33,
+   "bytes": 154828800,
+   "upstream_ms": 0.7791,
+   "upstream_gbps": 198.7,
+   "x3ld": {
+    "8,1": {
+     "bitwise": true,
+     "ms": 0.7076,
+     "gbps": 218.8
+    },
+    "8,2": {
+     "bitwise": true,
+     "ms": 0.6833,
+     "gbps": 226.6
+    },
+    "4,2": {
+     "bitwise": true,
+     "ms": 0.6942,
+     "gbps": 223.0
+    }
+   },
+   "probe3_gu_gbps": 248.4
+  },
+  "8": {
+   "distinct": 44,
+   "bytes": 203489280,
+   "upstream_ms": 1.0098,
+   "upstream_gbps": 201.5,
+   "x3ld": {
+    "8,1": {
+     "bitwise": true,
+     "ms": 0.9241,
+     "gbps": 220.2
+    },
+    "8,2": {
+     "bitwise": true,
+     "ms": 0.8781,
+     "gbps": 231.7
+    },
+    "4,2": {
+     "bitwise": true,
+     "ms": 0.8767,
+     "gbps": 232.1
+    }
+   },
+   "probe3_gu_gbps": 251.0
+  },
+  "12": {
+   "distinct": 66,
+   "bytes": 300810240,
+   "upstream_ms": 1.4445,
+   "upstream_gbps": 208.2,
+   "x3ld": {
+    "8,1": {
+     "bitwise": true,
+     "ms": 1.3193,
+     "gbps": 228.0
+    },
+    "8,2": {
+     "bitwise": true,
+     "ms": 1.2775,
+     "gbps": 235.5
+    },
+    "4,2": {
+     "bitwise": true,
+     "ms": 1.2746,
+     "gbps": 236.0
+    }
+   },
+   "probe3_gu_gbps": 245.8
+  },
+  "16": {
+   "distinct": 82,
+   "bytes": 371589120,
+   "upstream_ms": 1.8123,
+   "upstream_gbps": 205.0,
+   "x3ld": {
+    "8,1": {
+     "bitwise": true,
+     "ms": 1.6354,
+     "gbps": 227.2
+    },
+    "8,2": {
+     "bitwise": true,
+     "ms": 1.5795,
+     "gbps": 235.3
+    },
+    "4,2": {
+     "bitwise": true,
+     "ms": 1.5867,
+     "gbps": 234.2
+    }
+   },
+   "probe3_gu_gbps": 246.2
+  }
+ },
+ "bitwise": true,
+ "probe3_best_gbps": 514.6,
+ "pass": true
+}

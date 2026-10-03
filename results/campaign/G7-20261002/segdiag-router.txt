@@ -1,0 +1,14 @@
+== TF_DSV41_PREFILL_ROUTER=gemv
+gm 96 logits equal False
+  first diverging layer 3: 2 of 2300 rows differ, first rows [1259, 1423], max diff 0.0156
+gm 512 logits equal False
+  first diverging layer 2: 3 of 2300 rows differ, first rows [1277, 1329, 1330], max diff 0.00781
+gm 2048 logits equal False
+  first diverging layer 3: 1 of 2300 rows differ, first rows [2186], max diff 0.00391
+== TF_DSV41_PREFILL_ROUTER=gemv TF_DSV41_PREFILL_ATTN=fused TF_DSV41_PREFILL_ATTN_BMQ=16
+gm 96 logits equal True
+  first diverging layer 3: 1 of 2300 rows differ, first rows [1423], max diff 0.00391
+gm 512 logits equal False
+  first diverging layer 3: 2 of 2300 rows differ, first rows [1423, 2186], max diff 0.00781
+gm 2048 logits equal False
+  first diverging layer 3: 1 of 2300 rows differ, first rows [2186], max diff 0.00781

@@ -1,0 +1,31 @@
+  image glm53-tensorfold:b13-060 (prod.env BASE_IMAGE glm53-tensorfold:b13-060); comm roce (RoCE 1024 KiB)
+  sources dsv41-060 @ 0933b779fd5f on both nodes
+  knob TF_DSV41_ROUTER present
+  knob TF_DSV41_DEPTH present
+  knob TF_DSV41_DRAFT_SKIP present
+  no tool-eval-bench here (~/.cache/tooleval): tooleval runs chains.py only (scripts/tooleval/run.sh setup beforehand)
+  FAIL: port 8001 or 29561 in use
+  lease: 112; watchdog timer: inactive; :8000 none
+check: problems above
+[dsv41 17:20:20] check failed
+STRESS-DONE
+  image glm53-tensorfold:b13-060 (prod.env BASE_IMAGE glm53-tensorfold:b13-060); comm roce (RoCE 1024 KiB)
+  sources dsv41-060 @ 0933b779fd5f on both nodes
+  knob TF_DSV41_ROUTER present
+  knob TF_DSV41_DEPTH present
+  knob TF_DSV41_DRAFT_SKIP present
+  no tool-eval-bench here (~/.cache/tooleval): tooleval runs chains.py only (scripts/tooleval/run.sh setup beforehand)
+  FAIL: port 8001 or 29561 in use
+  lease: 113; watchdog timer: inactive; :8000 none
+check: problems above
+[dsv41 17:20:21] check failed
+SHIP4-DONE
+[dsv41 17:20:48] memory ok: MemFree head 117.7, worker 115.6 GiB
+[dsv41 17:20:48] server stress up (serve.sh start, prod.env + '')
+[dsv41 17:21:39] server stress: start rc=0; [dsv41-tf] ready after 37 s: {"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-TF", "object": "model", "owned_by": "tensorfold", "created": 1790936492, "root": "DeepSeek-V4.1-Flash-TF", "max_model_len": 262144, "context_length": 262144}, {"id": "deepseek-v4.1-flash", "object": "model", "owned_by": "tensorfold", "created": 1790936492, "root": "DeepSeek-V4.1-Flash-TF", "max_model_len": 262144,
+[dsv41 17:26:36] stress rc=0 (361 s): code_tok_s": 9.36}, {"role": "decode", "start_s": 1.02, "prompt": 65536, "max_tokens": 2048, "first_token_s": 183.73, "tokens": 2048, "usage_completion": 2048, "total_s": 202.54, "chunks": 139, "decode_tok_s": 108.88, "during_prefill_tokens": 0}, {"role": "decode", "start_s": 2.02, "prompt": 65536, "max_tokens": 2048, "first_token_s": 224.14, "tokens": 2048, "usage_completion": 2048, "total_s": 278.54, "chunks": 534, "decode_tok_s": 37.65, "during_prefill_tokens": 0}, {"role": "decode", "start_s": 3.03, "prompt": 65536, "max_tokens": 2048, "first_token_s": 284.24, "tokens": 2048, "usage_completion": 2048, "total_s": 292.9, "chunks": 140, "decode_tok_s": 236.49, "during_prefill_tokens": 0}]}
+[dsv41 17:26:36] stress memory: head MemFree min 2.03, MemAvailable min 6.09 GiB; worker MemFree min 1.50, MemAvailable min 4.43 GiB
+[dsv41 17:26:39] summary: ~/src/deepseek-v41-tensorfold-spark/results/G7-20261002/ship-262k/summary-ship.txt
+STRESS-DONE
+[dsv41 17:26:54] memory ok: MemFree head 117.6, worker 115.9 GiB
+[dsv41 17:26:54] server prod up (serve.sh start, prod.env + '')

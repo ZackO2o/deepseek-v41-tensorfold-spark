@@ -1,0 +1,194 @@
+{
+ "knobs": {
+  "GLM53_TF_COMM_BACKEND": "roce",
+  "GLM53_TF_ROCE_MAX_KB": "1024",
+  "TF_DSV41_CALIB": "real",
+  "TF_DSV41_CALIB_DIR": "/cache/dsv41-calib",
+  "TF_DSV41_ENGRAM_DIR": "/engram",
+  "TF_DSV41_EXPERT_LOADS": "1",
+  "TF_DSV41_EXPERT_PREFILL": "0",
+  "TF_DSV41_FAST_EXPERTS": "gm",
+  "TF_DSV41_LAUNCH_T0": "1790928377.421118432",
+  "TF_DSV41_NATIVE_DIR": "/cache/dsv41-native",
+  "TF_DSV41_PHASES": "1",
+  "TF_DSV41_PREFILL_ATTN": "fused",
+  "TF_DSV41_PREFILL_ATTN_BMQ": "32",
+  "TF_DSV41_PREFILL_ATTN_WARPS": "16",
+  "TF_DSV41_PREPARED": "/prepared",
+  "TF_DSV41_PREPARED_WRITE": "1",
+  "TF_DSV41_ROUTER": "gemv"
+ },
+ "m2": "DSpark on (depth cost, cap 5, costs measured); draft head full; draft graphs on: 1 held (1 at boot in 0.06 s, 0 on first use), 4 replays, 0 eager windows; Engram prefetch {'issued': 0, 'hits': 166, 'misses': 40, 'dropped': 0, 'reads': 5351, 'cached': 21304, 'waited': 0, 'ahead': 0, 'kept': 0}; graphs on: 16 held (6 at boot in 2.81 s, 10 on first use), 69 replays, 10 eager windows; RoCE exchanges 4193 fast / 166 on NCCL; phases (1, ms a round over 0 rounds): candidates 3631.80, engram.wait 877.60, forward 2183.97, graph.capture 1291.28, graph.replay 7.86, graph.stage 229.18",
+ "workloads": {},
+ "kit": {
+  "mixed": 2.27,
+  "mmlu": 1.46,
+  "multiturn": 1.83,
+  "tf": 1.78,
+  "kit": 2.17,
+  "tweet": 3.08,
+  "edit": 3.84,
+  "c4_tok_s": 37.6,
+  "code_tok_s": 36.4,
+  "prose_tok_s": 25.1
+ },
+ "targets": {
+  "code_tok_s": 52.0,
+  "prose_tok_s": 38.0,
+  "tokens_per_round_k3": 3.1
+ },
+ "prefill": [
+  {
+   "tokens": 8192,
+   "ttft_s": 5.73,
+   "wall_s": 5.73,
+   "tok_s": 1430.8,
+   "phases": {
+    "mode": "1",
+    "wall_ms": 5725.77,
+    "candidates": {
+     "ms": 0.67,
+     "n": 1,
+     "ms_avg": 0.665
+    },
+    "commit": {
+     "ms": 1.03,
+     "n": 6,
+     "ms_avg": 0.172
+    },
+    "engram.wait": {
+     "ms": 733.96,
+     "n": 14,
+     "ms_avg": 52.426
+    },
+    "execute": {
+     "ms": 5644.2,
+     "n": 6,
+     "ms_avg": 940.701
+    },
+    "forward": {
+     "ms": 115.06,
+     "n": 1,
+     "ms_avg": 115.062
+    },
+    "graph.capture": {
+     "ms": 75.74,
+     "n": 1,
+     "ms_avg": 75.745
+    },
+    "plan": {
+     "ms": 1.28,
+     "n": 6,
+     "ms_avg": 0.214
+    },
+    "prefetch": {
+     "ms": 1.42,
+     "n": 1,
+     "ms_avg": 1.423
+    },
+    "prefill": {
+     "ms": 5239.49,
+     "n": 5,
+     "ms_avg": 1047.898
+    },
+    "round": {
+     "ms": 5727.18,
+     "n": 6,
+     "ms_avg": 954.529
+    },
+    "sample": {
+     "ms": 0.11,
+     "n": 6,
+     "ms_avg": 0.018
+    },
+    "share": {
+     "ms": 81.49,
+     "n": 6,
+     "ms_avg": 13.581
+    },
+    "window": {
+     "ms": 115.74,
+     "n": 1,
+     "ms_avg": 115.742
+    }
+   }
+  },
+  {
+   "tokens": 32768,
+   "ttft_s": 21.59,
+   "wall_s": 21.59,
+   "tok_s": 1517.6,
+   "phases": {
+    "mode": "1",
+    "wall_ms": 21592.19,
+    "candidates": {
+     "ms": 0.65,
+     "n": 1,
+     "ms_avg": 0.649
+    },
+    "commit": {
+     "ms": 1.23,
+     "n": 18,
+     "ms_avg": 0.069
+    },
+    "engram.wait": {
+     "ms": 2759.72,
+     "n": 38,
+     "ms_avg": 72.624
+    },
+    "execute": {
+     "ms": 21217.74,
+     "n": 18,
+     "ms_avg": 1178.763
+    },
+    "forward": {
+     "ms": 125.55,
+     "n": 1,
+     "ms_avg": 125.548
+    },
+    "graph.capture": {
+     "ms": 83.87,
+     "n": 1,
+     "ms_avg": 83.875
+    },
+    "plan": {
+     "ms": 3.76,
+     "n": 18,
+     "ms_avg": 0.209
+    },
+    "prefetch": {
+     "ms": 1.18,
+     "n": 1,
+     "ms_avg": 1.184
+    },
+    "prefill": {
+     "ms": 20788.67,
+     "n": 17,
+     "ms_avg": 1222.863
+    },
+    "round": {
+     "ms": 21597.53,
+     "n": 18,
+     "ms_avg": 1199.863
+    },
+    "sample": {
+     "ms": 0.17,
+     "n": 18,
+     "ms_avg": 0.009
+    },
+    "share": {
+     "ms": 375.6,
+     "n": 18,
+     "ms_avg": 20.866
+    },
+    "window": {
+     "ms": 126.22,
+     "n": 1,
+     "ms_avg": 126.223
+    }
+   }
+  }
+ ],
+ "exact_all": true,
+ "boot_s": 33.8
+}

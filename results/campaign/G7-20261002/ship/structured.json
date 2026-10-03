@@ -1,0 +1,136 @@
+{
+ "schemas": {
+  "pass": true,
+  "fails": [],
+  "cases": {
+   "person/chat": {
+    "finish": "stop",
+    "tokens": 27,
+    "same": true
+   },
+   "order/chat": {
+    "finish": "stop",
+    "tokens": 76,
+    "same": true
+   },
+   "status/chat": {
+    "finish": "stop",
+    "tokens": 30,
+    "same": true
+   },
+   "city/chat": {
+    "finish": "stop",
+    "tokens": 43,
+    "same": true
+   },
+   "flags/chat": {
+    "finish": "stop",
+    "tokens": 22,
+    "same": true
+   },
+   "list/chat": {
+    "finish": "stop",
+    "tokens": 38,
+    "same": true
+   },
+   "person/think": {
+    "finish": "stop",
+    "tokens": 95,
+    "same": true
+   },
+   "order/think": {
+    "finish": "stop",
+    "tokens": 255,
+    "same": true
+   },
+   "status/think": {
+    "finish": "stop",
+    "tokens": 95,
+    "same": true
+   },
+   "city/think": {
+    "finish": "stop",
+    "tokens": 188,
+    "same": true
+   },
+   "flags/think": {
+    "finish": "stop",
+    "tokens": 93,
+    "same": true
+   },
+   "list/think": {
+    "finish": "stop",
+    "tokens": 51,
+    "same": true
+   }
+  }
+ },
+ "tools": {
+  "pass": true,
+  "fails": [],
+  "cases": {
+   "required/chat": {
+    "finish": "tool_calls",
+    "calls": [
+     "get_weather",
+     "search_flights"
+    ]
+   },
+   "named/chat": {
+    "finish": "tool_calls",
+    "calls": [
+     "search_flights"
+    ]
+   },
+   "strict-auto/chat": {
+    "finish": "tool_calls",
+    "calls": [
+     "send_email"
+    ]
+   },
+   "single/chat": {
+    "finish": "tool_calls",
+    "calls": [
+     "get_weather"
+    ]
+   },
+   "required/think": {
+    "finish": "tool_calls",
+    "calls": [
+     "get_weather",
+     "search_flights"
+    ]
+   },
+   "named/think": {
+    "finish": "tool_calls",
+    "calls": [
+     "search_flights"
+    ]
+   },
+   "strict-auto/think": {
+    "finish": "tool_calls",
+    "calls": [
+     "send_email"
+    ]
+   },
+   "single/think": {
+    "finish": "tool_calls",
+    "calls": [
+     "get_weather"
+    ]
+   },
+   "none/chat": {
+    "finish": "length",
+    "calls": 0
+   },
+   "stream/chat": {
+    "calls": [
+     "get_weather",
+     "search_flights"
+    ]
+   }
+  }
+ },
+ "pass": true,
+ "wall_s": 96.2
+}

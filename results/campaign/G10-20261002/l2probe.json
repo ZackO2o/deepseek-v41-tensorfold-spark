@@ -1,0 +1,38 @@
+{
+ "device": "NVIDIA GB10",
+ "rows": [
+  {
+   "mb": 6.0,
+   "cold_us": 33.4,
+   "cold_gbps": 188.3,
+   "hot_us": 11.2,
+   "hot_gbps": 561.7,
+   "l2pf_us": 16.4,
+   "l2pf_gbps": 384.0,
+   "persist": {
+    "us": 16.4,
+    "gbps": 384.0,
+    "window_mb": 6.0
+   }
+  },
+  {
+   "mb": 12.0,
+   "cold_us": 60.2,
+   "cold_gbps": 208.9,
+   "hot_us": 13.2,
+   "hot_gbps": 956.7,
+   "l2pf_us": 27.5,
+   "l2pf_gbps": 457.8,
+   "persist": {
+    "us": 35.6,
+    "gbps": 353.0,
+    "window_mb": 12.0
+   }
+  }
+ ],
+ "attrs": {
+  "l2": 25165824,
+  "persist_max": 18874368,
+  "window_max": 134217728
+ }
+}

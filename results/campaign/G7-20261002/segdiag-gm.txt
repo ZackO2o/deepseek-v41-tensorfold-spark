@@ -1,0 +1,8 @@
+gm 96 logits equal False
+  first diverging layer 3: 2 of 2300 rows differ, first rows [1259, 1423], max diff 0.0156
+gm 256 logits equal True
+  every traced layer equal
+gm 512 logits equal False
+  first diverging layer 2: 3 of 2300 rows differ, first rows [1277, 1329, 1330], max diff 0.00781
+gm 2048 logits equal False
+  first diverging layer 3: 1 of 2300 rows differ, first rows [2186], max diff 0.00391

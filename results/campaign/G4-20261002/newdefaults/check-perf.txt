@@ -1,0 +1,6 @@
+  image glm53-tensorfold:b13-060; link HEAD_IP <head-link-ip>, enp1s0f1np1 / rocep1s0f1,roceP2p1s0f1; comm roce (RoCE max 1024 KiB)
+  nsys in the image
+  sources dsv41-060 @ dfc5684e2210 on both nodes
+  prepared folders: head 3, worker 2
+  lease: 188; watchdog timer: inactive; :8000 none
+check: OK

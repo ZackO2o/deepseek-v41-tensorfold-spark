@@ -1,0 +1,20 @@
+[tensorfold] building CUDA extension tensorfold_exl3_experts_v1 (first start after an install or update; later starts reuse it)
+built tensorfold.cuda.exl3.experts 21.9
+[tensorfold] building CUDA extension tensorfold_exl3_linear_v4 (first start after an install or update; later starts reuse it)
+built tensorfold.cuda.exl3.linear 22.1
+[tensorfold] building CUDA extension tensorfold_glm_roce_v3 (first start after an install or update; later starts reuse it)
+built tensorfold.families.glm5_next.spark.roce 11.5
+[tensorfold] building CUDA extension tf_dsv41_x3gm_v1 (first start after an install or update; later starts reuse it)
+built tensorfold.families.deepseek_v41.cuda.x3gm 14.5
+[tensorfold] building CUDA extension tf_dsv41_x3ld_v1 (first start after an install or update; later starts reuse it)
+built tensorfold.families.deepseek_v41.cuda.expert_loads 13.9
+[tensorfold] building CUDA extension tf_dsv41_x3pf_v1 (first start after an install or update; later starts reuse it)
+built tensorfold.families.deepseek_v41.cuda.expert_prefill 12.9
+[tensorfold] building CUDA extension tf_dsv41_x3seg_v3 (first start after an install or update; later starts reuse it)
+built tensorfold.families.deepseek_v41.cuda.fused_proj 15.0
+[tensorfold] building CUDA extension tf_dsv41_router_gemv_v2 (first start after an install or update; later starts reuse it)
+built tensorfold.families.deepseek_v41.cuda.router_gemv 42.2
+[tensorfold] building CUDA extension tf_dsv41_engram_gate_v1 (first start after an install or update; later starts reuse it)
+built tensorfold.families.deepseek_v41.cuda.engram_gate 7.4
+[tensorfold] building CUDA extension tf_dsv41_x3dn_v2 (first start after an install or update; later starts reuse it)
+built tensorfold.families.deepseek_v41.cuda.dense 13.9

@@ -1,0 +1,309 @@
+{
+ "windows": 187,
+ "groups": {
+  "draft pass (5 rows)": {
+   "windows": 94,
+   "span_ms": 4.104,
+   "idle_in_window_ms": 0.026,
+   "kernel_ms": 4.091,
+   "classes_ms": {
+    "dense x3dn": 2.21,
+    "experts": 0.973,
+    "exchange": 0.224,
+    "other": 0.175,
+    "mhc site": 0.161,
+    "router": 0.088,
+    "attention": 0.085,
+    "copies / elementwise": 0.068,
+    "mhc finish": 0.063,
+    "norms": 0.028,
+    "indexer": 0.01,
+    "torch topk / sort": 0.006
+   },
+   "exchange": {
+    "count": 8.0,
+    "floor_us": 7.9,
+    "transfer_ms": 0.063,
+    "wait_ms": 0.162
+   },
+   "dense_shapes_us": {
+    "void dsv41_x3dn::dense_kernel<(int)12, (int) grid (144, 1, 1)": 1410.3,
+    "void dsv41_x3dn::dense_kernel<(int)8, (int)3 grid (144, 1, 1)": 763.2,
+    "dsv41_x3dn::rot_in_kernel grid (10, 5, 2)": 11.3,
+    "dsv41_x3dn::rot_in_kernel grid (3, 5, 1)": 8.8,
+    "dsv41_x3dn::rot_in_kernel grid (8, 5, 4)": 7.7,
+    "dsv41_x3dn::rot_in_kernel grid (8, 5, 1)": 5.9,
+    "dsv41_x3dn::rot_in_kernel grid (10, 5, 1)": 2.9
+   }
+  },
+  "target 1 row(s)": {
+   "windows": 15,
+   "span_ms": 33.233,
+   "idle_in_window_ms": 0.265,
+   "kernel_ms": 33.192,
+   "classes_ms": {
+    "dense x3dn": 13.663,
+    "experts": 9.318,
+    "mhc site": 2.205,
+    "exchange": 1.664,
+    "copies / elementwise": 1.38,
+    "attention": 1.303,
+    "router": 1.224,
+    "torch topk / sort": 0.877,
+    "mhc finish": 0.817,
+    "norms": 0.413,
+    "indexer": 0.184,
+    "other": 0.143
+   },
+   "exchange": {
+    "count": 83.0,
+    "floor_us": 7.5,
+    "transfer_ms": 0.619,
+    "wait_ms": 1.046
+   },
+   "dense_shapes_us": {
+    "void dsv41_x3dn::dense_kernel<(int)10, (int) grid (144, 1, 1)": 11503.8,
+    "void dsv41_x3dn::dense_kernel<(int)12, (int) grid (144, 1, 1)": 1347.2,
+    "void dsv41_x3dn::dense_kernel<(int)8, (int)3 grid (144, 1, 1)": 423.1,
+    "dsv41_x3dn::rot_in_kernel grid (10, 1, 2)": 87.3,
+    "dsv41_x3dn::rot_in_kernel grid (8, 1, 1)": 80.0,
+    "dsv41_x3dn::rot_in_kernel grid (8, 1, 4)": 75.3,
+    "dsv41_x3dn::rot_in_kernel grid (3, 1, 1)": 59.7,
+    "void dsv41_x3dn::dense_kernel<(int)16, (int) grid (2, 1, 1)": 30.8,
+    "dsv41_x3dn::rot_in_kernel grid (3, 1, 2)": 16.4,
+    "dsv41_x3dn::rot_in_kernel grid (1, 1, 1)": 13.8,
+    "dsv41_x3dn::rot_in_kernel grid (10, 1, 4)": 11.7,
+    "dsv41_x3dn::rot_in_kernel grid (12, 1, 1)": 7.3,
+    "dsv41_x3dn::rot_in_kernel grid (10, 1, 3)": 4.6,
+    "dsv41_x3dn::rot_in_kernel grid (10, 1, 1)": 1.9
+   }
+  },
+  "target 2 row(s)": {
+   "windows": 32,
+   "span_ms": 39.265,
+   "idle_in_window_ms": 0.255,
+   "kernel_ms": 39.202,
+   "classes_ms": {
+    "dense x3dn": 14.021,
+    "experts": 13.862,
+    "exchange": 2.302,
+    "mhc site": 2.223,
+    "copies / elementwise": 1.645,
+    "attention": 1.324,
+    "router": 1.242,
+    "torch topk / sort": 0.915,
+    "mhc finish": 0.819,
+    "norms": 0.419,
+    "other": 0.223,
+    "indexer": 0.208
+   },
+   "exchange": {
+    "count": 83.0,
+    "floor_us": 7.5,
+    "transfer_ms": 0.624,
+    "wait_ms": 1.678
+   },
+   "dense_shapes_us": {
+    "void dsv41_x3dn::dense_kernel<(int)10, (int) grid (144, 1, 1)": 11805.8,
+    "void dsv41_x3dn::dense_kernel<(int)12, (int) grid (144, 1, 1)": 1388.0,
+    "void dsv41_x3dn::dense_kernel<(int)8, (int)3 grid (144, 1, 1)": 438.0,
+    "dsv41_x3dn::rot_in_kernel grid (10, 2, 2)": 87.3,
+    "dsv41_x3dn::rot_in_kernel grid (8, 2, 4)": 81.7,
+    "dsv41_x3dn::rot_in_kernel grid (8, 2, 1)": 77.2,
+    "dsv41_x3dn::rot_in_kernel grid (3, 2, 1)": 58.9,
+    "void dsv41_x3dn::dense_kernel<(int)16, (int) grid (2, 1, 1)": 29.7,
+    "dsv41_x3dn::rot_in_kernel grid (3, 2, 2)": 16.1,
+    "dsv41_x3dn::rot_in_kernel grid (1, 2, 1)": 13.3,
+    "dsv41_x3dn::rot_in_kernel grid (10, 2, 4)": 11.3,
+    "dsv41_x3dn::rot_in_kernel grid (12, 2, 1)": 7.5,
+    "dsv41_x3dn::rot_in_kernel grid (10, 2, 3)": 4.6,
+    "dsv41_x3dn::rot_in_kernel grid (10, 2, 1)": 1.9
+   }
+  },
+  "target 3 row(s)": {
+   "windows": 30,
+   "span_ms": 42.844,
+   "idle_in_window_ms": 0.254,
+   "kernel_ms": 42.778,
+   "classes_ms": {
+    "experts": 17.876,
+    "dense x3dn": 14.568,
+    "mhc site": 2.281,
+    "exchange": 1.973,
+    "attention": 1.329,
+    "router": 1.321,
+    "torch topk / sort": 0.909,
+    "mhc finish": 0.807,
+    "copies / elementwise": 0.769,
+    "norms": 0.414,
+    "other": 0.301,
+    "indexer": 0.23
+   },
+   "exchange": {
+    "count": 83.0,
+    "floor_us": 7.7,
+    "transfer_ms": 0.637,
+    "wait_ms": 1.336
+   },
+   "dense_shapes_us": {
+    "void dsv41_x3dn::dense_kernel<(int)10, (int) grid (144, 1, 1)": 12308.4,
+    "void dsv41_x3dn::dense_kernel<(int)12, (int) grid (144, 1, 1)": 1401.7,
+    "void dsv41_x3dn::dense_kernel<(int)8, (int)3 grid (144, 1, 1)": 456.9,
+    "dsv41_x3dn::rot_in_kernel grid (8, 3, 4)": 84.9,
+    "dsv41_x3dn::rot_in_kernel grid (10, 3, 2)": 84.9,
+    "dsv41_x3dn::rot_in_kernel grid (8, 3, 1)": 79.7,
+    "dsv41_x3dn::rot_in_kernel grid (3, 3, 1)": 62.5,
+    "void dsv41_x3dn::dense_kernel<(int)16, (int) grid (2, 1, 1)": 29.9,
+    "dsv41_x3dn::rot_in_kernel grid (3, 3, 2)": 18.5,
+    "dsv41_x3dn::rot_in_kernel grid (1, 3, 1)": 13.3,
+    "dsv41_x3dn::rot_in_kernel grid (10, 3, 4)": 11.7,
+    "dsv41_x3dn::rot_in_kernel grid (12, 3, 1)": 9.0,
+    "dsv41_x3dn::rot_in_kernel grid (10, 3, 3)": 4.7,
+    "dsv41_x3dn::rot_in_kernel grid (10, 3, 1)": 1.8
+   }
+  },
+  "target 4 row(s)": {
+   "windows": 14,
+   "span_ms": 48.174,
+   "idle_in_window_ms": 0.261,
+   "kernel_ms": 48.093,
+   "classes_ms": {
+    "experts": 21.975,
+    "dense x3dn": 14.99,
+    "mhc site": 2.322,
+    "exchange": 2.264,
+    "attention": 1.358,
+    "router": 1.334,
+    "copies / elementwise": 1.018,
+    "torch topk / sort": 0.927,
+    "mhc finish": 0.848,
+    "norms": 0.412,
+    "other": 0.369,
+    "indexer": 0.277
+   },
+   "exchange": {
+    "count": 83.0,
+    "floor_us": 7.8,
+    "transfer_ms": 0.651,
+    "wait_ms": 1.615
+   },
+   "dense_shapes_us": {
+    "void dsv41_x3dn::dense_kernel<(int)10, (int) grid (144, 1, 1)": 12686.3,
+    "void dsv41_x3dn::dense_kernel<(int)12, (int) grid (144, 1, 1)": 1443.6,
+    "void dsv41_x3dn::dense_kernel<(int)8, (int)3 grid (144, 1, 1)": 461.9,
+    "dsv41_x3dn::rot_in_kernel grid (8, 4, 4)": 90.2,
+    "dsv41_x3dn::rot_in_kernel grid (10, 4, 2)": 85.7,
+    "dsv41_x3dn::rot_in_kernel grid (8, 4, 1)": 77.3,
+    "dsv41_x3dn::rot_in_kernel grid (3, 4, 1)": 62.8,
+    "void dsv41_x3dn::dense_kernel<(int)16, (int) grid (2, 1, 1)": 30.3,
+    "dsv41_x3dn::rot_in_kernel grid (3, 4, 2)": 14.5,
+    "dsv41_x3dn::rot_in_kernel grid (1, 4, 1)": 13.2,
+    "dsv41_x3dn::rot_in_kernel grid (10, 4, 4)": 10.5,
+    "dsv41_x3dn::rot_in_kernel grid (12, 4, 1)": 7.5,
+    "dsv41_x3dn::rot_in_kernel grid (10, 4, 3)": 4.5,
+    "dsv41_x3dn::rot_in_kernel grid (10, 4, 1)": 2.0
+   }
+  },
+  "target 5 row(s)": {
+   "windows": 1,
+   "span_ms": 55.163,
+   "idle_in_window_ms": 0.254,
+   "kernel_ms": 55.17,
+   "classes_ms": {
+    "experts": 24.789,
+    "dense x3dn": 15.999,
+    "copies / elementwise": 4.19,
+    "mhc site": 2.524,
+    "exchange": 1.665,
+    "router": 1.61,
+    "attention": 1.363,
+    "mhc finish": 0.963,
+    "torch topk / sort": 0.902,
+    "other": 0.446,
+    "norms": 0.406,
+    "indexer": 0.314
+   },
+   "exchange": {
+    "count": 83.0,
+    "floor_us": 7.7,
+    "transfer_ms": 0.643,
+    "wait_ms": 1.022
+   },
+   "dense_shapes_us": {
+    "void dsv41_x3dn::dense_kernel<(int)10, (int) grid (144, 1, 1)": 13509.8,
+    "void dsv41_x3dn::dense_kernel<(int)12, (int) grid (144, 1, 1)": 1511.8,
+    "void dsv41_x3dn::dense_kernel<(int)8, (int)3 grid (144, 1, 1)": 474.2,
+    "dsv41_x3dn::rot_in_kernel grid (8, 5, 1)": 147.6,
+    "dsv41_x3dn::rot_in_kernel grid (10, 5, 2)": 101.8,
+    "dsv41_x3dn::rot_in_kernel grid (8, 5, 4)": 93.4,
+    "dsv41_x3dn::rot_in_kernel grid (3, 5, 1)": 73.5,
+    "void dsv41_x3dn::dense_kernel<(int)16, (int) grid (2, 1, 1)": 33.4,
+    "dsv41_x3dn::rot_in_kernel grid (3, 5, 2)": 14.3,
+    "dsv41_x3dn::rot_in_kernel grid (1, 5, 1)": 13.5,
+    "dsv41_x3dn::rot_in_kernel grid (10, 5, 4)": 11.1,
+    "dsv41_x3dn::rot_in_kernel grid (12, 5, 1)": 8.0,
+    "dsv41_x3dn::rot_in_kernel grid (10, 5, 3)": 4.4,
+    "dsv41_x3dn::rot_in_kernel grid (10, 5, 1)": 1.9
+   }
+  },
+  "target 6 row(s)": {
+   "windows": 1,
+   "span_ms": 57.073,
+   "idle_in_window_ms": 0.268,
+   "kernel_ms": 57.053,
+   "classes_ms": {
+    "experts": 29.347,
+    "dense x3dn": 16.211,
+    "mhc site": 2.463,
+    "exchange": 2.361,
+    "router": 1.488,
+    "attention": 1.466,
+    "torch topk / sort": 0.926,
+    "mhc finish": 0.868,
+    "copies / elementwise": 0.671,
+    "other": 0.513,
+    "norms": 0.408,
+    "indexer": 0.331
+   },
+   "exchange": {
+    "count": 83.0,
+    "floor_us": 8.1,
+    "transfer_ms": 0.675,
+    "wait_ms": 1.687
+   },
+   "dense_shapes_us": {
+    "void dsv41_x3dn::dense_kernel<(int)10, (int) grid (144, 1, 1)": 13677.6,
+    "void dsv41_x3dn::dense_kernel<(int)12, (int) grid (144, 1, 1)": 1491.6,
+    "void dsv41_x3dn::dense_kernel<(int)8, (int)3 grid (144, 1, 1)": 548.7,
+    "dsv41_x3dn::rot_in_kernel grid (8, 6, 4)": 133.8,
+    "dsv41_x3dn::rot_in_kernel grid (10, 6, 2)": 113.3,
+    "dsv41_x3dn::rot_in_kernel grid (3, 6, 1)": 90.8,
+    "dsv41_x3dn::rot_in_kernel grid (8, 6, 1)": 75.1,
+    "void dsv41_x3dn::dense_kernel<(int)16, (int) grid (2, 1, 1)": 33.3,
+    "dsv41_x3dn::rot_in_kernel grid (3, 6, 2)": 14.4,
+    "dsv41_x3dn::rot_in_kernel grid (10, 6, 4)": 9.2,
+    "dsv41_x3dn::rot_in_kernel grid (1, 6, 1)": 8.7,
+    "dsv41_x3dn::rot_in_kernel grid (12, 6, 1)": 7.9,
+    "dsv41_x3dn::rot_in_kernel grid (10, 6, 3)": 4.4,
+    "dsv41_x3dn::rot_in_kernel grid (10, 6, 1)": 1.9
+   }
+  }
+ },
+ "between_windows": {
+  "gaps": 186,
+  "median_ms": 1.157,
+  "mean_ms": 1.487
+ },
+ "eager_kernels_ms_total": {
+  "void dsv41_x3gm::gm_kernel<": 131.21,
+  "_gemm": 51.5,
+  "void <unnamed>::unpack_kernel<": 43.73,
+  "void dsv41_x3dn::dense_kernel<": 30.1,
+  "void at::native::vectorized_elementwise_kernel<": 15.99,
+  "tfroce::gather_kernel": 12.15,
+  "_site": 6.52,
+  "void at::native::elementwise_kernel<": 4.87,
+  "void dsv41_rg::gemv_kernel<": 3.33,
+  "_rms": 3.24
+ }
+}

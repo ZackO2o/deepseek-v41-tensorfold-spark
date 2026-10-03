@@ -1,0 +1,276 @@
+{
+ "windows": 196,
+ "groups": {
+  "draft pass (5 rows)": {
+   "windows": 98,
+   "span_ms": 3.473,
+   "idle_in_window_ms": 0.031,
+   "kernel_ms": 3.443,
+   "classes_ms": {
+    "dense linear (wo_b, head, wk, drafter)": 1.376,
+    "experts": 0.963,
+    "dense seg (x / q / o groups)": 0.247,
+    "other": 0.181,
+    "exchange": 0.174,
+    "mhc site": 0.162,
+    "router": 0.086,
+    "attention": 0.083,
+    "copies / elementwise": 0.068,
+    "mhc finish": 0.062,
+    "norms": 0.027,
+    "indexer": 0.009,
+    "torch topk / sort": 0.006
+   },
+   "exchange": {
+    "count": 8.0,
+    "floor_us": 7.8,
+    "transfer_ms": 0.063,
+    "wait_ms": 0.111
+   },
+   "dense_shapes_us": {
+    "void <unnamed>::line grid (505, 1, 1)": 1018.2,
+    "void <unnamed>::line grid (40, 8, 1)": 176.4,
+    "void <unnamed>::line grid (128, 1, 1)": 169.1,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)8, (int)2 grid (256, 1, 1)": 151.8,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)8, (int)2 grid (112, 1, 1)": 79.1,
+    "dsv41_x3seg::seg_rot_in_kernel grid (10, 5, 2)": 9.7,
+    "dsv41_x3seg::seg_rot_in_kernel grid (8, 5, 4)": 6.2,
+    "<unnamed>::rot_ grid (3, 5, 1)": 5.3,
+    "<unnamed>::rot_ grid (8, 5, 1)": 4.5,
+    "<unnamed>::rot_ grid (10, 5, 1)": 2.2
+   }
+  },
+  "target 1 row(s)": {
+   "windows": 18,
+   "span_ms": 31.019,
+   "idle_in_window_ms": 0.296,
+   "kernel_ms": 30.726,
+   "classes_ms": {
+    "experts": 9.35,
+    "dense linear (wo_b, head, wk, drafter)": 6.788,
+    "dense seg (x / q / o groups)": 4.69,
+    "mhc site": 2.183,
+    "exchange": 1.72,
+    "attention": 1.289,
+    "router": 1.259,
+    "copies / elementwise": 1.03,
+    "torch topk / sort": 0.873,
+    "mhc finish": 0.814,
+    "norms": 0.402,
+    "indexer": 0.183,
+    "other": 0.144
+   },
+   "exchange": {
+    "count": 83.0,
+    "floor_us": 7.5,
+    "transfer_ms": 0.622,
+    "wait_ms": 1.1
+   },
+   "dense_shapes_us": {
+    "void <unnamed>::line grid (40, 8, 1)": 2602.2,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (256, 1, 1)": 2280.8,
+    "void <unnamed>::line grid (128, 1, 1)": 2202.3,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (112, 1, 1)": 1265.9,
+    "void <unnamed>::line grid (505, 1, 1)": 1003.2,
+    "void <unnamed>::line grid (200, 1, 1)": 820.0,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (192, 1, 1)": 722.9,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (176, 1, 1)": 165.2,
+    "dsv41_x3seg::seg_rot_in_kernel grid (8, 1, 4)": 72.3,
+    "dsv41_x3seg::seg_rot_in_kernel grid (10, 1, 2)": 68.0,
+    "<unnamed>::rot_ grid (8, 1, 1)": 58.9,
+    "<unnamed>::rot_ grid (3, 1, 1)": 46.7,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)12, (int) grid (112, 1, 1)": 44.9,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (144, 1, 1)": 43.4
+   }
+  },
+  "target 2 row(s)": {
+   "windows": 43,
+   "span_ms": 37.28,
+   "idle_in_window_ms": 0.288,
+   "kernel_ms": 36.994,
+   "classes_ms": {
+    "experts": 14.336,
+    "dense linear (wo_b, head, wk, drafter)": 6.98,
+    "dense seg (x / q / o groups)": 4.791,
+    "mhc site": 2.226,
+    "exchange": 2.191,
+    "attention": 1.319,
+    "router": 1.297,
+    "copies / elementwise": 1.258,
+    "torch topk / sort": 0.915,
+    "mhc finish": 0.842,
+    "norms": 0.406,
+    "other": 0.226,
+    "indexer": 0.207
+   },
+   "exchange": {
+    "count": 83.0,
+    "floor_us": 7.6,
+    "transfer_ms": 0.627,
+    "wait_ms": 1.566
+   },
+   "dense_shapes_us": {
+    "void <unnamed>::line grid (40, 8, 1)": 2678.5,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (256, 1, 1)": 2339.3,
+    "void <unnamed>::line grid (128, 1, 1)": 2292.3,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (112, 1, 1)": 1270.4,
+    "void <unnamed>::line grid (505, 1, 1)": 1012.3,
+    "void <unnamed>::line grid (200, 1, 1)": 836.0,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (192, 1, 1)": 754.9,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (176, 1, 1)": 167.2,
+    "dsv41_x3seg::seg_rot_in_kernel grid (8, 2, 4)": 73.1,
+    "dsv41_x3seg::seg_rot_in_kernel grid (10, 2, 2)": 69.4,
+    "<unnamed>::rot_ grid (8, 2, 1)": 58.8,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)12, (int) grid (112, 1, 1)": 47.0,
+    "<unnamed>::rot_ grid (3, 2, 1)": 46.9,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (144, 1, 1)": 43.8
+   }
+  },
+  "target 3 row(s)": {
+   "windows": 25,
+   "span_ms": 40.353,
+   "idle_in_window_ms": 0.292,
+   "kernel_ms": 40.063,
+   "classes_ms": {
+    "experts": 17.836,
+    "dense linear (wo_b, head, wk, drafter)": 7.179,
+    "dense seg (x / q / o groups)": 4.855,
+    "mhc site": 2.273,
+    "exchange": 1.874,
+    "router": 1.357,
+    "attention": 1.336,
+    "torch topk / sort": 0.914,
+    "mhc finish": 0.824,
+    "copies / elementwise": 0.685,
+    "norms": 0.401,
+    "other": 0.3,
+    "indexer": 0.229
+   },
+   "exchange": {
+    "count": 83.0,
+    "floor_us": 7.7,
+    "transfer_ms": 0.643,
+    "wait_ms": 1.233
+   },
+   "dense_shapes_us": {
+    "void <unnamed>::line grid (40, 8, 1)": 2752.2,
+    "void <unnamed>::line grid (128, 1, 1)": 2382.2,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (256, 1, 1)": 2372.1,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (112, 1, 1)": 1268.3,
+    "void <unnamed>::line grid (505, 1, 1)": 1037.5,
+    "void <unnamed>::line grid (200, 1, 1)": 846.7,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (192, 1, 1)": 783.7,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (176, 1, 1)": 167.5,
+    "dsv41_x3seg::seg_rot_in_kernel grid (8, 3, 4)": 76.0,
+    "dsv41_x3seg::seg_rot_in_kernel grid (10, 3, 2)": 69.5,
+    "<unnamed>::rot_ grid (8, 3, 1)": 57.5,
+    "<unnamed>::rot_ grid (3, 3, 1)": 48.6,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)12, (int) grid (112, 1, 1)": 46.8,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (144, 1, 1)": 44.6
+   }
+  },
+  "target 4 row(s)": {
+   "windows": 11,
+   "span_ms": 44.755,
+   "idle_in_window_ms": 0.3,
+   "kernel_ms": 44.459,
+   "classes_ms": {
+    "experts": 21.755,
+    "dense linear (wo_b, head, wk, drafter)": 7.286,
+    "dense seg (x / q / o groups)": 4.893,
+    "mhc site": 2.357,
+    "exchange": 2.0,
+    "attention": 1.372,
+    "router": 1.367,
+    "torch topk / sort": 0.921,
+    "mhc finish": 0.833,
+    "copies / elementwise": 0.645,
+    "norms": 0.398,
+    "other": 0.366,
+    "indexer": 0.266
+   },
+   "exchange": {
+    "count": 83.0,
+    "floor_us": 7.8,
+    "transfer_ms": 0.648,
+    "wait_ms": 1.353
+   },
+   "dense_shapes_us": {
+    "void <unnamed>::line grid (40, 8, 1)": 2827.8,
+    "void <unnamed>::line grid (128, 1, 1)": 2426.5,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (256, 1, 1)": 2375.6,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (112, 1, 1)": 1271.4,
+    "void <unnamed>::line grid (505, 1, 1)": 1022.8,
+    "void <unnamed>::line grid (200, 1, 1)": 847.4,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (192, 1, 1)": 802.7,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (176, 1, 1)": 170.5,
+    "dsv41_x3seg::seg_rot_in_kernel grid (8, 4, 4)": 79.0,
+    "dsv41_x3seg::seg_rot_in_kernel grid (10, 4, 2)": 76.5,
+    "<unnamed>::rot_ grid (8, 4, 1)": 57.8,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)12, (int) grid (112, 1, 1)": 45.9,
+    "<unnamed>::rot_ grid (3, 4, 1)": 45.9,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (144, 1, 1)": 45.1
+   }
+  },
+  "target 6 row(s)": {
+   "windows": 1,
+   "span_ms": 53.238,
+   "idle_in_window_ms": 0.317,
+   "kernel_ms": 52.922,
+   "classes_ms": {
+    "experts": 28.43,
+    "dense linear (wo_b, head, wk, drafter)": 7.712,
+    "dense seg (x / q / o groups)": 4.978,
+    "mhc site": 2.335,
+    "exchange": 2.077,
+    "router": 1.534,
+    "copies / elementwise": 1.503,
+    "attention": 1.374,
+    "torch topk / sort": 0.925,
+    "mhc finish": 0.822,
+    "other": 0.51,
+    "norms": 0.395,
+    "indexer": 0.328
+   },
+   "exchange": {
+    "count": 83.0,
+    "floor_us": 8.1,
+    "transfer_ms": 0.675,
+    "wait_ms": 1.404
+   },
+   "dense_shapes_us": {
+    "void <unnamed>::line grid (40, 8, 1)": 3008.6,
+    "void <unnamed>::line grid (128, 1, 1)": 2661.0,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (256, 1, 1)": 2374.7,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (112, 1, 1)": 1285.5,
+    "void <unnamed>::line grid (505, 1, 1)": 1033.5,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (192, 1, 1)": 871.7,
+    "void <unnamed>::line grid (200, 1, 1)": 854.7,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (176, 1, 1)": 172.8,
+    "dsv41_x3seg::seg_rot_in_kernel grid (8, 6, 4)": 81.9,
+    "dsv41_x3seg::seg_rot_in_kernel grid (10, 6, 2)": 73.6,
+    "<unnamed>::rot_ grid (8, 6, 1)": 56.7,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)12, (int) grid (112, 1, 1)": 45.2,
+    "<unnamed>::rot_ grid (3, 6, 1)": 44.9,
+    "oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (144, 1, 1)": 44.7
+   }
+  }
+ },
+ "between_windows": {
+  "gaps": 195,
+  "median_ms": 1.211,
+  "mean_ms": 1.425
+ },
+ "eager_kernels_ms_total": {
+  "void dsv41_x3gm::gm_kernel<": 130.78,
+  "_gemm": 51.53,
+  "void <unnamed>::unpack_kernel<": 44.66,
+  "void <unnamed>::linear_kernel<": 25.73,
+  "void at::native::vectorized_elementwise_kernel<": 16.79,
+  "tfroce::gather_kernel": 9.84,
+  "_site": 6.06,
+  "void at::native::elementwise_kernel<": 5.14,
+  "void dsv41_rg::gemv_kernel<": 3.32,
+  "_rms": 3.28
+ }
+}

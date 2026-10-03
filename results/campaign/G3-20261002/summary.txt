@@ -1,0 +1,27 @@
+G3 2026-10-01T22:09:06Z, sources fc915ab4e09a54c360ad34e99d44cb27add5ab3c
+tests: 4 failed, 24 passed, 1 warning in 304.45s (0:05:04)
+[kit] boot 321.6 s, exact True, DSpark mixed 3.1 tok/round (kit 2.27, target >= 3.1 at k=3); DSpark on (depth static, cap 3, costs cached); Engram prefetch {'issued': 15494, 'hits': 15494, 'misses': 0, 'dropped': 0}
+  code   T0 33.72 tok/s (serial 18.76), T0.7 13.940000000000001; tok/round 3.254 DSpark 3.254 lookup 0/0; exact True/True
+  prose  T0 20.045 tok/s (serial 19.12), T0.7 7.640000000000001; tok/round 1.803 DSpark 1.807 lookup 0/0; exact True/True
+  tweet  T0 42.085 tok/s (serial 19.07), T0.7 15.675; tok/round 3.859 DSpark 3.859 lookup 0/0; exact True/True
+  mmlu   T0 0.0 tok/s (serial None), T0.7 0.0; tok/round 3.0 DSpark 3.0 lookup 0/0; exact True/True
+  edit   T0 41.86 tok/s (serial 18.86), T0.7 17.125; tok/round 3.984 DSpark 3.984 lookup 0/0; exact True/True
+  long   T0 24.745 tok/s (serial 18.98), T0.7 12.295; tok/round 2.34 DSpark 2.34 lookup 0/0; exact True/True
+  4 streams: 14.08 tok/s aggregate (14.49 decode), kit C4 37.6
+  code: 33.72 tok/s vs target 52.0 / kit 36.4
+  prose: 20.045 tok/s vs target 38.0 / kit 25.1
+[eager] boot 336.9 s, exact True, DSpark mixed 3.475 tok/round (kit 2.27, target >= 3.1 at k=3); DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 14296, 'hits': 14296, 'misses': 166, 'dropped': 0}
+  code   T0 41.93 tok/s (serial 19.13), T0.7 15.4; tok/round 4.042 DSpark 4.042 lookup 0/0; exact True/True
+  prose  T0 22.36 tok/s (serial 19.0), T0.7 10.309999999999999; tok/round 1.684 DSpark 1.687 lookup 0/0; exact True/True
+  tweet  T0 55.545 tok/s (serial 19.12), T0.7 18.515; tok/round 5.655 DSpark 5.259 lookup 40/51; exact True/True
+  mmlu   T0 0.0 tok/s (serial None), T0.7 0.0; tok/round 3.0 DSpark 3.0 lookup 0/0; exact True/True
+  edit   T0 61.57 tok/s (serial 19.17), T0.7 20.23; tok/round 7.014 DSpark 5.952 lookup 259/264; exact True/True
+  long   T0 26.715 tok/s (serial 19.32), T0.7 13.33; tok/round 2.34 DSpark 2.34 lookup 0/0; exact True/True
+  4 streams: 16.01 tok/s aggregate (16.49 decode), kit C4 37.6
+  code: 41.93 tok/s vs target 52.0 / kit 36.4
+  prose: 22.36 tok/s vs target 38.0 / kit 25.1
+[tensorfold] dsv41 calibration: draft 5.47 ms, verify 1/2/4/6/8/16 rows 53.9, 70.6, 88.8, 107.0, 125.2, 190.8 ms (stored /cache/dsv41-calib/calib-c35a588ee93240cb293c.json)
+[boot] r0 +337.8s M2 boot: DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 0, 'hits': 0, 'misses': 166, 'dropped': 0} (19.5s) | MemFree 1.2 GiB, MemAvailable 10.0 GiB
+[tensorfold] dsv41 graphs on: 15 held (15 at boot in 5.66 s, 0 on first use), 0 replays, 0 eager windows (15 captured at boot)
+[boot] r0 +325.1s M2 boot: DSpark on (depth cost, cap 5, costs cached); Engram prefetch {'issued': 0, 'hits': 0, 'misses': 60, 'dropped': 0}; graphs on: 15 held (15 at boot in 5.66 s, 0 on first use), 0 replays, 0 eager windows (9.2s) | MemFree 1.3 GiB, MemAvailable 11.2 GiB
+[boot] r0 +322.5s M2 boot: DSpark on (depth static, cap 3, costs cached); Engram prefetch {'issued': 0, 'hits': 0, 'misses': 0, 'dropped': 0} (3.2s) | MemFree 3.2 GiB, MemAvailable 12.7 GiB

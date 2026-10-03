@@ -1,0 +1,27 @@
+G6-ship 2026-10-02T10:19:36Z, sources 0933b779fd5f9ff1b4b4791817a17230e2739c89, image glm53-tensorfold:b13-060
+G6 ship gates
+
+| gate | result | detail |
+| --- | --- | --- |
+| replay: teacher-forced top-1 vs kit oracle >= 96% (aim 98%) | PASS | top-1 99.58% (meets the 98% aim; G4 99.62% for reference), first copy 96.01% |
+| replay: MMLU-200 replay within 1 pt of full and kit 87.5% | PASS | replay 88.5%, full 88.0%, delta +0.5, same answer 199/200 |
+| replay: MMLU +20-shot preamble replay within 1 pt of full | PASS | replay 81.1%, full 81.1%, delta +0.0, same answer 178/180 |
+| replay: needles (replay) | PASS | 32K found, 128K found, 291K found |
+| replay: needles (full) | PASS | 32K found, 128K found |
+| tooleval: multi-step chains (off) >= 10/12 | PASS | score [11] of 12, malformed calls 0 |
+| tooleval: multi-step chains (high) >= 10/12 | PASS | score [11] of 12, malformed calls 0 |
+| tooleval: tool-eval-bench C >= GLM prod (8/8) | MISSING | not run here (no install); run it from the workstation |
+| structured: schemas + tool choice suites all pass | PASS | schemas ok; tools ok |
+| stress: decode streams reach 2,048 tokens (ignore_eos) | PASS | 2048 tok (None tok/s during the long prefill), 2048 tok (None tok/s during the long prefill), 2048 tok (None tok/s during the long prefill); long first token 246.8 s |
+| stress: MemAvailable >= 5.0 GiB both nodes | FAIL | head 5.94, worker 4.42 GiB (hard stop 4.0) |
+| soak: 0 errors, inflight back to 0, 17*23, no fatal | MISSING | - |
+| soak: MemAvailable >= 4.0 GiB (target 5.0) | MISSING | head 5.39, worker 4.42 GiB |
+| speed: code / prose / C4 >= 97% of G4, drafted == serial | MISSING | - |
+
+memory minima per step (MemAvailable GiB, head / worker)
+  replay: 5.39 / 4.72
+  structured: 8.52 / 6.88
+  tooleval: 8.06 / 6.39
+  stress: 5.94 / 4.42
+
+verdict: NOT YET (1 FAIL, 4 MISSING)

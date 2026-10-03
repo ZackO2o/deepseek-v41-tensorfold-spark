@@ -1,0 +1,9 @@
+[dsv41 17:10:27] memory ok: MemFree head 117.6, worker 115.9 GiB
+[dsv41 17:10:27] server stress up (serve.sh start, prod.env + '')
+[dsv41 17:11:18] server stress: start rc=0; [dsv41-tf] ready after 36 s: {"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-TF", "object": "model", "owned_by": "tensorfold", "created": 1790935870, "root": "DeepSeek-V4.1-Flash-TF", "max_model_len": 300000, "context_length": 300000}, {"id": "deepseek-v4.1-flash", "object": "model", "owned_by": "tensorfold", "created": 1790935870, "root": "DeepSeek-V4.1-Flash-TF", "max_model_len": 300000,
+[dsv41 17:19:31] stress rc=0 (560 s): "decode_tok_s": 8.6}, {"role": "decode", "start_s": 1.02, "prompt": 65536, "max_tokens": 2048, "first_token_s": 299.9, "tokens": 2048, "usage_completion": 2048, "total_s": 324.8, "chunks": 138, "decode_tok_s": 82.25, "during_prefill_tokens": 0}, {"role": "decode", "start_s": 2.03, "prompt": 65536, "max_tokens": 2048, "first_token_s": 391.82, "tokens": 2048, "usage_completion": 2048, "total_s": 416.27, "chunks": 141, "decode_tok_s": 83.76, "during_prefill_tokens": 0}, {"role": "decode", "start_s": 3.03, "prompt": 65536, "max_tokens": 2048, "first_token_s": 480.97, "tokens": 2048, "usage_completion": 2048, "total_s": 490.28, "chunks": 140, "decode_tok_s": 219.98, "during_prefill_tokens": 0}]}
+[dsv41 17:19:31] stress memory: head MemFree min 3.76, MemAvailable min 5.94 GiB; worker MemFree min 3.44, MemAvailable min 4.42 GiB
+[dsv41 17:19:36] summary: ~/src/deepseek-v41-tensorfold-spark/results/G7-20261002/ship/summary-ship.txt
+STRESS-DONE
+[dsv41 17:19:51] memory ok: MemFree head 117.9, worker 116.1 GiB
+[dsv41 17:19:51] server prod up (serve.sh start, prod.env + '')

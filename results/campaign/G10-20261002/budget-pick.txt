@@ -1,0 +1,5 @@
+B exact code C1 78.4, prose C1 39.23, structured C1 112.17, C2 66.1, C4 93.29; speed x1.0; code 3.84 tok / 4.68 rows, prose 1.593 tok / 2.41 rows, structured 5.908 tok / 5.95 rows; identical 1.0 (first div median None, fully None); mmlu-gen 0.86; chains [11]
+B 4     code C1 89.32, prose C1 41.05, structured C1 132.41, C2 65.2, C4 100.66; speed x1.0841; code 3.918 tok / 5.49 rows, prose 1.707 tok / 3.30 rows, structured 5.908 tok / 5.95 rows; identical 0.124 (first div median 13, fully 0); mmlu-gen 0.845; chains [4]
+B 2     code C1 95.02, prose C1 44.64, structured C1 138.85, C2 66.64, C4 107.62; speed x1.147; code 4.0 tok / 5.48 rows, prose 1.794 tok / 3.44 rows, structured 5.908 tok / 5.95 rows; identical None (first div median None, fully None); mmlu-gen None; chains None
+B 0     code C1 184.55, prose C1 54.98, structured C1 148.63, C2 83.85, C4 131.6; speed x1.5089; code 7.385 tok / 8.98 rows, prose 2.122 tok / 4.01 rows, structured 5.908 tok / 5.95 rows; identical 0.0549 (first div median 5, fully 0); mmlu-gen 0.795; chains [1]
+adopt: none (fastest B with mmlu-gen >= 0.865 and >= 95% identical greedy tokens, faster than exact)

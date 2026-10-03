@@ -1,0 +1,56 @@
+{
+ "stage": "A",
+ "rank": 32,
+ "eval_base": {
+  "rows": 34014,
+  "teacher_forced_top1": [
+   0.665,
+   0.5544,
+   0.4786,
+   0.4221,
+   0.3815
+  ],
+  "conditional": [
+   0.629,
+   0.6064,
+   0.658,
+   0.7268,
+   0.7832
+  ],
+  "tokens_per_round_all5": 2.5868,
+  "agree_logged_drafts": 0.4501,
+  "agree_logged_first": 0.8979,
+  "logged_passes": 16669
+ },
+ "train": {
+  "steps": 2710,
+  "epochs": 0.713,
+  "kl_last": 2.318039682805538,
+  "seconds": 900.1
+ },
+ "eval_after": {
+  "rows": 34014,
+  "teacher_forced_top1": [
+   0.6657,
+   0.5612,
+   0.484,
+   0.4308,
+   0.3877
+  ],
+  "conditional": [
+   0.6388,
+   0.6152,
+   0.6563,
+   0.7158,
+   0.7739
+  ],
+  "tokens_per_round_all5": 2.6172,
+  "agree_logged_drafts": 0.1345,
+  "agree_logged_first": 0.7507,
+  "logged_passes": 16669
+ },
+ "export": {
+  "tensors": 7,
+  "lora": 1
+ }
+}

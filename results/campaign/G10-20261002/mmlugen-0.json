@@ -1,0 +1,1412 @@
+{
+ "label": "0",
+ "accuracy": 0.795,
+ "correct": 159,
+ "n": 200,
+ "unparsed": 27,
+ "errors": 0,
+ "completion_tokens_median": 100,
+ "wall_s": 541.4,
+ "items": [
+  {
+   "i": 0,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 112,
+   "reply": "ex numbers is commutative.\n- So it is an abelian group.\n\nThe most specific correct choice is \"abelian group\".\n\nAnswer: D"
+  },
+  {
+   "i": 1,
+   "answer": 1,
+   "got": 3,
+   "completion_tokens": 182,
+   "reply": " most accurate option here is D, which including geniohyoid along with first arch derivatives.  \n\nAnswer: D  \n\nAnswer: D"
+  },
+  {
+   "i": 2,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 177,
+   "reply": "lain it.\n\nD is wrong because methane doesn\u2019t necessarily react with ammonia to be removed.\n\nSo the best is A.\n\nAnswer: A"
+  },
+  {
+   "i": 3,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 39,
+   "reply": "hts, labour, environment, and anti-corruption.  \nCommercial performance is not explicitly one of the areas.  \n\nAnswer: C"
+  },
+  {
+   "i": 4,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 169,
+   "reply": "al aspects. This is true.\n\n- D: Biceps muscle is supplied by musculocutaneous nerve (C5,6), not ulna. False.\n\nAnswer: C."
+  },
+  {
+   "i": 5,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 264,
+   "reply": "nephrons with long loops of Henle enable production of concentrated (hyperosmotic) urine. True.\n\nAnswer: D.  \n\nAnswer: D"
+  },
+  {
+   "i": 6,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 106,
+   "reply": "- Ideal mixtures also have zero volume change upon mixing (II is true).  \n\nThus all statements are correct.  \n\nAnswer: D"
+  },
+  {
+   "i": 7,
+   "answer": 3,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "prints 1 after nth step\".  \nIf C halts before n steps, then it's false. If C lasts \u2265 n steps, then after n steps, does M"
+  },
+  {
+   "i": 8,
+   "answer": 3,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "{1} \u222a {2}? Actually, let's use standard: A = {0}, C = {0 \u222a {1} \u222a {2}? Actually, let's use standard: A = {0}, C = {0 \u222a {1"
+  },
+  {
+   "i": 9,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 32,
+   "reply": "stem (ATP and phosphocercatine) provides immediate energy for intense bursts, lasting roughly 5-10 seconds.  \n\nAnswer: B"
+  },
+  {
+   "i": 10,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 289,
+   "reply": "t, 1/0.8 = 1.25.\n\nSo \\(\\gamma = 1.25.\n\nThen W = (1.25 - 1) mc^2 = 0.25 mc^2.\n\nThat matches A.\n\nAnswer: A.\n\n**Answer: A**"
+  },
+  {
+   "i": 11,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 34,
+   "reply": "called the Access Point (AP), which is responsible for coordinating communication between wireless devices.  \n\nAnswer: B"
+  },
+  {
+   "i": 12,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 103,
+   "reply": "perature) of the engine to be high.  \n\nThus, heat engines are more efficient when run at high temperatures.  \n\nAnswer: A"
+  },
+  {
+   "i": 13,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 131,
+   "reply": " the sample regression function relative to the data.\n\nAnswer: C. How well the sample regression function fits the data."
+  },
+  {
+   "i": 14,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 40,
+   "reply": "alse triggering and protect against high dv/dt and overvolages. It is is connected in parallel with the SCR.  \nAnswer: B"
+  },
+  {
+   "i": 15,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 127,
+   "reply": "bjects:  \n\\[\n3 \\ \u00f7 \\ 0.5 = 3 \\ \u00f7 \\ \\frac{1}{2} = 3 \\ \u00d7 \\ 2 = 6\n\\]  \nSo she studied 6 subjects.  \nAnswer: C.  \n\nAnswer: C"
+  },
+  {
+   "i": 16,
+   "answer": 0,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "sion? That means argument is valid?  \n\nBut let's check: maybe the premises are consistent? If E true, F true. If G true,"
+  },
+  {
+   "i": 17,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 100,
+   "reply": "estimated at just over half the population.\n- The closest option is 56%.\n\nTherefore, the correct choice is B.\n\nAnswer: B"
+  },
+  {
+   "i": 18,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 109,
+   "reply": ".  \n- Cetacian flper = a modified forelimm ( mammal).  \n\nSo homologous to bird wing is flipper of cetacian.  \n\nAnswer: D"
+  },
+  {
+   "i": 19,
+   "answer": 3,
+   "got": 1,
+   "completion_tokens": 289,
+   "reply": " equation\". A and B are both correct, but B is more precise for chemistry. In multiple choice, B is the best.\n\nAnswer: B"
+  },
+  {
+   "i": 20,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 52,
+   "reply": " ambiguity before coding \u2014 that means to update the specification to clarify the behavior. That\u2019s option C.  \n\nAnswer: C"
+  },
+  {
+   "i": 21,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 51,
+   "reply": "ut setting limits, meaning Austria could act as it wished and Germany would back it. This matches option B.  \n\nAnswer: B"
+  },
+  {
+   "i": 22,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 21,
+   "reply": "Vari in vocabulary, pronunciation, and rhythm in a spoken language are called dialects.  \n\nAnswer: D"
+  },
+  {
+   "i": 23,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 48,
+   "reply": "ts protections to the states through the Fourteenth Amendment\u2019s Due-process Clause.  \n\nThat matches option D.\n\nAnswer: D"
+  },
+  {
+   "i": 24,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 63,
+   "reply": "lly increases the money supply through the banking system\u2019s lending process.  \n\nSo the correct answer is A.  \n\nAnswer: A"
+  },
+  {
+   "i": 25,
+   "answer": 3,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": ", 57, 67. Check smaller than 37:  \nNumbers \u2261 1 mod 4 and 3 mod 3: smallest positive is 1? 1 mod 4=1, 1 mod 3=1, 1 mod 5="
+  },
+  {
+   "i": 26,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 79,
+   "reply": "t output to that lower level.  \nA common method is placing limits on the quantity that can be produced (B).  \n\nAnswer: B"
+  },
+  {
+   "i": 27,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 101,
+   "reply": "  \n\\(V = 5\\ \\text{V}\\)  \n\nSo:  \n\\[\nQ = 2 \\times 10^{-3} \\cdot 5 = 0.01\\ \\text{C}\n\\]  \n\nThat matches option B.\n\nAnswer: B"
+  },
+  {
+   "i": 28,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 28,
+   "reply": "ocedure that combines data from multiple studies focusing on the same question and using similar variables.  \n\nAnswer: D"
+  },
+  {
+   "i": 29,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 312,
+   "reply": "ot every sample of the intended size has an equal chance of being selected.\" \u2014 This is the correct reasoning.\n\nAnswer: D"
+  },
+  {
+   "i": 30,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 52,
+   "reply": "d the Oregon Treaty, which Britain ceded the territory to the United States as part of a negotiated treaty.  \n\nAnswer: D"
+  },
+  {
+   "i": 31,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 108,
+   "reply": "s and working-class resentment, which key factors in the February Revolution and the Tsar\u2019s abd abdication.  \n\nAnswer: C"
+  },
+  {
+   "i": 32,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 50,
+   "reply": "ity. People with the Apo-E 2 allele are tend to live longer, often reaching extreme old age (100 or older).  \n\nAnswer: B"
+  },
+  {
+   "i": 33,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 51,
+   "reply": "icipation of smooth interactions. These are complementary explanations, so all of the the above is correct.  \n\nAnswer: D"
+  },
+  {
+   "i": 34,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 83,
+   "reply": "re binding on all states, regardless of consent, and cannot be altered by treaty.  \n\nThis matches option A.  \n\nAnswer: A"
+  },
+  {
+   "i": 35,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 136,
+   "reply": "workin\u2019\u2019s claim.  \n- **D** \u2013 consistent, since \u201cfit\u201d is part of Dworkin\u2019s interpretive method.  \n\nAnswer: C  \n\nAnswer: C"
+  },
+  {
+   "i": 36,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 37,
+   "reply": "ing the burden onto the other party to disprove a claim, often called \"appeal to ignorance (ad ignorantiam)\".\n\nAnswer: B"
+  },
+  {
+   "i": 37,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 182,
+   "reply": "he first formula and \u03bb in the second formula, but they are the same regularization parameter.\n\nAnswer: C.\n\n**Answer: C**"
+  },
+  {
+   "i": 38,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 31,
+   "reply": "learning where participants engage in activities to learn about group dynamics and interpersonal relations.  \n\nAnswer: D"
+  },
+  {
+   "i": 39,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 53,
+   "reply": "rketing concept era.  \n\nThat means the focus is on customer\u2019s needs rather than just production or selling.  \n\nAnswer: D"
+  },
+  {
+   "i": 40,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 57,
+   "reply": "er).  \nBRCA2 mutations increase risk in males for breast cancer, and also for prostate cancer and melanoma.  \n\nAnswer: B"
+  },
+  {
+   "i": 41,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 128,
+   "reply": "st developmentally appropriate and commonly taught topic for toddlers is **correct toothbrushing technique**.\n\nAnswer: C"
+  },
+  {
+   "i": 42,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 82,
+   "reply": "hical \u201cworth of living\u201d question\u2014 they assess medical prognosis and life expectancy. That matches option D.  \n\nAnswer: D"
+  },
+  {
+   "i": 43,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 284,
+   "reply": "? Possibly yes, because you damaged road without reason. Scenario 2 is clearly not wrong.\n\nThus answer B.\n\n**Answer: B**"
+  },
+  {
+   "i": 44,
+   "answer": 2,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "ibility, but the statement says \"render the amino acid unavailable to digestion\" \u2014 maybe correct? Let's check.\n\nWhich is"
+  },
+  {
+   "i": 45,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 87,
+   "reply": " a priori goodness\u201d could mean, and argues that his theory can accommodate it if we clarify what is meant.  \n\n\nAnswer: C"
+  },
+  {
+   "i": 46,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 102,
+   "reply": "tice of royal inheritance.  \nCapacocha was a ritual of human sacrifice.  \n\nThus, the correct answer is **B**.\n\nAnswer: B"
+  },
+  {
+   "i": 47,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 68,
+   "reply": "ssification groups by type (salaries, rent, etc.).  \nBoth are required under U.S. GAAP for not-for-profits.  \n\nAnswer: A"
+  },
+  {
+   "i": 48,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 280,
+   "reply": "e safety latch would have prevented the fall even if not securely fastened.  \n\nSo B is most likely correct.  \n\nAnswer: B"
+  },
+  {
+   "i": 49,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 166,
+   "reply": "ion, etc.). Here midline means not under tension.\n\nSo likely **Hemopneumothorax, not under tension** (A).\n\n  \n\nAnswer: A"
+  },
+  {
+   "i": 50,
+   "answer": 1,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": " theory, difficult goals lead to higher performance, but \"highly difficult\" might be interpreted as too difficult, which"
+  },
+  {
+   "i": 51,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 25,
+   "reply": "deals with psychological and lifestyle traits like values, attitudes, and interests, not demographic stats.  \n\nAnswer: A"
+  },
+  {
+   "i": 52,
+   "answer": 0,
+   "got": 3,
+   "completion_tokens": 257,
+   "reply": "d its effect on environmental security thinking (in terms of broadening security, but limited policy impact).\n\nAnswer: D"
+  },
+  {
+   "i": 53,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 135,
+   "reply": "esult of a highway through farmland.\n\nThe most likely outcome is suburbanization due to reduced commute time.\n\nAnswer: C"
+  },
+  {
+   "i": 54,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 46,
+   "reply": "ops in the colonies was costly. So the new taxes were mainly to raise revenue for these war-related expenses.\n\nAnswer: B"
+  },
+  {
+   "i": 55,
+   "answer": 0,
+   "got": 1,
+   "completion_tokens": 199,
+   "reply": "ut SARS had more global impact.\n\nGiven the choices, the best match for a global emergent with deaths is SARS.\n\nAnswer: B"
+  },
+  {
+   "i": 56,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 73,
+   "reply": "n and also of mercy and restoration.  \n\nThe poem portrays Marduk as a god who can be wrathful and merciful.  \n\nAnswer: B"
+  },
+  {
+   "i": 57,
+   "answer": 1,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "ains both \u221a2 and \u221a3 ( via (\u03b1 + something) etc. ), but more simpler: minimal polynomial is degree 4.\n\n  \n\nThus degree = 4"
+  },
+  {
+   "i": 58,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 141,
+   "reply": " to the middle me meatus).  \n\nThus, the correct set is: anterior ethmoidal, frontal, and maxillary sinuses.  \n\nAnswer: C"
+  },
+  {
+   "i": 59,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 69,
+   "reply": "  \n\nFossoss and layering give relative ages, but craters on Earth are not the main method for absolute age.  \n\nAnswer: D"
+  },
+  {
+   "i": 60,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 100,
+   "reply": "its \u201cpublic spaces, since corporate activity often occurs in public spaces, complicating privacy enforcement.\n\nAnswer: C"
+  },
+  {
+   "i": 61,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 202,
+   "reply": " than shortening. So D is false.\n\n  \n\nBetween A and B, B is clearly true and well supported.\n\n**Answer: B**  \n\nAnswer: B"
+  },
+  {
+   "i": 62,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 173,
+   "reply": "tion is B because nuclei (large) and secretory vesicles (small) can be separated by low-speed centrifugation.\n\nAnswer: B"
+  },
+  {
+   "i": 63,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 56,
+   "reply": "isotopic mass determination (III, correct). So all statements are characteristic.  \n\nThe correct choice is D.\n\nAnswer: D"
+  },
+  {
+   "i": 64,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 194,
+   "reply": " systems are designed to share CPU, so busy-w-w-waiting is often discouraged.\n\nThus, the correct choice is D.\n\nAnswer: D"
+  },
+  {
+   "i": 65,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 220,
+   "reply": "re x/2 = x => x=0, but 0 \u2209 (0,1), so no fixed point. So statement 2 is false.\n\n  \n\nThus: True, False \u2192 B.\n\n  \n\nAnswer: B"
+  },
+  {
+   "i": 66,
+   "answer": 1,
+   "got": 2,
+   "completion_tokens": 254,
+   "reply": "ygen is in oxidative phosphorylation, not in the Krebs cycle itself.  \n  \nGiven the options, the best is C.  \n\nAnswer: C"
+  },
+  {
+   "i": 67,
+   "answer": 3,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "350}{350 - 3.5} = 600 \\cdot \\frac{350}{350 - 3.5} = 600 \\cdot \\frac{350}{350 - 3.5} = 600 \\cdot \\frac{350}{350 - 3.5} = "
+  },
+  {
+   "i": 68,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 46,
+   "reply": "d part of the darknet. ARARPANET is the early internet, Stuxnet is a worm, Internet is the general network.  \n\nAnswer: A"
+  },
+  {
+   "i": 69,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 46,
+   "reply": "e is zero, so the air drag balances the weight.  \nThe weight is 0.8 N, so the air drag must be 0.8 N upward.\n\nAnswer: B."
+  },
+  {
+   "i": 70,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 178,
+   "reply": "lways unique.\n\nSo (i), (ii), (iii) are true, (iv) is false.\n\nCorrect choice: C. (i, ii, iii) only.\n\nAnswer: C\n\nAnswer: C"
+  },
+  {
+   "i": 71,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 26,
+   "reply": "istance welding, the metal surfaces must be clean to ensure good electrical contact and proper current flow.  \nAnswer: B"
+  },
+  {
+   "i": 72,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 23,
+   "reply": "x + 71 = -22  \nx = -22 - 71 = -93  \nAnswer: A"
+  },
+  {
+   "i": 73,
+   "answer": 0,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": " false, with \u00acJ true, we need I to be false.\n\nSo I = false.\n\n  \n\n---\n\n### Step 4: Conclusion\n  \n\nConclusion: I \u2261 J means"
+  },
+  {
+   "i": 74,
+   "answer": 2,
+   "got": 0,
+   "completion_tokens": 204,
+   "reply": "options:  \n\nA. 36%  \nB. 51%  \nC. 66%  \nD. 81%\n\nGiven the political division, 36% is plausible.  \n\nAnswer: A  \n\nAnswer: A"
+  },
+  {
+   "i": 75,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 222,
+   "reply": "ht-dependent reactions occur in th thylakoid membrane, not the stroma. So D is incorrect.\n\nCorrect option: C.\n\nAnswer: C"
+  },
+  {
+   "i": 76,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 221,
+   "reply": "\u00f7 (moles NaOH + moles water)  \n= 1.25 \u00f7 (1.25 + 2.2.78) = 1.25 \u00f7 3.4.03 \u2248 0.311.\n\nSo the correct choice is C.\n\nAnswer: C"
+  },
+  {
+   "i": 77,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 156,
+   "reply": " in selection sort is always O(n) swaps, independent of initial arrangement. False.\n\n  \n\nSo the correct is B.\n\nAnswer: B"
+  },
+  {
+   "i": 78,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 114,
+   "reply": "merit helped military effectiveness.  \n\nTherefore, the least beneficial to defense was de-Christianization.  \n\nAnswer: C"
+  },
+  {
+   "i": 79,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 66,
+   "reply": "so a federal state in its own way, but France is is a a unitary state with with a strong central government.  \nAnswer: C"
+  },
+  {
+   "i": 80,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 86,
+   "reply": "higher education tends to correlate with *less* support for public prayer in schools, not not more support.  \n\nAnswer: C"
+  },
+  {
+   "i": 81,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 85,
+   "reply": "mes 1 = 125 \\ \\text{? Wait, let's compute: } 5000/4000 = 1.25\\), times 100 gives 125.\n\nThat matches option A.\n\nAnswer: A"
+  },
+  {
+   "i": 82,
+   "answer": 0,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "inct.\n\nTotal prime outcomes = 5+5+5 = 15.\n\nAlso product=1 case: 1.\n\nSo non composite = 15 + 1 = 16.\n\nComposite = 7776 - "
+  },
+  {
+   "i": 83,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 187,
+   "reply": "o he should not shut down; he should produce 9 pools.  \n\nEconomic loss = $10.  \n\nThat matches option D.  \n\n-  \nAnswer: D"
+  },
+  {
+   "i": 84,
+   "answer": 3,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": " U\" = 6(0 \u2013 2) = \u221212 \u2192 negative \u2192 unstable.\n\nFor x 4: U\" = 6(4 \u2013 2) = 12 \u2192 postive \u2192 stable.\n\nSo stable equilibrium is x"
+  },
+  {
+   "i": 85,
+   "answer": 3,
+   "got": 1,
+   "completion_tokens": 114,
+   "reply": "\u201d \u201ccomputer.\u201d Among the options, \u201ccomputer\u201d is in the middle position, so it\u2019s most likely to be forgotten.  \n\nAnswer: B"
+  },
+  {
+   "i": 86,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 179,
+   "reply": "are already in those grades\u2014 so grade level is a a possible lurking variable.\n\nThus, the correct answer is D.\n\nAnswer: D"
+  },
+  {
+   "i": 87,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 80,
+   "reply": "ate. The most accurate statement is that after WWI, debates intensified over American involvement overseas.  \n\nAnswer: A"
+  },
+  {
+   "i": 88,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 97,
+   "reply": " remained polytheists.  \nThis suggests Islam was adopted by some elites but not not the general population.  \n\nAnswer: B"
+  },
+  {
+   "i": 89,
+   "answer": 3,
+   "got": 0,
+   "completion_tokens": 127,
+   "reply": "The correct match here is Peck, as his theory on aging has been tested with both types of research designs.  \n\nAnswer: A"
+  },
+  {
+   "i": 90,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 120,
+   "reply": "an be spread even without symptoms (viral shedding. So C is false.\n\nD: Since A, B, C are false, D is correct.\n\nAnswer: D"
+  },
+  {
+   "i": 91,
+   "answer": 0,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "appoint from restricted list? In some treaties (like ICSID) arbitrators are appointed from a Panel, but not all all from"
+  },
+  {
+   "i": 92,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 107,
+   "reply": " **Natural Law** sees law as based on morality and reason.  \n\nThe description matches Critical Legal Studies.\n\nAnswer: B"
+  },
+  {
+   "i": 93,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 70,
+   "reply": "fallacy of **extension** (often \u201cfallacy of extension\u201d or \u201cextended meaning\u201d).  \n\nSo the correct choice is C.\n\nAnswer: C"
+  },
+  {
+   "i": 94,
+   "answer": 2,
+   "got": -1,
+   "completion_tokens": 231,
+   "reply": "0.0285 = 0.078\n\nThen:\n\nP(D | TP) = (0.05 * 0.99) / 0.078  \n= 0.0495 / 0.078 \u2248 0.635\n\nSo the answer is C.\n\nAnswer: X = C."
+  },
+  {
+   "i": 95,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 36,
+   "reply": " one's own emotions and others' emotions.  \nIt includes self-awareness and empathy, so both self and others.  \nAnswer: D"
+  },
+  {
+   "i": 96,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 98,
+   "reply": "t the options are: Decision, Adoption, Acquisition, Awareness. \"Adadoption\" is the correct term, so option B.\n\nAnswer: B"
+  },
+  {
+   "i": 97,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 34,
+   "reply": "q11.2 deletion) is a well-known chromosomal micro deletion syndrome.  \nThe deletion occurs on chromosome 22.  \nAnswer: D"
+  },
+  {
+   "i": 98,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 23,
+   "reply": "The Lutheran Church is named after Martin Luther, the theologist who initiated the Protestant Reformation.  \n\nAnswer: B"
+  },
+  {
+   "i": 99,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 90,
+   "reply": "r selfishness). So the flaw is in assuming that all innate traits are good.  \nThus the correct choice is B.  \n\nAnswer: B"
+  },
+  {
+   "i": 100,
+   "answer": 0,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "turning up makes it hotter, so wrong. But morally wrong? Probably not morally wrong, just a mistake.\n\nSo both scenarios:"
+  },
+  {
+   "i": 101,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 55,
+   "reply": "is high leptin but the brain does not respond to it, so energy intake isn't reduced. This matches option C.  \n\nAnswer: C"
+  },
+  {
+   "i": 102,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 74,
+   "reply": " only to how people characterize actions without knowing why such actions should be characterized that way.  \n\nAnswer: C"
+  },
+  {
+   "i": 103,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 84,
+   "reply": ", jade, feathers, cloth, and jewels fits the Azztec known system of exacting goods from subdued city-states.  \nAnswer: A"
+  },
+  {
+   "i": 104,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 71,
+   "reply": "WACC = 0.20 \u00d7 10% + 0.80 \u00d7 5% \u00d7 (1 \u2212 0.21)  \n= 2% + 0.80 \u00d7 5% \u00d7 0.79  \n= 2% + 3.16%  \n= 5.16%  \n\nAnswer: A"
+  },
+  {
+   "i": 105,
+   "answer": 2,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "s*, the anti-commantipping doctrine prevents Congress from commandeering state legislatures to enact laws. However, in *"
+  },
+  {
+   "i": 106,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 117,
+   "reply": "iration is temporary; sclerosing agents are used more in adults; biopsy is not needed since scan is normal.  \n\nAnswer: D"
+  },
+  {
+   "i": 107,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 33,
+   "reply": " with symptoms that similar to anxiety disorders, such as nervousness, palpitations, tremors, and sweating.  \n\nAnswer: D"
+  },
+  {
+   "i": 108,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 63,
+   "reply": "ere objectives are formulated.\n- Implementation is acting on the plan.\n- Evaluation occurs after the program.\n\nAnswer: B"
+  },
+  {
+   "i": 109,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 138,
+   "reply": "al power is not just military occupation; it\u2019s also economic, cultural, discursive.  \n\nSo the correct is A.  \n\nAnswer: A"
+  },
+  {
+   "i": 110,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 73,
+   "reply": "olicing.  \n- These all happen under the broader privatization trend.  \n- Therefore, all listed options fit.  \n\nAnswer: D"
+  },
+  {
+   "i": 111,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 63,
+   "reply": "racy is undemocratic rule by a single person or small group, so it is not a component of the American Creed.  \nAnswer: C"
+  },
+  {
+   "i": 112,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 126,
+   "reply": " Infantile paralysis: caused by poliovirus ( not a herpes virus) \u2192 not caused.\n\nSo the correct answer is A.  \n\nAnswer: A"
+  },
+  {
+   "i": 113,
+   "answer": 3,
+   "got": 0,
+   "completion_tokens": 113,
+   "reply": "sks which group only allows women to lead a life of semi-renunciation \u2014 that fits Svetambara.  \n\nAnswer: A.  \n\nAnswer: A"
+  },
+  {
+   "i": 114,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 197,
+   "reply": "related to itself, so not reflexive. So not equivalence.\n\nCorrect choice: both symmetric and anti-symmetric.\n\nAnswer: C."
+  },
+  {
+   "i": 115,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 18,
+   "reply": "Sal saliva contains amylase, which enzyme acts on starches.  \nAnswer: A"
+  },
+  {
+   "i": 116,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 84,
+   "reply": "whelmed except when the photosphere is blocked by the Moon during a total eclipse.  \nThe correct option is D.\n\nAnswer: D"
+  },
+  {
+   "i": 117,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 39,
+   "reply": "erism, creating insecurity, and perpetuating social stereotypes.  \n\nThe correct set of terms fits option A.  \n\nAnswer: A"
+  },
+  {
+   "i": 118,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 70,
+   "reply": "tis and infection.  \n\nAmong the options, the longest time that generally aligns with guidelines is 96 hours.\n\nAnswer: D."
+  },
+  {
+   "i": 119,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 117,
+   "reply": " vessel elements and companion cells**: Companion cells are phlome, so not correct.\n\nThe correct answer is C.\n\nAnswer: C"
+  },
+  {
+   "i": 120,
+   "answer": 3,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "e, so we get 5 lines from 2n=4? Actually, for a single electron coupling to 4 equivalent N (n=4, I=1), lines = 2n+1 = 9."
+  },
+  {
+   "i": 121,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 78,
+   "reply": "S, Enigma) are are not perfectly secure in information-theoretic sense, but computationally secure at best.  \n\nAnswer: D"
+  },
+  {
+   "i": 122,
+   "answer": 3,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "^4\\) so dim(V+W) \u2264 4, so \\(4 - \\dim(V\\cap W) \u2264 4\\) \u2192 \\(\\dim(V\u2229W) \u2265 0\\).  \nAlso, dim(V+W) \u2265 max(2,2)=2, so 4 - dim(V\u2229W) \u2265"
+  },
+  {
+   "i": 123,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 43,
+   "reply": ". Corti\u00adsol, the end product, suppresses further release of CRF and ACTH at the hypothalamus and pituitary.  \n\nAnswer: C"
+  },
+  {
+   "i": 124,
+   "answer": 0,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "= 3.1.2\\times 10^{-19 \\times 0.0.785 = 2.5.5\\times 10^{-19}\\)\n\n\\(2\\pi f = 2 \\times 3.1.14 \\ \\times 1600 = 10048\\)\n\n\\(m ="
+  },
+  {
+   "i": 125,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 76,
+   "reply": " \nS SMS code is \"something you have\" ( possession-based).  \nAll of these are indeed authentication methods.  \n\nAnswer: D"
+  },
+  {
+   "i": 126,
+   "answer": 0,
+   "got": 2,
+   "completion_tokens": 64,
+   "reply": "catters shorter wavelengths (blues and greens. The color seen is scattered light that hasn't been absorbed.  \n\nAnswer: C"
+  },
+  {
+   "i": 127,
+   "answer": 1,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": " known analytically\" sounds more like control variates. Actually, antithetic variates don't require the properties to be"
+  },
+  {
+   "i": 128,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 69,
+   "reply": "a voltmeter because a voltmeter has finite resistance and draws current.  \n\nThe correct answer is option D.  \n\nAnswer: D"
+  },
+  {
+   "i": 129,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 62,
+   "reply": "it is 18,096.  \nNow break it into place values:  \n18,096 = 10,000 + 8,000 + 90 + 6.  \nThat matches option C.  \nAnswer: C"
+  },
+  {
+   "i": 130,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 141,
+   "reply": "e \"P\" part, which is \"The Bees win their first game.\n\nThus the antecedent is \"The Bees win their first game.\n\nAnswer: B."
+  },
+  {
+   "i": 131,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 129,
+   "reply": "ts with the known consensus: China\u2019s GDP per capita rose around 15\u201316 times from 1950 to 2016 in PPP terms.  \n\nAnswer: C"
+  },
+  {
+   "i": 132,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 42,
+   "reply": "sis can continue. Fermentation does this step by reducing pyruvate to lactate or regenerate NAD+ from NADH.  \n\nAnswer: C"
+  },
+  {
+   "i": 133,
+   "answer": 1,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "= 0.0? Let\u2019\u2019s: 44 \u00d7 0.0? Let\u2019\u2019s: 44 \u00d7 0.0? Let\u2019\u2019s: 44 \u00d7 0.0? Let\u2019\u2019s: 44 \u00d7 0.0? Let\u2019s: 44 \u00d7 0.0? Let\u2019\u2019s: 44 \u00d7 0.0? Let\u2019\u2019s"
+  },
+  {
+   "i": 134,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 112,
+   "reply": "ondition, the OR operation with the same condition yields just:\n\na[i == max\n\nThat is the option A.\n\nAnswer: A\n\nAnswer: A"
+  },
+  {
+   "i": 135,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 71,
+   "reply": "ffected natives in the given context. The sources emphasize subjugation and destruction, matching option B.  \n\nAnswer: B"
+  },
+  {
+   "i": 136,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 70,
+   "reply": ", and refinery worker are likely export jobs (basic). A parking lot attendant is non-basic (local service).  \n\nAnswer: D"
+  },
+  {
+   "i": 137,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 31,
+   "reply": " government is listed in the First Amendment, along with freedoms of speech, press, assembly, and religion.  \n\nAnswer: A"
+  },
+  {
+   "i": 138,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 149,
+   "reply": "ed in in the economy, covering the entire national product.  \n\nThus, the correct choice is the GDP defator.  \n\nAnswer: D"
+  },
+  {
+   "i": 139,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 121,
+   "reply": "{\\sqrt2} = 5\\sqrt2\\)  \n\nArea = \\(\\frac12 (5\\sqrt2)(5\\sqrt2) = \\frac12 \\cdot 25 \\cdot 2 = 25\\)  \n\nAnswer: D.  \n\nAnswer: D"
+  },
+  {
+   "i": 140,
+   "answer": 3,
+   "got": 2,
+   "completion_tokens": 79,
+   "reply": "demand should be in inelastic and supply should be elastic.  \nOption C: demand in inelastic, supply elastic.  \nAnswer: C"
+  },
+  {
+   "i": 141,
+   "answer": 3,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "ork done during cycle is equal but opposite to net heat transferred.\"  \nFrom 1st law: for a cycle \u0394U=0 \u21d2 Q = W. But sign"
+  },
+  {
+   "i": 142,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 100,
+   "reply": " \nD: Cross-section of colleges and universities and includes all years \u2014 more variety, more representative.  \n\nAnswer: D"
+  },
+  {
+   "i": 143,
+   "answer": 3,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "ple.  \nFor A: small town, all teachers \u2014 small population, so census is appropriate.  \nFor B: small town, all students \u2014"
+  },
+  {
+   "i": 144,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 66,
+   "reply": "derate States of America. The Ememancipation Proclamation came later in 1862, and Fort Sumer in April 1861.  \n\nAnswer: C"
+  },
+  {
+   "i": 145,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 99,
+   "reply": "yalties. This fits best with the intense political conflict among warring Italian city-states and factions.  \n\nAnswer: C"
+  },
+  {
+   "i": 146,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 91,
+   "reply": "rrow or persistent in a negative way. The best answer here is \u201cVariable as they they have more strategies.\u201d  \n\nAnswer: B"
+  },
+  {
+   "i": 147,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 41,
+   "reply": "nscious processes, sociological focuses on social factors, and evolutionary focuses on evolved adaptations.  \n\nAnswer: A"
+  },
+  {
+   "i": 148,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 135,
+   "reply": "ing enforced as a direct corollary of incorporation/transformation doctrines.  \n\nSo the best choice is C.\n\n  \n\nAnswer: C"
+  },
+  {
+   "i": 149,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 139,
+   "reply": "th try to show law\u2019s political and contingent nature, demmystify. This is accurate.\n\nThe inaccurate one is C.\n\nAnswer: C"
+  },
+  {
+   "i": 150,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 48,
+   "reply": "ppe to tradition\" fallacy, where the premise is that something is right because it is old or long-standing.  \n\nAnswer: B"
+  },
+  {
+   "i": 151,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 74,
+   "reply": "e metric, but the kernel width is the crucial hyper-parameter that trades off underfitting and overfitting.  \n\nAnswer: C"
+  },
+  {
+   "i": 152,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 96,
+   "reply": " turns ideas into actions.  \n\nThe description \u201cextoutroverted and enthusiastic matches Resource Investigator.\n\nAnswer: C"
+  },
+  {
+   "i": 153,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 68,
+   "reply": "nternal marketing environment (\u2014the company\u2019s own product decisions), not part of the external environment.  \n\nAnswer: C"
+  },
+  {
+   "i": 154,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 27,
+   "reply": "A. A nonsense mutation is a type of point mutation in DNA that which causes a a premature stop codon.  \nAnswer: D"
+  },
+  {
+   "i": 155,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 28,
+   "reply": "Cataracts is a clouding of the lens in the eye, so the body part affected is the eye.  \n\nAnswer: C"
+  },
+  {
+   "i": 156,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 110,
+   "reply": "hholding/withdrawing treatment, not necessarily about consent.\n\nHere, consent is present, so it\u2019\u2019s voluntary.\n\nAnswer: A"
+  },
+  {
+   "i": 157,
+   "answer": 1,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": " to her could be considered wrong. But the sentence is ambiguous: \"It could be that the pharmacy gave the wrong medicine"
+  },
+  {
+   "i": 158,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 126,
+   "reply": "\u201chigh\u201d for tissue turnover as a a main reason. This seems like the least option.\n\nSo the correct answer is D.\n\nAnswer: D"
+  },
+  {
+   "i": 159,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 51,
+   "reply": "nks, but what is just. He should escape only if if it is the just thing to do.  \n\nSo the correct answer is:  \n\nAnswer: D"
+  },
+  {
+   "i": 160,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 96,
+   "reply": "y drought (climate change and El Ni\u00f1o events contributed to their decline).\n\nSo the common factor is drought.\n\nAnswer: B"
+  },
+  {
+   "i": 161,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 72,
+   "reply": "abling tracing and accountability.  \nThe other options are not the core definition of an audit trail element.\n\nAnswer: D"
+  },
+  {
+   "i": 162,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 115,
+   "reply": "erms are present and the parties intended to be bound, the contract is enforceable.\n\nThe correct answer is D.\n\nAnswer: D"
+  },
+  {
+   "i": 163,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 132,
+   "reply": "emorrhage and hematoma, the most likely cause is compression of that nerve from the hematoma.\n\n**Answer: C**  \nAnswer: C"
+  },
+  {
+   "i": 164,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 68,
+   "reply": "tisfaction.  \nHigher responsibility often increases satisfaction.  \nTenure does not show a steady decrease.  \n\nAnswer: A"
+  },
+  {
+   "i": 165,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 126,
+   "reply": "adership: ABC does not measure this; it\u2019s separate.\n\nThus, the metric ABC does not provide is **Readership**.\n\nAnswer: D"
+  },
+  {
+   "i": 166,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 145,
+   "reply": "ting emergent anarchy, where actions to secure regime provoke more resistance. This matches A most closely.  \n\nAnswer: A"
+  },
+  {
+   "i": 167,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 109,
+   "reply": "he definition: the conscious part of the mind that regulates emotional drives on a practical, rational level.\n\nAnswer: C"
+  },
+  {
+   "i": 168,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 46,
+   "reply": "p rebuild their economies and stabilize their politics, making them less vulnerable to communist influence.  \n\nAnswer: A"
+  },
+  {
+   "i": 169,
+   "answer": 1,
+   "got": 3,
+   "completion_tokens": 54,
+   "reply": " of the early defense. CD8+ T cells are important later in adaptive immunity, but NK cells respond earlier.  \n\nAnswer: D"
+  },
+  {
+   "i": 170,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 61,
+   "reply": "fers to Islamic jurisprudence, dhikr refers to remembrance of God, ijtihad refers to independent reasoning.  \n\nAnswer: D"
+  },
+  {
+   "i": 171,
+   "answer": 3,
+   "got": 2,
+   "completion_tokens": 282,
+   "reply": "ional in general. So Q is not ideal in R.  \n\nThus Statement 2 is false.\n\nSo: True, False \u2192 C.\n\nAnswer: C.\n\n**Answer: C**"
+  },
+  {
+   "i": 172,
+   "answer": 2,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "erve).  \n\nWait, let's check the options carefully.  \n\nThe inferior alveolar nerve is a branch of the mandibular nerve (V"
+  },
+  {
+   "i": 173,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 41,
+   "reply": "rated expansion of the universe. It is not related to black radiation, galaxy mass distribution, or the CMB.  \nAnswer: C"
+  },
+  {
+   "i": 174,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 44,
+   "reply": "A 8000 and was launched in 1997. It covers labor rights and certified by auditors. The correct choice is A.  \n\nAnswer: A"
+  },
+  {
+   "i": 175,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 106,
+   "reply": "e venous cord).  \nManagement for Stage 2 is involves re-siteing the cannula.  \n\nSo the correct option is B.  \n\nAnswer: B"
+  },
+  {
+   "i": 176,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 59,
+   "reply": "ans (GAGs).  \nThrombin is a clotting enzyme in blood, not typically a structural part of connective tissue.  \n\nAnswer: A"
+  },
+  {
+   "i": 177,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 72,
+   "reply": "h a neutron (\\(^{1}_{0}\\n\\)) produces Cobalt-60 (\\(^{60}_{27}\\Co\\)) via neutron capture, with gamma emission.\n\nAnswer: A"
+  },
+  {
+   "i": 178,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 120,
+   "reply": "hey are reachable if pointed to from the root set, but themselves are not roots.\n\nSo the correct answer is B.\n\nAnswer: B"
+  },
+  {
+   "i": 179,
+   "answer": 3,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": ")  \nDays 9\u201310: John (2 days)  \nDays 10\u201310.5: Kate (1 day) (since 10.5 is half day)  \n\nWait, 10.5 means 10 full days plus"
+  },
+  {
+   "i": 180,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 217,
+   "reply": "l norms, but not necessarily legal).  \n\nSo the sequence: taboo, folkways, the law, mores \u2192 matches option D.\n\nAnswer: D."
+  },
+  {
+   "i": 181,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 120,
+   "reply": "A \u00d7 \u0394B = 0.2 m\u00b2 \u00d7 ((0.06 \u2013 0.01) T) = 0.2 \u00d7 0.05 = 0.01 Wb  \n\nEMF = 250 \u00d7 (0.01 / 0.25) = 250 \u00d7 0.04 = 10 V  \n\nAnswer: D"
+  },
+  {
+   "i": 182,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 32,
+   "reply": "the receiver exactly as they were sent.  \nMessage integrity ensures data is not altered during transmission.  \nAnswer: B"
+  },
+  {
+   "i": 183,
+   "answer": 0,
+   "got": 0,
+   "completion_tokens": 137,
+   "reply": "n atom of a different element.\n\nThe correct choice is:\n\n**A. becomes an atom of a different element always.**\n\nAnswer: A"
+  },
+  {
+   "i": 184,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 132,
+   "reply": "sigma^2 \\theta\n\\]  \n\nSo it depends on \\(\\sigma^2\\), which is not given. Therefore, the correct choice is D.  \n\nAnswer: D"
+  },
+  {
+   "i": 185,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 40,
+   "reply": "tion in a carrier wave by varying the instantaneous frequency of the wave.  \n\nSo the correct choice is **B**.\n\nAnswer: B"
+  },
+  {
+   "i": 186,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 70,
+   "reply": "50/3 bottles per minute.  \nTo fill 500 bottles, time = 500 \u00f7 (50/3) = 500 \u00d7 3/50 = 500 \u00d7 3/50 = 30 minutes.  \n\nAnswer: C"
+  },
+  {
+   "i": 187,
+   "answer": 3,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "se.\n\nThat means invalid.\n\nCounterexample: L, N true, K, M false.\n\nThat matches option D: \"Invalid. Counterexample when L"
+  },
+  {
+   "i": 188,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 75,
+   "reply": "s from sources like the Maddison Project put it around $3k in 2011-ppp dollars.  \n\nSo the closest match is:  \n\nAnswer: B"
+  },
+  {
+   "i": 189,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 49,
+   "reply": "ended species \u2014 this is Batesian mimicry, where a palatable/undefended species mimics a a defended species.  \n\nAnswer: C"
+  },
+  {
+   "i": 190,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 146,
+   "reply": "tals, and that is allowed.  \n- Option D: This refers more to Hund's rule, not Pauli principle.  \n\nAnswer: B  \n\nAnswer: B"
+  },
+  {
+   "i": 191,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 90,
+   "reply": "(\"less effort\") because speed will always improve at observed rate? Not necessarily always.\n\nBest fit: C.\n\n  \n\nAnswer: C"
+  },
+  {
+   "i": 192,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 54,
+   "reply": " for tolerance as a a key virtue.  \n\nThe best inference is that tolerance was a a value of the Enlightenment.\n\nAnswer: B"
+  },
+  {
+   "i": 193,
+   "answer": 0,
+   "got": 1,
+   "completion_tokens": 59,
+   "reply": "heat and rice, but the initial breakthrough was often associated with wheat.  \nThe correct answer is wheat.  \n\nAnswer: B"
+  },
+  {
+   "i": 194,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 111,
+   "reply": "e (clfilibuster), and the House has debate limits via rules. This is a real difference.\n\nSo the correct is D.\n\nAnswer: D"
+  },
+  {
+   "i": 195,
+   "answer": 2,
+   "got": 2,
+   "completion_tokens": 35,
+   "reply": "Price Index (CPI, option C), which which tracks the price changes of a market basket of goods and services.  \n\nAnswer: C"
+  },
+  {
+   "i": 196,
+   "answer": 1,
+   "got": -1,
+   "completion_tokens": 320,
+   "reply": "3n  \n- deg(h(f(x))) = 6n\n\nThe largest is max(18, 3n, 6n). Since 36 is the degree of the sum, the largest term must be 36"
+  },
+  {
+   "i": 197,
+   "answer": 1,
+   "got": 1,
+   "completion_tokens": 62,
+   "reply": "twice as steep as the demand curve, meaning it lies halfway between the demand curve and the vertical axis.  \n\nAnswer: B"
+  },
+  {
+   "i": 198,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 94,
+   "reply": "V are the same, the charge will also be the same (I is true).  \n\nTherefore, all I, II, and III are correct.  \n\nAnswer: D"
+  },
+  {
+   "i": 199,
+   "answer": 3,
+   "got": 3,
+   "completion_tokens": 69,
+   "reply": "rature are considered the basic somosensations.  \nSo the one that is *not* a basic somatosensation is itch.  \n\nAnswer: D"
+  }
+ ]
+}

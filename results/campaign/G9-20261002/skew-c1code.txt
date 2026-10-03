@@ -1,0 +1,1 @@
+no aligned windows: {'windows': [44, 44], 'segments_a_window': 84, 'aligned_windows': 0}

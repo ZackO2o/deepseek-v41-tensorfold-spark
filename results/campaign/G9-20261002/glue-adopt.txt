@@ -1,0 +1,5 @@
+tests: pass
+off: verify 1 / 2 rows 29.5 / 36.2 ms; exact True; gate top-1 None; speed {'code': 71.85, 'prose': 37.47}
+on: verify 1 / 2 rows 28.7 / 35.5 ms; exact True; gate top-1 0.9957865168539326; speed {'code': 73.55, 'prose': 38.31}
+fn16: verify 1 / 2 rows 28.7 / 35.0 ms; exact True; gate top-1 0.9963361016121153; speed {'code': 73.31, 'prose': 39.24}
+adopt: TF_DSV41_MHC_DEC=1 TF_DSV41_MHC_FIN2=1 TF_DSV41_RMS_PAIR=1 TF_DSV41_PARTIAL_BF16=1 TF_DSV41_RG_NARROW=2 TF_DSV41_RG_TAIL=1 TF_DSV41_INDEX_DTOPK=1 TF_DSV41_ENGRAM_FUSE_DEC=1

@@ -1,0 +1,66 @@
+[boot] r0 +3.2s start: imports, CLI (3.2s) | MemFree 116.1 GiB, MemAvailable 116.1 GiB
+[boot] r0 +6.6s NCCL (both ranks up) (3.4s) | MemFree 113.7 GiB, MemAvailable 113.7 GiB
+[tensorfold] weights: prepared folder /prepared/model/3c52fb1b8d6c90e6/rank0, 101.8 GB in 11.7s (8.7 GB/s, 8 threads, O_DIRECT, 96/1518 chunks verified)
+[boot] r0 +18.8s weights: 101.8 GB (12.2s) | MemFree 16.7 GiB, MemAvailable 16.7 GiB
+[boot] r0 +19.8s forward built: 95.4 GiB allocated (1.0s) | MemFree 16.0 GiB, MemAvailable 16.1 GiB
+[tensorfold] building CUDA extension tensorfold_exl3_linear_v3 (first start after an install or update; later starts reuse it)
+[tensorfold] building CUDA extension tensorfold_exl3_experts_v1 (first start after an install or update; later starts reuse it)
+[tensorfold] building CUDA extension tf_dsv41_x3ld_v1 (first start after an install or update; later starts reuse it)
+[boot] r0 +80.6s warm-up window, barrier: serving (60.8s) | MemFree 8.4 GiB, MemAvailable 9.6 GiB
+prompt 0: top-1 0.9785 (first copy of 38: 0.6842), prefill 9.3s, decode None tok/s
+prompt 1: top-1 0.9560 (first copy of 44: 1.0000), prefill 9.7s, decode None tok/s
+prompt 2: top-1 0.9414 (first copy of 49: 0.8163), prefill 10.2s, decode None tok/s
+prompt 3: top-1 0.9223 (first copy of 21: 0.8571), prefill 7.5s, decode None tok/s
+prompt 4: top-1 0.9736 (first copy of 45: 0.8000), prefill 9.8s, decode None tok/s
+prompt 5: top-1 0.9551 (first copy of 38: 0.8421), prefill 9.1s, decode None tok/s
+prompt 6: top-1 0.9213 (first copy of 44: 0.9091), prefill 9.7s, decode None tok/s
+prompt 7: top-1 0.7333 (first copy of 22: 1.0000), prefill 6.5s, decode None tok/s
+{
+ "boot_s": 77.4,
+ "launch_to_ready_s": 80.6,
+ "knobs": {
+  "GLM53_TF_COMM_BACKEND": "nccl",
+  "TF_DSV41_ENGRAM_DIR": "/engram",
+  "TF_DSV41_EXPERT_LOADS": "1",
+  "TF_DSV41_EXPERT_PREFILL": "0",
+  "TF_DSV41_LAUNCH_T0": "1790885626.113266049",
+  "TF_DSV41_PREPARED": "/prepared",
+  "TF_DSV41_PREPARED_WRITE": "1"
+ },
+ "top1_agreement": 0.9226917440156326,
+ "top1_first_copy": 0.8571428571428571,
+ "kit_top1_in_our_top5": 0.9934049829018076,
+ "positions": 16376,
+ "median_abs_logprob_err": 0.12116833375373659,
+ "row_invariance": {
+  "windows_of_8": false,
+  "one_row": false,
+  "rows": 259
+ },
+ "decode_tok_s_median": null,
+ "memory": {
+  "after_boot_alloc_gib": 95.5,
+  "after_boot_reserved_gib": 95.65,
+  "mem_available_after_boot_gib": 9.56,
+  "peak_alloc_gib": 98.31,
+  "peak_reserved_gib": 98.9,
+  "workspace_peak_gib": 0.11,
+  "mem_available_min_gib": 6.24,
+  "per_rank_mem_available_min_gib": [
+   6.24,
+   5.22
+  ],
+  "per_rank_peak_reserved_gib": [
+   98.9,
+   98.9
+  ]
+ },
+ "gates": {
+  "top1": false,
+  "row_invariance": false,
+  "decode_floor": false,
+  "boot_le_90s": true,
+  "boot_le_60s": false
+ },
+ "pass": false
+}

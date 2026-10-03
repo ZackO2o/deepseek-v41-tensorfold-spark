@@ -1,0 +1,3 @@
+[dsv41 04:23:04] memory ok: MemFree head 117.4, worker 115.9 GiB
+[dsv41 04:23:04] server stress up (serve.sh start, prod.env + '')
+[dsv41 04:24:03] server stress: start rc=0; [dsv41-tf] ready after 44 s: {"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-TF", "object": "model", "owned_by": "tensorfold", "created": 1790976236, "root": "DeepSeek-V4.1-Flash-TF", "max_model_len": 300000, "context_length": 300000}, {"id": "deepseek-v4.1-flash", "object": "model", "owned_by": "tensorfold", "created": 1790976236, "root": "DeepSeek-V4.1-Flash-TF", "max_model_len": 300000,

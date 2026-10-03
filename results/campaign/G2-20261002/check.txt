@@ -1,0 +1,6 @@
+  image glm53-tensorfold:b13-060; link HEAD_IP <head-link-ip>, enp1s0f1np1 / rocep1s0f1,roceP2p1s0f1
+  sources dsv41-060 @ eeb59f0026ca on both nodes
+  oracle ~/src/deepseek-v41-tensorfold-spark/results/BASELINE-20261001/oracle-kit.json (8 prompts, 2026-10-01 21:06:33)
+  prepared folders: head 2, worker 1 (0: the first boot builds and writes them)
+  lease: 137; watchdog timer: inactive; :8000 none
+check: OK

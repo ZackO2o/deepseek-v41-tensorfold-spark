@@ -1,0 +1,1760 @@
+{
+ "knobs": {
+  "GLM53_TF_COMM_BACKEND": "roce",
+  "GLM53_TF_ROCE_MAX_KB": "1024",
+  "TF_DSV41_CALIB": "real",
+  "TF_DSV41_CALIB_DIR": "/cache/dsv41-calib",
+  "TF_DSV41_ENGRAM_DIR": "/engram",
+  "TF_DSV41_ENGRAM_GATE": "0",
+  "TF_DSV41_EXPERT_LOADS": "1",
+  "TF_DSV41_EXPERT_PREFILL": "0",
+  "TF_DSV41_LAUNCH_T0": "1790935096.375199594",
+  "TF_DSV41_NATIVE_DIR": "/cache/dsv41-native",
+  "TF_DSV41_PHASES": "1",
+  "TF_DSV41_PREPARED": "/prepared",
+  "TF_DSV41_PREPARED_WRITE": "1",
+  "TF_DSV41_ROUTER": "gemv"
+ },
+ "m2": "DSpark on (depth cost, cap 5, costs measured); draft head full; draft graphs on: 1 held (1 at boot in 0.07 s, 0 on first use), 4 replays, 0 eager windows; Engram prefetch {'issued': 0, 'hits': 166, 'misses': 40, 'dropped': 0, 'reads': 5351, 'cached': 21304, 'waited': 0, 'ahead': 0, 'kept': 0}; graphs on: 16 held (6 at boot in 2.78 s, 10 on first use), 69 replays, 10 eager windows; RoCE exchanges 4193 fast / 166 on NCCL; phases (1, ms a round over 0 rounds): candidates 3620.34, engram.wait 826.17, forward 2190.88, graph.capture 1370.73, graph.replay 6.82, graph.stage 219.83",
+ "workloads": {
+  "code": {
+   "prompt_tokens": 54,
+   "t0": {
+    "tok_s": 61.96,
+    "completion": 384,
+    "drafting": {
+     "windows": 105,
+     "rows": 482,
+     "dspark_rounds": 105,
+     "dspark_drafts": 377,
+     "dspark_kept": 279,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 3.657,
+     "tokens_per_round": 3.657
+    },
+    "reply": [
+     5,
+     46360,
+     55,
+     69717,
+     41218,
+     271,
+     43606,
+     344,
+     260,
+     5553,
+     14,
+     4606,
+     20518,
+     9963,
+     294,
+     411,
+     46360,
+     55,
+     343,
+     107529,
+     40120,
+     30259,
+     11,
+     23809,
+     418,
+     541,
+     10,
+     19,
+     11,
+     3608,
+     1133,
+     66,
+     305,
+     3608,
+     1408,
+     66,
+     7574,
+     14,
+     7128,
+     513,
+     105659,
+     4761,
+     8499,
+     339,
+     372,
+     41218,
+     271,
+     9854,
+     36490,
+     201,
+     63356,
+     26853,
+     55,
+     69717,
+     9963,
+     1812,
+     260,
+     19657,
+     6403,
+     305,
+     260,
+     103421,
+     12268,
+     2310,
+     56299,
+     4707,
+     5356,
+     7854,
+     70925,
+     848,
+     1662,
+     71134,
+     271,
+     5356,
+     32917,
+     1662,
+     41222,
+     6328,
+     3767,
+     944,
+     5973,
+     1137,
+     361,
+     26495,
+     35,
+     6758,
+     295,
+     270,
+     103421,
+     12268,
+     2310,
+     1505,
+     304,
+     6781,
+     1270,
+     2914,
+     2496,
+     339,
+     361,
+     86450,
+     1137,
+     528,
+     3077,
+     28,
+     455,
+     23809,
+     3077,
+     12604,
+     295,
+     566,
+     6758,
+     603,
+     528,
+     1990,
+     28,
+     455,
+     95840,
+     1990,
+     4515,
+     418,
+     270,
+     3077,
+     603,
+     528,
+     12158,
+     28,
+     21328,
+     304,
+     270,
+     4412,
+     343,
+     6439,
+     8028,
+     1505,
+     11,
+     6758,
+     603,
+     528,
+     2894,
+     28,
+     21328,
+     304,
+     270,
+     2894,
+     343,
+     2452,
+     8028,
+     1505,
+     11,
+     6758,
+     603,
+     361,
+     68612,
+     361,
+     7854,
+     8981,
+     3153,
+     848,
+     438,
+     12951,
+     4989,
+     1760,
+     582,
+     5197,
+     1760,
+     582,
+     34574,
+     1760,
+     582,
+     6695,
+     18548,
+     361,
+     1351,
+     7854,
+     7025,
+     16797,
+     2161,
+     14,
+     3077,
+     28,
+     688,
+     14,
+     1990,
+     28,
+     688,
+     11,
+     6248,
+     9952,
+     1137,
+     528,
+     2280,
+     39574,
+     438,
+     3077,
+     201,
+     528,
+     2280,
+     17540,
+     438,
+     1990,
+     201,
+     528,
+     2280,
+     92754,
+     28,
+     41222,
+     78056,
+     5973,
+     63,
+     438,
+     9952,
+     201,
+     528,
+     2280,
+     10929,
+     28,
+     41222,
+     78056,
+     5973,
+     63,
+     438,
+     9952,
+     6328,
+     3767,
+     46360,
+     19183,
+     6634,
+     1137,
+     361,
+     26495,
+     35,
+     9305,
+     54532,
+     15912,
+     58989,
+     40120,
+     30259,
+     343,
+     26853,
+     55,
+     11,
+     23809,
+     339,
+     361,
+     61271,
+     541,
+     10,
+     19,
+     11,
+     5004,
+     8337,
+     29617,
+     1133,
+     5230,
+     305,
+     29617,
+     1408,
+     5230,
+     7574,
+     513,
+     26179,
+     201,
+     361,
+     260,
+     20513,
+     343,
+     2251,
+     3077,
+     64018,
+     11,
+     418,
+     260,
+     103421,
+     12268,
+     2310,
+     343,
+     2251,
+     1270,
+     2914,
+     201,
+     361,
+     34396,
+     797,
+     455,
+     1473,
+     8028,
+     1505,
+     10451,
+     6156,
+     509,
+     270,
+     2578,
+     294,
+     270,
+     2310,
+     510,
+     361,
+     270,
+     3396,
+     8028,
+     1505,
+     10451,
+     6156,
+     509,
+     270,
+     11104,
+     305,
+     344,
+     927,
+     16040,
+     1082,
+     201,
+     361,
+     7768,
+     344,
+     45630,
+     339,
+     361,
+     93634,
+     1137,
+     528,
+     7768,
+     28,
+     43116,
+     1167,
+     294,
+     23914,
+     270,
+     23809,
+     1142,
+     3959,
+     16,
+     25023,
+     366,
+     1955,
+     223,
+     18,
+     339,
+     361,
+     62984,
+     273,
+     1137,
+     528,
+     74418,
+     28,
+     2052,
+     29617,
+     88346,
+     5230,
+     344,
+     554,
+     260,
+     4337,
+     9132,
+     603,
+     361,
+     68612,
+     361,
+     1351,
+     7854,
+     7025,
+     16797,
+     2161,
+     14,
+     7768,
+     28,
+     688,
+     11,
+     6248,
+     9952,
+     1137,
+     528,
+     855,
+     7768,
+     8593,
+     223,
+     18,
+     1137,
+     775,
+     11493,
+     74418,
+     1698,
+     88346,
+     2231
+    ],
+    "depth": {
+     "rounds": 104,
+     "zero_depth": 3,
+     "reached": [
+      101,
+      84,
+      62,
+      46,
+      32
+     ],
+     "kept": [
+      91,
+      67,
+      52,
+      40,
+      28
+     ],
+     "q1_bins": [
+      [
+       0,
+       0
+      ],
+      [
+       0,
+       0
+      ],
+      [
+       0,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       5,
+       3
+      ],
+      [
+       6,
+       6
+      ],
+      [
+       6,
+       5
+      ],
+      [
+       13,
+       8
+      ],
+      [
+       9,
+       7
+      ],
+      [
+       64,
+       62
+      ]
+     ]
+    },
+    "phases": {
+     "mode": "1",
+     "wall_ms": 6627.29,
+     "candidates": {
+      "ms": 4960.84,
+      "n": 105,
+      "ms_avg": 47.246
+     },
+     "commit": {
+      "ms": 75.54,
+      "n": 105,
+      "ms_avg": 0.719
+     },
+     "draft": {
+      "ms": 426.35,
+      "n": 105,
+      "ms_avg": 4.06
+     },
+     "draft.depth": {
+      "ms": 1.62,
+      "n": 105,
+      "ms_avg": 0.015
+     },
+     "draft.pass": {
+      "ms": 424.31,
+      "n": 105,
+      "ms_avg": 4.041
+     },
+     "engram.wait": {
+      "ms": 625.43,
+      "n": 212,
+      "ms_avg": 2.95
+     },
+     "execute": {
+      "ms": 6533.89,
+      "n": 105,
+      "ms_avg": 62.228
+     },
+     "forward": {
+      "ms": 619.72,
+      "n": 105,
+      "ms_avg": 5.902
+     },
+     "graph.replay": {
+      "ms": 1.43,
+      "n": 105,
+      "ms_avg": 0.014
+     },
+     "graph.stage": {
+      "ms": 615.11,
+      "n": 105,
+      "ms_avg": 5.858
+     },
+     "plan": {
+      "ms": 2.73,
+      "n": 106,
+      "ms_avg": 0.026
+     },
+     "prefetch": {
+      "ms": 57.78,
+      "n": 105,
+      "ms_avg": 0.55
+     },
+     "prefill": {
+      "ms": 236.16,
+      "n": 1,
+      "ms_avg": 236.164
+     },
+     "round": {
+      "ms": 6626.53,
+      "n": 105,
+      "ms_avg": 63.11
+     },
+     "sample": {
+      "ms": 3.3,
+      "n": 105,
+      "ms_avg": 0.031
+     },
+     "share": {
+      "ms": 85.96,
+      "n": 105,
+      "ms_avg": 0.819
+     },
+     "window": {
+      "ms": 5581.15,
+      "n": 105,
+      "ms_avg": 53.154
+     }
+    },
+    "serial_tok_s": 32.28,
+    "exact": true
+   },
+   "t07": {
+    "tok_s": 62.3,
+    "completion": 384,
+    "drafting": {
+     "windows": 105,
+     "rows": 479,
+     "dspark_rounds": 105,
+     "dspark_drafts": 374,
+     "dspark_kept": 279,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 3.657,
+     "tokens_per_round": 3.657
+    },
+    "reply": [
+     5,
+     46360,
+     55,
+     69717,
+     41218,
+     271,
+     43606,
+     344,
+     260,
+     5553,
+     14,
+     4606,
+     20518,
+     9963,
+     294,
+     411,
+     46360,
+     55,
+     343,
+     107529,
+     40120,
+     30259,
+     11,
+     23809,
+     1812,
+     260,
+     20513,
+     362,
+     541,
+     10,
+     19,
+     11,
+     1747,
+     13953,
+     305,
+     260,
+     103421,
+     12268,
+     2310,
+     362,
+     541,
+     10,
+     19,
+     11,
+     34396,
+     17745,
+     339,
+     9854,
+     36490,
+     201,
+     63356,
+     26853,
+     55,
+     69717,
+     9963,
+     418,
+     541,
+     10,
+     19,
+     11,
+     1178,
+     305,
+     3065,
+     7574,
+     56299,
+     4707,
+     5356,
+     7854,
+     70925,
+     848,
+     1662,
+     71134,
+     271,
+     5356,
+     32917,
+     1662,
+     71937,
+     14,
+     41222,
+     6328,
+     3767,
+     944,
+     5973,
+     1137,
+     361,
+     26495,
+     35,
+     6758,
+     295,
+     270,
+     103421,
+     12268,
+     2310,
+     1505,
+     362,
+     46360,
+     55,
+     34396,
+     56299,
+     4707,
+     361,
+     7854,
+     8981,
+     3153,
+     848,
+     438,
+     12951,
+     4989,
+     1760,
+     582,
+     5197,
+     1760,
+     582,
+     34574,
+     1760,
+     582,
+     6695,
+     18548,
+     361,
+     1351,
+     7854,
+     7025,
+     16797,
+     2161,
+     14,
+     3077,
+     28,
+     688,
+     438,
+     223,
+     18,
+     14,
+     1990,
+     28,
+     688,
+     438,
+     223,
+     18,
+     11,
+     6248,
+     9952,
+     1137,
+     528,
+     2280,
+     39574,
+     28,
+     688,
+     438,
+     3077,
+     201,
+     528,
+     2280,
+     17540,
+     28,
+     688,
+     438,
+     1990,
+     201,
+     528,
+     2280,
+     92754,
+     28,
+     41222,
+     78056,
+     5973,
+     63,
+     438,
+     9952,
+     201,
+     528,
+     2280,
+     10929,
+     28,
+     41222,
+     78056,
+     5973,
+     63,
+     438,
+     9952,
+     6328,
+     3767,
+     46360,
+     19183,
+     6634,
+     1137,
+     361,
+     26495,
+     35,
+     9305,
+     54532,
+     15912,
+     58989,
+     40120,
+     30259,
+     343,
+     26853,
+     55,
+     11,
+     23809,
+     339,
+     361,
+     11309,
+     29617,
+     1133,
+     5230,
+     305,
+     29617,
+     1408,
+     5230,
+     2632,
+     295,
+     541,
+     10,
+     19,
+     11,
+     1014,
+     513,
+     26179,
+     979,
+     361,
+     982,
+     260,
+     29617,
+     33883,
+     5230,
+     19627,
+     18222,
+     304,
+     12268,
+     38574,
+     14485,
+     343,
+     49,
+     10,
+     19,
+     11,
+     64018,
+     754,
+     305,
+     201,
+     361,
+     982,
+     260,
+     103421,
+     12268,
+     2310,
+     19873,
+     1270,
+     2914,
+     343,
+     49,
+     10,
+     19,
+     11,
+     5002,
+     6005,
+     97550,
+     1492,
+     927,
+     1435,
+     2008,
+     361,
+     93901,
+     2578,
+     305,
+     11104,
+     14485,
+     32744,
+     16429,
+     17363,
+     339,
+     361,
+     86450,
+     1137,
+     528,
+     7768,
+     28,
+     43116,
+     1167,
+     294,
+     7316,
+     270,
+     23809,
+     588,
+     3959,
+     603,
+     361,
+     68612,
+     361,
+     1351,
+     7854,
+     7025,
+     16797,
+     2161,
+     14,
+     7768,
+     28,
+     688,
+     11,
+     6248,
+     9952,
+     1137,
+     528,
+     26495,
+     97458,
+     270,
+     23809,
+     339,
+     528,
+     93634,
+     1137,
+     775,
+     7768,
+     28,
+     43116,
+     1167,
+     294,
+     3077,
+     93859,
+     16354,
+     304,
+     7580,
+     603,
+     17732,
+     25023,
+     366,
+     260,
+     4337,
+     9132,
+     339,
+     528,
+     62984,
+     273,
+     1137,
+     775,
+     74418,
+     28,
+     2052,
+     29617,
+     88346,
+     5230,
+     344,
+     554,
+     4337,
+     603,
+     528,
+     16786,
+     528,
+     855,
+     7768,
+     8593,
+     223,
+     18,
+     1137,
+     775,
+     11493,
+     74418,
+     1698,
+     88346,
+     2231,
+     366,
+     260,
+     4337,
+     9132,
+     18548,
+     528,
+     2280,
+     4001,
+     88366,
+     28,
+     688,
+     438,
+     7768,
+     201,
+     528,
+     2280,
+     3730,
+     10865,
+     28,
+     71937,
+     39647,
+     14,
+     944,
+     5973
+    ],
+    "depth": {
+     "rounds": 104,
+     "zero_depth": 2,
+     "reached": [
+      102,
+      77,
+      61,
+      45,
+      36
+     ],
+     "kept": [
+      84,
+      68,
+      52,
+      42,
+      30
+     ],
+     "q1_bins": [
+      [
+       0,
+       0
+      ],
+      [
+       0,
+       0
+      ],
+      [
+       0,
+       0
+      ],
+      [
+       1,
+       0
+      ],
+      [
+       5,
+       5
+      ],
+      [
+       9,
+       6
+      ],
+      [
+       8,
+       3
+      ],
+      [
+       12,
+       7
+      ],
+      [
+       10,
+       7
+      ],
+      [
+       59,
+       57
+      ]
+     ]
+    },
+    "phases": {
+     "mode": "1",
+     "wall_ms": 6537.9,
+     "candidates": {
+      "ms": 4981.93,
+      "n": 105,
+      "ms_avg": 47.447
+     },
+     "commit": {
+      "ms": 67.89,
+      "n": 106,
+      "ms_avg": 0.64
+     },
+     "draft": {
+      "ms": 429.25,
+      "n": 105,
+      "ms_avg": 4.088
+     },
+     "draft.depth": {
+      "ms": 1.6,
+      "n": 105,
+      "ms_avg": 0.015
+     },
+     "draft.pass": {
+      "ms": 427.25,
+      "n": 105,
+      "ms_avg": 4.069
+     },
+     "engram.wait": {
+      "ms": 486.85,
+      "n": 212,
+      "ms_avg": 2.296
+     },
+     "execute": {
+      "ms": 6430.8,
+      "n": 106,
+      "ms_avg": 60.668
+     },
+     "forward": {
+      "ms": 485.21,
+      "n": 105,
+      "ms_avg": 4.621
+     },
+     "graph.replay": {
+      "ms": 1.41,
+      "n": 105,
+      "ms_avg": 0.013
+     },
+     "graph.stage": {
+      "ms": 480.72,
+      "n": 105,
+      "ms_avg": 4.578
+     },
+     "nucleus": {
+      "ms": 133.72,
+      "n": 105,
+      "ms_avg": 1.274
+     },
+     "plan": {
+      "ms": 2.34,
+      "n": 106,
+      "ms_avg": 0.022
+     },
+     "prefetch": {
+      "ms": 41.15,
+      "n": 105,
+      "ms_avg": 0.392
+     },
+     "prefill": {
+      "ms": 147.66,
+      "n": 1,
+      "ms_avg": 147.661
+     },
+     "round": {
+      "ms": 6537.51,
+      "n": 106,
+      "ms_avg": 61.675
+     },
+     "sample": {
+      "ms": 23.4,
+      "n": 106,
+      "ms_avg": 0.221
+     },
+     "share": {
+      "ms": 80.35,
+      "n": 106,
+      "ms_avg": 0.758
+     },
+     "window": {
+      "ms": 5601.58,
+      "n": 105,
+      "ms_avg": 53.348
+     }
+    },
+    "serial_tok_s": 31.94,
+    "exact": true
+   }
+  }
+ },
+ "kit": {
+  "mixed": 2.27,
+  "mmlu": 1.46,
+  "multiturn": 1.83,
+  "tf": 1.78,
+  "kit": 2.17,
+  "tweet": 3.08,
+  "edit": 3.84,
+  "c4_tok_s": 37.6,
+  "code_tok_s": 36.4,
+  "prose_tok_s": 25.1
+ },
+ "targets": {
+  "code_tok_s": 52.0,
+  "prose_tok_s": 38.0,
+  "tokens_per_round_k3": 3.1
+ },
+ "concurrent": {
+  "C1": {
+   "streams": 1,
+   "sampling": "mixed",
+   "tokens": 384,
+   "wall_s": 5.68,
+   "aggregate_tok_s": 67.62,
+   "decode_aggregate_tok_s": 71.9,
+   "per_stream_tok_s": [
+    71.71
+   ],
+   "kit_c4": 37.6,
+   "drafting": [
+    {
+     "windows": 103,
+     "rows": 479,
+     "dspark_rounds": 103,
+     "dspark_drafts": 376,
+     "dspark_kept": 281,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 3.728,
+     "tokens_per_round": 3.728
+    }
+   ],
+   "phases": {
+    "mode": "1",
+    "wall_ms": 5678.44,
+    "candidates": {
+     "ms": 4763.64,
+     "n": 103,
+     "ms_avg": 46.249
+    },
+    "commit": {
+     "ms": 54.81,
+     "n": 104,
+     "ms_avg": 0.527
+    },
+    "draft": {
+     "ms": 376.9,
+     "n": 103,
+     "ms_avg": 3.659
+    },
+    "draft.depth": {
+     "ms": 1.26,
+     "n": 103,
+     "ms_avg": 0.012
+    },
+    "draft.pass": {
+     "ms": 375.31,
+     "n": 103,
+     "ms_avg": 3.644
+    },
+    "engram.wait": {
+     "ms": 100.89,
+     "n": 208,
+     "ms_avg": 0.485
+    },
+    "execute": {
+     "ms": 5608.96,
+     "n": 104,
+     "ms_avg": 53.932
+    },
+    "forward": {
+     "ms": 97.33,
+     "n": 103,
+     "ms_avg": 0.945
+    },
+    "graph.replay": {
+     "ms": 1.16,
+     "n": 103,
+     "ms_avg": 0.011
+    },
+    "graph.stage": {
+     "ms": 94.07,
+     "n": 103,
+     "ms_avg": 0.913
+    },
+    "plan": {
+     "ms": 1.97,
+     "n": 104,
+     "ms_avg": 0.019
+    },
+    "prefetch": {
+     "ms": 24.7,
+     "n": 103,
+     "ms_avg": 0.24
+    },
+    "prefill": {
+     "ms": 148.13,
+     "n": 1,
+     "ms_avg": 148.132
+    },
+    "round": {
+     "ms": 5678.31,
+     "n": 104,
+     "ms_avg": 54.599
+    },
+    "sample": {
+     "ms": 2.51,
+     "n": 104,
+     "ms_avg": 0.024
+    },
+    "share": {
+     "ms": 64.38,
+     "n": 104,
+     "ms_avg": 0.619
+    },
+    "window": {
+     "ms": 4861.38,
+     "n": 103,
+     "ms_avg": 47.198
+    }
+   }
+  },
+  "C2": {
+   "streams": 2,
+   "sampling": "mixed",
+   "tokens": 768,
+   "wall_s": 15.32,
+   "aggregate_tok_s": 50.13,
+   "decode_aggregate_tok_s": 52.27,
+   "per_stream_tok_s": [
+    45.87,
+    26.06
+   ],
+   "kit_c4": 37.6,
+   "drafting": [
+    {
+     "windows": 104,
+     "rows": 486,
+     "dspark_rounds": 104,
+     "dspark_drafts": 382,
+     "dspark_kept": 280,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 3.692,
+     "tokens_per_round": 3.692
+    },
+    {
+     "windows": 230,
+     "rows": 535,
+     "dspark_rounds": 230,
+     "dspark_drafts": 305,
+     "dspark_kept": 154,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 1.67,
+     "tokens_per_round": 1.67
+    }
+   ],
+   "phases": {
+    "mode": "1",
+    "wall_ms": 15321.06,
+    "candidates": {
+     "ms": 7308.9,
+     "n": 230,
+     "ms_avg": 31.778
+    },
+    "commit": {
+     "ms": 219.22,
+     "n": 231,
+     "ms_avg": 0.949
+    },
+    "draft": {
+     "ms": 1084.94,
+     "n": 230,
+     "ms_avg": 4.717
+    },
+    "draft.depth": {
+     "ms": 4.7,
+     "n": 230,
+     "ms_avg": 0.02
+    },
+    "draft.pass": {
+     "ms": 1079.25,
+     "n": 230,
+     "ms_avg": 4.692
+    },
+    "engram.wait": {
+     "ms": 1891.11,
+     "n": 472,
+     "ms_avg": 4.007
+    },
+    "execute": {
+     "ms": 15062.53,
+     "n": 231,
+     "ms_avg": 65.206
+    },
+    "forward": {
+     "ms": 5704.78,
+     "n": 230,
+     "ms_avg": 24.803
+    },
+    "graph.capture": {
+     "ms": 398.71,
+     "n": 5,
+     "ms_avg": 79.742
+    },
+    "graph.replay": {
+     "ms": 3.34,
+     "n": 121,
+     "ms_avg": 0.028
+    },
+    "graph.stage": {
+     "ms": 358.12,
+     "n": 121,
+     "ms_avg": 2.96
+    },
+    "nucleus": {
+     "ms": 100.37,
+     "n": 230,
+     "ms_avg": 0.436
+    },
+    "plan": {
+     "ms": 5.87,
+     "n": 231,
+     "ms_avg": 0.025
+    },
+    "prefetch": {
+     "ms": 119.19,
+     "n": 230,
+     "ms_avg": 0.518
+    },
+    "prefill": {
+     "ms": 236.81,
+     "n": 1,
+     "ms_avg": 236.813
+    },
+    "round": {
+     "ms": 15320.0,
+     "n": 231,
+     "ms_avg": 66.32
+    },
+    "sample": {
+     "ms": 45.82,
+     "n": 231,
+     "ms_avg": 0.198
+    },
+    "share": {
+     "ms": 204.2,
+     "n": 231,
+     "ms_avg": 0.884
+    },
+    "window": {
+     "ms": 13116.11,
+     "n": 230,
+     "ms_avg": 57.027
+    }
+   }
+  },
+  "C4": {
+   "streams": 4,
+   "sampling": "mixed",
+   "tokens": 1472,
+   "wall_s": 20.3,
+   "aggregate_tok_s": 72.51,
+   "decode_aggregate_tok_s": 78.97,
+   "per_stream_tok_s": [
+    28.81,
+    20.55,
+    33.84,
+    39.38
+   ],
+   "kit_c4": 37.6,
+   "drafting": [
+    {
+     "windows": 102,
+     "rows": 482,
+     "dspark_rounds": 102,
+     "dspark_drafts": 380,
+     "dspark_kept": 282,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 3.765,
+     "tokens_per_round": 3.765
+    },
+    {
+     "windows": 229,
+     "rows": 535,
+     "dspark_rounds": 229,
+     "dspark_drafts": 306,
+     "dspark_kept": 155,
+     "lookup_rounds": 0,
+     "lookup_drafts": 0,
+     "lookup_kept": 0,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 1.677,
+     "tokens_per_round": 1.677
+    },
+    {
+     "windows": 56,
+     "rows": 345,
+     "dspark_rounds": 52,
+     "dspark_drafts": 236,
+     "dspark_kept": 225,
+     "lookup_rounds": 4,
+     "lookup_drafts": 53,
+     "lookup_kept": 40,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 5.327,
+     "tokens_per_round": 5.732
+    },
+    {
+     "windows": 61,
+     "rows": 389,
+     "dspark_rounds": 56,
+     "dspark_drafts": 277,
+     "dspark_kept": 273,
+     "lookup_rounds": 5,
+     "lookup_drafts": 51,
+     "lookup_kept": 50,
+     "serial_rounds": 0,
+     "skip_rounds": 0,
+     "dspark_tokens_per_round": 5.875,
+     "tokens_per_round": 6.295
+    }
+   ],
+   "phases": {
+    "mode": "1",
+    "wall_ms": 20302.11,
+    "candidates": {
+     "ms": 8577.58,
+     "n": 229,
+     "ms_avg": 37.457
+    },
+    "commit": {
+     "ms": 252.45,
+     "n": 230,
+     "ms_avg": 1.098
+    },
+    "draft": {
+     "ms": 1197.45,
+     "n": 229,
+     "ms_avg": 5.229
+    },
+    "draft.depth": {
+     "ms": 4.89,
+     "n": 229,
+     "ms_avg": 0.021
+    },
+    "draft.pass": {
+     "ms": 1191.66,
+     "n": 229,
+     "ms_avg": 5.204
+    },
+    "engram.wait": {
+     "ms": 3017.2,
+     "n": 462,
+     "ms_avg": 6.531
+    },
+    "execute": {
+     "ms": 20093.86,
+     "n": 230,
+     "ms_avg": 87.365
+    },
+    "forward": {
+     "ms": 7949.77,
+     "n": 229,
+     "ms_avg": 34.715
+    },
+    "graph.replay": {
+     "ms": 1.39,
+     "n": 127,
+     "ms_avg": 0.011
+    },
+    "graph.stage": {
+     "ms": 62.75,
+     "n": 127,
+     "ms_avg": 0.494
+    },
+    "nucleus": {
+     "ms": 141.99,
+     "n": 229,
+     "ms_avg": 0.62
+    },
+    "plan": {
+     "ms": 9.52,
+     "n": 230,
+     "ms_avg": 0.041
+    },
+    "prefetch": {
+     "ms": 145.28,
+     "n": 229,
+     "ms_avg": 0.634
+    },
+    "prefill": {
+     "ms": 1088.98,
+     "n": 2,
+     "ms_avg": 544.491
+    },
+    "round": {
+     "ms": 20300.9,
+     "n": 230,
+     "ms_avg": 88.265
+    },
+    "sample": {
+     "ms": 73.67,
+     "n": 230,
+     "ms_avg": 0.32
+    },
+    "share": {
+     "ms": 122.45,
+     "n": 230,
+     "ms_avg": 0.532
+    },
+    "window": {
+     "ms": 16671.34,
+     "n": 229,
+     "ms_avg": 72.801
+    }
+   }
+  }
+ },
+ "c4": {
+  "streams": 4,
+  "sampling": "mixed",
+  "tokens": 1472,
+  "wall_s": 20.3,
+  "aggregate_tok_s": 72.51,
+  "decode_aggregate_tok_s": 78.97,
+  "per_stream_tok_s": [
+   28.81,
+   20.55,
+   33.84,
+   39.38
+  ],
+  "kit_c4": 37.6,
+  "drafting": [
+   {
+    "windows": 102,
+    "rows": 482,
+    "dspark_rounds": 102,
+    "dspark_drafts": 380,
+    "dspark_kept": 282,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.765,
+    "tokens_per_round": 3.765
+   },
+   {
+    "windows": 229,
+    "rows": 535,
+    "dspark_rounds": 229,
+    "dspark_drafts": 306,
+    "dspark_kept": 155,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.677,
+    "tokens_per_round": 1.677
+   },
+   {
+    "windows": 56,
+    "rows": 345,
+    "dspark_rounds": 52,
+    "dspark_drafts": 236,
+    "dspark_kept": 225,
+    "lookup_rounds": 4,
+    "lookup_drafts": 53,
+    "lookup_kept": 40,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.327,
+    "tokens_per_round": 5.732
+   },
+   {
+    "windows": 61,
+    "rows": 389,
+    "dspark_rounds": 56,
+    "dspark_drafts": 277,
+    "dspark_kept": 273,
+    "lookup_rounds": 5,
+    "lookup_drafts": 51,
+    "lookup_kept": 50,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.875,
+    "tokens_per_round": 6.295
+   }
+  ],
+  "phases": {
+   "mode": "1",
+   "wall_ms": 20302.11,
+   "candidates": {
+    "ms": 8577.58,
+    "n": 229,
+    "ms_avg": 37.457
+   },
+   "commit": {
+    "ms": 252.45,
+    "n": 230,
+    "ms_avg": 1.098
+   },
+   "draft": {
+    "ms": 1197.45,
+    "n": 229,
+    "ms_avg": 5.229
+   },
+   "draft.depth": {
+    "ms": 4.89,
+    "n": 229,
+    "ms_avg": 0.021
+   },
+   "draft.pass": {
+    "ms": 1191.66,
+    "n": 229,
+    "ms_avg": 5.204
+   },
+   "engram.wait": {
+    "ms": 3017.2,
+    "n": 462,
+    "ms_avg": 6.531
+   },
+   "execute": {
+    "ms": 20093.86,
+    "n": 230,
+    "ms_avg": 87.365
+   },
+   "forward": {
+    "ms": 7949.77,
+    "n": 229,
+    "ms_avg": 34.715
+   },
+   "graph.replay": {
+    "ms": 1.39,
+    "n": 127,
+    "ms_avg": 0.011
+   },
+   "graph.stage": {
+    "ms": 62.75,
+    "n": 127,
+    "ms_avg": 0.494
+   },
+   "nucleus": {
+    "ms": 141.99,
+    "n": 229,
+    "ms_avg": 0.62
+   },
+   "plan": {
+    "ms": 9.52,
+    "n": 230,
+    "ms_avg": 0.041
+   },
+   "prefetch": {
+    "ms": 145.28,
+    "n": 229,
+    "ms_avg": 0.634
+   },
+   "prefill": {
+    "ms": 1088.98,
+    "n": 2,
+    "ms_avg": 544.491
+   },
+   "round": {
+    "ms": 20300.9,
+    "n": 230,
+    "ms_avg": 88.265
+   },
+   "sample": {
+    "ms": 73.67,
+    "n": 230,
+    "ms_avg": 0.32
+   },
+   "share": {
+    "ms": 122.45,
+    "n": 230,
+    "ms_avg": 0.532
+   },
+   "window": {
+    "ms": 16671.34,
+    "n": 229,
+    "ms_avg": 72.801
+   }
+  }
+ },
+ "dspark_tokens_per_round_mixed": 3.657,
+ "exact_all": true,
+ "m2_after": "DSpark on (depth cost, cap 5, costs measured); draft head full; draft graphs on: 6 held (1 at boot in 0.07 s, 5 on first use), 771 replays, 5 eager windows; Engram prefetch {'issued': 3096, 'hits': 3272, 'misses': 40, 'dropped': 0, 'reads': 38014, 'cached': 123988, 'waited': 24652, 'ahead': 0, 'kept': 0}; graphs on: 21 held (6 at boot in 2.78 s, 15 on first use), 1398 replays, 221 eager windows; RoCE exchanges 28493 fast / 249 on NCCL; phases (1, ms a round over 230 rounds): candidates 37.29, commit 1.10, draft 5.21, draft.depth 0.02, draft.pass 5.18, engram.wait 13.12, execute 87.36, forward 34.56, graph.replay 0.01, graph.stage 0.27, nucleus 0.62, plan 0.04, prefetch 0.63, prefill 4.73, round 88.26, sample 0.32, share 0.53, window 72.48",
+ "comm": {
+  "backend": "RoceComm",
+  "fast_ops": 28493,
+  "slow_ops": 249
+ },
+ "boot_s": 33.2
+}

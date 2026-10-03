@@ -1,0 +1,12 @@
+gm 1024 logits equal True
+  every traced layer equal
+gm 1024 logits equal True
+  every traced layer equal
+gm 1024 logits equal True
+  every traced layer equal
+grouped 1024 logits equal True
+  every traced layer equal
+grouped 1024 logits equal True
+  every traced layer equal
+grouped 1024 logits equal True
+  every traced layer equal

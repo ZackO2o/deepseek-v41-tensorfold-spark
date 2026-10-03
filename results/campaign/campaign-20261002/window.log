@@ -1,0 +1,20 @@
+[dsv41 02:42:59] armed: lease refresher 303234, deadman 303241 at 08:42:58 (+359 min), watchdog timer inactive
+[dsv41 02:42:59] campaign open (~/src/deepseek-v41-tensorfold-spark/results/campaign-20261001-194258): prod inflight 0; glm-down
+[glm53-tf] stopped
+[dsv41 02:43:01] GLM prod stopped; containers head:  worker: 
+[dsv41 02:43:07] rebooting worker (boot id f865f111-4553-4a13-9bf4-efa302b2f906)
+[dsv41 02:44:26] worker back after 79 s (boot id b2e136d2-9906-4575-adf0-2e34faf07ef5); containers: 
+[dsv41 02:45:51] armed: lease refresher 28723, deadman 28736 at 08:42:58 (+357 min), watchdog timer inactive
+[dsv41 02:45:52] after reboot: boot id 078e3579-a0f5-41b8-a230-4390a28d38c5; containers head:  worker: 
+[dsv41 02:46:29] samplers started: 39452 39453
+[dsv41 03:50:39] armed: lease refresher 159413, deadman 159420 at 09:42:58 (+352 min), watchdog timer inactive
+[dsv41 03:50:40] after reboot: boot id 078e3579-a0f5-41b8-a230-4390a28d38c5; containers head:  worker: 
+[dsv41 04:46:30] samplers started: 252330 252331
+[dsv41 05:16:50] restore (campaign): stopping our containers and the memory samplers
+[dsv41 05:16:58] restore (campaign): MemFree head 118.1 worker 116.3 GiB; serve.sh start (try 1)
+[dsv41 05:17:51] restore (campaign): start rc=0; request slots (rank 0): 4
+[dsv41 05:17:52] restore (campaign): :8000 tensorfold:GLM-5.3-Flash-EXL3; https {"object": "list", "data": [{"id": "GLM-5.3-Flash-EXL3", "object": "model", "own; 17*23 -> 391
+[dsv41 05:18:05] restore (campaign): canary rc=0 [canary] warmup 16384: 16399 prompt tokens, prefill 9.3664 s (9.5 s)
+[dsv41 05:18:05] restore (campaign): GLM prod verified (4 slots, 17*23), watchdog timer active, lease none: window closed
+[dsv41 05:18:05] campaign close rc=0; GLM prod down for 155 min 7 s
+[dsv41 05:18:06] left on head:  worker: 

@@ -1,0 +1,44 @@
+ablation exact
+layer 0 7.3s
+layer 1 5.2s
+layer 2 4.5s
+layer 3 4.2s
+layer 4 4.4s
+layer 5 3.9s
+layer 6 4.0s
+layer 7 3.9s
+layer 8 3.7s
+layer 9 3.5s
+layer 10 3.9s
+layer 11 4.0s
+layer 12 4.1s
+layer 13 5.3s
+layer 14 4.5s
+layer 15 5.0s
+layer 16 4.0s
+layer 17 4.8s
+layer 18 3.9s
+layer 19 5.4s
+layer 20 3.9s
+layer 21 5.1s
+layer 22 5.0s
+layer 23 6.5s
+layer 24 4.5s
+layer 25 3.3s
+layer 26 4.3s
+layer 27 5.1s
+layer 28 3.8s
+layer 29 3.9s
+layer 30 4.1s
+layer 31 4.3s
+layer 32 4.9s
+layer 33 4.9s
+layer 34 4.6s
+layer 35 5.1s
+layer 36 4.2s
+layer 37 4.8s
+layer 38 5.2s
+layer 39 4.7s
+prompt 7: ref vs kit top-1 62/63; misses at [45]
+prompt 0: ref vs kit top-1 48/63; misses at [7, 12, 13, 17, 18, 19, 28, 31, 32, 33, 36, 38, 40, 42, 51]
+done 185.264830827713

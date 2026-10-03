@@ -1,0 +1,114 @@
+.......[tensorfold] prepared folder written: /tmp/pytest-of-root/pytest-0/test_prepared_folder_to_gpu0/dsv41g0/1d44e265dc686be3/rank0 (0.0 GB in 0.0s)
+.....
+3000 keys x 8 rows: materialised 0.35 ms, streaming 6.10 ms (first calls include compiles)
+.
+20000 keys x 8 rows: materialised 0.38 ms, streaming 1.24 ms (first calls include compiles)
+.
+65536 keys x 8 rows: materialised 0.49 ms, streaming 0.58 ms (first calls include compiles)
+.
+chain vs host: 0 of 320 drafts differ []
+.
+k2=4 rows=16 mats=2 (4, 4): upstream 0.713 ms, x3pf 25.442 ms (first calls include builds)
+
+k2=4 rows=16 mats=2 (8, 2): upstream 0.713 ms, x3pf 0.886 ms (first calls include builds)
+
+k2=4 rows=16 mats=1 (4, 4): upstream 0.410 ms, x3pf 0.736 ms (first calls include builds)
+
+k2=4 rows=16 mats=1 (8, 2): upstream 0.410 ms, x3pf 0.437 ms (first calls include builds)
+.
+k2=6 rows=16 mats=2 (4, 4): upstream 1.010 ms, x3pf 1.584 ms (first calls include builds)
+
+k2=6 rows=16 mats=2 (8, 2): upstream 1.010 ms, x3pf 1.076 ms (first calls include builds)
+
+k2=6 rows=16 mats=1 (4, 4): upstream 0.523 ms, x3pf 0.788 ms (first calls include builds)
+
+k2=6 rows=16 mats=1 (8, 2): upstream 0.523 ms, x3pf 0.546 ms (first calls include builds)
+.
+k2=8 rows=16 mats=2 (4, 4): upstream 1.249 ms, x3pf 1.723 ms (first calls include builds)
+
+k2=8 rows=16 mats=2 (8, 2): upstream 1.249 ms, x3pf 1.277 ms (first calls include builds)
+
+k2=8 rows=16 mats=1 (4, 4): upstream 0.640 ms, x3pf 0.876 ms (first calls include builds)
+
+k2=8 rows=16 mats=1 (8, 2): upstream 0.640 ms, x3pf 0.665 ms (first calls include builds)
+.
+k2=4 rows=256 mats=2 (4, 4): upstream 2.547 ms, x3pf 2.625 ms (first calls include builds)
+
+k2=4 rows=256 mats=2 (8, 2): upstream 2.547 ms, x3pf 1.907 ms (first calls include builds)
+
+k2=4 rows=256 mats=1 (4, 4): upstream 1.259 ms, x3pf 1.610 ms (first calls include builds)
+
+k2=4 rows=256 mats=1 (8, 2): upstream 1.259 ms, x3pf 0.888 ms (first calls include builds)
+.
+k2=6 rows=256 mats=2 (4, 4): upstream 3.291 ms, x3pf 2.754 ms (first calls include builds)
+
+k2=6 rows=256 mats=2 (8, 2): upstream 3.291 ms, x3pf 2.273 ms (first calls include builds)
+
+k2=6 rows=256 mats=1 (4, 4): upstream 1.597 ms, x3pf 1.650 ms (first calls include builds)
+
+k2=6 rows=256 mats=1 (8, 2): upstream 1.597 ms, x3pf 1.080 ms (first calls include builds)
+.
+k2=8 rows=256 mats=2 (4, 4): upstream 3.936 ms, x3pf 2.898 ms (first calls include builds)
+
+k2=8 rows=256 mats=2 (8, 2): upstream 3.936 ms, x3pf 2.558 ms (first calls include builds)
+
+k2=8 rows=256 mats=1 (4, 4): upstream 1.942 ms, x3pf 1.690 ms (first calls include builds)
+
+k2=8 rows=256 mats=1 (8, 2): upstream 1.942 ms, x3pf 1.226 ms (first calls include builds)
+.
+k2=4 rows=1024 mats=2 (4, 4): upstream 9.035 ms, x3pf 9.109 ms (first calls include builds)
+
+k2=4 rows=1024 mats=2 (8, 2): upstream 9.035 ms, x3pf 6.870 ms (first calls include builds)
+
+k2=4 rows=1024 mats=1 (4, 4): upstream 4.228 ms, x3pf 3.350 ms (first calls include builds)
+
+k2=4 rows=1024 mats=1 (8, 2): upstream 4.228 ms, x3pf 3.038 ms (first calls include builds)
+.
+k2=6 rows=1024 mats=2 (4, 4): upstream 11.495 ms, x3pf 9.847 ms (first calls include builds)
+
+k2=6 rows=1024 mats=2 (8, 2): upstream 11.495 ms, x3pf 8.127 ms (first calls include builds)
+
+k2=6 rows=1024 mats=1 (4, 4): upstream 5.421 ms, x3pf 3.448 ms (first calls include builds)
+
+k2=6 rows=1024 mats=1 (8, 2): upstream 5.421 ms, x3pf 3.697 ms (first calls include builds)
+.
+k2=8 rows=1024 mats=2 (4, 4): upstream 14.370 ms, x3pf 9.602 ms (first calls include builds)
+
+k2=8 rows=1024 mats=2 (8, 2): upstream 14.370 ms, x3pf 9.164 ms (first calls include builds)
+
+k2=8 rows=1024 mats=1 (4, 4): upstream 7.102 ms, x3pf 3.784 ms (first calls include builds)
+
+k2=8 rows=1024 mats=1 (8, 2): upstream 7.102 ms, x3pf 4.755 ms (first calls include builds)
+.
+k2=4 rows=2048 mats=2 (4, 4): upstream 17.480 ms, x3pf 18.739 ms (first calls include builds)
+
+k2=4 rows=2048 mats=2 (8, 2): upstream 17.480 ms, x3pf 13.290 ms (first calls include builds)
+
+k2=4 rows=2048 mats=1 (4, 4): upstream 8.175 ms, x3pf 6.259 ms (first calls include builds)
+
+k2=4 rows=2048 mats=1 (8, 2): upstream 8.175 ms, x3pf 6.099 ms (first calls include builds)
+.
+k2=6 rows=2048 mats=2 (4, 4): upstream 22.320 ms, x3pf 18.987 ms (first calls include builds)
+
+k2=6 rows=2048 mats=2 (8, 2): upstream 22.320 ms, x3pf 16.415 ms (first calls include builds)
+
+k2=6 rows=2048 mats=1 (4, 4): upstream 11.188 ms, x3pf 6.882 ms (first calls include builds)
+
+k2=6 rows=2048 mats=1 (8, 2): upstream 11.188 ms, x3pf 7.064 ms (first calls include builds)
+.
+k2=8 rows=2048 mats=2 (4, 4): upstream 27.218 ms, x3pf 20.380 ms (first calls include builds)
+
+k2=8 rows=2048 mats=2 (8, 2): upstream 27.218 ms, x3pf 17.568 ms (first calls include builds)
+
+k2=8 rows=2048 mats=1 (4, 4): upstream 12.589 ms, x3pf 7.883 ms (first calls include builds)
+
+k2=8 rows=2048 mats=1 (8, 2): upstream 12.589 ms, x3pf 7.877 ms (first calls include builds)
+.
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+28 passed, 1 warning in 17.62s

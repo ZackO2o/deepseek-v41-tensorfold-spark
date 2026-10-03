@@ -1,0 +1,44 @@
+[dsv41 17:31:06] prebuild: head 10 built / 0 failed; worker 10 / 0
+[dsv41 17:31:06] testq head minterp: tests/test_dsv41_rowmode_interp.py tests/test_dsv41_rowmode_fwd_interp.py tests/test_dsv41_csa2_interp.py
+[dsv41 17:31:06] testq head dense: tests/cuda/test_dsv41_dense_gpu.py tests/test_dsv41_dense_emu.py tests/test_dsv41_dense_compile.py tests/cuda/test_dsv41_fused_proj_gpu.py tests/test_dsv41_fused_proj.py tests/test_dsv41_fused_proj_emu.py
+[dsv41 17:31:06] testq worker multi: tests/cuda/test_dsv41_multistream_gpu.py tests/cuda/test_dsv41_m2_gpu.py tests/cuda/test_dsv41_draft_gpu.py tests/test_dsv41_rowtab.py tests/test_dsv41_draft_head.py tests/test_dsv41_m2_decode.py tests/test_dsv41_slots.py
+[dsv41 17:31:42] testq head dense rc=0 (36 s): 65 passed, 5 skipped, 1 warning in 33.58s
+[dsv41 17:36:19] testq head minterp rc=0 (313 s): 22 passed, 6 warnings in 310.92s (0:05:10)
+[dsv41 17:39:53] testq worker multi rc=1 (527 s): 1 failed, 85 passed, 1 warning in 523.80s (0:08:43)
+TESTS-DONE
+[dsv41 17:40:06] memory ok: MemFree head 117.3, worker 116.0 GiB
+[dsv41 17:41:33] gate dense-0 rc=1: top1 0.9958 first copy 0.9601 (G2 exact: 0.9963 / 0.9535)
+[dsv41 17:41:46] memory ok: MemFree head 117.1, worker 115.3 GiB
+[dsv41 17:43:10] gate dense-attn rc=1: top1 0.9968 first copy 0.9668 (G2 exact: 0.9963 / 0.9535)
+[dsv41 17:43:23] memory ok: MemFree head 117.1, worker 115.9 GiB
+[dsv41 17:44:49] gate dense-all rc=1: top1 0.9964 first copy 0.9701 (G2 exact: 0.9963 / 0.9535)
+GATES-DONE
+[dsv41 17:45:02] memory ok: MemFree head 116.9, worker 115.5 GiB
+[dsv41 17:45:02] ab-g8base: env TF_DSV41_PHASES=1 TF_DSV41_ROUTER=gemv TF_DSV41_ENGRAM_GATE=1 TF_DSV41_GRAPH_MODE=mix TF_DSV41_DENSE=0; m2bench --only code,prose,structured --reps 2 --streams 1,2,4 --c-sampling mixed
+[dsv41 17:49:13] ab-g8base: rank 0 rc=0, rank 1 rc=0; 
+[dsv41 17:49:13] ab-g8base memory: head MemFree min , MemAvailable min  GiB; worker MemFree min , MemAvailable min  GiB
+[dsv41 17:49:13] ab-g8base boot: [tensorfold] roce: all-gathers of up to 1024 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 14.5 us eager at 16 KiB [tensorfold] serving: 4 slot(s) x 16448 tokens; 0 of 4 slots busy; pool 260 of 260 pages free, 0 reserved, 0 mapped; long prefills (> 32768 tokens) 1 at a time; sessions: 0 RAM entries (0 pool pages, 0.0 MiB boun
+[dsv41 17:49:13] ab g8base: [tensorfold] dsv41 calibration: draft 3.34 ms, verify 1/2/4/6/8/16 rows 29.5, 35.7, 44.4, 53.0, 61.6, 81.5 ms (stored /cache/dsv41-calib/calib-8974682b4685ea9abf7d.json)
+[dsv41 17:49:13] ab g8base: {'code': (71.655, 3.728, True), 'prose': (38.394999999999996, 1.658, True), 'structured': (108.38, 5.908, True)} exact_all True
+[dsv41 17:49:26] memory ok: MemFree head 117.7, worker 115.9 GiB
+[dsv41 17:49:26] ab-g8rows: env TF_DSV41_PHASES=1 TF_DSV41_ROUTER=gemv TF_DSV41_ENGRAM_GATE=1 TF_DSV41_GRAPH_MODE=rows TF_DSV41_DENSE=0; m2bench --only code,prose,structured --reps 2 --streams 1,2,4 --c-sampling mixed
+[dsv41 17:53:25] ab-g8rows: rank 0 rc=0, rank 1 rc=0; 
+[dsv41 17:53:25] ab-g8rows memory: head MemFree min , MemAvailable min  GiB; worker MemFree min , MemAvailable min  GiB
+[dsv41 17:53:25] ab-g8rows boot: [tensorfold] roce: all-gathers of up to 1024 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 13.8 us eager at 16 KiB [tensorfold] serving: 4 slot(s) x 16448 tokens; 0 of 4 slots busy; pool 260 of 260 pages free, 0 reserved, 0 mapped; long prefills (> 32768 tokens) 1 at a time; sessions: 0 RAM entries (0 pool pages, 0.0 MiB boun
+[dsv41 17:53:25] ab g8rows: [tensorfold] dsv41 calibration: draft 3.33 ms, verify 1/2/4/6/8/16 rows 29.5, 35.6, 43.8, 52.0, 60.3, 79.3 ms (stored /cache/dsv41-calib/calib-1b8fecd94c972b9f4b1e.json)
+[dsv41 17:53:25] ab g8rows: {'code': (72.63499999999999, 3.765, True), 'prose': (38.31, 1.658, True), 'structured': (108.27, 5.908, True)} exact_all True
+[dsv41 17:53:38] memory ok: MemFree head 117.0, worker 115.9 GiB
+[dsv41 17:53:38] ab-g8attn: env TF_DSV41_PHASES=1 TF_DSV41_ROUTER=gemv TF_DSV41_ENGRAM_GATE=1 TF_DSV41_GRAPH_MODE=rows TF_DSV41_DENSE=attn; m2bench --only code,prose,structured --reps 2 --streams 1,2,4 --c-sampling mixed
+[dsv41 17:57:37] ab-g8attn: rank 0 rc=0, rank 1 rc=0; 
+[dsv41 17:57:37] ab-g8attn memory: head MemFree min , MemAvailable min  GiB; worker MemFree min , MemAvailable min  GiB
+[dsv41 17:57:37] ab-g8attn boot: [tensorfold] roce: all-gathers of up to 1024 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 20.0 us eager at 16 KiB [tensorfold] serving: 4 slot(s) x 16448 tokens; 0 of 4 slots busy; pool 260 of 260 pages free, 0 reserved, 0 mapped; long prefills (> 32768 tokens) 1 at a time; sessions: 0 RAM entries (0 pool pages, 0.0 MiB boun
+[dsv41 17:57:37] ab g8attn: [tensorfold] dsv41 calibration: draft 3.51 ms, verify 1/2/4/6/8/16 rows 30.9, 38.0, 46.1, 54.3, 62.4, 84.6 ms (stored /cache/dsv41-calib/calib-2778636e9ebb13630be4.json)
+[dsv41 17:57:37] ab g8attn: {'code': (69.68, 3.83, True), 'prose': (36.985, 1.641, True), 'structured': (103.64500000000001, 5.908, True)} exact_all True
+[dsv41 17:57:50] memory ok: MemFree head 117.7, worker 115.9 GiB
+[dsv41 17:57:50] ab-g8all: env TF_DSV41_PHASES=1 TF_DSV41_ROUTER=gemv TF_DSV41_ENGRAM_GATE=1 TF_DSV41_GRAPH_MODE=rows TF_DSV41_DENSE=all; m2bench --only code,prose,structured --reps 2 --streams 1,2,4 --c-sampling mixed
+[dsv41 18:01:57] ab-g8all: rank 0 rc=0, rank 1 rc=0; 
+[dsv41 18:01:57] ab-g8all memory: head MemFree min , MemAvailable min  GiB; worker MemFree min , MemAvailable min  GiB
+[dsv41 18:01:57] ab-g8all boot: [tensorfold] roce: all-gathers of up to 1024 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 20.2 us eager at 16 KiB [tensorfold] serving: 4 slot(s) x 16448 tokens; 0 of 4 slots busy; pool 260 of 260 pages free, 0 reserved, 0 mapped; long prefills (> 32768 tokens) 1 at a time; sessions: 0 RAM entries (0 pool pages, 0.0 MiB boun
+[dsv41 18:01:57] ab g8all: [tensorfold] dsv41 calibration: draft 3.92 ms, verify 1/2/4/6/8/16 rows 31.2, 38.0, 46.5, 55.0, 63.5, 84.5 ms (stored /cache/dsv41-calib/calib-efe3ad1b800e8bde60b9.json)
+[dsv41 18:01:57] ab g8all: {'code': (67.58500000000001, 3.728, True), 'prose': (35.59, 1.616, True), 'structured': (101.57, 5.908, True)} exact_all True
+DM-DONE

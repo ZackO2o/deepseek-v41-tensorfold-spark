@@ -1,0 +1,14 @@
+passes 34753 conditional acceptance by position [0.5063, 0.4149, 0.3588, 0.349, 0.385] chain tokens (all 5) 1.8243
+recall@1..4 (teacher forced) by position: [[0.5063, 0.5922, 0.6247, 0.642], [0.3399, 0.4028, 0.4259, 0.4394], [0.2198, 0.2624, 0.2792, 0.2906], [0.1538, 0.1832, 0.1956, 0.2032], [0.1086, 0.1312, 0.1407, 0.1465]]
+s2 = P(serial is the draft's 2nd | not its 1st) by position: [0.174, 0.095, 0.055, 0.035, 0.025]   (treesim: 0.25 -> +0.2%, 0.35 -> +1%, 0.45 -> +5%)
+outside the candidates: [9624, 17145, 22681, 26010, 28186] of [34753, 34718, 34627, 34529, 34443]
+near ties at rejections: {'rejections': 18486, 'draft_is_target_2nd': 0.246, 'margin_median': 2.5, 'margin_lt_0.5': 0.1062, 'margin_lt_1.0': 0.2237, 'accepted_rows_margin_median': 7.25}
+markov sweep: {'0.0': 1.3372, '0.5': 1.7609, '0.75': 1.8154, '1.0': 1.8243, '1.25': 1.8169, '1.5': 1.802, '2.0': 1.7622}
+ngram sweep: {'0.0': 1.8243, '0.25': 1.8281, '0.5': 1.8298, '1.0': 1.8291}
+sequential temperatures: [1.3102, 0.969, 0.9139, 0.9255, 0.9622]  ECE raw -> scaled: [[0.0554, 0.0557], [0.0477, 0.0461], [0.0547, 0.0475], [0.0523, 0.0467], [0.0471, 0.0437]]
+replay chain              1.703 tok/round, 43.522 ms, 39.13 tok/s, rows 2.466, tree wins 0
+replay chain+temp         1.7464 tok/round, 44.938 ms, 38.86 tok/s, rows 2.751, tree wins 0
+replay tree d1 w2 B3      1.7172 tok/round, 43.828 ms, 39.18 tok/s, rows 2.528, tree wins 415
+replay pctree d2 w2 B3    1.7177 tok/round, 43.844 ms, 39.18 tok/s, rows 2.531, tree wins 434
+replay pctree d3 w2 B4    1.7177 tok/round, 43.845 ms, 39.18 tok/s, rows 2.532, tree wins 434
+replay pctree d2 w3 B4    1.7185 tok/round, 43.871 ms, 39.17 tok/s, rows 2.537, tree wins 461

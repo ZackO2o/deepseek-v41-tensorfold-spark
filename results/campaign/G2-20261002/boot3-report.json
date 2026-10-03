@@ -1,0 +1,110 @@
+{
+ "boot_s": 18.1,
+ "launch_to_ready_s": 21.5,
+ "knobs": {
+  "GLM53_TF_COMM_BACKEND": "nccl",
+  "TF_DSV41_ENGRAM_DIR": "/engram",
+  "TF_DSV41_EXPERT_LOADS": "1",
+  "TF_DSV41_EXPERT_PREFILL": "0",
+  "TF_DSV41_LAUNCH_T0": "1790887784.521058957",
+  "TF_DSV41_PREPARED": "/prepared",
+  "TF_DSV41_PREPARED_WRITE": "1"
+ },
+ "prompts": [
+  {
+   "tokens": 2048,
+   "first_copy": 38,
+   "top1": 0.9990229604298974,
+   "top1_first_copy": 0.9473684210526315,
+   "prefill_s": 9.34,
+   "prefill_tok_s": 219.2,
+   "greedy_reply": [
+    61162,
+    8734,
+    2613,
+    14,
+    6103,
+    4890,
+    28428,
+    14,
+    305,
+    260,
+    37494,
+    3333,
+    16,
+    1162,
+    13194,
+    7670,
+    14647,
+    14,
+    38892,
+    23873,
+    14,
+    13621,
+    14,
+    305,
+    6262,
+    16,
+    25325,
+    19073,
+    5833,
+    270,
+    69045,
+    3333
+   ],
+   "decode_tok_s": 18.92,
+   "misses": [
+    [
+     7,
+     201,
+     344,
+     0.125,
+     -1.5671
+    ],
+    [
+     32,
+     10504,
+     20746,
+     0.0,
+     -1.0834
+    ]
+   ]
+  }
+ ],
+ "top1_agreement": 0.9990229604298974,
+ "top1_first_copy": 0.9473684210526315,
+ "kit_top1_in_our_top5": 1.0,
+ "positions": 2047,
+ "median_abs_logprob_err": 9.723535136174632e-06,
+ "row_invariance": {
+  "windows_of_8": false,
+  "one_row": false,
+  "rows": 259
+ },
+ "decode_tok_s_median": 18.92,
+ "memory": {
+  "after_boot_alloc_gib": 95.5,
+  "after_boot_reserved_gib": 95.65,
+  "mem_available_after_boot_gib": 15.53,
+  "peak_alloc_gib": 98.32,
+  "peak_reserved_gib": 98.6,
+  "workspace_peak_gib": 0.11,
+  "mem_available_min_gib": 12.41,
+  "per_rank_mem_available_min_gib": [
+   12.41,
+   10.72
+  ],
+  "per_rank_peak_reserved_gib": [
+   98.6,
+   98.6
+  ]
+ },
+ "gates": {
+  "top1": true,
+  "row_invariance": false,
+  "decode_floor": false,
+  "boot_le_90s": true,
+  "boot_le_60s": true
+ },
+ "pass": false
+}

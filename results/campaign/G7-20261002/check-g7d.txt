@@ -1,0 +1,7 @@
+  image glm53-tensorfold:b13-060; link HEAD_IP <head-link-ip>; comm roce (RoCE max 1024 KiB)
+  nsys in the image
+  C compiler in the image: native Engram reader on
+  sources dsv41-060 @ e87e81321853 on both nodes
+  lease: 11; watchdog timer: inactive; :8000 none
+check: OK
+g7 decode check: OK

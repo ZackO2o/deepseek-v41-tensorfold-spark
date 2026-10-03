@@ -1,0 +1,23 @@
+G6-ship 2026-10-02T21:50:55Z, sources 38f65008e323b8b1c19c44fff50897f6f90a7611, image glm53-tensorfold:b13-060
+G6 ship gates
+
+| gate | result | detail |
+| --- | --- | --- |
+| replay: teacher-forced top-1 vs kit oracle >= 96% (aim 98%) | MISSING | - |
+| replay: MMLU replay vs full vs kit | MISSING | no compare-mmlu*.json |
+| replay: needles (replay) | MISSING | - |
+| replay: needles (full) | MISSING | - |
+| tooleval: multi-step chains (off) >= 10/12 | MISSING | - |
+| tooleval: multi-step chains (high) >= 10/12 | MISSING | - |
+| tooleval: tool-eval-bench C >= GLM prod (8/8) | MISSING | not run here (no install); run it from the workstation |
+| structured: schemas + tool choice suites all pass | MISSING | - |
+| stress: decode streams reach 2,048 tokens (ignore_eos) | PASS | 2048 tok (None tok/s during the long prefill), 2048 tok (None tok/s during the long prefill), 2048 tok (None tok/s during the long prefill); long first token 180.39 s |
+| stress: MemAvailable >= 5.0 GiB both nodes | FAIL | head 5.53, worker 3.61 GiB (hard stop 4.0) |
+| soak: 0 errors, inflight back to 0, 17*23, no fatal | MISSING | - |
+| soak: MemAvailable >= 4.0 GiB (target 5.0) | MISSING | head 5.53, worker 3.61 GiB |
+| speed: code / prose / C4 >= 97% of G4, drafted == serial | MISSING | - |
+
+memory minima per step (MemAvailable GiB, head / worker)
+  stress: 5.53 / 3.61
+
+verdict: NOT YET (1 FAIL, 11 MISSING)

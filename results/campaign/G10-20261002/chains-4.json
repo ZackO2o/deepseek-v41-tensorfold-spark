@@ -1,0 +1,212 @@
+{
+ "mode": "off",
+ "model": "DeepSeek-V4.1-Flash-TF",
+ "max_points": 12,
+ "scores": [
+  4
+ ],
+ "min_score": 10,
+ "pass": false,
+ "malformed": 8,
+ "reps": [
+  [
+   {
+    "scenario": "weather-then-flight",
+    "points": 2,
+    "calls_ok": true,
+    "answer_ok": true,
+    "turns": 3,
+    "calls": [
+     [
+      "get_weather",
+      {
+       "city": "Oslo"
+      }
+     ],
+     [
+      "search_flights",
+      {
+       "origin": "Oslo",
+       "destination": "Rome",
+       "date": "2026-11-02"
+      }
+     ]
+    ],
+    "malformed": [],
+    "final": "The weather in Oslo is sunny (12\u00b0C), so here's your flight search.\n\n**Oslo \u2192 Rome on 2026-11-02:**\n- SK4711 \u2014 dep 08:15\n- AZ609 \u2014 dep 17:40\n\n**Earliest flight: SK4711, departing at 08:15.**",
+    "seconds": 4.6
+   },
+   {
+    "scenario": "user-orders-total",
+    "points": 0,
+    "calls_ok": false,
+    "answer_ok": false,
+    "turns": 1,
+    "calls": [],
+    "malformed": [],
+    "final": "I'll look up the customer and their orders.\n\n<\uff5cDSML\uff5c calls=\"find_user\">\n<\uff5cDSML\uff5c parameter name=\"email\" string=\"true\">ana@example.com</\uff5cDSML\uff5c parameter>\n</\uff5cDSML\uff5c invoke>\n</\uff5cDSML\uff5c calls>",
+    "seconds": 1.2
+   },
+   {
+    "scenario": "edit-config",
+    "points": 0,
+    "calls_ok": false,
+    "answer_ok": false,
+    "turns": 8,
+    "calls": [
+     [
+      "list_files",
+      {
+       "path": "/srv/app"
+      }
+     ],
+     [
+      "read_file",
+      {
+       "path": "/srv/app/config.yaml"
+      }
+     ],
+     [
+      "write_file",
+      {
+       "path": "/srv/app/config.yaml</p>\n<parameter name=\"content\">port: 8080\nworkers: 8\nlog_level: info"
+      }
+     ],
+     [
+      "read_file",
+      {
+       "path": "/srv/app/config.yaml"
+      }
+     ],
+     [
+      "read_file",
+      {}
+     ],
+     [
+      "read_file",
+      {
+       "path": "/srv/app/config.yaml"
+      }
+     ],
+     [
+      "write_file",
+      {
+       "path": "/srv/app/config.yaml",
+       "content": "port: 8080\nworkers: 8\nlog_level: info\n"
+      }
+     ],
+     [
+      "read_file",
+      {}
+     ]
+    ],
+    "malformed": [
+     "write_file: missing ['content']",
+     "read_file: missing ['path']",
+     "read_file: missing ['path']"
+    ],
+    "final": "",
+    "seconds": 9.6
+   },
+   {
+    "scenario": "compound-interest",
+    "points": 0,
+    "calls_ok": false,
+    "answer_ok": false,
+    "turns": 8,
+    "calls": [
+     [
+      "calc",
+      {
+       "expr": "10000 * (1 + 0.05) ** 3"
+      }
+     ],
+     [
+      "calc",
+      {
+       "expr": "11576.25 - 1000</span>"
+      }
+     ],
+     [
+      "calc",
+      {
+       "expr": "11576.25 - 1000</"
+      }
+     ],
+     [
+      "calc",
+      {}
+     ],
+     [
+      "calc",
+      {}
+     ],
+     [
+      "calc",
+      {}
+     ],
+     [
+      "calc",
+      {}
+     ],
+     [
+      "calc",
+      {}
+     ]
+    ],
+    "malformed": [
+     "calc: missing ['expr']",
+     "calc: missing ['expr']",
+     "calc: missing ['expr']",
+     "calc: missing ['expr']",
+     "calc: missing ['expr']"
+    ],
+    "final": "",
+    "seconds": 8.9
+   },
+   {
+    "scenario": "retry-after-error",
+    "points": 0,
+    "calls_ok": false,
+    "answer_ok": false,
+    "turns": 2,
+    "calls": [
+     [
+      "get_weather",
+      {
+       "city": "Pariss"
+      }
+     ]
+    ],
+    "malformed": [],
+    "final": "The tool didn't recognize \"Pariss\" \u2014 it suggested \"Paris\". Want me to look up the weather for **Paris** instead?",
+    "seconds": 2.2
+   },
+   {
+    "scenario": "geo-timezone",
+    "points": 2,
+    "calls_ok": true,
+    "answer_ok": true,
+    "turns": 3,
+    "calls": [
+     [
+      "geocode",
+      {
+       "place": "Tokyo"
+      }
+     ],
+     [
+      "get_timezone",
+      {
+       "lat": 35.68,
+       "lon": 139.69
+      }
+     ]
+    ],
+    "malformed": [],
+    "final": "Tokyo is in the **Asia/Tokokyo**... let me correct that: **Asia/Tokyo** time zone.\n\n- Coordinates: 35.68\u00b0N, 139.69\u00b0E\n- IANA time zone: **Asia/Tokyo** (UTC+9, no daylight saving time)",
+    "seconds": 3.7
+   }
+  ]
+ ]
+}

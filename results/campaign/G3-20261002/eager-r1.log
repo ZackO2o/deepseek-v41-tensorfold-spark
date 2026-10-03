@@ -1,0 +1,12 @@
+[boot] r1 +3.4s start: imports, CLI (3.4s) | MemFree 115.5 GiB, MemAvailable 115.3 GiB
+[boot] r1 +7.8s NCCL (both ranks up) (4.5s) | MemFree 113.0 GiB, MemAvailable 112.9 GiB
+[tensorfold] weights: no usable prepared folder (no folder): building from the checkpoint; will write it
+[tensorfold] prepared folder written: /prepared/model/9529c28bc20acb64/rank1 (101.8 GB in 72.6s)
+[tensorfold] removed an older prepared folder: /prepared/model/38e357c2343b3eb8/rank1
+[boot] r1 +299.7s weights: 101.8 GB (291.9s) | MemFree 6.3 GiB, MemAvailable 15.1 GiB
+[tensorfold] dspark: no usable prepared folder (no folder): building from the checkpoint; will write it
+[tensorfold] prepared folder written: /prepared/model/38e357c2343b3eb8/rank1 (3.7 GB in 2.7s)
+[tensorfold] removed an older prepared folder: /prepared/model/9529c28bc20acb64/rank1
+[boot] r1 +310.5s forward built: 99.0 GiB allocated (10.8s) | MemFree 2.1 GiB, MemAvailable 11.2 GiB
+[boot] r1 +339.8s M2 boot: DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 0, 'hits': 0, 'misses': 166, 'dropped': 0} (29.2s) | MemFree 0.8 GiB, MemAvailable 8.2 GiB
+[boot] r1 +339.8s serving (0.0s) | MemFree 0.8 GiB, MemAvailable 8.2 GiB

@@ -1,0 +1,37 @@
+G9 joint 2026-10-02T13:24:54Z, sources 665a1e1ccd3f6aa958fe03b0f52ca7f8c4b01047
+tests: 72 passed, 1 warning in 675.96s (0:11:15)
+config           C    decode  per stream: tok/s rows/round tok/round
+off-mixed        C1    75.56  75.36/4.66/3.84
+off-mixed        C2    62.37  55.32/4.78/3.879  31.11/2.48/1.714
+off-mixed        C4    87.74  33.66/4.74/3.879  22.83/2.46/1.714  41.46/6.71/6.294  47.38/7.11/6.737
+off-mixed        code       T0 73.31 tok/s, 3.802 tok/round
+off-mixed        prose      T0 37.85 tok/s, 1.613 tok/round
+off-mixed: exact_all True; joint off
+off-mixed: [tensorfold] dsv41 calibration: draft 3.52 ms, slot 1.15 ms, verify 1/2/4/6/8/16/24/32/48/64 rows 29.4, 35.9, 44.0, 52.0, 60.1, 78.8, 110.3, 125.8, 161.0, 213.9 ms (stored /cache/dsv41-calib/calib-9eeb7a1c09c27519f9f6.json)
+on-mixed         C1    75.01  74.82/4.56/3.802
+on-mixed         C2    61.06  53.95/4.45/3.728  30.45/2.38/1.67
+on-mixed         C4    88.27  33.57/4.03/3.556  22.97/2.32/1.67  43.65/6.50/6.173  50.21/7.07/6.737
+on-mixed         code       T0 72.77 tok/s, 3.802 tok/round
+on-mixed         prose      T0 37.82 tok/s, 1.607 tok/round
+on-mixed: exact_all True; joint on: 211 rounds, 10.00 rows, 6.57 drafts a round
+on-mixed: [tensorfold] dsv41 calibration: draft 3.53 ms, slot 0.40 ms, verify 1/2/4/6/8/16/24/32/48/64 rows 29.5, 36.1, 44.4, 52.7, 61.0, 80.4, 112.0, 126.3, 165.0, 215.7 ms (stored /cache/dsv41-calib/calib-9eeb7a1c09c27519f9f6.json)
+off-greedy       C1    74.67  74.47/4.61/3.802
+off-greedy       C2    61.77  56.08/4.72/3.879  30.8/2.39/1.634
+off-greedy       C4     87.5  34.13/4.70/3.879  22.77/2.38/1.634  42.18/6.73/6.294  48.09/7.07/6.737
+off-greedy       code       T0 72.43 tok/s, 3.802 tok/round
+off-greedy       prose      T0 37.66 tok/s, 1.613 tok/round
+off-greedy: exact_all True; joint off
+off-greedy: [tensorfold] dsv41 calibration: draft 3.54 ms, slot 1.03 ms, verify 1/2/4/6/8/16/24/32/48/64 rows 29.5, 36.1, 44.2, 52.4, 60.5, 80.9, 110.1, 126.1, 163.0, 216.4 ms (stored /cache/dsv41-calib/calib-9eeb7a1c09c27519f9f6.json)
+on-greedy        C1    74.99  74.8/4.66/3.84
+on-greedy        C2    61.83  55.96/4.49/3.765  30.83/2.25/1.613
+on-greedy        C4    87.99  33.74/4.05/3.556  22.9/2.19/1.607  44.97/6.67/6.294  49.24/6.53/6.4
+on-greedy        code       T0 72.16 tok/s, 3.802 tok/round
+on-greedy        prose      T0 37.85 tok/s, 1.613 tok/round
+on-greedy: exact_all True; joint on: 210 rounds, 10.02 rows, 6.78 drafts a round
+on-greedy: [tensorfold] dsv41 calibration: draft 3.54 ms, slot 1.04 ms, verify 1/2/4/6/8/16/24/32/48/64 rows 29.4, 36.2, 44.3, 52.4, 60.5, 81.1, 110.7, 127.3, 163.1, 214.2 ms (stored /cache/dsv41-calib/calib-9eeb7a1c09c27519f9f6.json)
+joint: FAIL: off-mixed exact_all True; on-mixed exact_all True; off-greedy exact_all True; on-greedy exact_all True; C1 75.01 vs 75.56 (-0.7%); C2 61.06 vs 62.37 (-2.1%); C4 88.27 vs 87.74 (+0.6%); prose-in-C2 30.45 vs 31.11 (-2.1%); calibration 64 rows + slot > 0: True
+adopt: TF_DSV41_DEPTH_JOINT=0 into config/prod.env
+[dsv41 20:15:57] g9j-off-mixed memory: head MemFree min 9.28, MemAvailable min 10.51 GiB; worker MemFree min 8.09, MemAvailable min 9.13 GiB
+[dsv41 20:18:57] g9j-on-mixed memory: head MemFree min 9.39, MemAvailable min 10.46 GiB; worker MemFree min 7.57, MemAvailable min 8.59 GiB
+[dsv41 20:21:56] g9j-off-greedy memory: head MemFree min 9.17, MemAvailable min 10.38 GiB; worker MemFree min 7.64, MemAvailable min 8.66 GiB
+[dsv41 20:24:54] g9j-on-greedy memory: head MemFree min 9.14, MemAvailable min 10.36 GiB; worker MemFree min 7.72, MemAvailable min 8.74 GiB

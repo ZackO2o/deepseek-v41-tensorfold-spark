@@ -1,0 +1,42 @@
+windows r0 / r1 [95, 95], 92 segments a window, 94 aligned
+a window: busy r0 50.584 ms, r1 50.62 ms (r1 - r0 +0.036); exchanges r0 3.791 ms, r1 2.573 ms
+segments where r1 is busier: 52 of 92; median r1 / r0 ratio of the kernels both run alike: 1.003
+largest busy differences (segment: r0 / r1 us, exchange r0 / r1 us):
+  seg  11:    277.9 /    357.8 (  +80.0); xchg  257.4 /  177.8
+  seg  80:    777.3 /    740.7 (  -36.6); xchg   13.9 /   61.8
+  seg  44:    700.0 /    730.4 (  +30.4); xchg   52.2 /   13.2
+  seg  82:    765.1 /    739.2 (  -26.0); xchg   19.7 /   55.6
+  seg  42:    772.8 /    797.4 (  +24.6); xchg   47.2 /   19.5
+  seg  84:    779.3 /    756.5 (  -22.8); xchg   11.9 /   44.5
+  seg  72:    714.2 /    736.6 (  +22.5); xchg   40.7 /   15.0
+  seg  78:    786.5 /    764.2 (  -22.3); xchg   13.2 /   44.7
+  seg  74:    752.0 /    772.8 (  +20.8); xchg   47.7 /   17.1
+  seg  46:    750.0 /    729.7 (  -20.2); xchg   16.1 /   39.1
+  seg  66:    682.6 /    701.2 (  +18.6); xchg   40.5 /   17.0
+  seg  39:   1027.5 /   1009.6 (  -17.9); xchg   25.2 /   45.5
+kernels by |r1 - r0| ms a window (ms r0 / r1, launches r0 / r1, ratio):
+   -1.2084    3.7662 /   2.5578    90.9 /   90.9  0.679  tfroce::gather_kernel
+   +0.0794    0.2808 /   0.3603     2.0 /    2.0  1.283  <unnamed>::gate_copy_kernel
+   -0.0328   25.0556 /  25.0227    85.9 /   85.9  0.999  void dsv41_x3ld::ld_kernel<
+   -0.0218    2.5808 /   2.5590    89.9 /   89.9  0.992  _site
+   -0.0165    5.1133 /   5.0969    93.9 /   93.9  0.997  void dsv41_x3seg::seg_linear_kernel<
+   +0.0142    0.1050 /   0.1192    43.0 /   43.0  1.135  _merge
+   +0.0101    0.7180 /   0.7281     9.0 /    9.0  1.014  void at::native::sbtopk::gatherTopK<long, unsigned int, 
+   -0.0081    0.9104 /   0.9023    87.9 /   87.9  0.991  _finish_k
+   +0.0066    0.3635 /   0.3701    43.0 /   43.0  1.018  <unnamed>::gateup_epilogue_kernel
+   -0.0066    0.0266 /   0.0199     4.0 /    4.0  0.75  void at::native::<unnamed>::indexSelectSmallIndex<c10::BFloat16, long, unsigned int, 
+   -0.0054    1.6174 /   1.6120    43.0 /   43.0  0.997  void dsv41_rg::gemv_kernel<
+   +0.0048    0.9898 /   0.9946    43.0 /   43.0  1.005  _chunks
+   +0.0047    0.4266 /   0.4313    85.9 /   85.9  1.011  _rms
+   +0.0041    0.1331 /   0.1371    85.9 /   85.9  1.031  <unnamed>::rot_in_kernel
+   -0.0039    0.3624 /   0.3584   325.7 /  325.7  0.989  void at::native::vectorized_elementwise_kernel<
+   -0.0037    0.2100 /   0.2063     2.0 /    2.0  0.983  _fuse
+   +0.0021    0.2101 /   0.2122    93.9 /   93.9  1.01  dsv41_x3seg::seg_rot_in_kernel
+   +0.0020    8.8044 /   8.8064    85.9 /   85.9  1.0  void <unnamed>::linear_kernel<
+   +0.0018    0.0170 /   0.0188     8.0 /    8.0  1.104  void at::native::reduce_kernel<
+   -0.0017    0.2854 /   0.2837    43.0 /   43.0  0.994  void <unnamed>::rot_in_kernel<__nv_bfloat16>
+   +0.0015    0.1401 /   0.1417    47.0 /   47.0  1.011  _kv_store
+   +0.0015    0.4506 /   0.4521    43.0 /   43.0  1.003  <unnamed>::group_kernel
+   +0.0015    0.1624 /   0.1639     8.0 /    8.0  1.009  _plain
+   +0.0014    0.2296 /   0.2311     1.0 /    1.0  1.006  _chain
+   +0.0009    0.1999 /   0.2008   112.9 /  112.9  1.004  void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda

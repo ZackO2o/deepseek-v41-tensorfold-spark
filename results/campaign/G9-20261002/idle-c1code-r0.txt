@@ -1,0 +1,13 @@
+42 rounds (execute): 53.81 ms a round, GPU idle 2.21 ms (4.1%), stall kernels 1.36 ms, idle+stall 3.57 ms
+  window         wall  49.593  idle   1.736 ms a round (0.98 a round)
+  candidates     wall  47.943  idle   0.279 ms a round (0.98 a round)
+  draft          wall   3.682  idle   0.289 ms a round (0.95 a round)
+  draft.pass     wall   3.464  idle   0.073 ms a round (0.95 a round)
+  spec           wall   2.421  idle   0.009 ms a round (0.98 a round)
+  forward        wall   1.628  idle   1.451 ms a round (0.98 a round)
+  graph.replay   wall   1.374  idle   1.301 ms a round (0.98 a round)
+  commit         wall   0.370  idle   0.029 ms a round (0.98 a round)
+  graph.stage    wall   0.176  idle   0.099 ms a round (0.98 a round)
+  prefetch       wall   0.148  idle   0.147 ms a round (0.98 a round)
+  cub::DeviceScan::InclusiveSumByKey wall   0.023  idle   0.000 ms a round (1.95 a round)
+  draft.depth    wall   0.021  idle   0.021 ms a round (0.95 a round)

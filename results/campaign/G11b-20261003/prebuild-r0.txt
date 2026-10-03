@@ -1,0 +1,10 @@
+built tensorfold.cuda.exl3.experts 1.9
+built tensorfold.cuda.exl3.linear 0.0
+built tensorfold.families.glm5_next.spark.roce 0.0
+built tensorfold.families.deepseek_v41.cuda.x3gm 0.0
+built tensorfold.families.deepseek_v41.cuda.expert_loads 0.0
+built tensorfold.families.deepseek_v41.cuda.expert_prefill 0.0
+built tensorfold.families.deepseek_v41.cuda.fused_proj 0.0
+built tensorfold.families.deepseek_v41.cuda.router_gemv 0.1
+built tensorfold.families.deepseek_v41.cuda.engram_gate 0.0
+built tensorfold.families.deepseek_v41.cuda.dense 0.0

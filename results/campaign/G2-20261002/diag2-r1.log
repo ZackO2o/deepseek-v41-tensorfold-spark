@@ -1,0 +1,6 @@
+[boot] r1 +3.3s start: imports, CLI (3.3s) | MemFree 115.4 GiB, MemAvailable 115.3 GiB
+[boot] r1 +8.2s NCCL (both ranks up) (5.0s) | MemFree 113.0 GiB, MemAvailable 112.9 GiB
+[tensorfold] weights: prepared folder /prepared/model/9529c28bc20acb64/rank1, 101.8 GB in 11.5s (8.9 GB/s, 8 threads, O_DIRECT, 96/1518 chunks verified)
+[boot] r1 +20.2s weights: 101.8 GB (12.0s) | MemFree 15.9 GiB, MemAvailable 15.9 GiB
+[boot] r1 +21.2s forward built: 95.4 GiB allocated (0.9s) | MemFree 15.2 GiB, MemAvailable 15.2 GiB
+[boot] r1 +23.8s warm-up window, barrier: serving (2.6s) | MemFree 13.6 GiB, MemAvailable 14.5 GiB

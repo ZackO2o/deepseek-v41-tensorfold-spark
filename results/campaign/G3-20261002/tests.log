@@ -1,0 +1,103 @@
+FFFF........................                                             [100%]
+=================================== FAILURES ===================================
+______________________ test_drafted_equals_serial_gpu[1] _______________________
+
+ck = (PosixPath('/tmp/pytest-of-root/pytest-0/dsv41m2g0'), Config(vocab_size=256, hidden_size=128, num_hidden_layers=8, num...date_block_size=2, decoder_start=4, taps=(5, 6, 7), hidden=128, heads=16, head_dim=512, vocab=256, engram_layers=(1,)))
+serial = [[136, 75, 126, 222, 8, 193, ...], [29, 192, 230, 152, 56, 116, ...], [3, 63, 16, 188, 73, 19, ...], [122, 108, 190, 67, 52, 103, ...]]
+slots = 1
+
+    @pytest.mark.parametrize("slots", [1, 4])
+    def test_drafted_equals_serial_gpu(ck, serial, slots):
+        fw = _fw(ck, slots=slots)
+        b = DF.batcher(ck, fw, n=slots, capacity=LONG, pool_tokens=(slots + 1) * LONG, lookup=True)
+        jobs = [Job(p, N, s) for p, s in zip(PROMPTS, SAMPLINGS)]
+>       assert DF.run(b, jobs) == serial
+E       assert [[136, 75, 12...52, 103, ...]] == [[136, 75, 12...52, 103, ...]]
+E         
+E         At index 0 diff: [136, 75, 126, 222, 8, 193, 60, 70, 125, 136, 241, 183, 88, 157, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 91, 212, 204, 3, 63, 169, 123, 238, 33, 108, 203, 200, 8] != [136, 75, 126, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222]
+E         Use -v to get more diff
+
+tests/cuda/test_dsv41_m2_gpu.py:68: AssertionError
+______________________ test_drafted_equals_serial_gpu[4] _______________________
+
+ck = (PosixPath('/tmp/pytest-of-root/pytest-0/dsv41m2g0'), Config(vocab_size=256, hidden_size=128, num_hidden_layers=8, num...date_block_size=2, decoder_start=4, taps=(5, 6, 7), hidden=128, heads=16, head_dim=512, vocab=256, engram_layers=(1,)))
+serial = [[136, 75, 126, 222, 8, 193, ...], [29, 192, 230, 152, 56, 116, ...], [3, 63, 16, 188, 73, 19, ...], [122, 108, 190, 67, 52, 103, ...]]
+slots = 4
+
+    @pytest.mark.parametrize("slots", [1, 4])
+    def test_drafted_equals_serial_gpu(ck, serial, slots):
+        fw = _fw(ck, slots=slots)
+        b = DF.batcher(ck, fw, n=slots, capacity=LONG, pool_tokens=(slots + 1) * LONG, lookup=True)
+        jobs = [Job(p, N, s) for p, s in zip(PROMPTS, SAMPLINGS)]
+>       assert DF.run(b, jobs) == serial
+E       assert [[136, 75, 12...52, 103, ...]] == [[136, 75, 12...52, 103, ...]]
+E         
+E         At index 0 diff: [136, 75, 126, 222, 8, 193, 60, 70, 125, 136, 241, 183, 88, 157, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 91, 212, 204, 3, 63, 169, 123, 238, 33, 108, 203, 200, 8] != [136, 75, 126, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222]
+E         Use -v to get more diff
+
+tests/cuda/test_dsv41_m2_gpu.py:68: AssertionError
+________________________ test_graph_replay_equals_eager ________________________
+
+ck = (PosixPath('/tmp/pytest-of-root/pytest-0/dsv41m2g0'), Config(vocab_size=256, hidden_size=128, num_hidden_layers=8, num...date_block_size=2, decoder_start=4, taps=(5, 6, 7), hidden=128, heads=16, head_dim=512, vocab=256, engram_layers=(1,)))
+
+    def test_graph_replay_equals_eager(ck):
+        """Two forwards fed the same windows: one through ``CudaGraphs`` (warm-up + lazy keys), one eager."""
+    
+        g, e = _fw(ck, slots=4), _fw(ck, slots=4)
+        bg = DF.batcher(ck, g, n=4, capacity=LONG, pool_tokens=5 * LONG)
+        be = DF.batcher(ck, e, n=4, capacity=LONG, pool_tokens=5 * LONG)
+        g.graphs = G.CudaGraphs(g, settings=SETTINGS)
+        n = g.graphs.warmup(4, lambda s, end: bg.ex.slots[s].ensure(end))
+        assert n == len(G.warmup_keys(4)) and g.graphs.cache.on
+        for f, b in ((g, bg), (e, be)):
+            for s in range(4):
+                b.ex.slots[s].ensure(LONG)
+                _prefill(f, s, PROMPTS[s][:2030 + 3 * s])
+        rng = np.random.default_rng(5)
+        for step in range(12):                             # crosses position 2,048: bucket 1's keys captured lazily
+            widths = [int(w) for w in rng.choice(G.WIDTHS, size=4)] if step % 3 else [int(rng.choice(G.WIDTHS))] * 4
+            live = [s for s in range(4) if step % 4 != s] if step % 2 else [0]
+            segs = [Seg(s, g.slots[s].pos, tuple(int(t) for t in rng.integers(3, 250, size=widths[i])))
+                    for i, s in enumerate(live)]
+            lg = g.graphs.run(segs).clone()
+            le = e.run(segs)
+>           assert torch.equal(lg, le), (step, [(sg.slot, len(sg.ids)) for sg in segs])
+E           AssertionError: (0, [(0, 8)])
+E           assert False
+E            +  where False = <built-in method equal of type object at 0xff56b60529b8>(tensor([[ 1.5746, -0.1162, -0.6125,  ..., -1.2141,  0.7220, -0.6100],\n        [ 0.2263, -0.0271, -0.1152,  ..., -1.693...6244,  0.0039, -0.8963],\n        [ 0.5938,  0.1780,  0.3138,  ...,  0.0586, -0.0437,  0.9847]],\n       device='cuda:0'), tensor([[nan, nan, nan,  ..., nan, nan, nan],\n        [nan, nan, nan,  ..., nan, nan, nan],\n        [nan, nan, nan,  ....an, nan],\n        [nan, nan, nan,  ..., nan, nan, nan],\n        [nan, nan, nan,  ..., nan, nan, nan]], device='cuda:0'))
+E            +    where <built-in method equal of type object at 0xff56b60529b8> = torch.equal
+
+tests/cuda/test_dsv41_m2_gpu.py:98: AssertionError
+______________________ test_graphs_on_equals_off_replies _______________________
+
+ck = (PosixPath('/tmp/pytest-of-root/pytest-0/dsv41m2g0'), Config(vocab_size=256, hidden_size=128, num_hidden_layers=8, num...date_block_size=2, decoder_start=4, taps=(5, 6, 7), hidden=128, heads=16, head_dim=512, vocab=256, engram_layers=(1,)))
+serial = [[136, 75, 126, 222, 8, 193, ...], [29, 192, 230, 152, 56, 116, ...], [3, 63, 16, 188, 73, 19, ...], [122, 108, 190, 67, 52, 103, ...]]
+
+    def test_graphs_on_equals_off_replies(ck, serial):
+        fw = _fw(ck, slots=4)
+        b = DF.batcher(ck, fw, n=4, capacity=LONG, pool_tokens=5 * LONG, lookup=True)
+        fw.graphs = G.CudaGraphs(fw, settings=SETTINGS)
+        fw.graphs.warmup(4, lambda s, end: b.ex.slots[s].ensure(end))
+        for s in b.ex.slots:
+            s.release()
+        jobs = [Job(p, N, s) for p, s in zip(PROMPTS, SAMPLINGS)]
+>       assert DF.run(b, jobs) == serial
+E       assert [[136, 75, 12...52, 103, ...]] == [[136, 75, 12...52, 103, ...]]
+E         
+E         At index 0 diff: [136, 75, 126, 222, 8, 193, 60, 70, 125, 136, 241, 183, 88, 157, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 91, 212, 204, 3, 63, 169, 123, 238, 33, 108, 203, 200, 8] != [136, 75, 126, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222, 8, 193, 60, 70, 125, 136, 241, 183, 41, 214, 222]
+E         Use -v to get more diff
+
+tests/cuda/test_dsv41_m2_gpu.py:119: AssertionError
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/cuda/test_dsv41_m2_gpu.py::test_drafted_equals_serial_gpu[1] - a...
+FAILED tests/cuda/test_dsv41_m2_gpu.py::test_drafted_equals_serial_gpu[4] - a...
+FAILED tests/cuda/test_dsv41_m2_gpu.py::test_graph_replay_equals_eager - Asse...
+FAILED tests/cuda/test_dsv41_m2_gpu.py::test_graphs_on_equals_off_replies - a...
+4 failed, 24 passed, 1 warning in 304.45s (0:05:04)

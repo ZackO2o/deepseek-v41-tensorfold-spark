@@ -1,0 +1,1274 @@
+{
+ "label": "replay",
+ "model": "DeepSeek-V4.1-Flash-TF",
+ "shots": 20,
+ "accuracy": 0.8111111111111111,
+ "correct": 146,
+ "n": 180,
+ "errors": 0,
+ "over_replay_window": 180,
+ "prompt_tokens_median": 2094,
+ "wall_s": 325.9,
+ "items": [
+  {
+   "i": 20,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2177,
+   "reply": "C"
+  },
+  {
+   "i": 21,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2466,
+   "reply": "B"
+  },
+  {
+   "i": 22,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2067,
+   "reply": "D"
+  },
+  {
+   "i": 23,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2193,
+   "reply": "D"
+  },
+  {
+   "i": 24,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2077,
+   "reply": "A"
+  },
+  {
+   "i": 25,
+   "answer": 3,
+   "got": -1,
+   "prompt_tokens": 2092,
+   "reply": "Let\u2019s go through the conditions:\n\n"
+  },
+  {
+   "i": 26,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2097,
+   "reply": "B"
+  },
+  {
+   "i": 27,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2096,
+   "reply": "B"
+  },
+  {
+   "i": 28,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2077,
+   "reply": "D"
+  },
+  {
+   "i": 29,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2154,
+   "reply": "D"
+  },
+  {
+   "i": 30,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2278,
+   "reply": "D"
+  },
+  {
+   "i": 31,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2516,
+   "reply": "C"
+  },
+  {
+   "i": 32,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2078,
+   "reply": "B"
+  },
+  {
+   "i": 33,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2089,
+   "reply": "D"
+  },
+  {
+   "i": 34,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2119,
+   "reply": "A"
+  },
+  {
+   "i": 35,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2109,
+   "reply": "C"
+  },
+  {
+   "i": 36,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2063,
+   "reply": "B"
+  },
+  {
+   "i": 37,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2225,
+   "reply": "C"
+  },
+  {
+   "i": 38,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2074,
+   "reply": "D"
+  },
+  {
+   "i": 39,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2073,
+   "reply": "D"
+  },
+  {
+   "i": 40,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2058,
+   "reply": "B"
+  },
+  {
+   "i": 41,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2074,
+   "reply": "C"
+  },
+  {
+   "i": 42,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2139,
+   "reply": "D"
+  },
+  {
+   "i": 43,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2129,
+   "reply": "B"
+  },
+  {
+   "i": 44,
+   "answer": 2,
+   "got": 1,
+   "prompt_tokens": 2124,
+   "reply": "B"
+  },
+  {
+   "i": 45,
+   "answer": 2,
+   "got": 1,
+   "prompt_tokens": 2104,
+   "reply": "B"
+  },
+  {
+   "i": 46,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2075,
+   "reply": "B"
+  },
+  {
+   "i": 47,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2077,
+   "reply": "A"
+  },
+  {
+   "i": 48,
+   "answer": 1,
+   "got": 0,
+   "prompt_tokens": 2329,
+   "reply": "A"
+  },
+  {
+   "i": 49,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2148,
+   "reply": "A"
+  },
+  {
+   "i": 50,
+   "answer": 1,
+   "got": 0,
+   "prompt_tokens": 2124,
+   "reply": "A"
+  },
+  {
+   "i": 51,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2067,
+   "reply": "A"
+  },
+  {
+   "i": 52,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2251,
+   "reply": "A"
+  },
+  {
+   "i": 53,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2119,
+   "reply": "C"
+  },
+  {
+   "i": 54,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2079,
+   "reply": "B"
+  },
+  {
+   "i": 55,
+   "answer": 0,
+   "got": 1,
+   "prompt_tokens": 2072,
+   "reply": "B"
+  },
+  {
+   "i": 56,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2084,
+   "reply": "B"
+  },
+  {
+   "i": 57,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2071,
+   "reply": "B"
+  },
+  {
+   "i": 58,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2100,
+   "reply": "C"
+  },
+  {
+   "i": 59,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2082,
+   "reply": "D"
+  },
+  {
+   "i": 60,
+   "answer": 2,
+   "got": 0,
+   "prompt_tokens": 2120,
+   "reply": "A"
+  },
+  {
+   "i": 61,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2094,
+   "reply": "B"
+  },
+  {
+   "i": 62,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2080,
+   "reply": "B"
+  },
+  {
+   "i": 63,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2118,
+   "reply": "D"
+  },
+  {
+   "i": 64,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2100,
+   "reply": "D"
+  },
+  {
+   "i": 65,
+   "answer": 1,
+   "got": -1,
+   "prompt_tokens": 2097,
+   "reply": "Let's analyze each statement.\n\n**Stateme"
+  },
+  {
+   "i": 66,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2075,
+   "reply": "B"
+  },
+  {
+   "i": 67,
+   "answer": 3,
+   "got": -1,
+   "prompt_tokens": 2126,
+   "reply": "Let's go through the problem step by"
+  },
+  {
+   "i": 68,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2067,
+   "reply": "A"
+  },
+  {
+   "i": 69,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2088,
+   "reply": "B"
+  },
+  {
+   "i": 70,
+   "answer": 2,
+   "got": 1,
+   "prompt_tokens": 2161,
+   "reply": "B"
+  },
+  {
+   "i": 71,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2056,
+   "reply": "B"
+  },
+  {
+   "i": 72,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2060,
+   "reply": "A"
+  },
+  {
+   "i": 73,
+   "answer": 0,
+   "got": -1,
+   "prompt_tokens": 2154,
+   "reply": "Let's go through the argument step by"
+  },
+  {
+   "i": 74,
+   "answer": 2,
+   "got": 1,
+   "prompt_tokens": 2076,
+   "reply": "B"
+  },
+  {
+   "i": 75,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2108,
+   "reply": "C"
+  },
+  {
+   "i": 76,
+   "answer": 2,
+   "got": -1,
+   "prompt_tokens": 2080,
+   "reply": "Let's work through it.\n\nWe have"
+  },
+  {
+   "i": 77,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2147,
+   "reply": "B"
+  },
+  {
+   "i": 78,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2366,
+   "reply": "C"
+  },
+  {
+   "i": 79,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2062,
+   "reply": "C"
+  },
+  {
+   "i": 80,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2108,
+   "reply": "C"
+  },
+  {
+   "i": 81,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2077,
+   "reply": "A"
+  },
+  {
+   "i": 82,
+   "answer": 0,
+   "got": -1,
+   "prompt_tokens": 2102,
+   "reply": "Let\u2019s go step-by-step.\n\n"
+  },
+  {
+   "i": 83,
+   "answer": 3,
+   "got": -1,
+   "prompt_tokens": 2157,
+   "reply": "Let\u2019s work through the economics questio"
+  },
+  {
+   "i": 84,
+   "answer": 3,
+   "got": -1,
+   "prompt_tokens": 2110,
+   "reply": "For stable equilibrium, we need a local"
+  },
+  {
+   "i": 85,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2112,
+   "reply": "D"
+  },
+  {
+   "i": 86,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2217,
+   "reply": "D"
+  },
+  {
+   "i": 87,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2323,
+   "reply": "A"
+  },
+  {
+   "i": 88,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2525,
+   "reply": "B"
+  },
+  {
+   "i": 89,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2067,
+   "reply": "D"
+  },
+  {
+   "i": 90,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2136,
+   "reply": "D"
+  },
+  {
+   "i": 91,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2122,
+   "reply": "A"
+  },
+  {
+   "i": 92,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2073,
+   "reply": "B"
+  },
+  {
+   "i": 93,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2083,
+   "reply": "C"
+  },
+  {
+   "i": 94,
+   "answer": 2,
+   "got": 3,
+   "prompt_tokens": 2182,
+   "reply": "We have:  \n- \\(P(D"
+  },
+  {
+   "i": 95,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2074,
+   "reply": "D"
+  },
+  {
+   "i": 96,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2059,
+   "reply": "B"
+  },
+  {
+   "i": 97,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2066,
+   "reply": "D"
+  },
+  {
+   "i": 98,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2062,
+   "reply": "B"
+  },
+  {
+   "i": 99,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2112,
+   "reply": "B"
+  },
+  {
+   "i": 100,
+   "answer": 0,
+   "got": 3,
+   "prompt_tokens": 2127,
+   "reply": "D"
+  },
+  {
+   "i": 101,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2081,
+   "reply": "C"
+  },
+  {
+   "i": 102,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2180,
+   "reply": "C"
+  },
+  {
+   "i": 103,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2098,
+   "reply": "A"
+  },
+  {
+   "i": 104,
+   "answer": 0,
+   "got": -1,
+   "prompt_tokens": 2118,
+   "reply": "We can calculate WACC:\n\nWACC"
+  },
+  {
+   "i": 105,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2219,
+   "reply": "C"
+  },
+  {
+   "i": 106,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2125,
+   "reply": "D"
+  },
+  {
+   "i": 107,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2073,
+   "reply": "D"
+  },
+  {
+   "i": 108,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2069,
+   "reply": "B"
+  },
+  {
+   "i": 109,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2125,
+   "reply": "A"
+  },
+  {
+   "i": 110,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2083,
+   "reply": "D"
+  },
+  {
+   "i": 111,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2062,
+   "reply": "C"
+  },
+  {
+   "i": 112,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2060,
+   "reply": "A"
+  },
+  {
+   "i": 113,
+   "answer": 3,
+   "got": 0,
+   "prompt_tokens": 2069,
+   "reply": "A"
+  },
+  {
+   "i": 114,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2086,
+   "reply": "C"
+  },
+  {
+   "i": 115,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2060,
+   "reply": "A"
+  },
+  {
+   "i": 116,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2088,
+   "reply": "D"
+  },
+  {
+   "i": 117,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2126,
+   "reply": "A"
+  },
+  {
+   "i": 118,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2063,
+   "reply": "D"
+  },
+  {
+   "i": 119,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2083,
+   "reply": "C"
+  },
+  {
+   "i": 120,
+   "answer": 3,
+   "got": 0,
+   "prompt_tokens": 2106,
+   "reply": "Let's reason through this.\n\n- A"
+  },
+  {
+   "i": 121,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2084,
+   "reply": "D"
+  },
+  {
+   "i": 122,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2090,
+   "reply": "D"
+  },
+  {
+   "i": 123,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2116,
+   "reply": "C"
+  },
+  {
+   "i": 124,
+   "answer": 0,
+   "got": -1,
+   "prompt_tokens": 2145,
+   "reply": "The cyclotron frequency is given by:\n\n"
+  },
+  {
+   "i": 125,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2060,
+   "reply": "D"
+  },
+  {
+   "i": 126,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2065,
+   "reply": "A"
+  },
+  {
+   "i": 127,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2207,
+   "reply": "B"
+  },
+  {
+   "i": 128,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2091,
+   "reply": "D"
+  },
+  {
+   "i": 129,
+   "answer": 2,
+   "got": -1,
+   "prompt_tokens": 2125,
+   "reply": "Let's break down the number: eighteen"
+  },
+  {
+   "i": 130,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2120,
+   "reply": "B"
+  },
+  {
+   "i": 131,
+   "answer": 2,
+   "got": 3,
+   "prompt_tokens": 2086,
+   "reply": "D"
+  },
+  {
+   "i": 132,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2069,
+   "reply": "C"
+  },
+  {
+   "i": 133,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2087,
+   "reply": "B"
+  },
+  {
+   "i": 134,
+   "answer": 0,
+   "got": -1,
+   "prompt_tokens": 2086,
+   "reply": "Let's simplify the expression:\n\n`a"
+  },
+  {
+   "i": 135,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2556,
+   "reply": "B"
+  },
+  {
+   "i": 136,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2072,
+   "reply": "D"
+  },
+  {
+   "i": 137,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2071,
+   "reply": "A"
+  },
+  {
+   "i": 138,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2074,
+   "reply": "D"
+  },
+  {
+   "i": 139,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2083,
+   "reply": "D"
+  },
+  {
+   "i": 140,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2126,
+   "reply": "D"
+  },
+  {
+   "i": 141,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2159,
+   "reply": "D"
+  },
+  {
+   "i": 142,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2111,
+   "reply": "D"
+  },
+  {
+   "i": 143,
+   "answer": 3,
+   "got": 0,
+   "prompt_tokens": 2126,
+   "reply": "A"
+  },
+  {
+   "i": 144,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2345,
+   "reply": "C"
+  },
+  {
+   "i": 145,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2399,
+   "reply": "C"
+  },
+  {
+   "i": 146,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2080,
+   "reply": "B"
+  },
+  {
+   "i": 147,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2065,
+   "reply": "A"
+  },
+  {
+   "i": 148,
+   "answer": 2,
+   "got": 3,
+   "prompt_tokens": 2123,
+   "reply": "D"
+  },
+  {
+   "i": 149,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2097,
+   "reply": "C"
+  },
+  {
+   "i": 150,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2088,
+   "reply": "B"
+  },
+  {
+   "i": 151,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2099,
+   "reply": "C"
+  },
+  {
+   "i": 152,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2069,
+   "reply": "C"
+  },
+  {
+   "i": 153,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2058,
+   "reply": "C"
+  },
+  {
+   "i": 154,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2067,
+   "reply": "D"
+  },
+  {
+   "i": 155,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2059,
+   "reply": "C"
+  },
+  {
+   "i": 156,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2079,
+   "reply": "A"
+  },
+  {
+   "i": 157,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2137,
+   "reply": "B"
+  },
+  {
+   "i": 158,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2098,
+   "reply": "D"
+  },
+  {
+   "i": 159,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2080,
+   "reply": "D"
+  },
+  {
+   "i": 160,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2067,
+   "reply": "B"
+  },
+  {
+   "i": 161,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2095,
+   "reply": "D"
+  },
+  {
+   "i": 162,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2307,
+   "reply": "D"
+  },
+  {
+   "i": 163,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2265,
+   "reply": "C"
+  },
+  {
+   "i": 164,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2089,
+   "reply": "A"
+  },
+  {
+   "i": 165,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2062,
+   "reply": "D"
+  },
+  {
+   "i": 166,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2284,
+   "reply": "A"
+  },
+  {
+   "i": 167,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2111,
+   "reply": "C"
+  },
+  {
+   "i": 168,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2096,
+   "reply": "A"
+  },
+  {
+   "i": 169,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2063,
+   "reply": "B"
+  },
+  {
+   "i": 170,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2071,
+   "reply": "D"
+  },
+  {
+   "i": 171,
+   "answer": 3,
+   "got": 2,
+   "prompt_tokens": 2086,
+   "reply": "C"
+  },
+  {
+   "i": 172,
+   "answer": 2,
+   "got": 3,
+   "prompt_tokens": 2106,
+   "reply": "D"
+  },
+  {
+   "i": 173,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2072,
+   "reply": "C"
+  },
+  {
+   "i": 174,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2123,
+   "reply": "A"
+  },
+  {
+   "i": 175,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2108,
+   "reply": "B"
+  },
+  {
+   "i": 176,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2063,
+   "reply": "A"
+  },
+  {
+   "i": 177,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2077,
+   "reply": "A"
+  },
+  {
+   "i": 178,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2130,
+   "reply": "B"
+  },
+  {
+   "i": 179,
+   "answer": 3,
+   "got": -1,
+   "prompt_tokens": 2139,
+   "reply": "Let's break this down.\n\nKate\u2019"
+  },
+  {
+   "i": 180,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2170,
+   "reply": "D"
+  },
+  {
+   "i": 181,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2125,
+   "reply": "D"
+  },
+  {
+   "i": 182,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2070,
+   "reply": "B"
+  },
+  {
+   "i": 183,
+   "answer": 0,
+   "got": 0,
+   "prompt_tokens": 2079,
+   "reply": "A"
+  },
+  {
+   "i": 184,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2108,
+   "reply": "D"
+  },
+  {
+   "i": 185,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2053,
+   "reply": "B"
+  },
+  {
+   "i": 186,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2088,
+   "reply": "C"
+  },
+  {
+   "i": 187,
+   "answer": 3,
+   "got": -1,
+   "prompt_tokens": 2152,
+   "reply": "Let's check the argument for validity us"
+  },
+  {
+   "i": 188,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2081,
+   "reply": "B"
+  },
+  {
+   "i": 189,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2081,
+   "reply": "C"
+  },
+  {
+   "i": 190,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2088,
+   "reply": "B"
+  },
+  {
+   "i": 191,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2144,
+   "reply": "C"
+  },
+  {
+   "i": 192,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2171,
+   "reply": "B"
+  },
+  {
+   "i": 193,
+   "answer": 0,
+   "got": 1,
+   "prompt_tokens": 2056,
+   "reply": "B"
+  },
+  {
+   "i": 194,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2106,
+   "reply": "D"
+  },
+  {
+   "i": 195,
+   "answer": 2,
+   "got": 2,
+   "prompt_tokens": 2056,
+   "reply": "C"
+  },
+  {
+   "i": 196,
+   "answer": 1,
+   "got": -1,
+   "prompt_tokens": 2126,
+   "reply": "Let's reason through it.\n\nWe have"
+  },
+  {
+   "i": 197,
+   "answer": 1,
+   "got": 1,
+   "prompt_tokens": 2085,
+   "reply": "B"
+  },
+  {
+   "i": 198,
+   "answer": 3,
+   "got": 2,
+   "prompt_tokens": 2108,
+   "reply": "C"
+  },
+  {
+   "i": 199,
+   "answer": 3,
+   "got": 3,
+   "prompt_tokens": 2058,
+   "reply": "D"
+  }
+ ]
+}

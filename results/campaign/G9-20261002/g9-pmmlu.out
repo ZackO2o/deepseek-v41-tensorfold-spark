@@ -1,0 +1,11 @@
+[dsv41 22:08:49] memory ok: MemFree head 117.1, worker 115.8 GiB
+[dsv41 22:08:49] prune mmlu p85k: server up (TF_DSV41_EXPERT_TOPP=0.85 TF_DSV41_EXPERT_MIN_K=3 TF_DSV41_EXPERT_RENORM=kept  TF_DSV41_EXPERT_PRUNE_PREFILL=1)
+[dsv41 22:11:52] prune mmlu p85k: [shipq] mmlu prune-p85k shots 0: 0.885 (177/200), errors 0, prompts over 128 tokens 43/200, median 91
+[dsv41 22:11:52] prune pick: off    top1 0.9958 (first copy 0.9601); code C1 73.91, prose C1 38.18, C2 62.47, C4 88.16; speed x1.0; exact_all True; mmlu0 None
+[dsv41 22:11:52] prune pick: p90    top1 0.9952 (first copy 0.9402); code C1 72.45, prose C1 38.64, C2 64.56, C4 89.63; speed x1.0104; exact_all True; mmlu0 None
+[dsv41 22:11:52] prune pick: w10    top1 0.9949 (first copy 0.9402); code C1 74.84, prose C1 38.97, C2 64.26, C4 90.59; speed x1.0224; exact_all True; mmlu0 None
+[dsv41 22:11:52] prune pick: p85    top1 0.9949 (first copy 0.9336); code C1 73.69, prose C1 41.92, C2 63.02, C4 90.17; speed x1.0309; exact_all True; mmlu0 None
+[dsv41 22:11:52] prune pick: p85k   top1 0.9944 (first copy 0.9169); code C1 77.32, prose C1 40.71, C2 65.48, C4 92.14; speed x1.0514; exact_all True; mmlu0 0.885
+[dsv41 22:11:52] prune pick: mmlu: p85k p85
+[dsv41 22:11:52] prune pick: adopt: p85k
+PMMLU-DONE

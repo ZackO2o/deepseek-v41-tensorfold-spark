@@ -1,0 +1,7 @@
+off    top1 0.9958 (first copy 0.9601); code C1 73.91, prose C1 38.18, C2 62.47, C4 88.16; speed x1.0; exact_all True; mmlu0 None
+p90    top1 0.9952 (first copy 0.9402); code C1 72.45, prose C1 38.64, C2 64.56, C4 89.63; speed x1.0104; exact_all True; mmlu0 None
+w10    top1 0.9949 (first copy 0.9402); code C1 74.84, prose C1 38.97, C2 64.26, C4 90.59; speed x1.0224; exact_all True; mmlu0 None
+p85    top1 0.9949 (first copy 0.9336); code C1 73.69, prose C1 41.92, C2 63.02, C4 90.17; speed x1.0309; exact_all True; mmlu0 None
+p85k   top1 0.9944 (first copy 0.9169); code C1 77.32, prose C1 40.71, C2 65.48, C4 92.14; speed x1.0514; exact_all True; mmlu0 0.885
+mmlu: p85k p85
+adopt: p85k

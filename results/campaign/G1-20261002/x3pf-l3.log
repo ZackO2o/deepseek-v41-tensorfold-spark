@@ -1,0 +1,8 @@
+x3pf R=16: upstream 2.573 ms, 4,4 3.956 ms x0.65 ==, 8,2 2.762 ms x0.932 ==
+x3pf R=64: upstream 6.117 ms, 4,4 8.656 ms x0.707 ==, 8,2 6.371 ms x0.96 ==
+x3pf R=128: upstream 8.838 ms, 4,4 12.063 ms x0.733 ==, 8,2 9.171 ms x0.964 ==
+x3pf R=256: upstream 12.753 ms, 4,4 15.827 ms x0.806 ==, 8,2 12.748 ms x1.0 ==
+x3pf R=512: upstream 21.901 ms, 4,4 21.255 ms x1.03 ==, 8,2 20.349 ms x1.076 ==
+x3pf R=768: upstream 31.916 ms, 4,4 30.226 ms x1.056 ==, 8,2 29.514 ms x1.081 ==
+x3pf R=1024: upstream 39.197 ms, 4,4 43.697 ms x0.897 ==, 8,2 38.043 ms x1.03 ==
+{"layer": 3, "rank": 0, "k2_gu": [6, 10], "k2_d": [6, 10], "bitwise": true}

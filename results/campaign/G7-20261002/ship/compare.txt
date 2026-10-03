@@ -1,0 +1,6 @@
+replay 88.5% vs full 88.0% (n 200, shots 0): delta +0.5 points, same answer 199/200
+PASS replay within 1.0 point of full: True
+PASS replay within 1.0 point of the kit's 87.5% (or above): True (+1.0)
+PASS full within 1.0 point of the kit's 87.5% (or above): True (+0.5)
+replay 81.1% vs full 81.1% (n 180, shots 20): delta +0.0 points, same answer 178/180
+PASS replay within 1.0 point of full: True

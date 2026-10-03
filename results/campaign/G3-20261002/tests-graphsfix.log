@@ -1,0 +1,44 @@
+..F..
+=================================== FAILURES ===================================
+________________________ test_graph_replay_equals_eager ________________________
+
+ck = (PosixPath('/tmp/pytest-of-root/pytest-0/dsv41m2g0'), Config(vocab_size=256, hidden_size=128, num_hidden_layers=8, num...date_block_size=2, decoder_start=4, taps=(5, 6, 7), hidden=128, heads=16, head_dim=512, vocab=256, engram_layers=(1,)))
+
+    def test_graph_replay_equals_eager(ck):
+        """Two forwards fed the same windows: one through ``CudaGraphs`` (warm-up + lazy keys), one eager."""
+    
+        g, e = _fw(ck, slots=4), _fw(ck, slots=4)
+        bg = DF.batcher(ck, g, n=4, capacity=LONG, pool_tokens=5 * LONG)
+        be = DF.batcher(ck, e, n=4, capacity=LONG, pool_tokens=5 * LONG)
+        g.graphs = G.CudaGraphs(g, settings=SETTINGS)
+        n = g.graphs.warmup(4, lambda s, end: bg.ex.slots[s].ensure(end))
+        assert n == len(G.warmup_keys(4)) and g.graphs.cache.on
+        for f, b in ((g, bg), (e, be)):
+            for s in range(4):
+                b.ex.slots[s].ensure(LONG)
+                _prefill(f, s, PROMPTS[s][:2030 + 3 * s])
+        rng = np.random.default_rng(5)
+        for step in range(12):                             # crosses position 2,048: bucket 1's keys captured lazily
+            widths = [int(w) for w in rng.choice(G.WIDTHS, size=4)] if step % 3 else [int(rng.choice(G.WIDTHS))] * 4
+            live = [s for s in range(4) if step % 4 != s] if step % 2 else [0]
+            segs = [Seg(s, g.slots[s].pos, tuple(int(t) for t in rng.integers(3, 250, size=widths[i])))
+                    for i, s in enumerate(live)]
+            lg = g.graphs.run(segs).clone()
+            le = e.run(segs)
+>           assert torch.equal(lg, le), (step, [(sg.slot, len(sg.ids)) for sg in segs])
+E           AssertionError: (0, [(0, 8)])
+E           assert False
+E            +  where False = <built-in method equal of type object at 0xfdaba26529b8>(tensor([[ 1.5746, -0.1162, -0.6125,  ..., -1.2141,  0.7220, -0.6100],\n        [ 0.2263, -0.0271, -0.1152,  ..., -1.693...6244,  0.0039, -0.8963],\n        [ 0.5938,  0.1780,  0.3138,  ...,  0.0586, -0.0437,  0.9847]],\n       device='cuda:0'), tensor([[nan, nan, nan,  ..., nan, nan, nan],\n        [nan, nan, nan,  ..., nan, nan, nan],\n        [nan, nan, nan,  ....an, nan],\n        [nan, nan, nan,  ..., nan, nan, nan],\n        [nan, nan, nan,  ..., nan, nan, nan]], device='cuda:0'))
+E            +    where <built-in method equal of type object at 0xfdaba26529b8> = torch.equal
+
+tests/cuda/test_dsv41_m2_gpu.py:102: AssertionError
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/cuda/test_dsv41_m2_gpu.py::test_graph_replay_equals_eager - Asse...
+1 failed, 4 passed, 1 warning in 24.03s

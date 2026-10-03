@@ -1,0 +1,4 @@
+split default: o 1092 us (upstream 1139), q 522 us (upstream 384), q+ix 950 us (upstream 821), wo_b 1295 us (upstream 1067), x 340 us (upstream 442), x4 366 us (upstream 393)
+split 4096x5120:1,4096x1024:1,5120x1280:2,5120x512:2,1280x4096:1: o 1094 us (upstream 1177), q 529 us (upstream 420), q+ix 957 us (upstream 789), wo_b 1307 us (upstream 1097), x 374 us (upstream 451), x4 399 us (upstream 410)
+split 4096x5120:4,4096x1024:4,5120x1280:8,5120x512:8,1280x4096:4,1280x16384:2: o 1090 us (upstream 1134), q 544 us (upstream 407), q+ix 943 us (upstream 831), wo_b 1347 us (upstream 1091), x 337 us (upstream 437), x4 356 us (upstream 383)
+best: TF_DSV41_DENSE_SPLIT=1280x16384:1,1280x4096:4,4096x1024:4,4096x5120:2,5120x1280:8,5120x512:8

@@ -1,0 +1,11 @@
+[dsv41 17:04:49] memory ok: MemFree head 117.7, worker 115.9 GiB
+[dsv41 17:04:49] server prod up (serve.sh start, prod.env + '')
+[dsv41 17:05:40] server prod: start rc=0; [dsv41-tf] ready after 36 s: {"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-TF", "object": "model", "owned_by": "tensorfold", "created": 1790935533, "root": "DeepSeek-V4.1-Flash-TF", "max_model_len": 300000, "context_length": 300000}, {"id": "deepseek-v4.1-flash", "object": "model", "owned_by": "tensorfold", "created": 1790935533, "root": "DeepSeek-V4.1-Flash-TF", "max_model_len": 300000,
+[dsv41 17:07:17] structured rc=0: [structured] schemas: PASS (12 cases) [structured] tools: PASS (10 cases) 
+[dsv41 17:07:18] summary: ~/src/deepseek-v41-tensorfold-spark/results/G7-20261002/ship/summary-ship.txt
+[dsv41 17:07:20] server prod: already up
+[dsv41 17:07:54] tooleval chains off: [chains off] score [11] of 12 (pass line 10): PASS
+[dsv41 17:08:41] tooleval chains high: [chains high] score [11] of 12 (pass line 10): PASS
+[dsv41 17:08:41] tooleval: tool-eval-bench not installed here: chains.py only (run TEB from the workstation over a tunnel)
+[dsv41 17:08:42] summary: ~/src/deepseek-v41-tensorfold-spark/results/G7-20261002/ship/summary-ship.txt
+TOOLEVAL-DONE

@@ -1,0 +1,5 @@
+config     1 row  2 rows  4 rows  16 rows   prose  exact  (vs off)
+fn16        28.7    35.0    43.3     80.2   39.61  True  1 row -0.8 ms, 2 rows -1.2 ms, prose +4.9%
+gsplit      28.9    35.4    43.7     79.9   38.58  True  1 row -0.6 ms, 2 rows -0.8 ms, prose +2.2%
+off         29.5    36.2    44.4     79.0   37.75  True  
+on          28.7    35.5    43.7     80.3   38.54  True  1 row -0.8 ms, 2 rows -0.7 ms, prose +2.1%

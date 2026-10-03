@@ -1,0 +1,19 @@
+[dsv41 21:06:32] phase: oracle
+[dsv41 21:06:52] oracle capture rc=0 wrote ~/src/glm53-tensorfold-spark/results/dsv41-baseline-20261001-135955/oracle-kit.json
+[dsv41 21:06:52] phase: mmlu200
+[dsv41 21:09:20] quality rc=0   mmlu200 accuracy 0.875 (175/200)   refusals 0/10 
+[dsv41 21:09:20] phase: long-8192
+[dsv41 21:09:30] long 8192 rc=0 ttft 7.6 s prefill 1073 tok/s decode 58.0
+[dsv41 21:09:30] phase: long-32768
+[dsv41 21:10:02] long 32768 rc=0 ttft 30.5 s prefill 1075 tok/s decode 60.0
+[dsv41 21:10:02] phase: long-65536
+[dsv41 21:11:07] long 65536 rc=0 ttft 61.8 s prefill 1060 tok/s decode 58.1
+[dsv41 21:11:07] phase: long-131072
+[dsv41 21:13:16] long 131072 rc=0 ttft 127.2 s prefill 1031 tok/s decode 61.2
+[dsv41 21:13:16] phase: long-262144
+[dsv41 21:17:45] long 262144 rc=0 ttft 266.7 s prefill 983 tok/s decode 62.2
+[dsv41 21:17:45] phase: multiturn
+[dsv41 21:20:06] multiturn rc=0
+[dsv41 21:20:06] phase: glmbench
+[dsv41 21:24:31] glmbench rc=0
+[dsv41 21:24:31] phase: benches-done

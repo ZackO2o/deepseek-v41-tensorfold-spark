@@ -1,0 +1,20 @@
+G11 2026-10-02T23:06:26Z, sources 7d940f0d66118fe3f2adeff60affd2b1b6515499
+[dsv41 05:39:17] capture: 117 log files, 3.7G; [draftcap] 320/320 requests, 1071 s [draftcap] report /out/m2-g11-cap.json: 320 requests in 1071.0 s 
+[dsv41 05:44:01] eval off: [m2bench] code: T0 81.205 tok/s, 3.879 tok/round (DSpark 3.879), exact True/True [m2bench] prose: T0 41.285 tok/s, 1.587 tok/round (DSpark 1.589), exact True/True [m2bench] structured: T0 116.845 tok/s, 5.908 tok/round (DSpark 5.908), exact True/True [m2bench] C1: 77.08 tok/s aggregate, 82.5 decode (mixed; kit C1 / C2 / C4 32.2 / 46.7 / 37.6) [m2bench] C2: 63.92 tok/s ag
+[dsv41 05:44:01] eval off: 
+[dsv41 05:44:01] pick: off: prose 41.285 (1.587 tok/round), code 81.205, structured 116.845, C2 66.94, C4 93.92
+[dsv41 05:44:01] pick: A: no report
+[dsv41 05:44:01] pick: B: no report
+[dsv41 05:44:01] pick: adopt: none
+[dsv41 06:02:28] train: stage A eval_base: top1 [0.665, 0.5544, 0.4786, 0.4221, 0.3815], chain conditional [0.629, 0.6064, 0.658, 0.7268, 0.7832], tokens/round 2.5868, agree logged 0.4501 (first 0.8979)
+[dsv41 06:02:28] train: stage A eval_after: top1 [0.6657, 0.5612, 0.484, 0.4308, 0.3877], chain conditional [0.6388, 0.6152, 0.6563, 0.7158, 0.7739], tokens/round 2.6172, agree logged 0.1345 (first 0.7507)
+[dsv41 06:02:28] train: stage A train: {'steps': 2710, 'epochs': 0.713, 'kl_last': 2.318039682805538, 'seconds': 900.1}
+[dsv41 06:06:26] eval A: [m2bench] code: T0 78.845 tok/s, 3.657 tok/round (DSpark 3.657), exact True/True [m2bench] prose: T0 42.965 tok/s, 1.648 tok/round (DSpark 1.651), exact True/True [m2bench] structured: T0 116.945 tok/s, 5.908 tok/round (DSpark 5.908), exact True/True [m2bench] C1: 74.45 tok/s aggregate, 79.57 decode (mixed; kit C1 / C2 / C4 32.2 / 46.7 / 37.6) [m2bench] C2: 62.73 tok/s agg
+[dsv41 06:06:26] eval A: [tensorfold] dsv41 DSpark delta /out/deltaA.safetensors: 5 tensors, 1 LoRA
+[dsv41 06:06:26] pick: off: prose 41.285 (1.587 tok/round), code 81.205, structured 116.845, C2 66.94, C4 93.92
+[dsv41 06:06:26] pick: A: exact_all True, prose 42.965 (+4.1%), tok/round prose 1.648 code 3.657, code 78.845, structured 116.945, C2 65.71, C4 93.14 -> fail
+[dsv41 06:06:26] pick: B: no report
+[dsv41 06:06:26] pick: adopt: none
+[dsv41 05:39:17] g11-cap memory: head MemFree min 6.06, MemAvailable min 10.95 GiB; worker MemFree min 7.96, MemAvailable min 9.24 GiB
+[dsv41 05:44:01] g11-off memory: head MemFree min 9.55, MemAvailable min 10.81 GiB; worker MemFree min 7.53, MemAvailable min 8.52 GiB
+[dsv41 06:06:26] g11-A memory: head MemFree min 8.54, MemAvailable min 9.99 GiB; worker MemFree min 7.36, MemAvailable min 8.56 GiB

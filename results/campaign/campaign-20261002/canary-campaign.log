@@ -1,0 +1,3 @@
+[canary] ok: 3 probes, tokens/round 5.71, decode 88.9 tok/s
+[canary] warmup 4096: 4112 prompt tokens, prefill 2.6711 s (2.75 s)
+[canary] warmup 16384: 16399 prompt tokens, prefill 9.3664 s (9.5 s)

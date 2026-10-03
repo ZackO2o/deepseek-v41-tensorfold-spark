@@ -1,0 +1,94 @@
+G4-perf 2026-10-02T01:29:06Z, sources 0ff0fc3e8d9e030616d151454f990827a028bbb6
+tests: 1 failed, 61 passed, 1 warning in 483.54s (0:08:03)
+
+single stream (tok/s; T = 0 / T = 0.7)
+| workload | graphs on | graphs off | NCCL | nucleus off (T=0.7) | tok/round | target | kit |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| code | 57.81999999999999 / 55.85 | 53.97 / 51.445 | None / None | 17.35 | 3.918 | 52.0 | 36.4 |
+| prose | 31.310000000000002 / 30.005 | 27.79 / 26.86 | None / None | 12.11 | 1.77 | 38.0 | 25.1 |
+| structured | 85.97 / 92.41 | 79.07 / 84.03 | None / None | None | 5.908 |  | 38.0 |
+| tweet | 91.065 / 70.95 | 84.23 / 64.12 | None / None | None | 6.551 |  |  |
+| edit | 93.24 / 93.455 | 88.255 / 87.0 | None / None | None | 7.211 |  |  |
+| long | 53.635 / 49.65 | 50.95 / 44.94 | None / None | None | 3.717 |  |  |
+
+concurrent (aggregate tok/s from the first submit; decode tok/s first to last token)
+| C | graphs on | graphs off | NCCL | kit |
+| --- | ---: | ---: | ---: | ---: |
+| C1 | 60.53 (63.25) | 55.12 (57.61) | - | 32.2 |
+| C2 | 46.05 (47.5) | 44.25 (45.66) | - | 46.7 |
+| C4 | 70.65 (73.17) | 67.8 (70.06) | - | 37.6 |
+
+exactness
+  fast: drafted == serial every workload (T = 0 / 0.7): True
+  eager: drafted == serial every workload (T = 0 / 0.7): True
+  nucleus0: drafted == serial every workload (T = 0 / 0.7): True
+  phases: drafted == serial every workload (T = 0 / 0.7): True
+  nsys1: drafted == serial every workload (T = 0 / 0.7): True
+  nsys4: drafted == serial every workload (T = 0 / 0.7): True
+  graphs on == off replies: True
+  nucleus candidates == full vocabulary (T = 0.7 replies): True
+  fast state: DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 16940, 'hits': 17132, 'misses': 42, 'dropped': 0, 'reads': 75453, 'cached': 532109, 'waited': 55664}; graphs on: 28 held (6 at boot in 3.34 s, 22 on first use), 8261 replays, 220 eager windows; RoCE exchanges 79080 fast / 3402 on NCCL; phases (1, ms a round over 225 rounds): candidates 39.53, commit 1.57, draft 6.10, draft.d
+  fast comm: {'backend': 'RoceComm', 'fast_ops': 79080, 'slow_ops': 3402}
+  eager state: DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 16906, 'hits': 17036, 'misses': 36, 'dropped': 0, 'reads': 76588, 'cached': 533286, 'waited': 56927}; RoCE exchanges 741527 fast / 3402 on NCCL; phases (1, ms a round over 223 rounds): candidates 24.48, commit 1.56, draft 6.85, draft.depth 0.02, draft.pass 6.83, engram.wait 19.09, execute 95.79, forward 59.10, nucleus 0.58, 
+  eager comm: {'backend': 'RoceComm', 'fast_ops': 741527, 'slow_ops': 3402}
+
+phases (ms a round; 'phases' step = TF_DSV41_PHASES=sync: GPU + host per phase)
+  [phases] code (sync, 101 rounds): round 75.12, execute 74.49, window 62.47, forward 62.12, graph.replay 55.77, draft 7.27, draft.pass 7.23, engram.wait 6.37, graph.stage 6.29, prefill 3.04, commit 1.01, prefetch 0.66, share 0.53, candidates 0.34, sample 0.04, plan 0.03, draft.depth 0.02
+  [phases] prose (sync, 218 rounds): round 61.42, execute 60.80, window 50.82, forward 50.48, graph.replay 46.74, draft 7.31, draft.pass 7.27, graph.stage 3.69, engram.wait 3.65, prefill 1.12, commit 0.99, share 0.55, prefetch 0.51, candidates 0.32, sample 0.03, plan 0.02, draft.depth 0.02
+  [phases] C4 (sync, 225 rounds): round 115.40, execute 114.12, window 84.70, forward 83.20, graph.replay 24.11, prefill 20.33, draft 6.67, draft.pass 6.63, engram.wait 3.21, graph.capture 1.86, commit 1.64, candidates 0.90, share 0.67, prefetch 0.58, nucleus 0.57, sample 0.36, graph.stage 0.33, plan 0.04, draft.depth 0.03
+  [fast] code (1, 99 rounds): round 64.39, execute 63.93, window 55.76, candidates 54.54, draft 4.99, draft.pass 4.97, prefill 2.19, engram.wait 1.75, forward 1.21, graph.stage 1.16, commit 0.63, share 0.41, prefetch 0.11, graph.replay 0.03, sample 0.02, plan 0.02, draft.depth 0.01
+  [fast] prose (1, 218 rounds): round 54.18, execute 53.01, window 46.19, candidates 45.82, draft 4.84, draft.pass 4.82, share 1.13, prefill 0.88, commit 0.80, engram.wait 0.52, forward 0.37, graph.stage 0.31, prefetch 0.25, graph.replay 0.04, sample 0.02, plan 0.01, draft.depth 0.01
+  [fast] structured (1, 66 rounds): round 64.56, execute 63.96, window 56.38, candidates 55.74, draft 4.92, draft.pass 4.90, prefill 1.72, engram.wait 0.97, commit 0.65, forward 0.63, graph.stage 0.58, share 0.55, prefetch 0.10, graph.replay 0.03, sample 0.03, plan 0.02, draft.depth 0.01
+  [fast] tweet (1, 50 rounds): round 74.26, execute 73.46, window 61.96, candidates 60.40, draft 4.27, draft.pass 4.26, prefill 4.20, engram.wait 2.69, forward 1.56, graph.stage 1.49, share 0.74, commit 0.67, prefetch 0.10, graph.replay 0.04, sample 0.03, plan 0.03, draft.depth 0.01
+  [fast] edit (1, 143 rounds): round 76.07, execute 75.51, window 69.08, candidates 67.04, draft 4.23, draft.pass 4.22, forward 2.04, engram.wait 1.96, graph.stage 1.95, commit 0.68, share 0.48, prefill 0.41, prefetch 0.11, graph.replay 0.06, plan 0.05, sample 0.03, draft.depth 0.01
+  [fast] long (1, 47 rounds): round 62.97, execute 61.88, window 54.92, candidates 54.21, draft 4.90, draft.pass 4.88, prefill 1.20, share 1.03, engram.wait 0.77, forward 0.70, commit 0.64, graph.stage 0.64, prefetch 0.09, graph.replay 0.04, plan 0.04, sample 0.03, draft.depth 0.01
+  [fast] C1 (1, 99 rounds): round 64.08, execute 63.61, window 55.34, candidates 54.74, draft 4.94, draft.pass 4.92, prefill 2.18, engram.wait 1.12, commit 0.83, forward 0.60, graph.stage 0.53, share 0.41, prefetch 0.28, graph.replay 0.04, sample 0.03, plan 0.02, draft.depth 0.01
+  [fast] C2 (1, 225 rounds): round 74.12, execute 72.92, window 64.00, candidates 35.65, forward 27.90, engram.wait 8.79, draft 5.85, draft.pass 5.83, graph.capture 2.25, prefill 1.48, commit 1.14, share 0.97, nucleus 0.44, graph.stage 0.34, prefetch 0.33, sample 0.20, graph.replay 0.08, plan 0.02, draft.depth 0.02
+  [fast] C4 (1, 225 rounds): round 92.59, execute 91.35, window 79.67, forward 39.58, candidates 39.53, engram.wait 13.74, draft 6.10, draft.pass 6.07, prefill 2.15, commit 1.57, share 0.84, nucleus 0.54, prefetch 0.48, sample 0.35, graph.stage 0.18, plan 0.04, graph.replay 0.03, draft.depth 0.02
+  [eager] code (1, 97 rounds): round 72.55, execute 71.61, window 62.25, forward 40.32, candidates 21.92, engram.wait 12.29, draft 4.96, draft.pass 4.93, prefill 2.24, share 0.87, commit 0.67, prefetch 0.11, sample 0.04, plan 0.03, draft.depth 0.02
+  [eager] prose (1, 218 rounds): round 61.67, execute 60.80, window 53.34, forward 36.20, candidates 17.12, engram.wait 8.83, draft 4.84, draft.pass 4.81, prefill 0.87, commit 0.86, share 0.81, prefetch 0.28, sample 0.03, plan 0.02, draft.depth 0.02
+  [eager] structured (1, 66 rounds): round 72.02, execute 71.45, window 62.21, forward 39.66, candidates 22.55, engram.wait 12.59, draft 4.88, draft.pass 4.86, prefill 1.71, commit 0.62, share 0.52, prefetch 0.09, sample 0.03, plan 0.02, draft.depth 0.01
+  [eager] tweet (1, 50 rounds): round 80.20, execute 79.54, window 68.38, forward 43.24, candidates 25.13, engram.wait 14.88, draft 4.23, draft.pass 4.22, prefill 4.21, commit 0.66, share 0.59, prefetch 0.11, sample 0.03, plan 0.03, draft.depth 0.01
+  [eager] edit (1, 143 rounds): round 81.92, execute 81.05, window 74.93, forward 49.21, candidates 25.72, engram.wait 17.74, draft 4.17, draft.pass 4.15, share 0.77, commit 0.67, prefill 0.41, prefetch 0.12, plan 0.06, sample 0.04, draft.depth 0.01
+  [eager] long (1, 47 rounds): round 68.97, execute 68.41, window 61.22, forward 39.30, candidates 21.92, engram.wait 12.67, draft 4.95, draft.pass 4.94, prefill 1.20, commit 0.62, share 0.50, prefetch 0.09, plan 0.03, sample 0.03, draft.depth 0.01
+  [eager] C1 (1, 97 rounds): round 71.82, execute 71.22, window 62.54, forward 40.58, candidates 21.95, engram.wait 12.32, draft 5.02, draft.pass 4.99, prefill 2.24, commit 0.88, share 0.52, prefetch 0.30, sample 0.04, plan 0.03, draft.depth 0.02
+  [eager] C2 (1, 224 rounds): round 77.48, execute 76.68, window 67.11, forward 45.78, candidates 20.78, engram.wait 12.88, draft 5.55, draft.pass 5.52, prefill 1.50, commit 1.22, nucleus 0.54, share 0.52, prefetch 0.36, sample 0.24, plan 0.03, draft.depth 0.02
+  [eager] C4 (1, 223 rounds): round 97.35, execute 95.79, window 84.17, forward 59.10, candidates 24.48, engram.wait 19.09, draft 6.85, draft.pass 6.83, prefill 2.15, commit 1.56, share 1.15, nucleus 0.58, prefetch 0.48, sample 0.36, plan 0.04, draft.depth 0.02
+  [nsys1] {"code": {"tok_s": 51.48, "drafting": {"windows": 43, "rows": 212, "dspark_rounds": 42, "dspark_drafts": 169, "dspark_kept": 117, "lookup_rounds": 0, "lookup_drafts": 0, "lookup_kept": 0, "serial_rounds": 1, "dspark_tokens_per_round": 3.786, "tokens_per_round": 3.721}}, "prose": {"tok_s": 26.65, "dr
+  [nsys4] {"C4": {"streams": 4, "sampling": "mixed", "tokens": 640, "wall_s": 15.52, "aggregate_tok_s": 41.23, "decode_aggregate_tok_s": 58.83, "per_stream_tok_s": [23.08, 14.61, 30.1, 31.55], "kit_c4": 37.6, "drafting": [{"windows": 43, "rows": 212, "dspark_rounds": 42, "dspark_drafts": 169, "dspark_kept": 1
+
+memory (0.5 s samplers over the whole G4-perf run)
+  head: MemFree min 0.52, MemAvailable min 4.49 GiB
+  worker: MemFree min 0.51, MemAvailable min 5.40 GiB
+
+PASS code >= 52: True; prose >= 38: False; C4 > 37.6: True (C4 70.65, TARGETS 120)
+[tensorfold] roce: all-gathers of up to 1024 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 14.5 us eager at 16 KiB
+[tensorfold] dsv41 calibration: draft 4.65 ms, verify 1/2/4/6/8/16 rows 41.5, 51.1, 58.9, 66.8, 74.6, 95.8 ms (stored /cache/dsv41-calib/calib-902153d09eb25ba4a1a2.json)
+[boot] r0 +33.1s M2 boot: DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 0, 'hits': 130, 'misses': 36, 'dropped': 0, 'reads': 5311, 'cached': 18200, 'waited': 0}; RoCE exchanges 6676 fast / 324 on NCCL; phases (1, ms a round over 0 rounds): candidates 1784.03, engram.wait 1933.67, forward 3897.26 (13.4s) | MemFree 10.2 GiB, MemAvailable 11.3 GiB
+[tensorfold] roce: all-gathers of up to 1024 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 14.5 us eager at 16 KiB
+[tensorfold] dsv41 graphs on: 6 held (6 at boot in 3.34 s, 0 on first use), 0 replays, 0 eager windows (6 captured at boot)
+[tensorfold] dsv41 calibration: draft 4.65 ms, verify 1/2/4/6/8/16 rows 35.0, 43.2, 51.6, 60.0, 68.4, 95.9 ms (stored /cache/dsv41-calib/calib-c5a1286d5b7708dbd450.json)
+[boot] r0 +35.4s M2 boot: DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 0, 'hits': 168, 'misses': 42, 'dropped': 0, 'reads': 5367, 'cached': 21496, 'waited': 0}; graphs on: 16 held (6 at boot in 3.34 s, 10 on first use), 69 replays, 10 eager windows; RoCE exchanges 4209 fast / 324 on NCCL; phases (1, ms a round over 0 rounds): candidates 4023.07, engram.wait 1182.98, forward 2342.80, graph.capture 1483.43, graph.replay 64.36, graph.stage 213.30 (15.1s) | MemFree 10.0 GiB, MemAvailable 11.2 GiB
+[tensorfold] roce: all-gathers of up to 256 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 19.9 us eager at 16 KiB
+[tensorfold] roce: all-gathers of up to 256 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 14.5 us eager at 16 KiB
+[tensorfold] roce: all-gathers of up to 256 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 14.4 us eager at 16 KiB
+[tensorfold] dsv41 graphs on: 6 held (6 at boot in 3.35 s, 0 on first use), 0 replays, 0 eager windows (6 captured at boot)
+[tensorfold] dsv41 calibration: draft 4.97 ms, verify 1/2/4/6/8/16 rows 37.6, 45.7, 54.2, 62.7, 71.2, 97.7 ms (stored /cache/dsv41-calib/calib-57cd3e55d49caa1ab88e.json)
+[boot] r0 +36.1s M2 boot: DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 0, 'hits': 168, 'misses': 42, 'dropped': 0, 'reads': 5367, 'cached': 21496, 'waited': 0}; graphs on: 16 held (6 at boot in 3.35 s, 10 on first use), 69 replays, 10 eager windows (15.3s) | MemFree 9.2 GiB, MemAvailable 10.4 GiB
+[tensorfold] roce: all-gathers of up to 1024 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 13.5 us eager at 16 KiB
+[tensorfold] dsv41 graphs on: 6 held (6 at boot in 9.27 s, 0 on first use), 0 replays, 0 eager windows (6 captured at boot)
+[tensorfold] dsv41 calibration: draft 4.73 ms, verify 1/2/4/6/8/16 rows 35.5, 43.5, 51.6, 59.7, 67.8, 96.7 ms (stored /cache/dsv41-calib/calib-c5a1286d5b7708dbd450.json)
+[boot] r0 +44.1s M2 boot: DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 0, 'hits': 168, 'misses': 42, 'dropped': 0, 'reads': 5367, 'cached': 21496, 'waited': 0}; graphs on: 16 held (6 at boot in 9.27 s, 10 on first use), 69 replays, 10 eager windows; RoCE exchanges 4209 fast / 324 on NCCL; phases (nvtx, ms a round over 0 rounds): candidates 3960.69, engram.wait 1261.78, forward 2490.09, graph.capture 1562.62, graph.replay 122.61, graph.stage 225.78 (22.9s) | MemFree 6.0 GiB, MemAvailable 7.3 GiB
+[tensorfold] roce: all-gathers of up to 1024 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 13.5 us eager at 16 KiB
+[tensorfold] dsv41 graphs on: 6 held (6 at boot in 5.12 s, 0 on first use), 0 replays, 0 eager windows (6 captured at boot)
+[tensorfold] dsv41 calibration: draft 4.63 ms, verify 1/2/4/6/8/16 rows 35.5, 43.6, 51.7, 59.9, 68.1, 96.1 ms (stored /cache/dsv41-calib/calib-c5a1286d5b7708dbd450.json)
+[boot] r0 +37.5s M2 boot: DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 0, 'hits': 168, 'misses': 42, 'dropped': 0, 'reads': 5367, 'cached': 21496, 'waited': 0}; graphs on: 16 held (6 at boot in 5.12 s, 10 on first use), 69 replays, 10 eager windows; RoCE exchanges 4209 fast / 324 on NCCL; phases (nvtx, ms a round over 0 rounds): candidates 3999.81, engram.wait 1166.61, forward 2452.96, graph.capture 1520.58, graph.replay 115.81, graph.stage 237.33 (16.8s) | MemFree 6.5 GiB, MemAvailable 7.9 GiB
+[tensorfold] roce: all-gathers of up to 1024 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 13.5 us eager at 16 KiB
+[tensorfold] dsv41 graphs on: 6 held (6 at boot in 5.16 s, 0 on first use), 0 replays, 0 eager windows (6 captured at boot)
+[tensorfold] dsv41 calibration: draft 4.63 ms, verify 1/2/4/6/8/16 rows 35.6, 43.8, 52.1, 60.3, 68.6, 96.5 ms (stored /cache/dsv41-calib/calib-441756aff243ca987c0f.json)
+[boot] r0 +41.1s M2 boot: DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 0, 'hits': 168, 'misses': 42, 'dropped': 0, 'reads': 5367, 'cached': 21496, 'waited': 0}; graphs on: 16 held (6 at boot in 5.16 s, 10 on first use), 69 replays, 10 eager windows; RoCE exchanges 4209 fast / 324 on NCCL; phases (nvtx, ms a round over 0 rounds): candidates 4005.27, engram.wait 1187.97, forward 2443.62, graph.capture 1531.54, graph.replay 110.82, graph.stage 220.48 (16.9s) | MemFree 7.0 GiB, MemAvailable 8.4 GiB
+[tensorfold] roce: all-gathers of up to 1024 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 14.5 us eager at 16 KiB
+[tensorfold] dsv41 graphs on: 6 held (6 at boot in 3.06 s, 0 on first use), 0 replays, 0 eager windows (6 captured at boot)
+[tensorfold] dsv41 calibration: draft 4.68 ms, verify 1/2/4/6/8/16 rows 35.1, 43.5, 51.9, 60.4, 68.8, 96.2 ms (stored /cache/dsv41-calib/calib-c5a1286d5b7708dbd450.json)
+[boot] r0 +34.8s M2 boot: DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 0, 'hits': 168, 'misses': 42, 'dropped': 0, 'reads': 5367, 'cached': 21496, 'waited': 0}; graphs on: 16 held (6 at boot in 3.06 s, 10 on first use), 69 replays, 10 eager windows; RoCE exchanges 4209 fast / 324 on NCCL (14.6s) | MemFree 10.0 GiB, MemAvailable 11.2 GiB
+[tensorfold] roce: all-gathers of up to 1024 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 14.5 us eager at 16 KiB

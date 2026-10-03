@@ -1,0 +1,42 @@
+[dsv41 03:04:06] G2 output: ~/src/glm53-tensorfold-spark/results/dsv41-G2-20261001-200406
+[dsv41 03:04:09] G2 inside the held campaign window (lease age 138 s, watchdog inactive): no open, no restore
+[dsv41 03:04:09] memory
+[dsv41 03:04:20] memory ok: MemFree head 117.1, worker 116.2 GiB
+[dsv41 03:04:20] gates (boot 1: prepared folder or checkpoint)
+[dsv41 03:10:38] m1: rank 0 rc=1, rank 1 rc=1; [boot] r0 +82.8s warm-up window, barrier: serving (63.8s) | MemFree 8.9 GiB, MemAvailable 10.2 GiB
+[dsv41 03:10:38] gates rc=1: top1 0.9227 first copy 0.8571 top5 0.9934 invariance {'windows_of_8': True, 'one_row': True, 'rows': 259} decode 11.42 boot 79.7 pass False
+[dsv41 03:10:50] memory ok: MemFree head 114.7, worker 113.4 GiB
+[dsv41 03:11:57] boot2: rank 0 rc=1, rank 1 rc=1; [boot] r0 +21.1s warm-up window, barrier: serving (2.4s) | MemFree 14.2 GiB, MemAvailable 15.2 GiB
+[dsv41 03:11:57] boot 2: 17.6 s
+[dsv41 03:12:09] memory ok: MemFree head 116.4, worker 114.7 GiB
+[dsv41 03:13:17] boot3: rank 0 rc=1, rank 1 rc=1; [boot] r0 +21.5s warm-up window, barrier: serving (2.3s) | MemFree 14.4 GiB, MemAvailable 15.3 GiB
+[dsv41 03:13:17] boot 3: 18.3 s
+[dsv41 03:13:17] summary: ~/src/glm53-tensorfold-spark/results/dsv41-G2-20261001-200406/summary.txt
+[dsv41 03:13:17] campaign: window stays held (campaign.sh close restores prod)
+[dsv41 03:13:44] memory ok: MemFree head 116.7, worker 115.7 GiB
+[dsv41 03:13:44] pair diag1 20 --decode 0 --prompts 8 --context 4096 --no-invariance (DSV_ENV='', TF_DSV41_EXPERT_LOADS=1)
+[dsv41 03:16:21] diag1: rank 0 rc=1, rank 1 rc=1; [boot] r0 +80.6s warm-up window, barrier: serving (60.8s) | MemFree 8.4 GiB, MemAvailable 9.6 GiB
+[dsv41 03:29:26] memory ok: MemFree head 116.8, worker 116.1 GiB
+[dsv41 03:29:26] pair diag2 20 --decode 0 --prompts 8 --context 4096 --no-invariance (DSV_ENV='', TF_DSV41_EXPERT_LOADS=1)
+[dsv41 03:31:07] diag2: rank 0 rc=1, rank 1 rc=1; [boot] r0 +21.8s warm-up window, barrier: serving (2.4s) | MemFree 14.7 GiB, MemAvailable 15.7 GiB
+[dsv41 03:34:37] memory ok: MemFree head 117.3, worker 116.2 GiB
+[dsv41 03:34:37] pair prof1 15 --profile 20 (DSV_ENV='', TF_DSV41_EXPERT_LOADS=1)
+[dsv41 03:35:20] prof1: rank 0 rc=0, rank 1 rc=0; [boot] r0 +22.3s warm-up window, barrier: serving (2.6s) | MemFree 14.9 GiB, MemAvailable 15.9 GiB
+[dsv41 03:37:07] memory ok: MemFree head 117.3, worker 116.0 GiB
+[dsv41 03:37:07] pair prof2 15 --profile 20 (DSV_ENV='', TF_DSV41_EXPERT_LOADS=1)
+[dsv41 03:37:51] prof2: rank 0 rc=0, rank 1 rc=0; [boot] r0 +23.4s warm-up window, barrier: serving (3.2s) | MemFree 15.6 GiB, MemAvailable 16.5 GiB
+[dsv41 03:39:47] memory ok: MemFree head 117.4, worker 115.9 GiB
+[dsv41 03:39:47] pair prof3 15 --profile 20 (DSV_ENV='', TF_DSV41_EXPERT_LOADS=1)
+[dsv41 03:40:30] prof3: rank 0 rc=0, rank 1 rc=0; [boot] r0 +22.6s warm-up window, barrier: serving (3.3s) | MemFree 15.1 GiB, MemAvailable 16.0 GiB
+[dsv41 03:41:49] memory ok: MemFree head 116.7, worker 115.7 GiB
+[dsv41 03:41:49] pair m1final 60 --decode 256 --prompts 8 --context 4096 (DSV_ENV='', TF_DSV41_EXPERT_LOADS=1)
+[dsv41 03:46:34] m1final: rank 0 rc=1, rank 1 rc=1; [boot] r0 +80.0s warm-up window, barrier: serving (60.2s) | MemFree 8.6 GiB, MemAvailable 9.8 GiB
+[dsv41 03:47:03] memory ok: MemFree head 113.7, worker 112.7 GiB
+[dsv41 03:47:03] pair fp8keys 20 --decode 0 --prompts 8 --context 4096 --no-invariance (DSV_ENV='TF_DSV41_INDEX_KEY_SIM=fp8', TF_DSV41_EXPERT_LOADS=1)
+[dsv41 03:48:42] fp8keys: rank 0 rc=1, rank 1 rc=1; [boot] r0 +22.3s warm-up window, barrier: serving (2.7s) | MemFree 14.0 GiB, MemAvailable 15.0 GiB
+[dsv41 03:48:54] memory ok: MemFree head 116.7, worker 114.6 GiB
+[dsv41 03:48:54] pair boot2 15 --decode 32 --prompts 1 --context 4096 --no-invariance (DSV_ENV='', TF_DSV41_EXPERT_LOADS=1)
+[dsv41 03:49:31] boot2: rank 0 rc=1, rank 1 rc=1; [boot] r0 +21.0s warm-up window, barrier: serving (2.2s) | MemFree 14.6 GiB, MemAvailable 15.6 GiB
+[dsv41 03:49:42] memory ok: MemFree head 116.8, worker 115.5 GiB
+[dsv41 03:49:42] pair boot3 15 --decode 32 --prompts 1 --context 4096 --no-invariance (DSV_ENV='', TF_DSV41_EXPERT_LOADS=1)
+[dsv41 03:50:20] boot3: rank 0 rc=1, rank 1 rc=1; [boot] r0 +21.5s warm-up window, barrier: serving (2.5s) | MemFree 14.6 GiB, MemAvailable 15.5 GiB

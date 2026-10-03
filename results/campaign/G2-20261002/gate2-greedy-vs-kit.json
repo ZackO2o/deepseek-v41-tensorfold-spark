@@ -1,0 +1,63 @@
+{
+ "kit": "results/campaign-20261002/kit-greedy/kit-greedy.json",
+ "ours": "results/G2-20261002/m1final-report.json",
+ "rows": [
+  [
+   0,
+   256,
+   256,
+   18,
+   false
+  ],
+  [
+   1,
+   256,
+   256,
+   55,
+   false
+  ],
+  [
+   2,
+   256,
+   256,
+   21,
+   false
+  ],
+  [
+   3,
+   256,
+   256,
+   1,
+   false
+  ],
+  [
+   4,
+   256,
+   256,
+   26,
+   false
+  ],
+  [
+   5,
+   256,
+   256,
+   6,
+   false
+  ],
+  [
+   6,
+   256,
+   256,
+   38,
+   false
+  ],
+  [
+   7,
+   256,
+   256,
+   256,
+   true
+  ]
+ ],
+ "identical": 1
+}

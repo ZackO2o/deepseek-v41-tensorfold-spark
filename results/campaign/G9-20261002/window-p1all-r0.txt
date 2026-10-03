@@ -1,0 +1,184 @@
+187 windows; between windows: median 1.157 ms, mean 1.487 ms over 186 gaps
+== draft pass (5 rows): 94 windows, span 4.104 ms, kernels 4.091 ms, idle in window 0.026 ms; exchanges 8.0 a window: transfer 0.063 ms (floor 7.9 us) + wait 0.162 ms
+   dense x3dn                                    2.210 ms
+   experts                                       0.973 ms
+   exchange                                      0.224 ms
+   other                                         0.175 ms
+   mhc site                                      0.161 ms
+   router                                        0.088 ms
+   attention                                     0.085 ms
+   copies / elementwise                          0.068 ms
+   mhc finish                                    0.063 ms
+   norms                                         0.028 ms
+   indexer                                       0.010 ms
+   torch topk / sort                             0.006 ms
+     dense void dsv41_x3dn::dense_kernel<(int)12, (int) grid (144, 1, 1)    1410.3 us
+     dense void dsv41_x3dn::dense_kernel<(int)8, (int)3 grid (144, 1, 1)     763.2 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 5, 2)                         11.3 us
+     dense dsv41_x3dn::rot_in_kernel grid (3, 5, 1)                           8.8 us
+     dense dsv41_x3dn::rot_in_kernel grid (8, 5, 4)                           7.7 us
+     dense dsv41_x3dn::rot_in_kernel grid (8, 5, 1)                           5.9 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 5, 1)                          2.9 us
+== target 1 row(s): 15 windows, span 33.233 ms, kernels 33.192 ms, idle in window 0.265 ms; exchanges 83.0 a window: transfer 0.619 ms (floor 7.5 us) + wait 1.046 ms
+   dense x3dn                                   13.663 ms
+   experts                                       9.318 ms
+   mhc site                                      2.205 ms
+   exchange                                      1.664 ms
+   copies / elementwise                          1.380 ms
+   attention                                     1.303 ms
+   router                                        1.224 ms
+   torch topk / sort                             0.877 ms
+   mhc finish                                    0.817 ms
+   norms                                         0.413 ms
+   indexer                                       0.184 ms
+   other                                         0.143 ms
+     dense void dsv41_x3dn::dense_kernel<(int)10, (int) grid (144, 1, 1)   11503.8 us
+     dense void dsv41_x3dn::dense_kernel<(int)12, (int) grid (144, 1, 1)    1347.2 us
+     dense void dsv41_x3dn::dense_kernel<(int)8, (int)3 grid (144, 1, 1)     423.1 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 1, 2)                         87.3 us
+     dense dsv41_x3dn::rot_in_kernel grid (8, 1, 1)                          80.0 us
+     dense dsv41_x3dn::rot_in_kernel grid (8, 1, 4)                          75.3 us
+     dense dsv41_x3dn::rot_in_kernel grid (3, 1, 1)                          59.7 us
+     dense void dsv41_x3dn::dense_kernel<(int)16, (int) grid (2, 1, 1)       30.8 us
+     dense dsv41_x3dn::rot_in_kernel grid (3, 1, 2)                          16.4 us
+     dense dsv41_x3dn::rot_in_kernel grid (1, 1, 1)                          13.8 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 1, 4)                         11.7 us
+     dense dsv41_x3dn::rot_in_kernel grid (12, 1, 1)                          7.3 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 1, 3)                          4.6 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 1, 1)                          1.9 us
+== target 2 row(s): 32 windows, span 39.265 ms, kernels 39.202 ms, idle in window 0.255 ms; exchanges 83.0 a window: transfer 0.624 ms (floor 7.5 us) + wait 1.678 ms
+   dense x3dn                                   14.021 ms
+   experts                                      13.862 ms
+   exchange                                      2.302 ms
+   mhc site                                      2.223 ms
+   copies / elementwise                          1.645 ms
+   attention                                     1.324 ms
+   router                                        1.242 ms
+   torch topk / sort                             0.915 ms
+   mhc finish                                    0.819 ms
+   norms                                         0.419 ms
+   other                                         0.223 ms
+   indexer                                       0.208 ms
+     dense void dsv41_x3dn::dense_kernel<(int)10, (int) grid (144, 1, 1)   11805.8 us
+     dense void dsv41_x3dn::dense_kernel<(int)12, (int) grid (144, 1, 1)    1388.0 us
+     dense void dsv41_x3dn::dense_kernel<(int)8, (int)3 grid (144, 1, 1)     438.0 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 2, 2)                         87.3 us
+     dense dsv41_x3dn::rot_in_kernel grid (8, 2, 4)                          81.7 us
+     dense dsv41_x3dn::rot_in_kernel grid (8, 2, 1)                          77.2 us
+     dense dsv41_x3dn::rot_in_kernel grid (3, 2, 1)                          58.9 us
+     dense void dsv41_x3dn::dense_kernel<(int)16, (int) grid (2, 1, 1)       29.7 us
+     dense dsv41_x3dn::rot_in_kernel grid (3, 2, 2)                          16.1 us
+     dense dsv41_x3dn::rot_in_kernel grid (1, 2, 1)                          13.3 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 2, 4)                         11.3 us
+     dense dsv41_x3dn::rot_in_kernel grid (12, 2, 1)                          7.5 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 2, 3)                          4.6 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 2, 1)                          1.9 us
+== target 3 row(s): 30 windows, span 42.844 ms, kernels 42.778 ms, idle in window 0.254 ms; exchanges 83.0 a window: transfer 0.637 ms (floor 7.7 us) + wait 1.336 ms
+   experts                                      17.876 ms
+   dense x3dn                                   14.568 ms
+   mhc site                                      2.281 ms
+   exchange                                      1.973 ms
+   attention                                     1.329 ms
+   router                                        1.321 ms
+   torch topk / sort                             0.909 ms
+   mhc finish                                    0.807 ms
+   copies / elementwise                          0.769 ms
+   norms                                         0.414 ms
+   other                                         0.301 ms
+   indexer                                       0.230 ms
+     dense void dsv41_x3dn::dense_kernel<(int)10, (int) grid (144, 1, 1)   12308.4 us
+     dense void dsv41_x3dn::dense_kernel<(int)12, (int) grid (144, 1, 1)    1401.7 us
+     dense void dsv41_x3dn::dense_kernel<(int)8, (int)3 grid (144, 1, 1)     456.9 us
+     dense dsv41_x3dn::rot_in_kernel grid (8, 3, 4)                          84.9 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 3, 2)                         84.9 us
+     dense dsv41_x3dn::rot_in_kernel grid (8, 3, 1)                          79.7 us
+     dense dsv41_x3dn::rot_in_kernel grid (3, 3, 1)                          62.5 us
+     dense void dsv41_x3dn::dense_kernel<(int)16, (int) grid (2, 1, 1)       29.9 us
+     dense dsv41_x3dn::rot_in_kernel grid (3, 3, 2)                          18.5 us
+     dense dsv41_x3dn::rot_in_kernel grid (1, 3, 1)                          13.3 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 3, 4)                         11.7 us
+     dense dsv41_x3dn::rot_in_kernel grid (12, 3, 1)                          9.0 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 3, 3)                          4.7 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 3, 1)                          1.8 us
+== target 4 row(s): 14 windows, span 48.174 ms, kernels 48.093 ms, idle in window 0.261 ms; exchanges 83.0 a window: transfer 0.651 ms (floor 7.8 us) + wait 1.615 ms
+   experts                                      21.975 ms
+   dense x3dn                                   14.990 ms
+   mhc site                                      2.322 ms
+   exchange                                      2.264 ms
+   attention                                     1.358 ms
+   router                                        1.334 ms
+   copies / elementwise                          1.018 ms
+   torch topk / sort                             0.927 ms
+   mhc finish                                    0.848 ms
+   norms                                         0.412 ms
+   other                                         0.369 ms
+   indexer                                       0.277 ms
+     dense void dsv41_x3dn::dense_kernel<(int)10, (int) grid (144, 1, 1)   12686.3 us
+     dense void dsv41_x3dn::dense_kernel<(int)12, (int) grid (144, 1, 1)    1443.6 us
+     dense void dsv41_x3dn::dense_kernel<(int)8, (int)3 grid (144, 1, 1)     461.9 us
+     dense dsv41_x3dn::rot_in_kernel grid (8, 4, 4)                          90.2 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 4, 2)                         85.7 us
+     dense dsv41_x3dn::rot_in_kernel grid (8, 4, 1)                          77.3 us
+     dense dsv41_x3dn::rot_in_kernel grid (3, 4, 1)                          62.8 us
+     dense void dsv41_x3dn::dense_kernel<(int)16, (int) grid (2, 1, 1)       30.3 us
+     dense dsv41_x3dn::rot_in_kernel grid (3, 4, 2)                          14.5 us
+     dense dsv41_x3dn::rot_in_kernel grid (1, 4, 1)                          13.2 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 4, 4)                         10.5 us
+     dense dsv41_x3dn::rot_in_kernel grid (12, 4, 1)                          7.5 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 4, 3)                          4.5 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 4, 1)                          2.0 us
+== target 5 row(s): 1 windows, span 55.163 ms, kernels 55.17 ms, idle in window 0.254 ms; exchanges 83.0 a window: transfer 0.643 ms (floor 7.7 us) + wait 1.022 ms
+   experts                                      24.789 ms
+   dense x3dn                                   15.999 ms
+   copies / elementwise                          4.190 ms
+   mhc site                                      2.524 ms
+   exchange                                      1.665 ms
+   router                                        1.610 ms
+   attention                                     1.363 ms
+   mhc finish                                    0.963 ms
+   torch topk / sort                             0.902 ms
+   other                                         0.446 ms
+   norms                                         0.406 ms
+   indexer                                       0.314 ms
+     dense void dsv41_x3dn::dense_kernel<(int)10, (int) grid (144, 1, 1)   13509.8 us
+     dense void dsv41_x3dn::dense_kernel<(int)12, (int) grid (144, 1, 1)    1511.8 us
+     dense void dsv41_x3dn::dense_kernel<(int)8, (int)3 grid (144, 1, 1)     474.2 us
+     dense dsv41_x3dn::rot_in_kernel grid (8, 5, 1)                         147.6 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 5, 2)                        101.8 us
+     dense dsv41_x3dn::rot_in_kernel grid (8, 5, 4)                          93.4 us
+     dense dsv41_x3dn::rot_in_kernel grid (3, 5, 1)                          73.5 us
+     dense void dsv41_x3dn::dense_kernel<(int)16, (int) grid (2, 1, 1)       33.4 us
+     dense dsv41_x3dn::rot_in_kernel grid (3, 5, 2)                          14.3 us
+     dense dsv41_x3dn::rot_in_kernel grid (1, 5, 1)                          13.5 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 5, 4)                         11.1 us
+     dense dsv41_x3dn::rot_in_kernel grid (12, 5, 1)                          8.0 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 5, 3)                          4.4 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 5, 1)                          1.9 us
+== target 6 row(s): 1 windows, span 57.073 ms, kernels 57.053 ms, idle in window 0.268 ms; exchanges 83.0 a window: transfer 0.675 ms (floor 8.1 us) + wait 1.687 ms
+   experts                                      29.347 ms
+   dense x3dn                                   16.211 ms
+   mhc site                                      2.463 ms
+   exchange                                      2.361 ms
+   router                                        1.488 ms
+   attention                                     1.466 ms
+   torch topk / sort                             0.926 ms
+   mhc finish                                    0.868 ms
+   copies / elementwise                          0.671 ms
+   other                                         0.513 ms
+   norms                                         0.408 ms
+   indexer                                       0.331 ms
+     dense void dsv41_x3dn::dense_kernel<(int)10, (int) grid (144, 1, 1)   13677.6 us
+     dense void dsv41_x3dn::dense_kernel<(int)12, (int) grid (144, 1, 1)    1491.6 us
+     dense void dsv41_x3dn::dense_kernel<(int)8, (int)3 grid (144, 1, 1)     548.7 us
+     dense dsv41_x3dn::rot_in_kernel grid (8, 6, 4)                         133.8 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 6, 2)                        113.3 us
+     dense dsv41_x3dn::rot_in_kernel grid (3, 6, 1)                          90.8 us
+     dense dsv41_x3dn::rot_in_kernel grid (8, 6, 1)                          75.1 us
+     dense void dsv41_x3dn::dense_kernel<(int)16, (int) grid (2, 1, 1)       33.3 us
+     dense dsv41_x3dn::rot_in_kernel grid (3, 6, 2)                          14.4 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 6, 4)                          9.2 us
+     dense dsv41_x3dn::rot_in_kernel grid (1, 6, 1)                           8.7 us
+     dense dsv41_x3dn::rot_in_kernel grid (12, 6, 1)                          7.9 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 6, 3)                          4.4 us
+     dense dsv41_x3dn::rot_in_kernel grid (10, 6, 1)                          1.9 us
+eager kernels (total ms): void dsv41_x3gm::gm_kernel< 131.21; _gemm 51.5; void <unnamed>::unpack_kernel< 43.73; void dsv41_x3dn::dense_kernel< 30.1; void at::native::vectorized_elementwise_kernel< 15.99; tfroce::gather_kernel 12.15; _site 6.52; void at::native::elementwise_kernel< 4.87; void dsv41_rg::gemv_kernel< 3.33; _rms 3.24

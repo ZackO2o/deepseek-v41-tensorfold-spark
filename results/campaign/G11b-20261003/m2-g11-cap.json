@@ -1,0 +1,6152 @@
+{
+ "knobs": {
+  "TF_DSV41_CALIB": "real",
+  "TF_DSV41_CALIB_DIR": "/tmp/g11-calib",
+  "TF_DSV41_DEFAULT_EFFORT": "high",
+  "TF_DSV41_DENSE": "0",
+  "TF_DSV41_DEPTH_JOINT": "0",
+  "TF_DSV41_DISCONNECT": "1",
+  "TF_DSV41_DRAFT_LOG": "/out/draftlog",
+  "TF_DSV41_DRAFT_LOG_TAPS": "1",
+  "TF_DSV41_DRAFT_LOG_TOPK": "32",
+  "TF_DSV41_ENGRAM_DIR": "/engram",
+  "TF_DSV41_ENGRAM_FUSE_DEC": "1",
+  "TF_DSV41_ENGRAM_GATE": "1",
+  "TF_DSV41_ENGRAM_NATIVE": "1",
+  "TF_DSV41_EXPERT_LOADS": "1",
+  "TF_DSV41_EXPERT_MIN_K": "3",
+  "TF_DSV41_EXPERT_PREFILL": "0",
+  "TF_DSV41_EXPERT_RENORM": "kept",
+  "TF_DSV41_EXPERT_TOPP": "0.85",
+  "TF_DSV41_FAST_EXPERTS": "gm",
+  "TF_DSV41_FLOOR_GIB": "5",
+  "TF_DSV41_FLOOR_HARD_GIB": "4",
+  "TF_DSV41_GRAMMAR": "1",
+  "TF_DSV41_GRAPH_MODE": "rows",
+  "TF_DSV41_INDEX_DTOPK": "1",
+  "TF_DSV41_INDEX_KV": "fp8",
+  "TF_DSV41_INDEX_STREAM_MIN": "16384",
+  "TF_DSV41_L2PF": "1",
+  "TF_DSV41_L2PF_MB": "12",
+  "TF_DSV41_LAUNCH_T0": "1790979641.165469817",
+  "TF_DSV41_MHC_BM": "64",
+  "TF_DSV41_MHC_DEC": "1",
+  "TF_DSV41_MHC_FIN2": "1",
+  "TF_DSV41_MHC_FN": "bf16",
+  "TF_DSV41_MHC_WARPS": "8",
+  "TF_DSV41_NATIVE_DIR": "/cache/dsv41-native",
+  "TF_DSV41_PARTIAL_BF16": "1",
+  "TF_DSV41_PDL": "0",
+  "TF_DSV41_PHASES": "1",
+  "TF_DSV41_PLAIN_TRITON": "1",
+  "TF_DSV41_PLAN_LINK": "tcp",
+  "TF_DSV41_PREFETCH_AHEAD": "1",
+  "TF_DSV41_PREFILL": "replay",
+  "TF_DSV41_PREFILL_ATTN": "fused",
+  "TF_DSV41_PREFILL_ATTN_BMQ": "32",
+  "TF_DSV41_PREFILL_ATTN_WARPS": "8",
+  "TF_DSV41_PREFILL_CHUNK": "2048",
+  "TF_DSV41_PREFILL_GATHER": "bf16",
+  "TF_DSV41_PREFILL_KERNELS": "fast",
+  "TF_DSV41_PREFILL_ROUTER": "gemv",
+  "TF_DSV41_PREFILL_ROWS": "2048",
+  "TF_DSV41_PREPARED": "/prepared",
+  "TF_DSV41_PREPARED_WRITE": "1",
+  "TF_DSV41_RG_NARROW": "2",
+  "TF_DSV41_RG_TAIL": "1",
+  "TF_DSV41_RMS_PAIR": "1",
+  "TF_DSV41_ROPE_INPLACE": "1",
+  "TF_DSV41_ROUTER": "gemv",
+  "TF_DSV41_SCHEMA_PROMPT": "1",
+  "TF_DSV41_SESSIONS": "1",
+  "TF_DSV41_SESSION_RAM_MIB": "256",
+  "TF_DSV41_SPEC_DRAFT": "0",
+  "TF_DSV41_THINKING": "1",
+  "TF_DSV41_TOOL_GRAMMAR": "0",
+  "TF_DSV41_TREE": "0"
+ },
+ "requests": [
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 30,
+   "tok_s": 21.59,
+   "drafting": {
+    "windows": 7,
+    "rows": 35,
+    "dspark_rounds": 7,
+    "dspark_drafts": 28,
+    "dspark_kept": 25,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.571,
+    "tokens_per_round": 4.571
+   }
+  },
+  {
+   "msg": "Write a Python function that rate-limits calls with a token bucket, with comment",
+   "tokens": 512,
+   "tok_s": 45.91,
+   "drafting": {
+    "windows": 129,
+    "rows": 614,
+    "dspark_rounds": 128,
+    "dspark_drafts": 485,
+    "dspark_kept": 383,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.992,
+    "tokens_per_round": 3.969
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that computes word frequencies fr",
+   "tokens": 382,
+   "tok_s": 34.06,
+   "drafting": {
+    "windows": 130,
+    "rows": 537,
+    "dspark_rounds": 130,
+    "dspark_drafts": 407,
+    "dspark_kept": 253,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.946,
+    "tokens_per_round": 2.946
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that implements a trie with insert and prefix search",
+   "tokens": 309,
+   "tok_s": 48.0,
+   "drafting": {
+    "windows": 65,
+    "rows": 350,
+    "dspark_rounds": 65,
+    "dspark_drafts": 285,
+    "dspark_kept": 245,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.769,
+    "tokens_per_round": 4.769
+   }
+  },
+  {
+   "msg": "Write a Dockerfile for a small Python Flask app with a requirements.txt, running",
+   "tokens": 512,
+   "tok_s": 30.98,
+   "drafting": {
+    "windows": 148,
+    "rows": 628,
+    "dspark_rounds": 147,
+    "dspark_drafts": 480,
+    "dspark_kept": 364,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.476,
+    "tokens_per_round": 3.459
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that computes a moving average over",
+   "tokens": 512,
+   "tok_s": 37.42,
+   "drafting": {
+    "windows": 113,
+    "rows": 567,
+    "dspark_rounds": 113,
+    "dspark_drafts": 454,
+    "dspark_kept": 399,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.531,
+    "tokens_per_round": 4.531
+   }
+  },
+  {
+   "msg": "Write a GitHub Actions workflow that runs pytest on Python 3.11 and 3.12.",
+   "tokens": 512,
+   "tok_s": 32.71,
+   "drafting": {
+    "windows": 135,
+    "rows": 654,
+    "dspark_rounds": 133,
+    "dspark_drafts": 500,
+    "dspark_kept": 373,
+    "lookup_rounds": 2,
+    "lookup_drafts": 19,
+    "lookup_kept": 4,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.805,
+    "tokens_per_round": 3.793
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that parses a CSV file into a list ",
+   "tokens": 512,
+   "tok_s": 31.03,
+   "drafting": {
+    "windows": 155,
+    "rows": 661,
+    "dspark_rounds": 155,
+    "dspark_drafts": 506,
+    "dspark_kept": 357,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.303,
+    "tokens_per_round": 3.303
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 21,
+   "tok_s": 17.26,
+   "drafting": {
+    "windows": 5,
+    "rows": 27,
+    "dspark_rounds": 5,
+    "dspark_drafts": 22,
+    "dspark_kept": 17,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.4,
+    "tokens_per_round": 4.4
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean TypeScript: a helper that implements binary search",
+   "tokens": 458,
+   "tok_s": 58.89,
+   "drafting": {
+    "windows": 135,
+    "rows": 599,
+    "dspark_rounds": 135,
+    "dspark_drafts": 464,
+    "dspark_kept": 324,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.4,
+    "tokens_per_round": 3.4
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 40.93,
+   "drafting": {
+    "windows": 5,
+    "rows": 24,
+    "dspark_rounds": 5,
+    "dspark_drafts": 19,
+    "dspark_kept": 17,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.4,
+    "tokens_per_round": 4.4
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 34,
+   "tok_s": 32.71,
+   "drafting": {
+    "windows": 8,
+    "rows": 44,
+    "dspark_rounds": 8,
+    "dspark_drafts": 36,
+    "dspark_kept": 27,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.375,
+    "tokens_per_round": 4.375
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Go: a helper that implements Dijkstra's shortest p",
+   "tokens": 512,
+   "tok_s": 62.05,
+   "drafting": {
+    "windows": 122,
+    "rows": 610,
+    "dspark_rounds": 121,
+    "dspark_drafts": 488,
+    "dspark_kept": 390,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.223,
+    "tokens_per_round": 4.197
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 36,
+   "tok_s": 28.37,
+   "drafting": {
+    "windows": 11,
+    "rows": 51,
+    "dspark_rounds": 11,
+    "dspark_drafts": 40,
+    "dspark_kept": 26,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.364,
+    "tokens_per_round": 3.364
+   }
+  },
+  {
+   "msg": "Implement in Python: a function that computes the longest common subsequence of ",
+   "tokens": 257,
+   "tok_s": 57.25,
+   "drafting": {
+    "windows": 47,
+    "rows": 277,
+    "dspark_rounds": 47,
+    "dspark_drafts": 230,
+    "dspark_kept": 211,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.489,
+    "tokens_per_round": 5.489
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 37,
+   "tok_s": 40.49,
+   "drafting": {
+    "windows": 8,
+    "rows": 41,
+    "dspark_rounds": 8,
+    "dspark_drafts": 33,
+    "dspark_kept": 30,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.75,
+    "tokens_per_round": 4.75
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that flattens an arbitrarily nest",
+   "tokens": 494,
+   "tok_s": 36.13,
+   "drafting": {
+    "windows": 151,
+    "rows": 642,
+    "dspark_rounds": 151,
+    "dspark_drafts": 491,
+    "dspark_kept": 344,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.278,
+    "tokens_per_round": 3.278
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 46.66,
+   "drafting": {
+    "windows": 4,
+    "rows": 20,
+    "dspark_rounds": 4,
+    "dspark_drafts": 16,
+    "dspark_kept": 15,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.75,
+    "tokens_per_round": 4.75
+   }
+  },
+  {
+   "msg": "Write a TypeScript function that topologically sorts a dependency graph, with co",
+   "tokens": 512,
+   "tok_s": 37.95,
+   "drafting": {
+    "windows": 147,
+    "rows": 628,
+    "dspark_rounds": 147,
+    "dspark_drafts": 481,
+    "dspark_kept": 365,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.483,
+    "tokens_per_round": 3.483
+   }
+  },
+  {
+   "msg": "Write a Python function that merges overlapping intervals, with comments and two",
+   "tokens": 512,
+   "tok_s": 43.29,
+   "drafting": {
+    "windows": 130,
+    "rows": 605,
+    "dspark_rounds": 130,
+    "dspark_drafts": 475,
+    "dspark_kept": 382,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.938,
+    "tokens_per_round": 3.938
+   }
+  },
+  {
+   "msg": "Write a Go function that parses command-line flags without a library, with comme",
+   "tokens": 512,
+   "tok_s": 33.58,
+   "drafting": {
+    "windows": 125,
+    "rows": 591,
+    "dspark_rounds": 125,
+    "dspark_drafts": 466,
+    "dspark_kept": 387,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.096,
+    "tokens_per_round": 4.096
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that detects a cycle in a linked li",
+   "tokens": 512,
+   "tok_s": 36.76,
+   "drafting": {
+    "windows": 116,
+    "rows": 586,
+    "dspark_rounds": 115,
+    "dspark_drafts": 470,
+    "dspark_kept": 396,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.443,
+    "tokens_per_round": 4.414
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that parses command-line flags wi",
+   "tokens": 512,
+   "tok_s": 33.35,
+   "drafting": {
+    "windows": 134,
+    "rows": 622,
+    "dspark_rounds": 133,
+    "dspark_drafts": 488,
+    "dspark_kept": 378,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.842,
+    "tokens_per_round": 3.821
+   }
+  },
+  {
+   "msg": "Write a Python function that converts Roman numerals to integers and back, with ",
+   "tokens": 512,
+   "tok_s": 32.77,
+   "drafting": {
+    "windows": 140,
+    "rows": 630,
+    "dspark_rounds": 140,
+    "dspark_drafts": 490,
+    "dspark_kept": 372,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.657,
+    "tokens_per_round": 3.657
+   }
+  },
+  {
+   "msg": "List the steps to set up SSH keys on a new Linux machine.",
+   "tokens": 512,
+   "tok_s": 37.68,
+   "drafting": {
+    "windows": 149,
+    "rows": 672,
+    "dspark_rounds": 149,
+    "dspark_drafts": 523,
+    "dspark_kept": 363,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.436,
+    "tokens_per_round": 3.436
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that detects a cycle in a linked list. Show only the",
+   "tokens": 98,
+   "tok_s": 39.86,
+   "drafting": {
+    "windows": 22,
+    "rows": 124,
+    "dspark_rounds": 22,
+    "dspark_drafts": 102,
+    "dspark_kept": 77,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.5,
+    "tokens_per_round": 4.5
+   }
+  },
+  {
+   "msg": "Write a Bash function that serializes a binary tree to a string and back, with c",
+   "tokens": 512,
+   "tok_s": 38.8,
+   "drafting": {
+    "windows": 153,
+    "rows": 648,
+    "dspark_rounds": 153,
+    "dspark_drafts": 495,
+    "dspark_kept": 359,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.346,
+    "tokens_per_round": 3.346
+   }
+  },
+  {
+   "msg": "Implement in Python: a function that debounces a function call. Show only the co",
+   "tokens": 337,
+   "tok_s": 37.65,
+   "drafting": {
+    "windows": 91,
+    "rows": 438,
+    "dspark_rounds": 91,
+    "dspark_drafts": 347,
+    "dspark_kept": 247,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.714,
+    "tokens_per_round": 3.714
+   }
+  },
+  {
+   "msg": "Summarize the pros and cons of microservices in a short answer.",
+   "tokens": 46,
+   "tok_s": 17.06,
+   "drafting": {
+    "windows": 24,
+    "rows": 68,
+    "dspark_rounds": 24,
+    "dspark_drafts": 44,
+    "dspark_kept": 23,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.958,
+    "tokens_per_round": 1.958
+   }
+  },
+  {
+   "msg": "Implement in TypeScript: a function that flattens an arbitrarily nested list. Sh",
+   "tokens": 134,
+   "tok_s": 44.85,
+   "drafting": {
+    "windows": 28,
+    "rows": 163,
+    "dspark_rounds": 28,
+    "dspark_drafts": 135,
+    "dspark_kept": 107,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.821,
+    "tokens_per_round": 4.821
+   }
+  },
+  {
+   "msg": "Write a Python function that implements an LRU cache with O(1) get and put, with",
+   "tokens": 512,
+   "tok_s": 64.4,
+   "drafting": {
+    "windows": 129,
+    "rows": 608,
+    "dspark_rounds": 128,
+    "dspark_drafts": 479,
+    "dspark_kept": 383,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.992,
+    "tokens_per_round": 3.969
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 36,
+   "tok_s": 40.74,
+   "drafting": {
+    "windows": 8,
+    "rows": 43,
+    "dspark_rounds": 8,
+    "dspark_drafts": 35,
+    "dspark_kept": 29,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.625,
+    "tokens_per_round": 4.625
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that serializes a binary tree to ",
+   "tokens": 512,
+   "tok_s": 36.62,
+   "drafting": {
+    "windows": 157,
+    "rows": 687,
+    "dspark_rounds": 156,
+    "dspark_drafts": 530,
+    "dspark_kept": 355,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.276,
+    "tokens_per_round": 3.261
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 33,
+   "tok_s": 32.43,
+   "drafting": {
+    "windows": 9,
+    "rows": 47,
+    "dspark_rounds": 9,
+    "dspark_drafts": 38,
+    "dspark_kept": 25,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.778,
+    "tokens_per_round": 3.778
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Go: a helper that implements a trie with insert an",
+   "tokens": 474,
+   "tok_s": 41.78,
+   "drafting": {
+    "windows": 124,
+    "rows": 559,
+    "dspark_rounds": 124,
+    "dspark_drafts": 435,
+    "dspark_kept": 351,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.831,
+    "tokens_per_round": 3.831
+   }
+  },
+  {
+   "msg": "What is the difference between a process and a thread?",
+   "tokens": 404,
+   "tok_s": 30.73,
+   "drafting": {
+    "windows": 151,
+    "rows": 557,
+    "dspark_rounds": 151,
+    "dspark_drafts": 406,
+    "dspark_kept": 254,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.682,
+    "tokens_per_round": 2.682
+   }
+  },
+  {
+   "msg": "Implement in Rust: a function that merges overlapping intervals. Show only the c",
+   "tokens": 184,
+   "tok_s": 46.23,
+   "drafting": {
+    "windows": 37,
+    "rows": 204,
+    "dspark_rounds": 37,
+    "dspark_drafts": 167,
+    "dspark_kept": 148,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.0,
+    "tokens_per_round": 5.0
+   }
+  },
+  {
+   "msg": "Implement in Python: a function that computes word frequencies from a text file.",
+   "tokens": 69,
+   "tok_s": 32.91,
+   "drafting": {
+    "windows": 18,
+    "rows": 95,
+    "dspark_rounds": 18,
+    "dspark_drafts": 77,
+    "dspark_kept": 52,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.889,
+    "tokens_per_round": 3.889
+   }
+  },
+  {
+   "msg": "Fix the bug: `def avg(xs): return sum(xs) / len(xs) - 1` should return the mean.",
+   "tokens": 319,
+   "tok_s": 41.65,
+   "drafting": {
+    "windows": 88,
+    "rows": 413,
+    "dspark_rounds": 88,
+    "dspark_drafts": 325,
+    "dspark_kept": 232,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.636,
+    "tokens_per_round": 3.636
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that deep-merges two dictionaries. ",
+   "tokens": 512,
+   "tok_s": 42.24,
+   "drafting": {
+    "windows": 180,
+    "rows": 713,
+    "dspark_rounds": 179,
+    "dspark_drafts": 533,
+    "dspark_kept": 332,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.855,
+    "tokens_per_round": 2.844
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that retries an HTTP request with",
+   "tokens": 512,
+   "tok_s": 47.78,
+   "drafting": {
+    "windows": 129,
+    "rows": 612,
+    "dspark_rounds": 129,
+    "dspark_drafts": 483,
+    "dspark_kept": 383,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.969,
+    "tokens_per_round": 3.969
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 37.77,
+   "drafting": {
+    "windows": 5,
+    "rows": 25,
+    "dspark_rounds": 5,
+    "dspark_drafts": 20,
+    "dspark_kept": 16,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.2,
+    "tokens_per_round": 4.2
+   }
+  },
+  {
+   "msg": "Implement in Bash: a function that validates an email address with a regular exp",
+   "tokens": 66,
+   "tok_s": 39.63,
+   "drafting": {
+    "windows": 14,
+    "rows": 75,
+    "dspark_rounds": 14,
+    "dspark_drafts": 61,
+    "dspark_kept": 53,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.786,
+    "tokens_per_round": 4.786
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 512,
+   "tok_s": 37.67,
+   "drafting": {
+    "windows": 201,
+    "rows": 786,
+    "dspark_rounds": 198,
+    "dspark_drafts": 580,
+    "dspark_kept": 309,
+    "lookup_rounds": 2,
+    "lookup_drafts": 5,
+    "lookup_kept": 2,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.561,
+    "tokens_per_round": 2.547
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that reads a JSON config file and m",
+   "tokens": 512,
+   "tok_s": 41.67,
+   "drafting": {
+    "windows": 114,
+    "rows": 579,
+    "dspark_rounds": 114,
+    "dspark_drafts": 465,
+    "dspark_kept": 398,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.491,
+    "tokens_per_round": 4.491
+   }
+  },
+  {
+   "msg": "Implement in Rust: a function that deep-merges two dictionaries. Show only the c",
+   "tokens": 512,
+   "tok_s": 45.35,
+   "drafting": {
+    "windows": 101,
+    "rows": 563,
+    "dspark_rounds": 101,
+    "dspark_drafts": 462,
+    "dspark_kept": 411,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.069,
+    "tokens_per_round": 5.069
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that rate-limits calls with a token",
+   "tokens": 512,
+   "tok_s": 38.93,
+   "drafting": {
+    "windows": 139,
+    "rows": 635,
+    "dspark_rounds": 139,
+    "dspark_drafts": 496,
+    "dspark_kept": 373,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.683,
+    "tokens_per_round": 3.683
+   }
+  },
+  {
+   "msg": "Implement in Rust: a function that chunks a list into batches of n. Show only th",
+   "tokens": 136,
+   "tok_s": 37.13,
+   "drafting": {
+    "windows": 31,
+    "rows": 167,
+    "dspark_rounds": 31,
+    "dspark_drafts": 136,
+    "dspark_kept": 106,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.419,
+    "tokens_per_round": 4.419
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 23.94,
+   "drafting": {
+    "windows": 5,
+    "rows": 23,
+    "dspark_rounds": 5,
+    "dspark_drafts": 18,
+    "dspark_kept": 15,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.0,
+    "tokens_per_round": 4.0
+   }
+  },
+  {
+   "msg": "Write a regular expression that matches ISO 8601 dates (YYYY-MM-DD) and a Python",
+   "tokens": 512,
+   "tok_s": 51.32,
+   "drafting": {
+    "windows": 129,
+    "rows": 631,
+    "dspark_rounds": 129,
+    "dspark_drafts": 502,
+    "dspark_kept": 383,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.969,
+    "tokens_per_round": 3.969
+   }
+  },
+  {
+   "msg": "Write a bash script that backs up a directory to a timestamped tar.gz and keeps ",
+   "tokens": 512,
+   "tok_s": 49.89,
+   "drafting": {
+    "windows": 135,
+    "rows": 633,
+    "dspark_rounds": 134,
+    "dspark_drafts": 498,
+    "dspark_kept": 377,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.813,
+    "tokens_per_round": 3.793
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 31.27,
+   "drafting": {
+    "windows": 6,
+    "rows": 27,
+    "dspark_rounds": 6,
+    "dspark_drafts": 21,
+    "dspark_kept": 14,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.333,
+    "tokens_per_round": 3.333
+   }
+  },
+  {
+   "msg": "Write a Python function that validates an email address with a regular expressio",
+   "tokens": 512,
+   "tok_s": 42.62,
+   "drafting": {
+    "windows": 138,
+    "rows": 611,
+    "dspark_rounds": 138,
+    "dspark_drafts": 473,
+    "dspark_kept": 374,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.71,
+    "tokens_per_round": 3.71
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Go: a helper that finds all anagram groups in a li",
+   "tokens": 366,
+   "tok_s": 36.75,
+   "drafting": {
+    "windows": 109,
+    "rows": 465,
+    "dspark_rounds": 109,
+    "dspark_drafts": 356,
+    "dspark_kept": 258,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.367,
+    "tokens_per_round": 3.367
+   }
+  },
+  {
+   "msg": "Write a Bash function that debounces a function call, with comments and two test",
+   "tokens": 512,
+   "tok_s": 39.11,
+   "drafting": {
+    "windows": 161,
+    "rows": 671,
+    "dspark_rounds": 161,
+    "dspark_drafts": 510,
+    "dspark_kept": 351,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.18,
+    "tokens_per_round": 3.18
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 33,
+   "tok_s": 36.87,
+   "drafting": {
+    "windows": 8,
+    "rows": 40,
+    "dspark_rounds": 8,
+    "dspark_drafts": 32,
+    "dspark_kept": 27,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.375,
+    "tokens_per_round": 4.375
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that implements binary search on a sorted array. Sho",
+   "tokens": 103,
+   "tok_s": 37.13,
+   "drafting": {
+    "windows": 19,
+    "rows": 110,
+    "dspark_rounds": 19,
+    "dspark_drafts": 91,
+    "dspark_kept": 85,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.474,
+    "tokens_per_round": 5.474
+   }
+  },
+  {
+   "msg": "Write a Bash function that retries an HTTP request with exponential backoff, wit",
+   "tokens": 512,
+   "tok_s": 38.41,
+   "drafting": {
+    "windows": 140,
+    "rows": 635,
+    "dspark_rounds": 140,
+    "dspark_drafts": 495,
+    "dspark_kept": 372,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.657,
+    "tokens_per_round": 3.657
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that implements an LRU cache with",
+   "tokens": 512,
+   "tok_s": 40.08,
+   "drafting": {
+    "windows": 140,
+    "rows": 613,
+    "dspark_rounds": 139,
+    "dspark_drafts": 473,
+    "dspark_kept": 372,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.676,
+    "tokens_per_round": 3.657
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 275,
+   "tok_s": 25.62,
+   "drafting": {
+    "windows": 110,
+    "rows": 408,
+    "dspark_rounds": 110,
+    "dspark_drafts": 298,
+    "dspark_kept": 166,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.509,
+    "tokens_per_round": 2.509
+   }
+  },
+  {
+   "msg": "Convert this JSON to a Python dataclass with type hints: {\"id\": 1, \"name\": \"x\", ",
+   "tokens": 87,
+   "tok_s": 35.77,
+   "drafting": {
+    "windows": 24,
+    "rows": 108,
+    "dspark_rounds": 24,
+    "dspark_drafts": 84,
+    "dspark_kept": 64,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.667,
+    "tokens_per_round": 3.667
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 36,
+   "tok_s": 29.23,
+   "drafting": {
+    "windows": 10,
+    "rows": 55,
+    "dspark_rounds": 10,
+    "dspark_drafts": 45,
+    "dspark_kept": 27,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.7,
+    "tokens_per_round": 3.7
+   }
+  },
+  {
+   "msg": "Write a Bash function that reads a JSON config file and merges it with defaults,",
+   "tokens": 512,
+   "tok_s": 56.49,
+   "drafting": {
+    "windows": 140,
+    "rows": 619,
+    "dspark_rounds": 140,
+    "dspark_drafts": 479,
+    "dspark_kept": 372,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.657,
+    "tokens_per_round": 3.657
+   }
+  },
+  {
+   "msg": "Write a SQL query that returns the top 5 customers by total order value from tab",
+   "tokens": 221,
+   "tok_s": 40.91,
+   "drafting": {
+    "windows": 68,
+    "rows": 298,
+    "dspark_rounds": 68,
+    "dspark_drafts": 230,
+    "dspark_kept": 154,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.265,
+    "tokens_per_round": 3.265
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that converts Roman numerals to int",
+   "tokens": 512,
+   "tok_s": 36.84,
+   "drafting": {
+    "windows": 152,
+    "rows": 662,
+    "dspark_rounds": 152,
+    "dspark_drafts": 510,
+    "dspark_kept": 360,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.368,
+    "tokens_per_round": 3.368
+   }
+  },
+  {
+   "msg": "Write a Bash function that finds all anagram groups in a list of words, with com",
+   "tokens": 512,
+   "tok_s": 37.28,
+   "drafting": {
+    "windows": 150,
+    "rows": 626,
+    "dspark_rounds": 149,
+    "dspark_drafts": 476,
+    "dspark_kept": 362,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.43,
+    "tokens_per_round": 3.413
+   }
+  },
+  {
+   "msg": "Give me a two-sentence explanation of how HTTPS works.",
+   "tokens": 74,
+   "tok_s": 22.12,
+   "drafting": {
+    "windows": 33,
+    "rows": 102,
+    "dspark_rounds": 33,
+    "dspark_drafts": 69,
+    "dspark_kept": 42,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.273,
+    "tokens_per_round": 2.273
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that chunks a list into batches of ",
+   "tokens": 512,
+   "tok_s": 36.21,
+   "drafting": {
+    "windows": 157,
+    "rows": 661,
+    "dspark_rounds": 157,
+    "dspark_drafts": 504,
+    "dspark_kept": 355,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.261,
+    "tokens_per_round": 3.261
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean TypeScript: a helper that computes the longest com",
+   "tokens": 512,
+   "tok_s": 41.92,
+   "drafting": {
+    "windows": 124,
+    "rows": 585,
+    "dspark_rounds": 124,
+    "dspark_drafts": 461,
+    "dspark_kept": 388,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.129,
+    "tokens_per_round": 4.129
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 20.95,
+   "drafting": {
+    "windows": 5,
+    "rows": 26,
+    "dspark_rounds": 5,
+    "dspark_drafts": 21,
+    "dspark_kept": 15,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.0,
+    "tokens_per_round": 4.0
+   }
+  },
+  {
+   "msg": "Write a Go function that computes a moving average over a stream of numbers, wit",
+   "tokens": 512,
+   "tok_s": 40.39,
+   "drafting": {
+    "windows": 135,
+    "rows": 654,
+    "dspark_rounds": 135,
+    "dspark_drafts": 519,
+    "dspark_kept": 377,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.793,
+    "tokens_per_round": 3.793
+   }
+  },
+  {
+   "msg": "Write a Python function that implements Dijkstra's shortest path on an adjacency",
+   "tokens": 512,
+   "tok_s": 39.73,
+   "drafting": {
+    "windows": 140,
+    "rows": 651,
+    "dspark_rounds": 140,
+    "dspark_drafts": 511,
+    "dspark_kept": 372,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.657,
+    "tokens_per_round": 3.657
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that pretty-prints a table from row",
+   "tokens": 512,
+   "tok_s": 43.01,
+   "drafting": {
+    "windows": 126,
+    "rows": 591,
+    "dspark_rounds": 126,
+    "dspark_drafts": 465,
+    "dspark_kept": 386,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.063,
+    "tokens_per_round": 4.063
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 20.67,
+   "drafting": {
+    "windows": 6,
+    "rows": 27,
+    "dspark_rounds": 6,
+    "dspark_drafts": 21,
+    "dspark_kept": 15,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.5,
+    "tokens_per_round": 3.5
+   }
+  },
+  {
+   "msg": "Write a Go function that parses a CSV file into a list of dicts and handles quot",
+   "tokens": 512,
+   "tok_s": 41.21,
+   "drafting": {
+    "windows": 142,
+    "rows": 649,
+    "dspark_rounds": 142,
+    "dspark_drafts": 507,
+    "dspark_kept": 370,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.606,
+    "tokens_per_round": 3.606
+   }
+  },
+  {
+   "msg": "Write a Go function that pretty-prints a table from rows of data, with comments ",
+   "tokens": 512,
+   "tok_s": 43.3,
+   "drafting": {
+    "windows": 130,
+    "rows": 619,
+    "dspark_rounds": 129,
+    "dspark_drafts": 487,
+    "dspark_kept": 382,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.961,
+    "tokens_per_round": 3.938
+   }
+  },
+  {
+   "msg": "Explain and fix: a Python script reads a file with open() in a loop and never cl",
+   "tokens": 512,
+   "tok_s": 38.05,
+   "drafting": {
+    "windows": 155,
+    "rows": 637,
+    "dspark_rounds": 155,
+    "dspark_drafts": 482,
+    "dspark_kept": 357,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.303,
+    "tokens_per_round": 3.303
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that topologically sorts a dependency graph. Show on",
+   "tokens": 432,
+   "tok_s": 47.79,
+   "drafting": {
+    "windows": 93,
+    "rows": 490,
+    "dspark_rounds": 93,
+    "dspark_drafts": 397,
+    "dspark_kept": 340,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.656,
+    "tokens_per_round": 4.656
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 19.61,
+   "drafting": {
+    "windows": 6,
+    "rows": 31,
+    "dspark_rounds": 6,
+    "dspark_drafts": 25,
+    "dspark_kept": 14,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.333,
+    "tokens_per_round": 3.333
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 512,
+   "tok_s": 34.13,
+   "drafting": {
+    "windows": 196,
+    "rows": 747,
+    "dspark_rounds": 196,
+    "dspark_drafts": 551,
+    "dspark_kept": 316,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.612,
+    "tokens_per_round": 2.612
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 30,
+   "tok_s": 39.18,
+   "drafting": {
+    "windows": 7,
+    "rows": 35,
+    "dspark_rounds": 7,
+    "dspark_drafts": 28,
+    "dspark_kept": 25,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.571,
+    "tokens_per_round": 4.571
+   }
+  },
+  {
+   "msg": "Write a Python function that rate-limits calls with a token bucket, with comment",
+   "tokens": 512,
+   "tok_s": 44.53,
+   "drafting": {
+    "windows": 133,
+    "rows": 613,
+    "dspark_rounds": 132,
+    "dspark_drafts": 480,
+    "dspark_kept": 379,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.871,
+    "tokens_per_round": 3.85
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that computes word frequencies fr",
+   "tokens": 469,
+   "tok_s": 37.18,
+   "drafting": {
+    "windows": 156,
+    "rows": 618,
+    "dspark_rounds": 156,
+    "dspark_drafts": 462,
+    "dspark_kept": 314,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.013,
+    "tokens_per_round": 3.013
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that implements a trie with insert and prefix search",
+   "tokens": 300,
+   "tok_s": 44.0,
+   "drafting": {
+    "windows": 67,
+    "rows": 365,
+    "dspark_rounds": 67,
+    "dspark_drafts": 298,
+    "dspark_kept": 234,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.493,
+    "tokens_per_round": 4.493
+   }
+  },
+  {
+   "msg": "Write a Dockerfile for a small Python Flask app with a requirements.txt, running",
+   "tokens": 512,
+   "tok_s": 30.2,
+   "drafting": {
+    "windows": 149,
+    "rows": 631,
+    "dspark_rounds": 149,
+    "dspark_drafts": 482,
+    "dspark_kept": 363,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.436,
+    "tokens_per_round": 3.436
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that computes a moving average over",
+   "tokens": 512,
+   "tok_s": 33.47,
+   "drafting": {
+    "windows": 128,
+    "rows": 623,
+    "dspark_rounds": 128,
+    "dspark_drafts": 495,
+    "dspark_kept": 384,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.0,
+    "tokens_per_round": 4.0
+   }
+  },
+  {
+   "msg": "Write a GitHub Actions workflow that runs pytest on Python 3.11 and 3.12.",
+   "tokens": 512,
+   "tok_s": 31.53,
+   "drafting": {
+    "windows": 139,
+    "rows": 646,
+    "dspark_rounds": 133,
+    "dspark_drafts": 477,
+    "dspark_kept": 357,
+    "lookup_rounds": 5,
+    "lookup_drafts": 30,
+    "lookup_kept": 16,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.684,
+    "tokens_per_round": 3.683
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that parses a CSV file into a list ",
+   "tokens": 512,
+   "tok_s": 29.12,
+   "drafting": {
+    "windows": 168,
+    "rows": 673,
+    "dspark_rounds": 168,
+    "dspark_drafts": 505,
+    "dspark_kept": 344,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.048,
+    "tokens_per_round": 3.048
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 21,
+   "tok_s": 42.23,
+   "drafting": {
+    "windows": 5,
+    "rows": 27,
+    "dspark_rounds": 5,
+    "dspark_drafts": 22,
+    "dspark_kept": 17,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.4,
+    "tokens_per_round": 4.4
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean TypeScript: a helper that implements binary search",
+   "tokens": 512,
+   "tok_s": 69.95,
+   "drafting": {
+    "windows": 140,
+    "rows": 629,
+    "dspark_rounds": 140,
+    "dspark_drafts": 489,
+    "dspark_kept": 372,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.657,
+    "tokens_per_round": 3.657
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 40.1,
+   "drafting": {
+    "windows": 5,
+    "rows": 24,
+    "dspark_rounds": 5,
+    "dspark_drafts": 19,
+    "dspark_kept": 16,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.2,
+    "tokens_per_round": 4.2
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 34,
+   "tok_s": 45.92,
+   "drafting": {
+    "windows": 8,
+    "rows": 45,
+    "dspark_rounds": 8,
+    "dspark_drafts": 37,
+    "dspark_kept": 27,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.375,
+    "tokens_per_round": 4.375
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Go: a helper that implements Dijkstra's shortest p",
+   "tokens": 512,
+   "tok_s": 48.82,
+   "drafting": {
+    "windows": 117,
+    "rows": 604,
+    "dspark_rounds": 116,
+    "dspark_drafts": 487,
+    "dspark_kept": 395,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.405,
+    "tokens_per_round": 4.376
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 438,
+   "tok_s": 38.72,
+   "drafting": {
+    "windows": 132,
+    "rows": 601,
+    "dspark_rounds": 129,
+    "dspark_drafts": 445,
+    "dspark_kept": 301,
+    "lookup_rounds": 3,
+    "lookup_drafts": 24,
+    "lookup_kept": 6,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.333,
+    "tokens_per_round": 3.326
+   }
+  },
+  {
+   "msg": "Implement in Python: a function that computes the longest common subsequence of ",
+   "tokens": 257,
+   "tok_s": 51.2,
+   "drafting": {
+    "windows": 47,
+    "rows": 278,
+    "dspark_rounds": 47,
+    "dspark_drafts": 231,
+    "dspark_kept": 211,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.489,
+    "tokens_per_round": 5.489
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 30,
+   "tok_s": 37.09,
+   "drafting": {
+    "windows": 7,
+    "rows": 37,
+    "dspark_rounds": 7,
+    "dspark_drafts": 30,
+    "dspark_kept": 23,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.286,
+    "tokens_per_round": 4.286
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that flattens an arbitrarily nest",
+   "tokens": 455,
+   "tok_s": 32.5,
+   "drafting": {
+    "windows": 150,
+    "rows": 624,
+    "dspark_rounds": 150,
+    "dspark_drafts": 474,
+    "dspark_kept": 306,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.04,
+    "tokens_per_round": 3.04
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 47.86,
+   "drafting": {
+    "windows": 4,
+    "rows": 20,
+    "dspark_rounds": 4,
+    "dspark_drafts": 16,
+    "dspark_kept": 15,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.75,
+    "tokens_per_round": 4.75
+   }
+  },
+  {
+   "msg": "Write a TypeScript function that topologically sorts a dependency graph, with co",
+   "tokens": 512,
+   "tok_s": 38.99,
+   "drafting": {
+    "windows": 143,
+    "rows": 618,
+    "dspark_rounds": 143,
+    "dspark_drafts": 475,
+    "dspark_kept": 369,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.58,
+    "tokens_per_round": 3.58
+   }
+  },
+  {
+   "msg": "Write a Python function that merges overlapping intervals, with comments and two",
+   "tokens": 512,
+   "tok_s": 41.99,
+   "drafting": {
+    "windows": 130,
+    "rows": 633,
+    "dspark_rounds": 130,
+    "dspark_drafts": 503,
+    "dspark_kept": 382,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.938,
+    "tokens_per_round": 3.938
+   }
+  },
+  {
+   "msg": "Write a Go function that parses command-line flags without a library, with comme",
+   "tokens": 512,
+   "tok_s": 32.7,
+   "drafting": {
+    "windows": 131,
+    "rows": 625,
+    "dspark_rounds": 130,
+    "dspark_drafts": 494,
+    "dspark_kept": 381,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.931,
+    "tokens_per_round": 3.908
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that detects a cycle in a linked li",
+   "tokens": 512,
+   "tok_s": 35.02,
+   "drafting": {
+    "windows": 120,
+    "rows": 595,
+    "dspark_rounds": 120,
+    "dspark_drafts": 475,
+    "dspark_kept": 392,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.267,
+    "tokens_per_round": 4.267
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that parses command-line flags wi",
+   "tokens": 512,
+   "tok_s": 32.69,
+   "drafting": {
+    "windows": 131,
+    "rows": 623,
+    "dspark_rounds": 131,
+    "dspark_drafts": 492,
+    "dspark_kept": 381,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.908,
+    "tokens_per_round": 3.908
+   }
+  },
+  {
+   "msg": "Write a Python function that converts Roman numerals to integers and back, with ",
+   "tokens": 512,
+   "tok_s": 32.17,
+   "drafting": {
+    "windows": 136,
+    "rows": 639,
+    "dspark_rounds": 136,
+    "dspark_drafts": 503,
+    "dspark_kept": 376,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.765,
+    "tokens_per_round": 3.765
+   }
+  },
+  {
+   "msg": "List the steps to set up SSH keys on a new Linux machine.",
+   "tokens": 512,
+   "tok_s": 44.97,
+   "drafting": {
+    "windows": 140,
+    "rows": 643,
+    "dspark_rounds": 140,
+    "dspark_drafts": 503,
+    "dspark_kept": 372,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.657,
+    "tokens_per_round": 3.657
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that detects a cycle in a linked list. Show only the",
+   "tokens": 85,
+   "tok_s": 36.53,
+   "drafting": {
+    "windows": 19,
+    "rows": 107,
+    "dspark_rounds": 19,
+    "dspark_drafts": 88,
+    "dspark_kept": 67,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.526,
+    "tokens_per_round": 4.526
+   }
+  },
+  {
+   "msg": "Write a Bash function that serializes a binary tree to a string and back, with c",
+   "tokens": 512,
+   "tok_s": 42.08,
+   "drafting": {
+    "windows": 156,
+    "rows": 647,
+    "dspark_rounds": 155,
+    "dspark_drafts": 491,
+    "dspark_kept": 356,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.297,
+    "tokens_per_round": 3.282
+   }
+  },
+  {
+   "msg": "Implement in Python: a function that debounces a function call. Show only the co",
+   "tokens": 160,
+   "tok_s": 37.85,
+   "drafting": {
+    "windows": 39,
+    "rows": 210,
+    "dspark_rounds": 39,
+    "dspark_drafts": 171,
+    "dspark_kept": 122,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.128,
+    "tokens_per_round": 4.128
+   }
+  },
+  {
+   "msg": "Summarize the pros and cons of microservices in a short answer.",
+   "tokens": 46,
+   "tok_s": 16.92,
+   "drafting": {
+    "windows": 25,
+    "rows": 67,
+    "dspark_rounds": 25,
+    "dspark_drafts": 42,
+    "dspark_kept": 22,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.88,
+    "tokens_per_round": 1.88
+   }
+  },
+  {
+   "msg": "Implement in TypeScript: a function that flattens an arbitrarily nested list. Sh",
+   "tokens": 74,
+   "tok_s": 35.37,
+   "drafting": {
+    "windows": 16,
+    "rows": 90,
+    "dspark_rounds": 16,
+    "dspark_drafts": 74,
+    "dspark_kept": 59,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.688,
+    "tokens_per_round": 4.688
+   }
+  },
+  {
+   "msg": "Write a Python function that implements an LRU cache with O(1) get and put, with",
+   "tokens": 512,
+   "tok_s": 63.6,
+   "drafting": {
+    "windows": 139,
+    "rows": 649,
+    "dspark_rounds": 138,
+    "dspark_drafts": 510,
+    "dspark_kept": 373,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.703,
+    "tokens_per_round": 3.683
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 36,
+   "tok_s": 38.93,
+   "drafting": {
+    "windows": 8,
+    "rows": 43,
+    "dspark_rounds": 8,
+    "dspark_drafts": 35,
+    "dspark_kept": 29,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.625,
+    "tokens_per_round": 4.625
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that serializes a binary tree to ",
+   "tokens": 512,
+   "tok_s": 40.5,
+   "drafting": {
+    "windows": 137,
+    "rows": 620,
+    "dspark_rounds": 136,
+    "dspark_drafts": 483,
+    "dspark_kept": 375,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.757,
+    "tokens_per_round": 3.737
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 33,
+   "tok_s": 32.56,
+   "drafting": {
+    "windows": 9,
+    "rows": 47,
+    "dspark_rounds": 9,
+    "dspark_drafts": 38,
+    "dspark_kept": 25,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.778,
+    "tokens_per_round": 3.778
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Go: a helper that implements a trie with insert an",
+   "tokens": 512,
+   "tok_s": 39.9,
+   "drafting": {
+    "windows": 140,
+    "rows": 616,
+    "dspark_rounds": 140,
+    "dspark_drafts": 476,
+    "dspark_kept": 372,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.657,
+    "tokens_per_round": 3.657
+   }
+  },
+  {
+   "msg": "What is the difference between a process and a thread?",
+   "tokens": 400,
+   "tok_s": 27.94,
+   "drafting": {
+    "windows": 172,
+    "rows": 587,
+    "dspark_rounds": 172,
+    "dspark_drafts": 415,
+    "dspark_kept": 229,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.331,
+    "tokens_per_round": 2.331
+   }
+  },
+  {
+   "msg": "Implement in Rust: a function that merges overlapping intervals. Show only the c",
+   "tokens": 225,
+   "tok_s": 39.96,
+   "drafting": {
+    "windows": 47,
+    "rows": 265,
+    "dspark_rounds": 47,
+    "dspark_drafts": 218,
+    "dspark_kept": 179,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.809,
+    "tokens_per_round": 4.809
+   }
+  },
+  {
+   "msg": "Implement in Python: a function that computes word frequencies from a text file.",
+   "tokens": 69,
+   "tok_s": 33.5,
+   "drafting": {
+    "windows": 17,
+    "rows": 89,
+    "dspark_rounds": 17,
+    "dspark_drafts": 72,
+    "dspark_kept": 53,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.118,
+    "tokens_per_round": 4.118
+   }
+  },
+  {
+   "msg": "Fix the bug: `def avg(xs): return sum(xs) / len(xs) - 1` should return the mean.",
+   "tokens": 269,
+   "tok_s": 41.37,
+   "drafting": {
+    "windows": 67,
+    "rows": 318,
+    "dspark_rounds": 67,
+    "dspark_drafts": 251,
+    "dspark_kept": 203,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.03,
+    "tokens_per_round": 4.03
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that deep-merges two dictionaries. ",
+   "tokens": 512,
+   "tok_s": 47.4,
+   "drafting": {
+    "windows": 156,
+    "rows": 637,
+    "dspark_rounds": 155,
+    "dspark_drafts": 481,
+    "dspark_kept": 356,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.297,
+    "tokens_per_round": 3.282
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that retries an HTTP request with",
+   "tokens": 512,
+   "tok_s": 65.75,
+   "drafting": {
+    "windows": 120,
+    "rows": 603,
+    "dspark_rounds": 120,
+    "dspark_drafts": 483,
+    "dspark_kept": 392,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.267,
+    "tokens_per_round": 4.267
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 36.15,
+   "drafting": {
+    "windows": 5,
+    "rows": 25,
+    "dspark_rounds": 5,
+    "dspark_drafts": 20,
+    "dspark_kept": 16,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.2,
+    "tokens_per_round": 4.2
+   }
+  },
+  {
+   "msg": "Implement in Bash: a function that validates an email address with a regular exp",
+   "tokens": 113,
+   "tok_s": 49.98,
+   "drafting": {
+    "windows": 27,
+    "rows": 146,
+    "dspark_rounds": 27,
+    "dspark_drafts": 119,
+    "dspark_kept": 87,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.222,
+    "tokens_per_round": 4.222
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 30.24,
+   "drafting": {
+    "windows": 6,
+    "rows": 28,
+    "dspark_rounds": 6,
+    "dspark_drafts": 22,
+    "dspark_kept": 15,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.5,
+    "tokens_per_round": 3.5
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that reads a JSON config file and m",
+   "tokens": 512,
+   "tok_s": 42.26,
+   "drafting": {
+    "windows": 121,
+    "rows": 602,
+    "dspark_rounds": 121,
+    "dspark_drafts": 481,
+    "dspark_kept": 391,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.231,
+    "tokens_per_round": 4.231
+   }
+  },
+  {
+   "msg": "Implement in Rust: a function that deep-merges two dictionaries. Show only the c",
+   "tokens": 473,
+   "tok_s": 46.11,
+   "drafting": {
+    "windows": 96,
+    "rows": 540,
+    "dspark_rounds": 96,
+    "dspark_drafts": 444,
+    "dspark_kept": 378,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.938,
+    "tokens_per_round": 4.938
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that rate-limits calls with a token",
+   "tokens": 512,
+   "tok_s": 35.67,
+   "drafting": {
+    "windows": 176,
+    "rows": 736,
+    "dspark_rounds": 176,
+    "dspark_drafts": 560,
+    "dspark_kept": 336,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.909,
+    "tokens_per_round": 2.909
+   }
+  },
+  {
+   "msg": "Implement in Rust: a function that chunks a list into batches of n. Show only th",
+   "tokens": 79,
+   "tok_s": 38.75,
+   "drafting": {
+    "windows": 18,
+    "rows": 101,
+    "dspark_rounds": 18,
+    "dspark_drafts": 83,
+    "dspark_kept": 62,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.444,
+    "tokens_per_round": 4.444
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 216,
+   "tok_s": 27.08,
+   "drafting": {
+    "windows": 81,
+    "rows": 303,
+    "dspark_rounds": 81,
+    "dspark_drafts": 222,
+    "dspark_kept": 136,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.679,
+    "tokens_per_round": 2.679
+   }
+  },
+  {
+   "msg": "Write a regular expression that matches ISO 8601 dates (YYYY-MM-DD) and a Python",
+   "tokens": 512,
+   "tok_s": 47.29,
+   "drafting": {
+    "windows": 118,
+    "rows": 620,
+    "dspark_rounds": 116,
+    "dspark_drafts": 474,
+    "dspark_kept": 370,
+    "lookup_rounds": 2,
+    "lookup_drafts": 28,
+    "lookup_kept": 24,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.19,
+    "tokens_per_round": 4.339
+   }
+  },
+  {
+   "msg": "Write a bash script that backs up a directory to a timestamped tar.gz and keeps ",
+   "tokens": 512,
+   "tok_s": 45.51,
+   "drafting": {
+    "windows": 126,
+    "rows": 622,
+    "dspark_rounds": 126,
+    "dspark_drafts": 496,
+    "dspark_kept": 386,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.063,
+    "tokens_per_round": 4.063
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 30.86,
+   "drafting": {
+    "windows": 6,
+    "rows": 27,
+    "dspark_rounds": 6,
+    "dspark_drafts": 21,
+    "dspark_kept": 13,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.167,
+    "tokens_per_round": 3.167
+   }
+  },
+  {
+   "msg": "Write a Python function that validates an email address with a regular expressio",
+   "tokens": 512,
+   "tok_s": 38.31,
+   "drafting": {
+    "windows": 148,
+    "rows": 645,
+    "dspark_rounds": 148,
+    "dspark_drafts": 497,
+    "dspark_kept": 364,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.459,
+    "tokens_per_round": 3.459
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Go: a helper that finds all anagram groups in a li",
+   "tokens": 386,
+   "tok_s": 36.76,
+   "drafting": {
+    "windows": 109,
+    "rows": 490,
+    "dspark_rounds": 109,
+    "dspark_drafts": 381,
+    "dspark_kept": 277,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.541,
+    "tokens_per_round": 3.541
+   }
+  },
+  {
+   "msg": "Write a Bash function that debounces a function call, with comments and two test",
+   "tokens": 512,
+   "tok_s": 35.29,
+   "drafting": {
+    "windows": 172,
+    "rows": 703,
+    "dspark_rounds": 171,
+    "dspark_drafts": 531,
+    "dspark_kept": 340,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.988,
+    "tokens_per_round": 2.977
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 32,
+   "tok_s": 36.14,
+   "drafting": {
+    "windows": 8,
+    "rows": 44,
+    "dspark_rounds": 8,
+    "dspark_drafts": 36,
+    "dspark_kept": 26,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.25,
+    "tokens_per_round": 4.25
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that implements binary search on a sorted array. Sho",
+   "tokens": 101,
+   "tok_s": 54.65,
+   "drafting": {
+    "windows": 18,
+    "rows": 104,
+    "dspark_rounds": 18,
+    "dspark_drafts": 86,
+    "dspark_kept": 83,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.611,
+    "tokens_per_round": 5.611
+   }
+  },
+  {
+   "msg": "Write a Bash function that retries an HTTP request with exponential backoff, wit",
+   "tokens": 512,
+   "tok_s": 44.66,
+   "drafting": {
+    "windows": 157,
+    "rows": 662,
+    "dspark_rounds": 157,
+    "dspark_drafts": 505,
+    "dspark_kept": 355,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.261,
+    "tokens_per_round": 3.261
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that implements an LRU cache with",
+   "tokens": 512,
+   "tok_s": 51.15,
+   "drafting": {
+    "windows": 128,
+    "rows": 630,
+    "dspark_rounds": 128,
+    "dspark_drafts": 502,
+    "dspark_kept": 384,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.0,
+    "tokens_per_round": 4.0
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 21,
+   "tok_s": 40.78,
+   "drafting": {
+    "windows": 5,
+    "rows": 22,
+    "dspark_rounds": 5,
+    "dspark_drafts": 17,
+    "dspark_kept": 16,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.2,
+    "tokens_per_round": 4.2
+   }
+  },
+  {
+   "msg": "Convert this JSON to a Python dataclass with type hints: {\"id\": 1, \"name\": \"x\", ",
+   "tokens": 222,
+   "tok_s": 35.83,
+   "drafting": {
+    "windows": 54,
+    "rows": 260,
+    "dspark_rounds": 51,
+    "dspark_drafts": 179,
+    "dspark_kept": 143,
+    "lookup_rounds": 3,
+    "lookup_drafts": 27,
+    "lookup_kept": 26,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.804,
+    "tokens_per_round": 4.13
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 512,
+   "tok_s": 30.94,
+   "drafting": {
+    "windows": 199,
+    "rows": 820,
+    "dspark_rounds": 191,
+    "dspark_drafts": 568,
+    "dspark_kept": 297,
+    "lookup_rounds": 7,
+    "lookup_drafts": 53,
+    "lookup_kept": 16,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.555,
+    "tokens_per_round": 2.573
+   }
+  },
+  {
+   "msg": "Write a Bash function that reads a JSON config file and merges it with defaults,",
+   "tokens": 512,
+   "tok_s": 37.39,
+   "drafting": {
+    "windows": 142,
+    "rows": 619,
+    "dspark_rounds": 142,
+    "dspark_drafts": 477,
+    "dspark_kept": 370,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.606,
+    "tokens_per_round": 3.606
+   }
+  },
+  {
+   "msg": "Write a SQL query that returns the top 5 customers by total order value from tab",
+   "tokens": 385,
+   "tok_s": 35.48,
+   "drafting": {
+    "windows": 102,
+    "rows": 478,
+    "dspark_rounds": 102,
+    "dspark_drafts": 376,
+    "dspark_kept": 284,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.784,
+    "tokens_per_round": 3.784
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that converts Roman numerals to int",
+   "tokens": 512,
+   "tok_s": 41.64,
+   "drafting": {
+    "windows": 131,
+    "rows": 613,
+    "dspark_rounds": 130,
+    "dspark_drafts": 482,
+    "dspark_kept": 381,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.931,
+    "tokens_per_round": 3.908
+   }
+  },
+  {
+   "msg": "Write a Bash function that finds all anagram groups in a list of words, with com",
+   "tokens": 512,
+   "tok_s": 37.66,
+   "drafting": {
+    "windows": 150,
+    "rows": 642,
+    "dspark_rounds": 149,
+    "dspark_drafts": 492,
+    "dspark_kept": 362,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.43,
+    "tokens_per_round": 3.413
+   }
+  },
+  {
+   "msg": "Give me a two-sentence explanation of how HTTPS works.",
+   "tokens": 60,
+   "tok_s": 20.33,
+   "drafting": {
+    "windows": 29,
+    "rows": 89,
+    "dspark_rounds": 29,
+    "dspark_drafts": 60,
+    "dspark_kept": 32,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.103,
+    "tokens_per_round": 2.103
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that chunks a list into batches of ",
+   "tokens": 512,
+   "tok_s": 37.44,
+   "drafting": {
+    "windows": 152,
+    "rows": 645,
+    "dspark_rounds": 151,
+    "dspark_drafts": 493,
+    "dspark_kept": 360,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.384,
+    "tokens_per_round": 3.368
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean TypeScript: a helper that computes the longest com",
+   "tokens": 512,
+   "tok_s": 44.08,
+   "drafting": {
+    "windows": 113,
+    "rows": 568,
+    "dspark_rounds": 112,
+    "dspark_drafts": 455,
+    "dspark_kept": 399,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.562,
+    "tokens_per_round": 4.531
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 83,
+   "tok_s": 23.5,
+   "drafting": {
+    "windows": 30,
+    "rows": 125,
+    "dspark_rounds": 30,
+    "dspark_drafts": 95,
+    "dspark_kept": 54,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.8,
+    "tokens_per_round": 2.8
+   }
+  },
+  {
+   "msg": "Write a Go function that computes a moving average over a stream of numbers, wit",
+   "tokens": 512,
+   "tok_s": 37.47,
+   "drafting": {
+    "windows": 140,
+    "rows": 650,
+    "dspark_rounds": 140,
+    "dspark_drafts": 510,
+    "dspark_kept": 372,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.657,
+    "tokens_per_round": 3.657
+   }
+  },
+  {
+   "msg": "Write a Python function that implements Dijkstra's shortest path on an adjacency",
+   "tokens": 512,
+   "tok_s": 37.47,
+   "drafting": {
+    "windows": 140,
+    "rows": 646,
+    "dspark_rounds": 140,
+    "dspark_drafts": 506,
+    "dspark_kept": 372,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.657,
+    "tokens_per_round": 3.657
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that pretty-prints a table from row",
+   "tokens": 512,
+   "tok_s": 43.47,
+   "drafting": {
+    "windows": 124,
+    "rows": 611,
+    "dspark_rounds": 124,
+    "dspark_drafts": 487,
+    "dspark_kept": 388,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.129,
+    "tokens_per_round": 4.129
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 42.53,
+   "drafting": {
+    "windows": 5,
+    "rows": 24,
+    "dspark_rounds": 5,
+    "dspark_drafts": 19,
+    "dspark_kept": 16,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.2,
+    "tokens_per_round": 4.2
+   }
+  },
+  {
+   "msg": "Write a Go function that parses a CSV file into a list of dicts and handles quot",
+   "tokens": 512,
+   "tok_s": 42.52,
+   "drafting": {
+    "windows": 128,
+    "rows": 621,
+    "dspark_rounds": 127,
+    "dspark_drafts": 493,
+    "dspark_kept": 384,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.024,
+    "tokens_per_round": 4.0
+   }
+  },
+  {
+   "msg": "Write a Go function that pretty-prints a table from rows of data, with comments ",
+   "tokens": 512,
+   "tok_s": 41.25,
+   "drafting": {
+    "windows": 135,
+    "rows": 622,
+    "dspark_rounds": 135,
+    "dspark_drafts": 487,
+    "dspark_kept": 377,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.793,
+    "tokens_per_round": 3.793
+   }
+  },
+  {
+   "msg": "Explain and fix: a Python script reads a file with open() in a loop and never cl",
+   "tokens": 512,
+   "tok_s": 36.89,
+   "drafting": {
+    "windows": 160,
+    "rows": 648,
+    "dspark_rounds": 159,
+    "dspark_drafts": 483,
+    "dspark_kept": 352,
+    "lookup_rounds": 1,
+    "lookup_drafts": 5,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.214,
+    "tokens_per_round": 3.2
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that topologically sorts a dependency graph. Show on",
+   "tokens": 476,
+   "tok_s": 46.75,
+   "drafting": {
+    "windows": 108,
+    "rows": 538,
+    "dspark_rounds": 108,
+    "dspark_drafts": 430,
+    "dspark_kept": 369,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.417,
+    "tokens_per_round": 4.417
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 30.38,
+   "drafting": {
+    "windows": 6,
+    "rows": 27,
+    "dspark_rounds": 6,
+    "dspark_drafts": 21,
+    "dspark_kept": 14,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.333,
+    "tokens_per_round": 3.333
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 512,
+   "tok_s": 31.88,
+   "drafting": {
+    "windows": 206,
+    "rows": 787,
+    "dspark_rounds": 205,
+    "dspark_drafts": 579,
+    "dspark_kept": 306,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.493,
+    "tokens_per_round": 2.485
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 30,
+   "tok_s": 29.31,
+   "drafting": {
+    "windows": 7,
+    "rows": 35,
+    "dspark_rounds": 7,
+    "dspark_drafts": 28,
+    "dspark_kept": 24,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.429,
+    "tokens_per_round": 4.429
+   }
+  },
+  {
+   "msg": "Write a Python function that rate-limits calls with a token bucket, with comment",
+   "tokens": 512,
+   "tok_s": 44.96,
+   "drafting": {
+    "windows": 127,
+    "rows": 623,
+    "dspark_rounds": 127,
+    "dspark_drafts": 496,
+    "dspark_kept": 385,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.031,
+    "tokens_per_round": 4.031
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that computes word frequencies fr",
+   "tokens": 384,
+   "tok_s": 33.28,
+   "drafting": {
+    "windows": 130,
+    "rows": 532,
+    "dspark_rounds": 130,
+    "dspark_drafts": 402,
+    "dspark_kept": 255,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.962,
+    "tokens_per_round": 2.962
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that implements a trie with insert and prefix search",
+   "tokens": 317,
+   "tok_s": 49.23,
+   "drafting": {
+    "windows": 64,
+    "rows": 348,
+    "dspark_rounds": 64,
+    "dspark_drafts": 284,
+    "dspark_kept": 254,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.969,
+    "tokens_per_round": 4.969
+   }
+  },
+  {
+   "msg": "Write a Dockerfile for a small Python Flask app with a requirements.txt, running",
+   "tokens": 512,
+   "tok_s": 32.18,
+   "drafting": {
+    "windows": 139,
+    "rows": 630,
+    "dspark_rounds": 139,
+    "dspark_drafts": 491,
+    "dspark_kept": 373,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.683,
+    "tokens_per_round": 3.683
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that computes a moving average over",
+   "tokens": 512,
+   "tok_s": 36.11,
+   "drafting": {
+    "windows": 119,
+    "rows": 602,
+    "dspark_rounds": 119,
+    "dspark_drafts": 483,
+    "dspark_kept": 393,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.303,
+    "tokens_per_round": 4.303
+   }
+  },
+  {
+   "msg": "Write a GitHub Actions workflow that runs pytest on Python 3.11 and 3.12.",
+   "tokens": 512,
+   "tok_s": 33.61,
+   "drafting": {
+    "windows": 130,
+    "rows": 626,
+    "dspark_rounds": 130,
+    "dspark_drafts": 496,
+    "dspark_kept": 382,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.938,
+    "tokens_per_round": 3.938
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that parses a CSV file into a list ",
+   "tokens": 512,
+   "tok_s": 30.71,
+   "drafting": {
+    "windows": 154,
+    "rows": 652,
+    "dspark_rounds": 153,
+    "dspark_drafts": 498,
+    "dspark_kept": 358,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.34,
+    "tokens_per_round": 3.325
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 21,
+   "tok_s": 42.69,
+   "drafting": {
+    "windows": 5,
+    "rows": 27,
+    "dspark_rounds": 5,
+    "dspark_drafts": 22,
+    "dspark_kept": 17,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.4,
+    "tokens_per_round": 4.4
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean TypeScript: a helper that implements binary search",
+   "tokens": 506,
+   "tok_s": 65.27,
+   "drafting": {
+    "windows": 151,
+    "rows": 642,
+    "dspark_rounds": 151,
+    "dspark_drafts": 491,
+    "dspark_kept": 356,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.358,
+    "tokens_per_round": 3.358
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 40.56,
+   "drafting": {
+    "windows": 5,
+    "rows": 24,
+    "dspark_rounds": 5,
+    "dspark_drafts": 19,
+    "dspark_kept": 16,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.2,
+    "tokens_per_round": 4.2
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 34,
+   "tok_s": 46.26,
+   "drafting": {
+    "windows": 8,
+    "rows": 44,
+    "dspark_rounds": 8,
+    "dspark_drafts": 36,
+    "dspark_kept": 27,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.375,
+    "tokens_per_round": 4.375
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Go: a helper that implements Dijkstra's shortest p",
+   "tokens": 512,
+   "tok_s": 47.99,
+   "drafting": {
+    "windows": 122,
+    "rows": 602,
+    "dspark_rounds": 122,
+    "dspark_drafts": 480,
+    "dspark_kept": 390,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.197,
+    "tokens_per_round": 4.197
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 434,
+   "tok_s": 34.4,
+   "drafting": {
+    "windows": 160,
+    "rows": 635,
+    "dspark_rounds": 159,
+    "dspark_drafts": 473,
+    "dspark_kept": 275,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.73,
+    "tokens_per_round": 2.719
+   }
+  },
+  {
+   "msg": "Implement in Python: a function that computes the longest common subsequence of ",
+   "tokens": 257,
+   "tok_s": 52.56,
+   "drafting": {
+    "windows": 46,
+    "rows": 270,
+    "dspark_rounds": 46,
+    "dspark_drafts": 224,
+    "dspark_kept": 211,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.587,
+    "tokens_per_round": 5.587
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 30,
+   "tok_s": 35.79,
+   "drafting": {
+    "windows": 7,
+    "rows": 37,
+    "dspark_rounds": 7,
+    "dspark_drafts": 30,
+    "dspark_kept": 23,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.286,
+    "tokens_per_round": 4.286
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that flattens an arbitrarily nest",
+   "tokens": 417,
+   "tok_s": 31.2,
+   "drafting": {
+    "windows": 148,
+    "rows": 563,
+    "dspark_rounds": 148,
+    "dspark_drafts": 415,
+    "dspark_kept": 270,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.824,
+    "tokens_per_round": 2.824
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 49.58,
+   "drafting": {
+    "windows": 4,
+    "rows": 20,
+    "dspark_rounds": 4,
+    "dspark_drafts": 16,
+    "dspark_kept": 15,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.75,
+    "tokens_per_round": 4.75
+   }
+  },
+  {
+   "msg": "Write a TypeScript function that topologically sorts a dependency graph, with co",
+   "tokens": 512,
+   "tok_s": 39.69,
+   "drafting": {
+    "windows": 138,
+    "rows": 617,
+    "dspark_rounds": 138,
+    "dspark_drafts": 479,
+    "dspark_kept": 374,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.71,
+    "tokens_per_round": 3.71
+   }
+  },
+  {
+   "msg": "Write a Python function that merges overlapping intervals, with comments and two",
+   "tokens": 512,
+   "tok_s": 40.41,
+   "drafting": {
+    "windows": 135,
+    "rows": 639,
+    "dspark_rounds": 135,
+    "dspark_drafts": 504,
+    "dspark_kept": 377,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.793,
+    "tokens_per_round": 3.793
+   }
+  },
+  {
+   "msg": "Write a Go function that parses command-line flags without a library, with comme",
+   "tokens": 512,
+   "tok_s": 33.53,
+   "drafting": {
+    "windows": 129,
+    "rows": 607,
+    "dspark_rounds": 129,
+    "dspark_drafts": 478,
+    "dspark_kept": 383,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.969,
+    "tokens_per_round": 3.969
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that detects a cycle in a linked li",
+   "tokens": 449,
+   "tok_s": 26.95,
+   "drafting": {
+    "windows": 153,
+    "rows": 602,
+    "dspark_rounds": 153,
+    "dspark_drafts": 449,
+    "dspark_kept": 297,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.941,
+    "tokens_per_round": 2.941
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that parses command-line flags wi",
+   "tokens": 512,
+   "tok_s": 32.58,
+   "drafting": {
+    "windows": 134,
+    "rows": 617,
+    "dspark_rounds": 134,
+    "dspark_drafts": 483,
+    "dspark_kept": 378,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.821,
+    "tokens_per_round": 3.821
+   }
+  },
+  {
+   "msg": "Write a Python function that converts Roman numerals to integers and back, with ",
+   "tokens": 512,
+   "tok_s": 32.14,
+   "drafting": {
+    "windows": 137,
+    "rows": 647,
+    "dspark_rounds": 137,
+    "dspark_drafts": 510,
+    "dspark_kept": 375,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.737,
+    "tokens_per_round": 3.737
+   }
+  },
+  {
+   "msg": "List the steps to set up SSH keys on a new Linux machine.",
+   "tokens": 512,
+   "tok_s": 44.65,
+   "drafting": {
+    "windows": 139,
+    "rows": 629,
+    "dspark_rounds": 138,
+    "dspark_drafts": 490,
+    "dspark_kept": 373,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.703,
+    "tokens_per_round": 3.683
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that detects a cycle in a linked list. Show only the",
+   "tokens": 161,
+   "tok_s": 42.84,
+   "drafting": {
+    "windows": 32,
+    "rows": 176,
+    "dspark_rounds": 32,
+    "dspark_drafts": 144,
+    "dspark_kept": 130,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.062,
+    "tokens_per_round": 5.062
+   }
+  },
+  {
+   "msg": "Write a Bash function that serializes a binary tree to a string and back, with c",
+   "tokens": 512,
+   "tok_s": 40.62,
+   "drafting": {
+    "windows": 161,
+    "rows": 673,
+    "dspark_rounds": 161,
+    "dspark_drafts": 512,
+    "dspark_kept": 351,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.18,
+    "tokens_per_round": 3.18
+   }
+  },
+  {
+   "msg": "Implement in Python: a function that debounces a function call. Show only the co",
+   "tokens": 147,
+   "tok_s": 35.36,
+   "drafting": {
+    "windows": 36,
+    "rows": 197,
+    "dspark_rounds": 36,
+    "dspark_drafts": 161,
+    "dspark_kept": 112,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.111,
+    "tokens_per_round": 4.111
+   }
+  },
+  {
+   "msg": "Summarize the pros and cons of microservices in a short answer.",
+   "tokens": 34,
+   "tok_s": 16.21,
+   "drafting": {
+    "windows": 16,
+    "rows": 51,
+    "dspark_rounds": 16,
+    "dspark_drafts": 35,
+    "dspark_kept": 19,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.188,
+    "tokens_per_round": 2.188
+   }
+  },
+  {
+   "msg": "Implement in TypeScript: a function that flattens an arbitrarily nested list. Sh",
+   "tokens": 74,
+   "tok_s": 35.85,
+   "drafting": {
+    "windows": 16,
+    "rows": 87,
+    "dspark_rounds": 16,
+    "dspark_drafts": 71,
+    "dspark_kept": 59,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.688,
+    "tokens_per_round": 4.688
+   }
+  },
+  {
+   "msg": "Write a Python function that implements an LRU cache with O(1) get and put, with",
+   "tokens": 512,
+   "tok_s": 71.22,
+   "drafting": {
+    "windows": 126,
+    "rows": 588,
+    "dspark_rounds": 126,
+    "dspark_drafts": 462,
+    "dspark_kept": 386,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.063,
+    "tokens_per_round": 4.063
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 36,
+   "tok_s": 37.33,
+   "drafting": {
+    "windows": 9,
+    "rows": 48,
+    "dspark_rounds": 9,
+    "dspark_drafts": 39,
+    "dspark_kept": 28,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.111,
+    "tokens_per_round": 4.111
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that serializes a binary tree to ",
+   "tokens": 512,
+   "tok_s": 36.93,
+   "drafting": {
+    "windows": 151,
+    "rows": 664,
+    "dspark_rounds": 151,
+    "dspark_drafts": 513,
+    "dspark_kept": 361,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.391,
+    "tokens_per_round": 3.391
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 20.36,
+   "drafting": {
+    "windows": 6,
+    "rows": 28,
+    "dspark_rounds": 6,
+    "dspark_drafts": 22,
+    "dspark_kept": 14,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.333,
+    "tokens_per_round": 3.333
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Go: a helper that implements a trie with insert an",
+   "tokens": 512,
+   "tok_s": 43.89,
+   "drafting": {
+    "windows": 124,
+    "rows": 587,
+    "dspark_rounds": 123,
+    "dspark_drafts": 463,
+    "dspark_kept": 388,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.154,
+    "tokens_per_round": 4.129
+   }
+  },
+  {
+   "msg": "What is the difference between a process and a thread?",
+   "tokens": 461,
+   "tok_s": 30.01,
+   "drafting": {
+    "windows": 193,
+    "rows": 703,
+    "dspark_rounds": 192,
+    "dspark_drafts": 508,
+    "dspark_kept": 269,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.401,
+    "tokens_per_round": 2.394
+   }
+  },
+  {
+   "msg": "Implement in Rust: a function that merges overlapping intervals. Show only the c",
+   "tokens": 159,
+   "tok_s": 41.9,
+   "drafting": {
+    "windows": 32,
+    "rows": 171,
+    "dspark_rounds": 32,
+    "dspark_drafts": 139,
+    "dspark_kept": 127,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.969,
+    "tokens_per_round": 4.969
+   }
+  },
+  {
+   "msg": "Implement in Python: a function that computes word frequencies from a text file.",
+   "tokens": 69,
+   "tok_s": 28.11,
+   "drafting": {
+    "windows": 18,
+    "rows": 91,
+    "dspark_rounds": 18,
+    "dspark_drafts": 73,
+    "dspark_kept": 52,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.889,
+    "tokens_per_round": 3.889
+   }
+  },
+  {
+   "msg": "Fix the bug: `def avg(xs): return sum(xs) / len(xs) - 1` should return the mean.",
+   "tokens": 313,
+   "tok_s": 42.41,
+   "drafting": {
+    "windows": 87,
+    "rows": 378,
+    "dspark_rounds": 87,
+    "dspark_drafts": 291,
+    "dspark_kept": 227,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.609,
+    "tokens_per_round": 3.609
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that deep-merges two dictionaries. ",
+   "tokens": 512,
+   "tok_s": 42.52,
+   "drafting": {
+    "windows": 188,
+    "rows": 723,
+    "dspark_rounds": 187,
+    "dspark_drafts": 535,
+    "dspark_kept": 324,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.733,
+    "tokens_per_round": 2.723
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that retries an HTTP request with",
+   "tokens": 512,
+   "tok_s": 67.84,
+   "drafting": {
+    "windows": 140,
+    "rows": 642,
+    "dspark_rounds": 140,
+    "dspark_drafts": 502,
+    "dspark_kept": 372,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.657,
+    "tokens_per_round": 3.657
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 38.84,
+   "drafting": {
+    "windows": 5,
+    "rows": 25,
+    "dspark_rounds": 5,
+    "dspark_drafts": 20,
+    "dspark_kept": 16,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.2,
+    "tokens_per_round": 4.2
+   }
+  },
+  {
+   "msg": "Implement in Bash: a function that validates an email address with a regular exp",
+   "tokens": 66,
+   "tok_s": 54.52,
+   "drafting": {
+    "windows": 14,
+    "rows": 77,
+    "dspark_rounds": 14,
+    "dspark_drafts": 63,
+    "dspark_kept": 53,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.786,
+    "tokens_per_round": 4.786
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 32.38,
+   "drafting": {
+    "windows": 6,
+    "rows": 26,
+    "dspark_rounds": 6,
+    "dspark_drafts": 20,
+    "dspark_kept": 15,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.5,
+    "tokens_per_round": 3.5
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that reads a JSON config file and m",
+   "tokens": 512,
+   "tok_s": 42.9,
+   "drafting": {
+    "windows": 119,
+    "rows": 603,
+    "dspark_rounds": 119,
+    "dspark_drafts": 484,
+    "dspark_kept": 393,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.303,
+    "tokens_per_round": 4.303
+   }
+  },
+  {
+   "msg": "Implement in Rust: a function that deep-merges two dictionaries. Show only the c",
+   "tokens": 476,
+   "tok_s": 50.02,
+   "drafting": {
+    "windows": 94,
+    "rows": 522,
+    "dspark_rounds": 94,
+    "dspark_drafts": 428,
+    "dspark_kept": 383,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.074,
+    "tokens_per_round": 5.074
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that rate-limits calls with a token",
+   "tokens": 512,
+   "tok_s": 39.65,
+   "drafting": {
+    "windows": 148,
+    "rows": 639,
+    "dspark_rounds": 148,
+    "dspark_drafts": 491,
+    "dspark_kept": 364,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.459,
+    "tokens_per_round": 3.459
+   }
+  },
+  {
+   "msg": "Implement in Rust: a function that chunks a list into batches of n. Show only th",
+   "tokens": 59,
+   "tok_s": 39.66,
+   "drafting": {
+    "windows": 13,
+    "rows": 72,
+    "dspark_rounds": 13,
+    "dspark_drafts": 59,
+    "dspark_kept": 47,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.615,
+    "tokens_per_round": 4.615
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 31.49,
+   "drafting": {
+    "windows": 6,
+    "rows": 27,
+    "dspark_rounds": 6,
+    "dspark_drafts": 21,
+    "dspark_kept": 14,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.333,
+    "tokens_per_round": 3.333
+   }
+  },
+  {
+   "msg": "Write a regular expression that matches ISO 8601 dates (YYYY-MM-DD) and a Python",
+   "tokens": 512,
+   "tok_s": 53.28,
+   "drafting": {
+    "windows": 128,
+    "rows": 618,
+    "dspark_rounds": 126,
+    "dspark_drafts": 477,
+    "dspark_kept": 384,
+    "lookup_rounds": 1,
+    "lookup_drafts": 13,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.048,
+    "tokens_per_round": 4.0
+   }
+  },
+  {
+   "msg": "Write a bash script that backs up a directory to a timestamped tar.gz and keeps ",
+   "tokens": 512,
+   "tok_s": 49.92,
+   "drafting": {
+    "windows": 141,
+    "rows": 638,
+    "dspark_rounds": 140,
+    "dspark_drafts": 497,
+    "dspark_kept": 371,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.65,
+    "tokens_per_round": 3.631
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 31.48,
+   "drafting": {
+    "windows": 6,
+    "rows": 26,
+    "dspark_rounds": 6,
+    "dspark_drafts": 20,
+    "dspark_kept": 14,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.333,
+    "tokens_per_round": 3.333
+   }
+  },
+  {
+   "msg": "Write a Python function that validates an email address with a regular expressio",
+   "tokens": 512,
+   "tok_s": 39.87,
+   "drafting": {
+    "windows": 139,
+    "rows": 628,
+    "dspark_rounds": 139,
+    "dspark_drafts": 489,
+    "dspark_kept": 373,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.683,
+    "tokens_per_round": 3.683
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Go: a helper that finds all anagram groups in a li",
+   "tokens": 381,
+   "tok_s": 33.26,
+   "drafting": {
+    "windows": 120,
+    "rows": 494,
+    "dspark_rounds": 120,
+    "dspark_drafts": 374,
+    "dspark_kept": 262,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.183,
+    "tokens_per_round": 3.183
+   }
+  },
+  {
+   "msg": "Write a Bash function that debounces a function call, with comments and two test",
+   "tokens": 512,
+   "tok_s": 37.73,
+   "drafting": {
+    "windows": 163,
+    "rows": 669,
+    "dspark_rounds": 163,
+    "dspark_drafts": 506,
+    "dspark_kept": 349,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.141,
+    "tokens_per_round": 3.141
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 33,
+   "tok_s": 36.95,
+   "drafting": {
+    "windows": 8,
+    "rows": 43,
+    "dspark_rounds": 8,
+    "dspark_drafts": 35,
+    "dspark_kept": 27,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.375,
+    "tokens_per_round": 4.375
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that implements binary search on a sorted array. Sho",
+   "tokens": 224,
+   "tok_s": 40.97,
+   "drafting": {
+    "windows": 44,
+    "rows": 242,
+    "dspark_rounds": 44,
+    "dspark_drafts": 198,
+    "dspark_kept": 181,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.114,
+    "tokens_per_round": 5.114
+   }
+  },
+  {
+   "msg": "Write a Bash function that retries an HTTP request with exponential backoff, wit",
+   "tokens": 512,
+   "tok_s": 33.19,
+   "drafting": {
+    "windows": 151,
+    "rows": 659,
+    "dspark_rounds": 150,
+    "dspark_drafts": 508,
+    "dspark_kept": 361,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.407,
+    "tokens_per_round": 3.391
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that implements an LRU cache with",
+   "tokens": 512,
+   "tok_s": 33.3,
+   "drafting": {
+    "windows": 150,
+    "rows": 638,
+    "dspark_rounds": 150,
+    "dspark_drafts": 488,
+    "dspark_kept": 362,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.413,
+    "tokens_per_round": 3.413
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 512,
+   "tok_s": 30.98,
+   "drafting": {
+    "windows": 174,
+    "rows": 720,
+    "dspark_rounds": 172,
+    "dspark_drafts": 526,
+    "dspark_kept": 331,
+    "lookup_rounds": 2,
+    "lookup_drafts": 20,
+    "lookup_kept": 7,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.924,
+    "tokens_per_round": 2.943
+   }
+  },
+  {
+   "msg": "Convert this JSON to a Python dataclass with type hints: {\"id\": 1, \"name\": \"x\", ",
+   "tokens": 272,
+   "tok_s": 38.12,
+   "drafting": {
+    "windows": 66,
+    "rows": 314,
+    "dspark_rounds": 66,
+    "dspark_drafts": 248,
+    "dspark_kept": 207,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.136,
+    "tokens_per_round": 4.136
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 36,
+   "tok_s": 29.07,
+   "drafting": {
+    "windows": 10,
+    "rows": 54,
+    "dspark_rounds": 10,
+    "dspark_drafts": 44,
+    "dspark_kept": 28,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.8,
+    "tokens_per_round": 3.8
+   }
+  },
+  {
+   "msg": "Write a Bash function that reads a JSON config file and merges it with defaults,",
+   "tokens": 512,
+   "tok_s": 47.79,
+   "drafting": {
+    "windows": 151,
+    "rows": 647,
+    "dspark_rounds": 150,
+    "dspark_drafts": 496,
+    "dspark_kept": 361,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.407,
+    "tokens_per_round": 3.391
+   }
+  },
+  {
+   "msg": "Write a SQL query that returns the top 5 customers by total order value from tab",
+   "tokens": 248,
+   "tok_s": 37.21,
+   "drafting": {
+    "windows": 68,
+    "rows": 308,
+    "dspark_rounds": 68,
+    "dspark_drafts": 240,
+    "dspark_kept": 181,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.662,
+    "tokens_per_round": 3.662
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that converts Roman numerals to int",
+   "tokens": 512,
+   "tok_s": 36.2,
+   "drafting": {
+    "windows": 151,
+    "rows": 650,
+    "dspark_rounds": 151,
+    "dspark_drafts": 499,
+    "dspark_kept": 361,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.391,
+    "tokens_per_round": 3.391
+   }
+  },
+  {
+   "msg": "Write a Bash function that finds all anagram groups in a list of words, with com",
+   "tokens": 512,
+   "tok_s": 35.3,
+   "drafting": {
+    "windows": 157,
+    "rows": 664,
+    "dspark_rounds": 156,
+    "dspark_drafts": 507,
+    "dspark_kept": 355,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.276,
+    "tokens_per_round": 3.261
+   }
+  },
+  {
+   "msg": "Give me a two-sentence explanation of how HTTPS works.",
+   "tokens": 74,
+   "tok_s": 21.75,
+   "drafting": {
+    "windows": 30,
+    "rows": 104,
+    "dspark_rounds": 30,
+    "dspark_drafts": 74,
+    "dspark_kept": 45,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.5,
+    "tokens_per_round": 2.5
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that chunks a list into batches of ",
+   "tokens": 499,
+   "tok_s": 34.46,
+   "drafting": {
+    "windows": 163,
+    "rows": 689,
+    "dspark_rounds": 163,
+    "dspark_drafts": 526,
+    "dspark_kept": 337,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.067,
+    "tokens_per_round": 3.067
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean TypeScript: a helper that computes the longest com",
+   "tokens": 512,
+   "tok_s": 40.11,
+   "drafting": {
+    "windows": 125,
+    "rows": 584,
+    "dspark_rounds": 125,
+    "dspark_drafts": 459,
+    "dspark_kept": 387,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.096,
+    "tokens_per_round": 4.096
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 35.38,
+   "drafting": {
+    "windows": 5,
+    "rows": 25,
+    "dspark_rounds": 5,
+    "dspark_drafts": 20,
+    "dspark_kept": 15,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.0,
+    "tokens_per_round": 4.0
+   }
+  },
+  {
+   "msg": "Write a Go function that computes a moving average over a stream of numbers, wit",
+   "tokens": 512,
+   "tok_s": 39.41,
+   "drafting": {
+    "windows": 136,
+    "rows": 663,
+    "dspark_rounds": 136,
+    "dspark_drafts": 527,
+    "dspark_kept": 376,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.765,
+    "tokens_per_round": 3.765
+   }
+  },
+  {
+   "msg": "Write a Python function that implements Dijkstra's shortest path on an adjacency",
+   "tokens": 512,
+   "tok_s": 38.77,
+   "drafting": {
+    "windows": 140,
+    "rows": 652,
+    "dspark_rounds": 140,
+    "dspark_drafts": 512,
+    "dspark_kept": 372,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.657,
+    "tokens_per_round": 3.657
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that pretty-prints a table from row",
+   "tokens": 512,
+   "tok_s": 41.98,
+   "drafting": {
+    "windows": 125,
+    "rows": 624,
+    "dspark_rounds": 125,
+    "dspark_drafts": 499,
+    "dspark_kept": 387,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.096,
+    "tokens_per_round": 4.096
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 23.41,
+   "drafting": {
+    "windows": 6,
+    "rows": 27,
+    "dspark_rounds": 6,
+    "dspark_drafts": 21,
+    "dspark_kept": 15,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.5,
+    "tokens_per_round": 3.5
+   }
+  },
+  {
+   "msg": "Write a Go function that parses a CSV file into a list of dicts and handles quot",
+   "tokens": 512,
+   "tok_s": 38.58,
+   "drafting": {
+    "windows": 139,
+    "rows": 675,
+    "dspark_rounds": 139,
+    "dspark_drafts": 536,
+    "dspark_kept": 373,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.683,
+    "tokens_per_round": 3.683
+   }
+  },
+  {
+   "msg": "Write a Go function that pretty-prints a table from rows of data, with comments ",
+   "tokens": 512,
+   "tok_s": 39.58,
+   "drafting": {
+    "windows": 138,
+    "rows": 641,
+    "dspark_rounds": 136,
+    "dspark_drafts": 485,
+    "dspark_kept": 371,
+    "lookup_rounds": 2,
+    "lookup_drafts": 18,
+    "lookup_kept": 3,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.728,
+    "tokens_per_round": 3.71
+   }
+  },
+  {
+   "msg": "Explain and fix: a Python script reads a file with open() in a loop and never cl",
+   "tokens": 512,
+   "tok_s": 41.41,
+   "drafting": {
+    "windows": 165,
+    "rows": 668,
+    "dspark_rounds": 164,
+    "dspark_drafts": 503,
+    "dspark_kept": 347,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.116,
+    "tokens_per_round": 3.103
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that topologically sorts a dependency graph. Show on",
+   "tokens": 318,
+   "tok_s": 48.14,
+   "drafting": {
+    "windows": 62,
+    "rows": 351,
+    "dspark_rounds": 62,
+    "dspark_drafts": 289,
+    "dspark_kept": 257,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.145,
+    "tokens_per_round": 5.145
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 37.36,
+   "drafting": {
+    "windows": 5,
+    "rows": 23,
+    "dspark_rounds": 5,
+    "dspark_drafts": 18,
+    "dspark_kept": 14,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.8,
+    "tokens_per_round": 3.8
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 246,
+   "tok_s": 29.51,
+   "drafting": {
+    "windows": 94,
+    "rows": 358,
+    "dspark_rounds": 92,
+    "dspark_drafts": 256,
+    "dspark_kept": 151,
+    "lookup_rounds": 2,
+    "lookup_drafts": 8,
+    "lookup_kept": 2,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.641,
+    "tokens_per_round": 2.628
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 30,
+   "tok_s": 23.86,
+   "drafting": {
+    "windows": 7,
+    "rows": 35,
+    "dspark_rounds": 7,
+    "dspark_drafts": 28,
+    "dspark_kept": 25,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.571,
+    "tokens_per_round": 4.571
+   }
+  },
+  {
+   "msg": "Write a Python function that rate-limits calls with a token bucket, with comment",
+   "tokens": 512,
+   "tok_s": 46.39,
+   "drafting": {
+    "windows": 136,
+    "rows": 638,
+    "dspark_rounds": 135,
+    "dspark_drafts": 502,
+    "dspark_kept": 376,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.785,
+    "tokens_per_round": 3.765
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that computes word frequencies fr",
+   "tokens": 404,
+   "tok_s": 36.26,
+   "drafting": {
+    "windows": 138,
+    "rows": 553,
+    "dspark_rounds": 138,
+    "dspark_drafts": 415,
+    "dspark_kept": 267,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.935,
+    "tokens_per_round": 2.935
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that implements a trie with insert and prefix search",
+   "tokens": 198,
+   "tok_s": 47.12,
+   "drafting": {
+    "windows": 42,
+    "rows": 237,
+    "dspark_rounds": 42,
+    "dspark_drafts": 195,
+    "dspark_kept": 157,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.738,
+    "tokens_per_round": 4.738
+   }
+  },
+  {
+   "msg": "Write a Dockerfile for a small Python Flask app with a requirements.txt, running",
+   "tokens": 512,
+   "tok_s": 29.8,
+   "drafting": {
+    "windows": 153,
+    "rows": 635,
+    "dspark_rounds": 153,
+    "dspark_drafts": 482,
+    "dspark_kept": 359,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.346,
+    "tokens_per_round": 3.346
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that computes a moving average over",
+   "tokens": 512,
+   "tok_s": 36.76,
+   "drafting": {
+    "windows": 116,
+    "rows": 599,
+    "dspark_rounds": 116,
+    "dspark_drafts": 483,
+    "dspark_kept": 396,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.414,
+    "tokens_per_round": 4.414
+   }
+  },
+  {
+   "msg": "Write a GitHub Actions workflow that runs pytest on Python 3.11 and 3.12.",
+   "tokens": 512,
+   "tok_s": 34.75,
+   "drafting": {
+    "windows": 125,
+    "rows": 623,
+    "dspark_rounds": 124,
+    "dspark_drafts": 495,
+    "dspark_kept": 386,
+    "lookup_rounds": 1,
+    "lookup_drafts": 3,
+    "lookup_kept": 1,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.113,
+    "tokens_per_round": 4.096
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that parses a CSV file into a list ",
+   "tokens": 512,
+   "tok_s": 30.03,
+   "drafting": {
+    "windows": 162,
+    "rows": 678,
+    "dspark_rounds": 161,
+    "dspark_drafts": 516,
+    "dspark_kept": 350,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.174,
+    "tokens_per_round": 3.16
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 21,
+   "tok_s": 42.12,
+   "drafting": {
+    "windows": 5,
+    "rows": 28,
+    "dspark_rounds": 5,
+    "dspark_drafts": 23,
+    "dspark_kept": 17,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.4,
+    "tokens_per_round": 4.4
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean TypeScript: a helper that implements binary search",
+   "tokens": 380,
+   "tok_s": 59.8,
+   "drafting": {
+    "windows": 120,
+    "rows": 501,
+    "dspark_rounds": 120,
+    "dspark_drafts": 381,
+    "dspark_kept": 261,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.175,
+    "tokens_per_round": 3.175
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 40.05,
+   "drafting": {
+    "windows": 5,
+    "rows": 24,
+    "dspark_rounds": 5,
+    "dspark_drafts": 19,
+    "dspark_kept": 16,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.2,
+    "tokens_per_round": 4.2
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 34,
+   "tok_s": 45.94,
+   "drafting": {
+    "windows": 8,
+    "rows": 44,
+    "dspark_rounds": 8,
+    "dspark_drafts": 36,
+    "dspark_kept": 27,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.375,
+    "tokens_per_round": 4.375
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Go: a helper that implements Dijkstra's shortest p",
+   "tokens": 512,
+   "tok_s": 46.22,
+   "drafting": {
+    "windows": 118,
+    "rows": 593,
+    "dspark_rounds": 118,
+    "dspark_drafts": 475,
+    "dspark_kept": 394,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.339,
+    "tokens_per_round": 4.339
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 512,
+   "tok_s": 38.12,
+   "drafting": {
+    "windows": 178,
+    "rows": 745,
+    "dspark_rounds": 178,
+    "dspark_drafts": 567,
+    "dspark_kept": 334,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.876,
+    "tokens_per_round": 2.876
+   }
+  },
+  {
+   "msg": "Implement in Python: a function that computes the longest common subsequence of ",
+   "tokens": 248,
+   "tok_s": 50.85,
+   "drafting": {
+    "windows": 46,
+    "rows": 273,
+    "dspark_rounds": 46,
+    "dspark_drafts": 227,
+    "dspark_kept": 203,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.413,
+    "tokens_per_round": 5.413
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 41,
+   "tok_s": 30.81,
+   "drafting": {
+    "windows": 11,
+    "rows": 56,
+    "dspark_rounds": 11,
+    "dspark_drafts": 45,
+    "dspark_kept": 31,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.818,
+    "tokens_per_round": 3.818
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that flattens an arbitrarily nest",
+   "tokens": 499,
+   "tok_s": 35.11,
+   "drafting": {
+    "windows": 156,
+    "rows": 664,
+    "dspark_rounds": 156,
+    "dspark_drafts": 508,
+    "dspark_kept": 344,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.205,
+    "tokens_per_round": 3.205
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 46.39,
+   "drafting": {
+    "windows": 4,
+    "rows": 20,
+    "dspark_rounds": 4,
+    "dspark_drafts": 16,
+    "dspark_kept": 15,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.75,
+    "tokens_per_round": 4.75
+   }
+  },
+  {
+   "msg": "Write a TypeScript function that topologically sorts a dependency graph, with co",
+   "tokens": 512,
+   "tok_s": 42.86,
+   "drafting": {
+    "windows": 126,
+    "rows": 597,
+    "dspark_rounds": 126,
+    "dspark_drafts": 471,
+    "dspark_kept": 386,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.063,
+    "tokens_per_round": 4.063
+   }
+  },
+  {
+   "msg": "Write a Python function that merges overlapping intervals, with comments and two",
+   "tokens": 512,
+   "tok_s": 40.53,
+   "drafting": {
+    "windows": 135,
+    "rows": 650,
+    "dspark_rounds": 132,
+    "dspark_drafts": 483,
+    "dspark_kept": 364,
+    "lookup_rounds": 3,
+    "lookup_drafts": 32,
+    "lookup_kept": 13,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.758,
+    "tokens_per_round": 3.793
+   }
+  },
+  {
+   "msg": "Write a Go function that parses command-line flags without a library, with comme",
+   "tokens": 512,
+   "tok_s": 33.91,
+   "drafting": {
+    "windows": 128,
+    "rows": 598,
+    "dspark_rounds": 128,
+    "dspark_drafts": 470,
+    "dspark_kept": 384,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.0,
+    "tokens_per_round": 4.0
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that detects a cycle in a linked li",
+   "tokens": 484,
+   "tok_s": 29.58,
+   "drafting": {
+    "windows": 149,
+    "rows": 630,
+    "dspark_rounds": 148,
+    "dspark_drafts": 468,
+    "dspark_kept": 331,
+    "lookup_rounds": 1,
+    "lookup_drafts": 13,
+    "lookup_kept": 5,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.236,
+    "tokens_per_round": 3.255
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that parses command-line flags wi",
+   "tokens": 512,
+   "tok_s": 32.67,
+   "drafting": {
+    "windows": 135,
+    "rows": 614,
+    "dspark_rounds": 133,
+    "dspark_drafts": 466,
+    "dspark_kept": 364,
+    "lookup_rounds": 1,
+    "lookup_drafts": 13,
+    "lookup_kept": 13,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.737,
+    "tokens_per_round": 3.793
+   }
+  },
+  {
+   "msg": "Write a Python function that converts Roman numerals to integers and back, with ",
+   "tokens": 512,
+   "tok_s": 33.08,
+   "drafting": {
+    "windows": 132,
+    "rows": 600,
+    "dspark_rounds": 132,
+    "dspark_drafts": 468,
+    "dspark_kept": 380,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.879,
+    "tokens_per_round": 3.879
+   }
+  },
+  {
+   "msg": "List the steps to set up SSH keys on a new Linux machine.",
+   "tokens": 512,
+   "tok_s": 46.63,
+   "drafting": {
+    "windows": 141,
+    "rows": 640,
+    "dspark_rounds": 141,
+    "dspark_drafts": 499,
+    "dspark_kept": 371,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.631,
+    "tokens_per_round": 3.631
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that detects a cycle in a linked list. Show only the",
+   "tokens": 85,
+   "tok_s": 40.58,
+   "drafting": {
+    "windows": 18,
+    "rows": 100,
+    "dspark_rounds": 18,
+    "dspark_drafts": 82,
+    "dspark_kept": 68,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.778,
+    "tokens_per_round": 4.778
+   }
+  },
+  {
+   "msg": "Write a Bash function that serializes a binary tree to a string and back, with c",
+   "tokens": 512,
+   "tok_s": 40.61,
+   "drafting": {
+    "windows": 175,
+    "rows": 699,
+    "dspark_rounds": 174,
+    "dspark_drafts": 524,
+    "dspark_kept": 337,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.937,
+    "tokens_per_round": 2.926
+   }
+  },
+  {
+   "msg": "Implement in Python: a function that debounces a function call. Show only the co",
+   "tokens": 109,
+   "tok_s": 35.54,
+   "drafting": {
+    "windows": 28,
+    "rows": 145,
+    "dspark_rounds": 28,
+    "dspark_drafts": 117,
+    "dspark_kept": 82,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.929,
+    "tokens_per_round": 3.929
+   }
+  },
+  {
+   "msg": "Summarize the pros and cons of microservices in a short answer.",
+   "tokens": 54,
+   "tok_s": 17.89,
+   "drafting": {
+    "windows": 27,
+    "rows": 79,
+    "dspark_rounds": 27,
+    "dspark_drafts": 52,
+    "dspark_kept": 28,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.037,
+    "tokens_per_round": 2.037
+   }
+  },
+  {
+   "msg": "Implement in TypeScript: a function that flattens an arbitrarily nested list. Sh",
+   "tokens": 89,
+   "tok_s": 37.79,
+   "drafting": {
+    "windows": 18,
+    "rows": 102,
+    "dspark_rounds": 18,
+    "dspark_drafts": 84,
+    "dspark_kept": 72,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.0,
+    "tokens_per_round": 5.0
+   }
+  },
+  {
+   "msg": "Write a Python function that implements an LRU cache with O(1) get and put, with",
+   "tokens": 512,
+   "tok_s": 63.29,
+   "drafting": {
+    "windows": 137,
+    "rows": 632,
+    "dspark_rounds": 137,
+    "dspark_drafts": 495,
+    "dspark_kept": 375,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.737,
+    "tokens_per_round": 3.737
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 35,
+   "tok_s": 33.14,
+   "drafting": {
+    "windows": 9,
+    "rows": 48,
+    "dspark_rounds": 9,
+    "dspark_drafts": 39,
+    "dspark_kept": 27,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.0,
+    "tokens_per_round": 4.0
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that serializes a binary tree to ",
+   "tokens": 512,
+   "tok_s": 36.73,
+   "drafting": {
+    "windows": 154,
+    "rows": 677,
+    "dspark_rounds": 154,
+    "dspark_drafts": 523,
+    "dspark_kept": 358,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.325,
+    "tokens_per_round": 3.325
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 33.26,
+   "drafting": {
+    "windows": 6,
+    "rows": 25,
+    "dspark_rounds": 6,
+    "dspark_drafts": 19,
+    "dspark_kept": 15,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.5,
+    "tokens_per_round": 3.5
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Go: a helper that implements a trie with insert an",
+   "tokens": 512,
+   "tok_s": 41.44,
+   "drafting": {
+    "windows": 134,
+    "rows": 618,
+    "dspark_rounds": 134,
+    "dspark_drafts": 484,
+    "dspark_kept": 378,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.821,
+    "tokens_per_round": 3.821
+   }
+  },
+  {
+   "msg": "What is the difference between a process and a thread?",
+   "tokens": 370,
+   "tok_s": 29.01,
+   "drafting": {
+    "windows": 140,
+    "rows": 500,
+    "dspark_rounds": 140,
+    "dspark_drafts": 360,
+    "dspark_kept": 231,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.65,
+    "tokens_per_round": 2.65
+   }
+  },
+  {
+   "msg": "Implement in Rust: a function that merges overlapping intervals. Show only the c",
+   "tokens": 146,
+   "tok_s": 38.68,
+   "drafting": {
+    "windows": 31,
+    "rows": 167,
+    "dspark_rounds": 31,
+    "dspark_drafts": 136,
+    "dspark_kept": 116,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.742,
+    "tokens_per_round": 4.742
+   }
+  },
+  {
+   "msg": "Implement in Python: a function that computes word frequencies from a text file.",
+   "tokens": 69,
+   "tok_s": 28.83,
+   "drafting": {
+    "windows": 17,
+    "rows": 87,
+    "dspark_rounds": 17,
+    "dspark_drafts": 70,
+    "dspark_kept": 53,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.118,
+    "tokens_per_round": 4.118
+   }
+  },
+  {
+   "msg": "Fix the bug: `def avg(xs): return sum(xs) / len(xs) - 1` should return the mean.",
+   "tokens": 309,
+   "tok_s": 43.71,
+   "drafting": {
+    "windows": 82,
+    "rows": 378,
+    "dspark_rounds": 82,
+    "dspark_drafts": 296,
+    "dspark_kept": 227,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.768,
+    "tokens_per_round": 3.768
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that deep-merges two dictionaries. ",
+   "tokens": 512,
+   "tok_s": 45.82,
+   "drafting": {
+    "windows": 168,
+    "rows": 667,
+    "dspark_rounds": 168,
+    "dspark_drafts": 499,
+    "dspark_kept": 344,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.048,
+    "tokens_per_round": 3.048
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that retries an HTTP request with",
+   "tokens": 512,
+   "tok_s": 64.09,
+   "drafting": {
+    "windows": 137,
+    "rows": 624,
+    "dspark_rounds": 137,
+    "dspark_drafts": 487,
+    "dspark_kept": 375,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.737,
+    "tokens_per_round": 3.737
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 19.66,
+   "drafting": {
+    "windows": 5,
+    "rows": 25,
+    "dspark_rounds": 5,
+    "dspark_drafts": 20,
+    "dspark_kept": 16,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.2,
+    "tokens_per_round": 4.2
+   }
+  },
+  {
+   "msg": "Implement in Bash: a function that validates an email address with a regular exp",
+   "tokens": 66,
+   "tok_s": 52.82,
+   "drafting": {
+    "windows": 14,
+    "rows": 77,
+    "dspark_rounds": 14,
+    "dspark_drafts": 63,
+    "dspark_kept": 53,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.786,
+    "tokens_per_round": 4.786
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 31.25,
+   "drafting": {
+    "windows": 6,
+    "rows": 29,
+    "dspark_rounds": 6,
+    "dspark_drafts": 23,
+    "dspark_kept": 15,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.5,
+    "tokens_per_round": 3.5
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that reads a JSON config file and m",
+   "tokens": 512,
+   "tok_s": 36.41,
+   "drafting": {
+    "windows": 147,
+    "rows": 642,
+    "dspark_rounds": 147,
+    "dspark_drafts": 495,
+    "dspark_kept": 365,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.483,
+    "tokens_per_round": 3.483
+   }
+  },
+  {
+   "msg": "Implement in Rust: a function that deep-merges two dictionaries. Show only the c",
+   "tokens": 512,
+   "tok_s": 45.85,
+   "drafting": {
+    "windows": 109,
+    "rows": 587,
+    "dspark_rounds": 109,
+    "dspark_drafts": 478,
+    "dspark_kept": 403,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.697,
+    "tokens_per_round": 4.697
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that rate-limits calls with a token",
+   "tokens": 512,
+   "tok_s": 38.19,
+   "drafting": {
+    "windows": 143,
+    "rows": 643,
+    "dspark_rounds": 143,
+    "dspark_drafts": 500,
+    "dspark_kept": 369,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.58,
+    "tokens_per_round": 3.58
+   }
+  },
+  {
+   "msg": "Implement in Rust: a function that chunks a list into batches of n. Show only th",
+   "tokens": 59,
+   "tok_s": 39.92,
+   "drafting": {
+    "windows": 13,
+    "rows": 76,
+    "dspark_rounds": 13,
+    "dspark_drafts": 63,
+    "dspark_kept": 47,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.615,
+    "tokens_per_round": 4.615
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 149,
+   "tok_s": 25.72,
+   "drafting": {
+    "windows": 61,
+    "rows": 222,
+    "dspark_rounds": 61,
+    "dspark_drafts": 161,
+    "dspark_kept": 89,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.459,
+    "tokens_per_round": 2.459
+   }
+  },
+  {
+   "msg": "Write a regular expression that matches ISO 8601 dates (YYYY-MM-DD) and a Python",
+   "tokens": 512,
+   "tok_s": 44.53,
+   "drafting": {
+    "windows": 138,
+    "rows": 650,
+    "dspark_rounds": 137,
+    "dspark_drafts": 498,
+    "dspark_kept": 370,
+    "lookup_rounds": 1,
+    "lookup_drafts": 14,
+    "lookup_kept": 4,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.701,
+    "tokens_per_round": 3.71
+   }
+  },
+  {
+   "msg": "Write a bash script that backs up a directory to a timestamped tar.gz and keeps ",
+   "tokens": 512,
+   "tok_s": 44.53,
+   "drafting": {
+    "windows": 138,
+    "rows": 649,
+    "dspark_rounds": 138,
+    "dspark_drafts": 511,
+    "dspark_kept": 374,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.71,
+    "tokens_per_round": 3.71
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 19,
+   "tok_s": 28.99,
+   "drafting": {
+    "windows": 6,
+    "rows": 29,
+    "dspark_rounds": 6,
+    "dspark_drafts": 23,
+    "dspark_kept": 13,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.167,
+    "tokens_per_round": 3.167
+   }
+  },
+  {
+   "msg": "Write a Python function that validates an email address with a regular expressio",
+   "tokens": 512,
+   "tok_s": 39.54,
+   "drafting": {
+    "windows": 143,
+    "rows": 663,
+    "dspark_rounds": 143,
+    "dspark_drafts": 520,
+    "dspark_kept": 369,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.58,
+    "tokens_per_round": 3.58
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Go: a helper that finds all anagram groups in a li",
+   "tokens": 402,
+   "tok_s": 34.71,
+   "drafting": {
+    "windows": 124,
+    "rows": 502,
+    "dspark_rounds": 124,
+    "dspark_drafts": 378,
+    "dspark_kept": 279,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.25,
+    "tokens_per_round": 3.25
+   }
+  },
+  {
+   "msg": "Write a Bash function that debounces a function call, with comments and two test",
+   "tokens": 512,
+   "tok_s": 36.99,
+   "drafting": {
+    "windows": 161,
+    "rows": 658,
+    "dspark_rounds": 161,
+    "dspark_drafts": 497,
+    "dspark_kept": 351,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.18,
+    "tokens_per_round": 3.18
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 33,
+   "tok_s": 38.97,
+   "drafting": {
+    "windows": 8,
+    "rows": 40,
+    "dspark_rounds": 8,
+    "dspark_drafts": 32,
+    "dspark_kept": 27,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.375,
+    "tokens_per_round": 4.375
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that implements binary search on a sorted array. Sho",
+   "tokens": 160,
+   "tok_s": 37.35,
+   "drafting": {
+    "windows": 31,
+    "rows": 177,
+    "dspark_rounds": 31,
+    "dspark_drafts": 146,
+    "dspark_kept": 130,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 5.194,
+    "tokens_per_round": 5.194
+   }
+  },
+  {
+   "msg": "Write a Bash function that retries an HTTP request with exponential backoff, wit",
+   "tokens": 512,
+   "tok_s": 33.41,
+   "drafting": {
+    "windows": 152,
+    "rows": 649,
+    "dspark_rounds": 152,
+    "dspark_drafts": 497,
+    "dspark_kept": 360,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.368,
+    "tokens_per_round": 3.368
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Python: a helper that implements an LRU cache with",
+   "tokens": 512,
+   "tok_s": 36.01,
+   "drafting": {
+    "windows": 144,
+    "rows": 633,
+    "dspark_rounds": 144,
+    "dspark_drafts": 489,
+    "dspark_kept": 368,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.556,
+    "tokens_per_round": 3.556
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 512,
+   "tok_s": 29.97,
+   "drafting": {
+    "windows": 200,
+    "rows": 762,
+    "dspark_rounds": 200,
+    "dspark_drafts": 562,
+    "dspark_kept": 312,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.56,
+    "tokens_per_round": 2.56
+   }
+  },
+  {
+   "msg": "Convert this JSON to a Python dataclass with type hints: {\"id\": 1, \"name\": \"x\", ",
+   "tokens": 194,
+   "tok_s": 41.08,
+   "drafting": {
+    "windows": 48,
+    "rows": 246,
+    "dspark_rounds": 45,
+    "dspark_drafts": 171,
+    "dspark_kept": 121,
+    "lookup_rounds": 3,
+    "lookup_drafts": 27,
+    "lookup_kept": 26,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.689,
+    "tokens_per_round": 4.062
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 36,
+   "tok_s": 29.86,
+   "drafting": {
+    "windows": 10,
+    "rows": 53,
+    "dspark_rounds": 10,
+    "dspark_drafts": 43,
+    "dspark_kept": 27,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.7,
+    "tokens_per_round": 3.7
+   }
+  },
+  {
+   "msg": "Write a Bash function that reads a JSON config file and merges it with defaults,",
+   "tokens": 512,
+   "tok_s": 53.62,
+   "drafting": {
+    "windows": 143,
+    "rows": 631,
+    "dspark_rounds": 142,
+    "dspark_drafts": 488,
+    "dspark_kept": 369,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.599,
+    "tokens_per_round": 3.58
+   }
+  },
+  {
+   "msg": "Write a SQL query that returns the top 5 customers by total order value from tab",
+   "tokens": 176,
+   "tok_s": 37.87,
+   "drafting": {
+    "windows": 47,
+    "rows": 210,
+    "dspark_rounds": 47,
+    "dspark_drafts": 163,
+    "dspark_kept": 130,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.766,
+    "tokens_per_round": 3.766
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that converts Roman numerals to int",
+   "tokens": 512,
+   "tok_s": 38.67,
+   "drafting": {
+    "windows": 143,
+    "rows": 617,
+    "dspark_rounds": 143,
+    "dspark_drafts": 474,
+    "dspark_kept": 369,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.58,
+    "tokens_per_round": 3.58
+   }
+  },
+  {
+   "msg": "Write a Bash function that finds all anagram groups in a list of words, with com",
+   "tokens": 512,
+   "tok_s": 34.54,
+   "drafting": {
+    "windows": 169,
+    "rows": 697,
+    "dspark_rounds": 168,
+    "dspark_drafts": 526,
+    "dspark_kept": 343,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.042,
+    "tokens_per_round": 3.03
+   }
+  },
+  {
+   "msg": "Give me a two-sentence explanation of how HTTPS works.",
+   "tokens": 69,
+   "tok_s": 21.39,
+   "drafting": {
+    "windows": 30,
+    "rows": 94,
+    "dspark_rounds": 30,
+    "dspark_drafts": 64,
+    "dspark_kept": 40,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.333,
+    "tokens_per_round": 2.333
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Bash: a helper that chunks a list into batches of ",
+   "tokens": 512,
+   "tok_s": 36.72,
+   "drafting": {
+    "windows": 157,
+    "rows": 662,
+    "dspark_rounds": 157,
+    "dspark_drafts": 505,
+    "dspark_kept": 355,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.261,
+    "tokens_per_round": 3.261
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean TypeScript: a helper that computes the longest com",
+   "tokens": 512,
+   "tok_s": 40.82,
+   "drafting": {
+    "windows": 125,
+    "rows": 593,
+    "dspark_rounds": 125,
+    "dspark_drafts": 468,
+    "dspark_kept": 387,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.096,
+    "tokens_per_round": 4.096
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 48,
+   "tok_s": 34.46,
+   "drafting": {
+    "windows": 12,
+    "rows": 59,
+    "dspark_rounds": 12,
+    "dspark_drafts": 47,
+    "dspark_kept": 37,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.083,
+    "tokens_per_round": 4.083
+   }
+  },
+  {
+   "msg": "Write a Go function that computes a moving average over a stream of numbers, wit",
+   "tokens": 512,
+   "tok_s": 38.77,
+   "drafting": {
+    "windows": 134,
+    "rows": 639,
+    "dspark_rounds": 133,
+    "dspark_drafts": 505,
+    "dspark_kept": 378,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.842,
+    "tokens_per_round": 3.821
+   }
+  },
+  {
+   "msg": "Write a Python function that implements Dijkstra's shortest path on an adjacency",
+   "tokens": 512,
+   "tok_s": 38.17,
+   "drafting": {
+    "windows": 138,
+    "rows": 647,
+    "dspark_rounds": 137,
+    "dspark_drafts": 509,
+    "dspark_kept": 374,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.73,
+    "tokens_per_round": 3.71
+   }
+  },
+  {
+   "msg": "Refactor this idea into clean Rust: a helper that pretty-prints a table from row",
+   "tokens": 512,
+   "tok_s": 44.27,
+   "drafting": {
+    "windows": 117,
+    "rows": 612,
+    "dspark_rounds": 117,
+    "dspark_drafts": 495,
+    "dspark_kept": 395,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.376,
+    "tokens_per_round": 4.376
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 20,
+   "tok_s": 23.87,
+   "drafting": {
+    "windows": 5,
+    "rows": 24,
+    "dspark_rounds": 5,
+    "dspark_drafts": 19,
+    "dspark_kept": 16,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.2,
+    "tokens_per_round": 4.2
+   }
+  },
+  {
+   "msg": "Write a Go function that parses a CSV file into a list of dicts and handles quot",
+   "tokens": 512,
+   "tok_s": 41.31,
+   "drafting": {
+    "windows": 133,
+    "rows": 633,
+    "dspark_rounds": 133,
+    "dspark_drafts": 500,
+    "dspark_kept": 379,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.85,
+    "tokens_per_round": 3.85
+   }
+  },
+  {
+   "msg": "Write a Go function that pretty-prints a table from rows of data, with comments ",
+   "tokens": 512,
+   "tok_s": 41.15,
+   "drafting": {
+    "windows": 134,
+    "rows": 623,
+    "dspark_rounds": 132,
+    "dspark_drafts": 471,
+    "dspark_kept": 375,
+    "lookup_rounds": 2,
+    "lookup_drafts": 18,
+    "lookup_kept": 3,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.841,
+    "tokens_per_round": 3.821
+   }
+  },
+  {
+   "msg": "Explain and fix: a Python script reads a file with open() in a loop and never cl",
+   "tokens": 512,
+   "tok_s": 32.33,
+   "drafting": {
+    "windows": 178,
+    "rows": 710,
+    "dspark_rounds": 177,
+    "dspark_drafts": 527,
+    "dspark_kept": 334,
+    "lookup_rounds": 1,
+    "lookup_drafts": 5,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.887,
+    "tokens_per_round": 2.876
+   }
+  },
+  {
+   "msg": "Implement in Go: a function that topologically sorts a dependency graph. Show on",
+   "tokens": 397,
+   "tok_s": 41.85,
+   "drafting": {
+    "windows": 89,
+    "rows": 449,
+    "dspark_rounds": 89,
+    "dspark_drafts": 360,
+    "dspark_kept": 309,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.472,
+    "tokens_per_round": 4.472
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 170,
+   "tok_s": 26.56,
+   "drafting": {
+    "windows": 57,
+    "rows": 226,
+    "dspark_rounds": 57,
+    "dspark_drafts": 169,
+    "dspark_kept": 113,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.982,
+    "tokens_per_round": 2.982
+   }
+  },
+  {
+   "msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. To",
+   "tokens": 512,
+   "tok_s": 30.48,
+   "drafting": {
+    "windows": 198,
+    "rows": 781,
+    "dspark_rounds": 196,
+    "dspark_drafts": 577,
+    "dspark_kept": 314,
+    "lookup_rounds": 2,
+    "lookup_drafts": 6,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.602,
+    "tokens_per_round": 2.586
+   }
+  }
+ ],
+ "wall_s": 1071.0,
+ "m2_after": "DSpark on (depth cost, cap 5, joint off, costs measured); draft head full; draft graphs on: 3 held (3 at boot in 0.17 s, 0 on first use), 12284 replays, 0 eager windows; Engram prefetch {'issued': 256, 'hits': 270, 'misses': 2, 'dropped': 0, 'reads': 24663, 'cached': 213976, 'waited': 19720, 'ahead': 0, 'kept': 0}; Engram gate: 12399 rounds (0 reissued), 42141 warm jobs, rows 8167477 (5605464 cached, 2562013 read), 12398 syncs; first layer ready p50/p90/p99 2.77 / 5.38 / 11.55 ms, all 2.86 / 5.44 / 11.64 ms after queueing; graphs on: 14 held (8 at boot in 2.59 s, 6 on first use), 12448 replays, 6 eager windows; RoCE exchanges 44199 fast / 1939 on NCCL; phases (1, ms a round over 12390 rounds): candidates 71.04, commit 1.98, draft 6.76, draft.depth 0.03, draft.pass 6.24, engram.wait 0.19, execute 85.84, forward 0.32, graph.capture 0.09, graph.replay 0.02, graph.stage 0.09, nucleus 0.78, plan 0.04, prefetch 0.58, prefill 1.80, round 86.44, sample 0.46, share 0.10, window 71.44"
+}

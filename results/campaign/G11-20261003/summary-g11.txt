@@ -1,0 +1,28 @@
+G11 2026-10-02T21:19:44Z, sources 7d940f0d66118fe3f2adeff60affd2b1b6515499
+15 passed, 1 warning in 91.50s (0:01:31)
+14 passed, 1 warning in 24.80s
+[dsv41 02:37:06] capture: 435 log files, 6.6G; [draftcap] 525/525 requests, 2550 s [draftcap] report /out/m2-g11-cap.json: 525 requests in 2549.9 s 
+[dsv41 02:57:26] train: stage A eval_base: top1 [0.5708, 0.4269, 0.3395, 0.2801, 0.2459], chain conditional [0.5214, 0.4227, 0.3751, 0.344, 0.3194], tokens/round 1.862, agree logged 0.3898 (first 0.8829)
+[dsv41 02:57:26] train: stage A eval_after: top1 [0.5767, 0.4429, 0.3589, 0.3013, 0.2673], chain conditional [0.5433, 0.4478, 0.3913, 0.3571, 0.3287], tokens/round 1.9271, agree logged 0.0529 (first 0.7068)
+[dsv41 02:57:26] train: stage A train: {'steps': 2786, 'epochs': 1.057, 'kl_last': 2.8759892916679384, 'seconds': 900.1}
+[dsv41 04:03:00] train: stage B eval_base: top1 [0.5708, 0.4269, 0.3395, 0.2801, 0.2459], chain conditional [0.5214, 0.4227, 0.3751, 0.344, 0.3194], tokens/round 1.862, agree logged 0.3899 (first 0.8829)
+[dsv41 04:03:00] train: stage B eval_init: top1 [0.5767, 0.4429, 0.3591, 0.3014, 0.2673], chain conditional [0.5433, 0.4478, 0.392, 0.3561, 0.3279], tokens/round 1.9271, agree logged 0.0526 (first 0.7065)
+[dsv41 04:03:00] train: stage B eval_after: top1 [0.6134, 0.4864, 0.3977, 0.3352, 0.2895], chain conditional [0.6019, 0.5298, 0.5031, 0.4697, 0.4403], tokens/round 2.1897, agree logged 0.016 (first 0.5995)
+[dsv41 04:03:00] train: stage B train: {'steps': 10199, 'epochs': 3.868, 'kl_last': 1.9926538360118866, 'seconds': 3600.2}
+[dsv41 04:05:01] eval A: 
+[dsv41 04:05:01] eval A: [tensorfold] dsv41 DSpark delta /out/deltaA.safetensors: 5 tensors, 1 LoRA
+[dsv41 04:11:46] eval A: [m2bench] code: T0 77.955 tok/s, 3.692 tok/round (DSpark 3.692), exact True/True [m2bench] prose: T0 43.285 tok/s, 1.692 tok/round (DSpark 1.695), exact True/True [m2bench] structured: T0 117.35 tok/s, 5.908 tok/round (DSpark 5.908), exact True/True [m2bench] C1: 73.66 tok/s aggregate, 78.74 decode (mixed; kit C1 / C2 / C4 32.2 / 46.7 / 37.6) [m2bench] C2: 63.49 tok/s aggr
+[dsv41 04:11:46] eval A: [tensorfold] dsv41 DSpark delta /out/deltaA.safetensors: 5 tensors, 1 LoRA
+[dsv41 04:15:48] eval B: [m2bench] code: T0 76.875 tok/s, 3.84 tok/round (DSpark 3.84), exact True/True [m2bench] prose: T0 42.295 tok/s, 1.761 tok/round (DSpark 1.759), exact True/True [m2bench] structured: T0 112.405 tok/s, 6.0 tok/round (DSpark 6.0), exact True/True [m2bench] C1: 72.17 tok/s aggregate, 77.06 decode (mixed; kit C1 / C2 / C4 32.2 / 46.7 / 37.6) [m2bench] C2: 60.04 tok/s aggregate
+[dsv41 04:15:48] eval B: [tensorfold] dsv41 DSpark delta /out/deltaB.safetensors: 17 tensors, 25 LoRA
+[dsv41 04:19:44] eval off: [m2bench] code: T0 81.505 tok/s, 3.879 tok/round (DSpark 3.879), exact True/True [m2bench] prose: T0 41.019999999999996 tok/s, 1.587 tok/round (DSpark 1.589), exact True/True [m2bench] structured: T0 116.03999999999999 tok/s, 5.908 tok/round (DSpark 5.908), exact True/True [m2bench] C1: 76.8 tok/s aggregate, 82.16 decode (mixed; kit C1 / C2 / C4 32.2 / 46.7 / 37.6) [m2be
+[dsv41 04:19:44] eval off: 
+[dsv41 04:19:44] pick: off: prose 41.019999999999996 (1.587 tok/round), code 81.505, structured 116.03999999999999, C2 67.15, C4 93.29
+[dsv41 04:19:44] pick: A: exact_all True, prose 43.285 (+5.5%), tok/round prose 1.692 code 3.692, code 77.955, structured 117.35, C2 66.59, C4 93.17 -> fail
+[dsv41 04:19:44] pick: B: exact_all True, prose 42.295 (+3.1%), tok/round prose 1.761 code 3.84, code 76.875, structured 112.405, C2 62.82, C4 89.74 -> fail
+[dsv41 04:19:44] pick: adopt: none
+[dsv41 02:37:06] g11-cap memory: head MemFree min 2.89, MemAvailable min 10.00 GiB; worker MemFree min 6.68, MemAvailable min 7.87 GiB
+[dsv41 04:05:01] g11-A memory: head MemFree min 5.09, MemAvailable min 6.40 GiB; worker MemFree min 1.61, MemAvailable min 2.89 GiB
+[dsv41 04:11:46] g11-A memory: head MemFree min 6.61, MemAvailable min 8.05 GiB; worker MemFree min 5.19, MemAvailable min 6.46 GiB
+[dsv41 04:15:48] g11-B memory: head MemFree min 8.71, MemAvailable min 10.20 GiB; worker MemFree min 7.30, MemAvailable min 8.58 GiB
+[dsv41 04:19:44] g11-off memory: head MemFree min 9.27, MemAvailable min 10.53 GiB; worker MemFree min 7.59, MemAvailable min 8.62 GiB

@@ -1,0 +1,63 @@
+[boot] r0 +3.0s start: imports, CLI (3.0s) | MemFree 116.1 GiB, MemAvailable 116.0 GiB
+[boot] r0 +6.3s NCCL (both ranks up) (3.2s) | MemFree 114.0 GiB, MemAvailable 114.0 GiB
+[tensorfold] weights: prepared folder /prepared/model/3c52fb1b8d6c90e6/rank0, 101.8 GB in 11.6s (8.7 GB/s, 8 threads, O_DIRECT, 96/1518 chunks verified)
+[boot] r0 +18.4s weights: 101.8 GB (12.2s) | MemFree 16.8 GiB, MemAvailable 16.8 GiB
+[boot] r0 +19.4s forward built: 95.4 GiB allocated (1.0s) | MemFree 16.1 GiB, MemAvailable 16.1 GiB
+[boot] r0 +21.8s warm-up window, barrier: serving (2.4s) | MemFree 14.7 GiB, MemAvailable 15.7 GiB
+prompt 0: top-1 0.9990 (first copy of 38: 0.9474), prefill 9.7s, decode None tok/s
+prompt 1: top-1 1.0000 (first copy of 44: 1.0000), prefill 9.9s, decode None tok/s
+prompt 2: top-1 0.9980 (first copy of 49: 0.9388), prefill 10.4s, decode None tok/s
+prompt 3: top-1 0.9785 (first copy of 21: 0.9524), prefill 7.9s, decode None tok/s
+prompt 4: top-1 0.9980 (first copy of 45: 0.9333), prefill 10.1s, decode None tok/s
+prompt 5: top-1 0.9985 (first copy of 38: 0.9211), prefill 9.3s, decode None tok/s
+prompt 6: top-1 0.9995 (first copy of 44: 0.9773), prefill 10.2s, decode None tok/s
+prompt 7: top-1 0.9990 (first copy of 22: 0.9545), prefill 6.8s, decode None tok/s
+{
+ "boot_s": 18.8,
+ "launch_to_ready_s": 21.9,
+ "knobs": {
+  "GLM53_TF_COMM_BACKEND": "nccl",
+  "TF_DSV41_ENGRAM_DIR": "/engram",
+  "TF_DSV41_EXPERT_LOADS": "1",
+  "TF_DSV41_EXPERT_PREFILL": "0",
+  "TF_DSV41_LAUNCH_T0": "1790886568.308340253",
+  "TF_DSV41_PREPARED": "/prepared",
+  "TF_DSV41_PREPARED_WRITE": "1"
+ },
+ "top1_agreement": 0.9963361016121153,
+ "top1_first_copy": 0.9534883720930233,
+ "kit_top1_in_our_top5": 0.9998168050806058,
+ "positions": 16376,
+ "median_abs_logprob_err": 5.035503463091118e-06,
+ "row_invariance": {
+  "windows_of_8": false,
+  "one_row": false,
+  "rows": 259
+ },
+ "decode_tok_s_median": null,
+ "memory": {
+  "after_boot_alloc_gib": 95.5,
+  "after_boot_reserved_gib": 95.65,
+  "mem_available_after_boot_gib": 15.68,
+  "peak_alloc_gib": 98.32,
+  "peak_reserved_gib": 98.6,
+  "workspace_peak_gib": 0.11,
+  "mem_available_min_gib": 12.45,
+  "per_rank_mem_available_min_gib": [
+   12.45,
+   11.31
+  ],
+  "per_rank_peak_reserved_gib": [
+   98.6,
+   98.6
+  ]
+ },
+ "gates": {
+  "top1": true,
+  "row_invariance": false,
+  "decode_floor": false,
+  "boot_le_90s": true,
+  "boot_le_60s": true
+ },
+ "pass": false
+}

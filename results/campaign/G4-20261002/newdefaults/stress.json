@@ -1,0 +1,46 @@
+{
+ "model": "DeepSeek-V4.1-Flash-TF",
+ "long": 299000,
+ "dctx": 65536,
+ "decode": 2048,
+ "wall_s": 668.2,
+ "streams": [
+  {
+   "role": "long",
+   "prompt": 299000,
+   "max_tokens": 16,
+   "first_token_s": 667.43,
+   "tokens": 14,
+   "total_s": 668.15,
+   "decode_tok_s": 19.44
+  },
+  {
+   "role": "decode",
+   "prompt": 65536,
+   "max_tokens": 2048,
+   "first_token_s": 75.37,
+   "tokens": 140,
+   "total_s": 86.0,
+   "decode_tok_s": 13.17
+  },
+  {
+   "role": "decode",
+   "prompt": 65536,
+   "max_tokens": 2048,
+   "first_token_s": 166.25,
+   "tokens": 138,
+   "total_s": 178.75,
+   "decode_tok_s": 11.04
+  },
+  {
+   "role": "decode",
+   "prompt": 65536,
+   "max_tokens": 2048,
+   "first_token_s": 264.72,
+   "tokens": 140,
+   "total_s": 276.2,
+   "decode_tok_s": 12.2
+  }
+ ],
+ "ok": true
+}

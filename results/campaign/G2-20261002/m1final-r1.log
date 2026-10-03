@@ -1,0 +1,9 @@
+[boot] r1 +3.5s start: imports, CLI (3.5s) | MemFree 115.1 GiB, MemAvailable 115.0 GiB
+[boot] r1 +9.0s NCCL (both ranks up) (5.5s) | MemFree 112.7 GiB, MemAvailable 112.6 GiB
+[tensorfold] weights: prepared folder /prepared/model/9529c28bc20acb64/rank1, 101.8 GB in 11.5s (8.8 GB/s, 8 threads, O_DIRECT, 96/1518 chunks verified)
+[boot] r1 +21.0s weights: 101.8 GB (12.1s) | MemFree 15.5 GiB, MemAvailable 15.4 GiB
+[boot] r1 +22.0s forward built: 95.4 GiB allocated (0.9s) | MemFree 14.7 GiB, MemAvailable 14.7 GiB
+[tensorfold] building CUDA extension tensorfold_exl3_linear_v3 (first start after an install or update; later starts reuse it)
+[tensorfold] building CUDA extension tensorfold_exl3_experts_v1 (first start after an install or update; later starts reuse it)
+[tensorfold] building CUDA extension tf_dsv41_x3ld_v1 (first start after an install or update; later starts reuse it)
+[boot] r1 +82.0s warm-up window, barrier: serving (60.0s) | MemFree 7.2 GiB, MemAvailable 8.3 GiB

@@ -1,0 +1,31 @@
+[dsv41 02:46:39] G1 output: ~/src/glm53-tensorfold-spark/results/dsv41-G1-20261001-194639
+[dsv41 02:46:41] G1 inside the held campaign window (lease age 50 s, watchdog inactive): no open, no restore
+[dsv41 02:46:41] memory
+[dsv41 02:46:51] memory ok: MemFree head 117.1, worker 999 GiB
+[dsv41 02:46:51] tests: tests/cuda/test_dsv41_gpu.py + the family's CPU suites (first start builds the extensions)
+[dsv41 02:46:52] tests rc=1 /usr/bin/python: No module named pytest
+[dsv41 02:46:52] kbench layer 3
+[dsv41 02:47:05] kbench layer 3 rc=1 triton.runtime.errors.OutOfResources: out of resource: shared memory, Required: 135168, Hardware limit: 101376. Reducing block sizes or `num_stages` may help.
+[dsv41 02:47:05] kbench layer 20
+[dsv41 02:47:13] kbench layer 20 rc=1 triton.runtime.errors.OutOfResources: out of resource: shared memory, Required: 135168, Hardware limit: 101376. Reducing block sizes or `num_stages` may help.
+[dsv41 02:47:13] kbench x3pf (prefill experts) layer 3
+[dsv41 02:47:22] kbench x3pf layer 3 rc=1 triton.runtime.errors.OutOfResources: out of resource: shared memory, Required: 135168, Hardware limit: 101376. Reducing block sizes or `num_stages` may help.
+[dsv41 02:47:22] kbench x3pf (prefill experts) layer 20
+[dsv41 02:47:28] kbench x3pf layer 20 rc=1 triton.runtime.errors.OutOfResources: out of resource: shared memory, Required: 135168, Hardware limit: 101376. Reducing block sizes or `num_stages` may help.
+[dsv41 02:47:29] prepare: both ranks' folders (parallel)
+[dsv41 02:47:40] memory ok: MemFree head 116.6, worker 116.0 GiB
+[dsv41 02:47:45] prepare r0 rc=1 ModuleNotFoundError: No module named '__main__.weights'; '__main__' is not a package
+[dsv41 02:47:45] prepare r1 rc=1 ModuleNotFoundError: No module named '__main__.weights'; '__main__' is not a package
+[dsv41 02:47:45] summary: ~/src/glm53-tensorfold-spark/results/dsv41-G1-20261001-194639/summary.txt
+[dsv41 02:47:45] campaign: window stays held (campaign.sh close restores prod)
+[dsv41 02:51:38] tests tests/cuda/test_dsv41_gpu.py tests/cuda/test_dsv41_blockers_gpu.py rc=1 7 failed, 18 passed, 1 warning in 81.21s (0:01:21)
+[dsv41 02:54:15] tests tests/cuda/test_dsv41_gpu.py tests/cuda/test_dsv41_blockers_gpu.py rc=0 28 passed, 1 warning in 17.62s
+[dsv41 02:55:13] prepare r1 rc=0 [tensorfold] prepared folder written: /prepared/model/9529c28bc20acb64/rank1 (101.8 GB in 80.6s)
+[dsv41 02:55:19] kbench layer 3 rc=0 {"layer": 3, "rank": 0, "k2_gu": [6, 10], "k2_d": [6, 10], "bitwise": true, "probe3_best_gbps": 255.5, "pass": true}
+[dsv41 02:55:28] kbench layer 20 rc=0 {"layer": 20, "rank": 0, "k2_gu": [4, 8], "k2_d": [4, 8], "bitwise": true, "probe3_best_gbps": 514.6, "pass": true}
+[dsv41 02:55:53] x3pf layer 3 rc=1 
+[dsv41 02:56:03] x3pf layer 20 rc=1 
+[dsv41 02:57:06] x3pf layer 3 rc=0 {"layer": 3, "rank": 0, "k2_gu": [6, 10], "k2_d": [6, 10], "bitwise": true}
+[dsv41 02:57:18] x3pf layer 20 rc=0 {"layer": 20, "rank": 0, "k2_gu": [4, 8], "k2_d": [4, 8], "bitwise": true}
+[dsv41 02:58:38] tests tests/cuda/test_dsv41_gpu.py tests/cuda/test_dsv41_blockers_gpu.py tests/test_dsv41_forward.py tests/test_dsv41_weights.py tests/test_dsv41_fastboot.py tests/test_dsv41_engine.py tests/test_dsv41_slots.py rc=0 67 passed, 1 warning in 152.06s (0:02:32)
+[dsv41 03:03:58] prepare r0 rc=0 [tensorfold] prepared folder written: /prepared/model/3c52fb1b8d6c90e6/rank0 (101.8 GB in 80.1s)

@@ -1,0 +1,80 @@
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: set a timer for 25 minutes", "max": 256}
+{"msg": "Write a Python function that rate-limits calls with a token bucket, with comments and two tests.", "max": 512}
+{"msg": "Refactor this idea into clean Python: a helper that computes word frequencies from a text file. Explain briefly after the code.", "max": 512}
+{"msg": "Implement in Go: a function that implements a trie with insert and prefix search. Show only the code.", "max": 512}
+{"msg": "Write a Dockerfile for a small Python Flask app with a requirements.txt, running as a non-root user.", "max": 512}
+{"msg": "Refactor this idea into clean Rust: a helper that computes a moving average over a stream of numbers. Explain briefly after the code.", "max": 512}
+{"msg": "Write a GitHub Actions workflow that runs pytest on Python 3.11 and 3.12.", "max": 512}
+{"msg": "Refactor this idea into clean Bash: a helper that parses a CSV file into a list of dicts and handles quoted fields. Explain briefly after the code.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: check the weather in Da Nang and suggest what to pack", "max": 256}
+{"msg": "Refactor this idea into clean TypeScript: a helper that implements binary search on a sorted array. Explain briefly after the code.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: what's the weather in Hue, and is the Imperial City open today?", "max": 256}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: find a flight from Hanoi to Singapore next Monday morning", "max": 256}
+{"msg": "Refactor this idea into clean Go: a helper that implements Dijkstra's shortest path on an adjacency list. Explain briefly after the code.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: book a table for two at 7pm tonight at the best-rated sushi place nearby", "max": 256}
+{"msg": "Implement in Python: a function that computes the longest common subsequence of two strings. Show only the code.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: send an email to sam@example.com saying the report is ready", "max": 256}
+{"msg": "Refactor this idea into clean Python: a helper that flattens an arbitrarily nested list. Explain briefly after the code.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: what's the weather in Tokyo tomorrow and is it a good day for a walk?", "max": 256}
+{"msg": "Write a TypeScript function that topologically sorts a dependency graph, with comments and two tests.", "max": 512}
+{"msg": "Write a Python function that merges overlapping intervals, with comments and two tests.", "max": 512}
+{"msg": "Write a Go function that parses command-line flags without a library, with comments and two tests.", "max": 512}
+{"msg": "Refactor this idea into clean Rust: a helper that detects a cycle in a linked list. Explain briefly after the code.", "max": 512}
+{"msg": "Refactor this idea into clean Python: a helper that parses command-line flags without a library. Explain briefly after the code.", "max": 512}
+{"msg": "Write a Python function that converts Roman numerals to integers and back, with comments and two tests.", "max": 512}
+{"msg": "List the steps to set up SSH keys on a new Linux machine.", "max": 384}
+{"msg": "Implement in Go: a function that detects a cycle in a linked list. Show only the code.", "max": 512}
+{"msg": "Write a Bash function that serializes a binary tree to a string and back, with comments and two tests.", "max": 512}
+{"msg": "Implement in Python: a function that debounces a function call. Show only the code.", "max": 512}
+{"msg": "Summarize the pros and cons of microservices in a short answer.", "max": 384}
+{"msg": "Implement in TypeScript: a function that flattens an arbitrarily nested list. Show only the code.", "max": 512}
+{"msg": "Write a Python function that implements an LRU cache with O(1) get and put, with comments and two tests.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: add a meeting with Alex on Friday at 10am to my calendar", "max": 256}
+{"msg": "Refactor this idea into clean Python: a helper that serializes a binary tree to a string and back. Explain briefly after the code.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: translate 'good morning, how are you?' into Vietnamese and Japanese", "max": 256}
+{"msg": "Refactor this idea into clean Go: a helper that implements a trie with insert and prefix search. Explain briefly after the code.", "max": 512}
+{"msg": "What is the difference between a process and a thread?", "max": 384}
+{"msg": "Implement in Rust: a function that merges overlapping intervals. Show only the code.", "max": 512}
+{"msg": "Implement in Python: a function that computes word frequencies from a text file. Show only the code.", "max": 512}
+{"msg": "Fix the bug: `def avg(xs): return sum(xs) / len(xs) - 1` should return the mean. Show the corrected function and a test.", "max": 512}
+{"msg": "Refactor this idea into clean Bash: a helper that deep-merges two dictionaries. Explain briefly after the code.", "max": 512}
+{"msg": "Refactor this idea into clean Python: a helper that retries an HTTP request with exponential backoff. Explain briefly after the code.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: how far is it from Hanoi to Ha Long Bay by car?", "max": 256}
+{"msg": "Implement in Bash: a function that validates an email address with a regular expression. Show only the code.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: look up the population of Vietnam and Thailand and compare them", "max": 256}
+{"msg": "Refactor this idea into clean Rust: a helper that reads a JSON config file and merges it with defaults. Explain briefly after the code.", "max": 512}
+{"msg": "Implement in Rust: a function that deep-merges two dictionaries. Show only the code.", "max": 512}
+{"msg": "Refactor this idea into clean Bash: a helper that rate-limits calls with a token bucket. Explain briefly after the code.", "max": 512}
+{"msg": "Implement in Rust: a function that chunks a list into batches of n. Show only the code.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: what's the exchange rate between yen and dong?", "max": 256}
+{"msg": "Write a regular expression that matches ISO 8601 dates (YYYY-MM-DD) and a Python snippet testing it.", "max": 512}
+{"msg": "Write a bash script that backs up a directory to a timestamped tar.gz and keeps the last 7 backups.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: what is 17% of 2,340 and convert the result to euros", "max": 256}
+{"msg": "Write a Python function that validates an email address with a regular expression, with comments and two tests.", "max": 512}
+{"msg": "Refactor this idea into clean Go: a helper that finds all anagram groups in a list of words. Explain briefly after the code.", "max": 512}
+{"msg": "Write a Bash function that debounces a function call, with comments and two tests.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: remind me to call my mother at 6pm", "max": 256}
+{"msg": "Implement in Go: a function that implements binary search on a sorted array. Show only the code.", "max": 512}
+{"msg": "Write a Bash function that retries an HTTP request with exponential backoff, with comments and two tests.", "max": 512}
+{"msg": "Refactor this idea into clean Python: a helper that implements an LRU cache with O(1) get and put. Explain briefly after the code.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: search the web for the latest Python release and summarize it", "max": 256}
+{"msg": "Convert this JSON to a Python dataclass with type hints: {\"id\": 1, \"name\": \"x\", \"tags\": [\"a\"], \"price\": 9.5}.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: find me three Italian restaurants near Hoan Kiem lake", "max": 256}
+{"msg": "Write a Bash function that reads a JSON config file and merges it with defaults, with comments and two tests.", "max": 512}
+{"msg": "Write a SQL query that returns the top 5 customers by total order value from tables customers(id, name) and orders(id, customer_id, amount).", "max": 512}
+{"msg": "Refactor this idea into clean Bash: a helper that converts Roman numerals to integers and back. Explain briefly after the code.", "max": 512}
+{"msg": "Write a Bash function that finds all anagram groups in a list of words, with comments and two tests.", "max": 512}
+{"msg": "Give me a two-sentence explanation of how HTTPS works.", "max": 384}
+{"msg": "Refactor this idea into clean Bash: a helper that chunks a list into batches of n. Explain briefly after the code.", "max": 512}
+{"msg": "Refactor this idea into clean TypeScript: a helper that computes the longest common subsequence of two strings. Explain briefly after the code.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: what's the weather in London and Paris this weekend?", "max": 256}
+{"msg": "Write a Go function that computes a moving average over a stream of numbers, with comments and two tests.", "max": 512}
+{"msg": "Write a Python function that implements Dijkstra's shortest path on an adjacency list, with comments and two tests.", "max": 512}
+{"msg": "Refactor this idea into clean Rust: a helper that pretty-prints a table from rows of data. Explain briefly after the code.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: what time is it in New York right now?", "max": 256}
+{"msg": "Write a Go function that parses a CSV file into a list of dicts and handles quoted fields, with comments and two tests.", "max": 512}
+{"msg": "Write a Go function that pretty-prints a table from rows of data, with comments and two tests.", "max": 512}
+{"msg": "Explain and fix: a Python script reads a file with open() in a loop and never closes it. Rewrite it properly.", "max": 512}
+{"msg": "Implement in Go: a function that topologically sorts a dependency graph. Show only the code.", "max": 512}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: convert 250 euros to US dollars", "max": 256}
+{"msg": "You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: find the nearest pharmacy that is open now", "max": 256}

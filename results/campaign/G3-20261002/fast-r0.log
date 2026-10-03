@@ -1,0 +1,79 @@
+[boot] r0 +3.0s start: imports, CLI (3.0s) | MemFree 116.8 GiB, MemAvailable 116.7 GiB
+[boot] r0 +6.0s NCCL (both ranks up) (3.0s) | MemFree 114.4 GiB, MemAvailable 114.4 GiB
+[tensorfold] weights: no usable prepared folder (no folder): building from the checkpoint; will write it
+[tensorfold] prepared folder written: /prepared/model/3c52fb1b8d6c90e6/rank0 (101.8 GB in 79.2s)
+[tensorfold] removed an older prepared folder: /prepared/model/5cd84013c11d2944/rank0
+[boot] r0 +304.4s weights: 101.8 GB (298.4s) | MemFree 7.2 GiB, MemAvailable 16.6 GiB
+[tensorfold] dspark: no usable prepared folder (no folder): building from the checkpoint; will write it
+[tensorfold] prepared folder written: /prepared/model/5cd84013c11d2944/rank0 (3.7 GB in 2.9s)
+[tensorfold] removed an older prepared folder: /prepared/model/3c52fb1b8d6c90e6/rank0
+[boot] r0 +315.9s forward built: 99.0 GiB allocated (11.5s) | MemFree 2.2 GiB, MemAvailable 12.0 GiB
+[tensorfold] structured output: on (xgrammar, 129280 columns, DSML tool tag deepseek_v4_1; built in 2.9 s)
+[tensorfold] serving: 4 slot(s) x 16448 tokens; 0 of 4 slots busy; pool 260 of 260 pages free, 0 reserved, 0 mapped; sessions: 0 RAM entries (0 pool pages, 0.0 MiB bounded state); prefill full; floor 5.0 GiB
+[tensorfold] dsv41 graphs on: 15 held (15 at boot in 5.66 s, 0 on first use), 0 replays, 0 eager windows (15 captured at boot)
+[boot] r0 +325.1s M2 boot: DSpark on (depth cost, cap 5, costs cached); Engram prefetch {'issued': 0, 'hits': 0, 'misses': 60, 'dropped': 0}; graphs on: 15 held (15 at boot in 5.66 s, 0 on first use), 0 replays, 0 eager windows (9.2s) | MemFree 1.3 GiB, MemAvailable 11.2 GiB
+[boot] r0 +325.1s serving (0.0s) | MemFree 1.3 GiB, MemAvailable 11.2 GiB
+Traceback (most recent call last):
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/batch.py", line 230, in step
+    res = self.ex.run(plan)
+          ^^^^^^^^^^^^^^^^^
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/rounds.py", line 98, in run
+    self._windows(plan, res)
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/rounds.py", line 198, in _windows
+    res.cand = self.fwd.window(rows, count=plan.count, masks=masks if any_mask else None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/decode.py", line 133, in window
+    return self.candidates(logits, [len(w.tokens) for w in windows], count, masks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/slots.py", line 122, in candidates
+    g = got.view(self.world, R, 2 * k).cpu()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+
+[m2bench] failed: RuntimeError: AcceleratorError: CUDA error: an illegal memory access was encountered
+Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+
+Traceback (most recent call last):
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/batch.py", line 229, in step
+    self.link.send(plan.encode())
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/engine.py", line 72, in send
+    self.engine._share(list(plan))
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/engine.py", line 247, in _share
+    n = self._gather_ints([len(values) if self.rank == 0 else 0])[0][0]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/engine.py", line 239, in _gather_ints
+    mine = torch.tensor(values, dtype=torch.int64, device=self.device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/m2bench.py", line 218, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/m2bench.py", line 213, in main
+    eng.batch.send_stop()
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/batch.py", line 444, in send_stop
+    self.link.send(Plan(stop=True).encode())
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/engine.py", line 72, in send
+    self.engine._share(list(plan))
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/engine.py", line 247, in _share
+    n = self._gather_ints([len(values) if self.rank == 0 else 0])[0][0]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/engine.py", line 239, in _gather_ints
+    mine = torch.tensor(values, dtype=torch.int64, device=self.device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+

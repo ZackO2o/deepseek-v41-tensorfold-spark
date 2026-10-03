@@ -1,0 +1,379 @@
+[tensorfold] building CUDA extension tensorfold_exl3_experts_v1 (first start after an install or update; later starts reuse it)
+[tensorfold] building CUDA extension tf_dsv41_x3ld_v1 (first start after an install or update; later starts reuse it)
+....F[tensorfold] building CUDA extension tensorfold_exl3_linear_v3 (first start after an install or update; later starts reuse it)
+FF[tensorfold] prepared folder written: /tmp/pytest-of-root/pytest-0/test_prepared_folder_to_gpu0/dsv41g0/1d44e265dc686be3/rank0 (0.0 GB in 0.0s)
+....F
+3000 keys x 8 rows: materialised 133.23 ms, streaming 206.92 ms (first calls include compiles)
+.
+20000 keys x 8 rows: materialised 123.64 ms, streaming 205.18 ms (first calls include compiles)
+.
+65536 keys x 8 rows: materialised 0.50 ms, streaming 0.58 ms (first calls include compiles)
+.
+chain vs host: 0 of 320 drafts differ []
+.[tensorfold] building CUDA extension tf_dsv41_x3pf_v1 (first start after an install or update; later starts reuse it)
+
+k2=4 rows=16 mats=2 (4, 4): upstream 0.753 ms, x3pf 13078.427 ms (first calls include builds)
+
+k2=4 rows=16 mats=2 (8, 2): upstream 0.753 ms, x3pf 0.889 ms (first calls include builds)
+
+k2=4 rows=16 mats=1 (4, 4): upstream 0.408 ms, x3pf 0.736 ms (first calls include builds)
+
+k2=4 rows=16 mats=1 (8, 2): upstream 0.408 ms, x3pf 0.440 ms (first calls include builds)
+.
+k2=6 rows=16 mats=2 (4, 4): upstream 1.011 ms, x3pf 1.567 ms (first calls include builds)
+
+k2=6 rows=16 mats=2 (8, 2): upstream 1.011 ms, x3pf 1.067 ms (first calls include builds)
+
+k2=6 rows=16 mats=1 (4, 4): upstream 0.516 ms, x3pf 0.861 ms (first calls include builds)
+
+k2=6 rows=16 mats=1 (8, 2): upstream 0.516 ms, x3pf 0.565 ms (first calls include builds)
+.
+k2=8 rows=16 mats=2 (4, 4): upstream 1.241 ms, x3pf 1.766 ms (first calls include builds)
+
+k2=8 rows=16 mats=2 (8, 2): upstream 1.241 ms, x3pf 1.309 ms (first calls include builds)
+
+k2=8 rows=16 mats=1 (4, 4): upstream 0.690 ms, x3pf 0.840 ms (first calls include builds)
+
+k2=8 rows=16 mats=1 (8, 2): upstream 0.690 ms, x3pf 0.662 ms (first calls include builds)
+.
+k2=4 rows=256 mats=2 (4, 4): upstream 2.565 ms, x3pf 2.637 ms (first calls include builds)
+
+k2=4 rows=256 mats=2 (8, 2): upstream 2.565 ms, x3pf 1.917 ms (first calls include builds)
+
+k2=4 rows=256 mats=1 (4, 4): upstream 1.251 ms, x3pf 1.269 ms (first calls include builds)
+
+k2=4 rows=256 mats=1 (8, 2): upstream 1.251 ms, x3pf 0.886 ms (first calls include builds)
+.
+k2=6 rows=256 mats=2 (4, 4): upstream 3.288 ms, x3pf 2.731 ms (first calls include builds)
+
+k2=6 rows=256 mats=2 (8, 2): upstream 3.288 ms, x3pf 2.304 ms (first calls include builds)
+
+k2=6 rows=256 mats=1 (4, 4): upstream 1.610 ms, x3pf 1.304 ms (first calls include builds)
+
+k2=6 rows=256 mats=1 (8, 2): upstream 1.610 ms, x3pf 1.076 ms (first calls include builds)
+.
+k2=8 rows=256 mats=2 (4, 4): upstream 4.010 ms, x3pf 2.913 ms (first calls include builds)
+
+k2=8 rows=256 mats=2 (8, 2): upstream 4.010 ms, x3pf 2.552 ms (first calls include builds)
+
+k2=8 rows=256 mats=1 (4, 4): upstream 1.940 ms, x3pf 1.681 ms (first calls include builds)
+
+k2=8 rows=256 mats=1 (8, 2): upstream 1.940 ms, x3pf 1.307 ms (first calls include builds)
+.FFF
+=================================== FAILURES ===================================
+_________________ test_csa2_rows_and_attention_row_invariance __________________
+
+    def test_csa2_rows_and_attention_row_invariance():
+        from tensorfold.families.deepseek_v41.cuda.csa2 import attn, compress, ref
+        from tensorfold.families.deepseek_v41.cuda.csa2 import rows as RW
+    
+        g = torch.Generator(device=DEV).manual_seed(3)
+        x = (torch.randn((300, 512), generator=g, device=DEV) * 3).to(torch.bfloat16)
+        cs = torch.cat([torch.cos(torch.arange(512, device=DEV)[:, None] * 1e-3 * torch.arange(32, device=DEV)),
+                        torch.sin(torch.arange(512, device=DEV)[:, None] * 1e-3 * torch.arange(32, device=DEV))],
+                       1).float().contiguous()
+        v = torch.zeros((300, RW.VB), dtype=torch.uint8, device=DEV)
+        sc = torch.zeros((300, RW.SB), dtype=torch.uint8, device=DEV)
+        compress.kv_store(x, cs, v, sc, torch.tensor([0], dtype=torch.int32, device=DEV), 300, 1)
+        want_v, want_s = ref.quantize_rows(ref.rope(x.float().cpu(), cs.cpu(), torch.arange(300)).float())
+        assert torch.equal(v[:, :RW.NOPE].cpu(), want_v[:, :RW.NOPE]) and torch.equal(sc.cpu(), want_s)
+        got_rope = ref.dequantize_rows(v.cpu(), sc.cpu()).float()[:, RW.NOPE:]       # the rotated dims: bf16 of fp32
+        want_rope = ref.dequantize_rows(want_v, want_s).float()[:, RW.NOPE:]
+        torch.testing.assert_close(got_rope, want_rope, rtol=1e-2, atol=1e-2)
+        ring = 256
+        q = (torch.randn((8, 32, 512), generator=g, device=DEV) * 0.5).to(torch.bfloat16)
+        swa = (torch.zeros((ring, RW.VB), dtype=torch.uint8, device=DEV),
+               torch.zeros((ring, RW.SB), dtype=torch.uint8, device=DEV))
+        P = 200
+        compress.kv_store(x[:P + 8], cs, swa[0], swa[1], torch.tensor([0], dtype=torch.int32, device=DEV), P + 8, 0,
+                          ring)
+        tok = torch.stack([torch.sort(torch.randperm(P, generator=g, device=DEV)[:40]).values for _ in range(8)]).to(
+            torch.int32)
+        cnt = torch.full((8,), 40, dtype=torch.int32, device=DEV)
+        lo = torch.zeros((8,), dtype=torch.int32, device=DEV)
+        sink = torch.randn(32, generator=g, device=DEV)
+        s = attn.Scratch(8, DEV)
+        out = torch.empty_like(q)
+        pos = torch.tensor([P], dtype=torch.int32, device=DEV)
+>       attn.attention(q, (v, sc), tok, cnt, swa, lo, pos, sink, cs, out, s, ring=ring)
+
+tests/cuda/test_dsv41_gpu.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/tensorfold/families/deepseek_v41/cuda/csa2/attn.py:198: in attention
+    _chunks[(R, H // BMQ, NCOMP + 1)](q, cv, csc, cv.stride(0), csc.stride(0), tokens, tokens.stride(0), counts,
+/usr/local/lib/python3.12/dist-packages/triton/runtime/jit.py:370: in <lambda>
+    return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/dist-packages/triton/runtime/jit.py:760: in run
+    launch_metadata = kernel.launch_metadata(grid, stream, *bound_args.values())
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/dist-packages/triton/compiler/compiler.py:485: in launch_metadata
+    self._init_handles()
+/usr/local/lib/python3.12/dist-packages/triton/compiler/compiler.py:459: in _init_handles
+    raise_(OutOfResources(self.metadata.shared, max_shared, "shared memory"))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+err = OutOfResources(114688, 101376, 'shared memory')
+
+    def raise_(err):
+        # clone the exception object so that the one saved in the closure
+        # of the partial function below doesn't get assigned a stack trace
+        # after the subsequent raise. otherwise, the CompiledKernel instance
+        # saved in the (global) kernel cache will keep references to all the
+        # locals in the traceback via the exception instance in the closure.
+        cloned_err = copy.deepcopy(err)
+        self._run = functools.partial(_raise_error, cloned_err)
+>       raise err
+E       triton.runtime.errors.OutOfResources: out of resource: shared memory, Required: 114688, Hardware limit: 101376. Reducing block sizes or `num_stages` may help.
+
+/usr/local/lib/python3.12/dist-packages/triton/compiler/compiler.py:451: OutOfResources
+_______________________ test_forward_gpu_equals_cpu_twin _______________________
+
+kshape = (PosixPath('/tmp/pytest-of-root/pytest-0/dsv41g0'), Config(vocab_size=256, hidden_size=128, num_hidden_layers=8, num_a...[124],
+        [119],
+        [120],
+        [124],
+        [121],
+        [124],
+        [125]], dtype=torch.uint8))})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xe8622f6f0b00>
+
+    def test_forward_gpu_equals_cpu_twin(kshape, monkeypatch):
+        monkeypatch.setenv("TF_DSV41_SEAMS", "torch")       # the mHC / Engram kernels are checked at D = 5,120 elsewhere
+>       gpu = _forward(kshape, DEV, [45])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/cuda/test_dsv41_gpu.py:181: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/cuda/test_dsv41_gpu.py:174: in _forward
+    out.append(fw.step(IDS[a:a + n]).float().cpu())
+               ^^^^^^^^^^^^^^^^^^^^^
+src/tensorfold/families/deepseek_v41/cuda/forward.py:281: in step
+    out = self.run([Seg(slot, self.slots[slot].pos, tuple(ids))], logits=logits)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/tensorfold/families/deepseek_v41/cuda/forward.py:259: in run
+    gathered = self.gather_partials(B.attention(blk, out, ctxs))
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/tensorfold/families/deepseek_v41/cuda/blocks.py:172: in attention
+    o[c.a:c.b] = _segment(blk, c, table, q[c.a:c.b], kv[c.a:c.b], None if proj is None else proj[c.a:c.b],
+src/tensorfold/families/deepseek_v41/cuda/blocks.py:208: in _segment
+    return cs.attention(q.contiguous(), comp, sel, counts, slot.swa[L], ctx.lo, win, A.sink, table, ctx.ring)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/tensorfold/families/deepseek_v41/cuda/csa2/backend.py:144: in attention
+    return attn.attention(q.contiguous(), rows, sel, counts, swa.kernel(), lo, win.t, sink.to(F32).contiguous(),
+src/tensorfold/families/deepseek_v41/cuda/csa2/attn.py:198: in attention
+    _chunks[(R, H // BMQ, NCOMP + 1)](q, cv, csc, cv.stride(0), csc.stride(0), tokens, tokens.stride(0), counts,
+/usr/local/lib/python3.12/dist-packages/triton/runtime/jit.py:370: in <lambda>
+    return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/dist-packages/triton/runtime/jit.py:760: in run
+    launch_metadata = kernel.launch_metadata(grid, stream, *bound_args.values())
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/dist-packages/triton/compiler/compiler.py:485: in launch_metadata
+    self._init_handles()
+/usr/local/lib/python3.12/dist-packages/triton/compiler/compiler.py:459: in _init_handles
+    raise_(OutOfResources(self.metadata.shared, max_shared, "shared memory"))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+err = OutOfResources(114688, 101376, 'shared memory')
+
+    def raise_(err):
+        # clone the exception object so that the one saved in the closure
+        # of the partial function below doesn't get assigned a stack trace
+        # after the subsequent raise. otherwise, the CompiledKernel instance
+        # saved in the (global) kernel cache will keep references to all the
+        # locals in the traceback via the exception instance in the closure.
+        cloned_err = copy.deepcopy(err)
+        self._run = functools.partial(_raise_error, cloned_err)
+>       raise err
+E       triton.runtime.errors.OutOfResources: out of resource: shared memory, Required: 114688, Hardware limit: 101376. Reducing block sizes or `num_stages` may help.
+
+/usr/local/lib/python3.12/dist-packages/triton/compiler/compiler.py:451: OutOfResources
+_____________________ test_forward_gpu_rows_are_invariant ______________________
+
+kshape = (PosixPath('/tmp/pytest-of-root/pytest-0/dsv41g0'), Config(vocab_size=256, hidden_size=128, num_hidden_layers=8, num_a...[124],
+        [119],
+        [120],
+        [124],
+        [121],
+        [124],
+        [125]], dtype=torch.uint8))})
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xe8622f570e90>
+
+    def test_forward_gpu_rows_are_invariant(kshape, monkeypatch):
+        monkeypatch.setenv("TF_DSV41_SEAMS", "torch")
+>       want = _forward(kshape, DEV, [45])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/cuda/test_dsv41_gpu.py:190: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/cuda/test_dsv41_gpu.py:174: in _forward
+    out.append(fw.step(IDS[a:a + n]).float().cpu())
+               ^^^^^^^^^^^^^^^^^^^^^
+src/tensorfold/families/deepseek_v41/cuda/forward.py:281: in step
+    out = self.run([Seg(slot, self.slots[slot].pos, tuple(ids))], logits=logits)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/tensorfold/families/deepseek_v41/cuda/forward.py:259: in run
+    gathered = self.gather_partials(B.attention(blk, out, ctxs))
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/tensorfold/families/deepseek_v41/cuda/blocks.py:172: in attention
+    o[c.a:c.b] = _segment(blk, c, table, q[c.a:c.b], kv[c.a:c.b], None if proj is None else proj[c.a:c.b],
+src/tensorfold/families/deepseek_v41/cuda/blocks.py:208: in _segment
+    return cs.attention(q.contiguous(), comp, sel, counts, slot.swa[L], ctx.lo, win, A.sink, table, ctx.ring)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/tensorfold/families/deepseek_v41/cuda/csa2/backend.py:144: in attention
+    return attn.attention(q.contiguous(), rows, sel, counts, swa.kernel(), lo, win.t, sink.to(F32).contiguous(),
+src/tensorfold/families/deepseek_v41/cuda/csa2/attn.py:198: in attention
+    _chunks[(R, H // BMQ, NCOMP + 1)](q, cv, csc, cv.stride(0), csc.stride(0), tokens, tokens.stride(0), counts,
+/usr/local/lib/python3.12/dist-packages/triton/runtime/jit.py:370: in <lambda>
+    return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/dist-packages/triton/runtime/jit.py:760: in run
+    launch_metadata = kernel.launch_metadata(grid, stream, *bound_args.values())
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/dist-packages/triton/compiler/compiler.py:485: in launch_metadata
+    self._init_handles()
+/usr/local/lib/python3.12/dist-packages/triton/compiler/compiler.py:459: in _init_handles
+    raise_(OutOfResources(self.metadata.shared, max_shared, "shared memory"))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+err = OutOfResources(114688, 101376, 'shared memory')
+
+    def raise_(err):
+        # clone the exception object so that the one saved in the closure
+        # of the partial function below doesn't get assigned a stack trace
+        # after the subsequent raise. otherwise, the CompiledKernel instance
+        # saved in the (global) kernel cache will keep references to all the
+        # locals in the traceback via the exception instance in the closure.
+        cloned_err = copy.deepcopy(err)
+        self._run = functools.partial(_raise_error, cloned_err)
+>       raise err
+E       triton.runtime.errors.OutOfResources: out of resource: shared memory, Required: 114688, Hardware limit: 101376. Reducing block sizes or `num_stages` may help.
+
+/usr/local/lib/python3.12/dist-packages/triton/compiler/compiler.py:451: OutOfResources
+______________________________ test_engram_on_gpu ______________________________
+
+    def test_engram_on_gpu():
+        g = np.random.default_rng(1)
+        v = g.integers(0, 256, size=(5, 12, 256), dtype=np.uint8)
+        v[np.isin(v, (0x7F, 0xFF))] = 0x38
+        v[0, 0] = np.array([b for b in range(256) if b not in (0x7F, 0xFF)] + [0, 0], dtype=np.uint8)
+        s = g.integers(118, 136, size=(5, 12, 8), dtype=np.uint8)
+        s[0, 1] = [0, 1, 2, 127, 200, 250, 254, 3]
+        s[0, 2] = 1
+        raw = torch.from_numpy(np.concatenate([v, s], axis=2)).contiguous()
+        out = torch.zeros((5, 24 * 256), dtype=torch.bfloat16, device=DEV)
+        engram.dequant(raw.to(DEV), out, col0=12)
+>       assert torch.equal(_bits(out[:, 12 * 256:]), _bits(KR.engram_dequant(raw)))
+E       AssertionError: assert False
+E        +  where False = <built-in method equal of type object at 0xe865ab4529b8>(tensor([  0,   0,   0,  ...,  67, 240,  66], dtype=torch.uint8), tensor([  0,   0,   0,  ...,  67, 240,  66], dtype=torch.uint8))
+E        +    where <built-in method equal of type object at 0xe865ab4529b8> = torch.equal
+E        +    and   tensor([  0,   0,   0,  ...,  67, 240,  66], dtype=torch.uint8) = _bits(tensor([[ 0.0000e+00,  3.1250e-02,  6.2500e-02,  ..., -2.2000e+01,\n         -5.0000e-01, -8.0000e+01],\n        [ 2.500...3.7500e-01, -3.9062e-03,  ...,  6.0000e+00,\n          4.1600e+02,  1.2000e+02]], device='cuda:0', dtype=torch.bfloat16))
+E        +    and   tensor([  0,   0,   0,  ...,  67, 240,  66], dtype=torch.uint8) = _bits(tensor([[ 0.0000e+00,  3.1250e-02,  6.2500e-02,  ..., -2.2000e+01,\n         -5.0000e-01, -8.0000e+01],\n        [ 2.500...  [-7.0000e+00,  3.7500e-01, -3.9062e-03,  ...,  6.0000e+00,\n          4.1600e+02,  1.2000e+02]], dtype=torch.bfloat16))
+E        +      where tensor([[ 0.0000e+00,  3.1250e-02,  6.2500e-02,  ..., -2.2000e+01,\n         -5.0000e-01, -8.0000e+01],\n        [ 2.500...  [-7.0000e+00,  3.7500e-01, -3.9062e-03,  ...,  6.0000e+00,\n          4.1600e+02,  1.2000e+02]], dtype=torch.bfloat16) = <function engram_dequant at 0xe864c34f56c0>(tensor([[[  0,   1,   2,  ..., 123, 121, 126],\n         [ 68, 143, 178,  ..., 250, 254,   3],\n         [140, 195, 187,...26],\n         [134,  74, 240,  ..., 124, 125, 122],\n         [ 70, 152,  21,  ..., 132, 130, 130]]], dtype=torch.uint8))
+E        +        where <function engram_dequant at 0xe864c34f56c0> = KR.engram_dequant
+
+tests/cuda/test_dsv41_blockers_gpu.py:117: AssertionError
+__________________ test_x3pf_equals_upstream_bitwise[2048-4] ___________________
+
+k2 = 4, rows = 2048
+
+    @pytest.mark.parametrize("k2", [4, 6, 8])
+    @pytest.mark.parametrize("rows", [16, 256, 2048])
+    def test_x3pf_equals_upstream_bitwise(k2, rows):
+        from test_dsv41_gpu import _random_layer
+    
+        from tensorfold.cuda.exl3 import experts as x3
+        from tensorfold.families.deepseek_v41.cuda import expert_prefill as PF
+    
+        layer = _random_layer(k2, k2, experts=64, seed=k2 + rows)
+        ex = layer.ex
+        D, I = ex.dims, ex.width
+        slots = 7
+        g = torch.Generator(device=DEV).manual_seed(rows)
+        x = torch.randn((rows, D), generator=g, device=DEV).to(torch.bfloat16)
+        pick = torch.stack([torch.randperm(64, generator=g, device=DEV)[:6] for _ in range(rows)]).to(torch.int32)
+        pick = torch.cat([pick, torch.full((rows, 1), 64, dtype=torch.int32, device=DEV)], 1).contiguous()
+        s = x3.Scratch(ex, rows, slots, device=DEV)
+        ext = x3._ext()
+        ids, members = s.window(rows)
+>       ext.group(pick, ids, s.count, members, rows, slots, ex.count)
+E       torch.AcceleratorError: CUDA error: invalid argument
+E       Search for `cudaErrorInvalidValue' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+E       For more detailed error information, run with CUDA_LOG_FILE=stderr
+
+tests/cuda/test_dsv41_blockers_gpu.py:219: AcceleratorError
+__________________ test_x3pf_equals_upstream_bitwise[2048-6] ___________________
+
+k2 = 6, rows = 2048
+
+    @pytest.mark.parametrize("k2", [4, 6, 8])
+    @pytest.mark.parametrize("rows", [16, 256, 2048])
+    def test_x3pf_equals_upstream_bitwise(k2, rows):
+        from test_dsv41_gpu import _random_layer
+    
+        from tensorfold.cuda.exl3 import experts as x3
+        from tensorfold.families.deepseek_v41.cuda import expert_prefill as PF
+    
+        layer = _random_layer(k2, k2, experts=64, seed=k2 + rows)
+        ex = layer.ex
+        D, I = ex.dims, ex.width
+        slots = 7
+        g = torch.Generator(device=DEV).manual_seed(rows)
+        x = torch.randn((rows, D), generator=g, device=DEV).to(torch.bfloat16)
+        pick = torch.stack([torch.randperm(64, generator=g, device=DEV)[:6] for _ in range(rows)]).to(torch.int32)
+        pick = torch.cat([pick, torch.full((rows, 1), 64, dtype=torch.int32, device=DEV)], 1).contiguous()
+        s = x3.Scratch(ex, rows, slots, device=DEV)
+        ext = x3._ext()
+        ids, members = s.window(rows)
+>       ext.group(pick, ids, s.count, members, rows, slots, ex.count)
+E       torch.AcceleratorError: CUDA error: invalid argument
+E       Search for `cudaErrorInvalidValue' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+E       For more detailed error information, run with CUDA_LOG_FILE=stderr
+
+tests/cuda/test_dsv41_blockers_gpu.py:219: AcceleratorError
+__________________ test_x3pf_equals_upstream_bitwise[2048-8] ___________________
+
+k2 = 8, rows = 2048
+
+    @pytest.mark.parametrize("k2", [4, 6, 8])
+    @pytest.mark.parametrize("rows", [16, 256, 2048])
+    def test_x3pf_equals_upstream_bitwise(k2, rows):
+        from test_dsv41_gpu import _random_layer
+    
+        from tensorfold.cuda.exl3 import experts as x3
+        from tensorfold.families.deepseek_v41.cuda import expert_prefill as PF
+    
+        layer = _random_layer(k2, k2, experts=64, seed=k2 + rows)
+        ex = layer.ex
+        D, I = ex.dims, ex.width
+        slots = 7
+        g = torch.Generator(device=DEV).manual_seed(rows)
+        x = torch.randn((rows, D), generator=g, device=DEV).to(torch.bfloat16)
+        pick = torch.stack([torch.randperm(64, generator=g, device=DEV)[:6] for _ in range(rows)]).to(torch.int32)
+        pick = torch.cat([pick, torch.full((rows, 1), 64, dtype=torch.int32, device=DEV)], 1).contiguous()
+        s = x3.Scratch(ex, rows, slots, device=DEV)
+        ext = x3._ext()
+        ids, members = s.window(rows)
+>       ext.group(pick, ids, s.count, members, rows, slots, ex.count)
+E       torch.AcceleratorError: CUDA error: invalid argument
+E       Search for `cudaErrorInvalidValue' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+E       For more detailed error information, run with CUDA_LOG_FILE=stderr
+
+tests/cuda/test_dsv41_blockers_gpu.py:219: AcceleratorError
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/cuda/test_dsv41_gpu.py::test_csa2_rows_and_attention_row_invariance
+FAILED tests/cuda/test_dsv41_gpu.py::test_forward_gpu_equals_cpu_twin - trito...
+FAILED tests/cuda/test_dsv41_gpu.py::test_forward_gpu_rows_are_invariant - tr...
+FAILED tests/cuda/test_dsv41_blockers_gpu.py::test_engram_on_gpu - AssertionE...
+FAILED tests/cuda/test_dsv41_blockers_gpu.py::test_x3pf_equals_upstream_bitwise[2048-4]
+FAILED tests/cuda/test_dsv41_blockers_gpu.py::test_x3pf_equals_upstream_bitwise[2048-6]
+FAILED tests/cuda/test_dsv41_blockers_gpu.py::test_x3pf_equals_upstream_bitwise[2048-8]
+7 failed, 18 passed, 1 warning in 81.21s (0:01:21)

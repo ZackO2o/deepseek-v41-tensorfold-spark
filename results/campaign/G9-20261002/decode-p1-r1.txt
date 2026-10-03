@@ -1,0 +1,9 @@
+155 windows, kernels 41.26 ms a window (span 43.07 ms)
+  exchanges: 88 a window, 1.932 ms; us p10 7.6 p50 12.4 p90 30.9 p99 173.6; above the p10 floor (wait / skew) 1.260 ms
+  mhc site           2.367 ms, 88 launches (27.1 us each)
+  mhc finish         0.875 ms, 86 launches (10.2 us each)
+  rms fused          0.413 ms, 84 launches (4.9 us each)
+  cast to bf16       0.091 ms, 96 launches (0.9 us each)
+  copies             0.211 ms, 127 launches (1.7 us each)
+  other elementwise  0.337 ms, 259 launches (1.3 us each)
+  glue (mHC + norms + casts + copies + elementwise) 4.294 ms a window

@@ -1,0 +1,16 @@
+[dsv41 15:43:51] memory ok: MemFree head 116.8, worker 114.8 GiB
+[dsv41 15:43:51] pf-g7x-l-noahead: env TF_DSV41_PHASES=1 TF_DSV41_FAST_EXPERTS=gm TF_DSV41_ROUTER=gemv TF_DSV41_PREFILL_ATTN=fused TF_DSV41_PREFILL_ATTN_BMQ=32 TF_DSV41_PREFILL_GATHER=bf16 TF_DSV41_MHC_BM=64 TF_DSV41_ROPE_INPLACE=1 TF_DSV41_PREFILL_ROUTER=gemv; m2bench --prefill 65536 --context 73728 --parallel 1
+[dsv41 15:45:09] pf-g7x-l-noahead: rank 0 rc=0, rank 1 rc=0; [m2bench] prefill 65536: 36.06 s to the first token, 1817.6 tok/s 
+[dsv41 15:45:09] pf-g7x-l-noahead memory: head MemFree min 5.83, MemAvailable min 8.02 GiB; worker MemFree min 3.79, MemAvailable min 6.28 GiB
+[dsv41 15:45:09] pf-g7x-l-noahead boot: [tensorfold] roce: all-gathers of up to 1024 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 14.5 us eager at 16 KiB [tensorfold] serving: 1 slot(s) x 73792 tokens; 0 of 1 slots busy; pool 289 of 289 pages free, 0 reserved, 0 mapped; long prefills (> 32768 tokens) 1 at a time; sessions: 0 RAM entries (0 pool pages, 0.0 MiB boun
+[dsv41 15:45:20] memory ok: MemFree head 116.6, worker 114.5 GiB
+[dsv41 15:45:20] pf-g7x-l-ahead-attn: env TF_DSV41_PHASES=1 TF_DSV41_FAST_EXPERTS=gm TF_DSV41_ROUTER=gemv TF_DSV41_PREFILL_ATTN=fused TF_DSV41_PREFILL_ATTN_BMQ=32 TF_DSV41_PREFETCH_AHEAD=1; m2bench --prefill 65536 --context 73728 --parallel 1
+[dsv41 15:46:42] pf-g7x-l-ahead-attn: rank 0 rc=0, rank 1 rc=0; [m2bench] prefill 65536: 38.14 s to the first token, 1718.1 tok/s 
+[dsv41 15:46:42] pf-g7x-l-ahead-attn memory: head MemFree min 5.83, MemAvailable min 8.23 GiB; worker MemFree min 4.06, MemAvailable min 6.34 GiB
+[dsv41 15:46:42] pf-g7x-l-ahead-attn boot: [tensorfold] roce: all-gathers of up to 1024 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 14.5 us eager at 16 KiB [tensorfold] serving: 1 slot(s) x 73792 tokens; 0 of 1 slots busy; pool 289 of 289 pages free, 0 reserved, 0 mapped; long prefills (> 32768 tokens) 1 at a time; sessions: 0 RAM entries (0 pool pages, 0.0 MiB boun
+[dsv41 15:46:54] memory ok: MemFree head 116.6, worker 115.0 GiB
+[dsv41 15:46:54] pf-g7x-l-noattn: env TF_DSV41_PHASES=1 TF_DSV41_FAST_EXPERTS=gm TF_DSV41_ROUTER=gemv TF_DSV41_PREFILL_GATHER=bf16 TF_DSV41_MHC_BM=64 TF_DSV41_ROPE_INPLACE=1 TF_DSV41_PREFILL_ROUTER=gemv TF_DSV41_PREFETCH_AHEAD=1; m2bench --prefill 65536 --context 73728 --parallel 1
+[dsv41 15:48:12] pf-g7x-l-noattn: rank 0 rc=0, rank 1 rc=0; [m2bench] prefill 65536: 36.31 s to the first token, 1804.8 tok/s 
+[dsv41 15:48:12] pf-g7x-l-noattn memory: head MemFree min 5.80, MemAvailable min 8.06 GiB; worker MemFree min 3.73, MemAvailable min 6.06 GiB
+[dsv41 15:48:12] pf-g7x-l-noattn boot: [tensorfold] roce: all-gathers of up to 1024 KiB a rank over RoCE on roceP2p1s0f1 (GID 3, <head-link-ip-2>), rocep1s0f1 (GID 3, <head-link-ip>); timeout 120 s; probe 14.6 us eager at 16 KiB [tensorfold] serving: 1 slot(s) x 73792 tokens; 0 of 1 slots busy; pool 289 of 289 pages free, 0 reserved, 0 mapped; long prefills (> 32768 tokens) 1 at a time; sessions: 0 RAM entries (0 pool pages, 0.0 MiB boun
+PHASE4C-DONE

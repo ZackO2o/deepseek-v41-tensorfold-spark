@@ -1,0 +1,250 @@
+263 windows; between windows: median 1.465 ms, mean 18.603 ms over 262 gaps
+== draft pass (5 rows): 108 windows, span 3.495 ms, kernels 3.465 ms, idle in window 0.031 ms; exchanges 8.0 a window: transfer 0.062 ms (floor 7.8 us) + wait 0.133 ms
+   dense linear (wo_b, head, wk, drafter)        1.370 ms
+   experts                                       0.970 ms
+   dense seg (x / q / o groups)                  0.248 ms
+   exchange                                      0.195 ms
+   other                                         0.181 ms
+   mhc site                                      0.162 ms
+   router                                        0.084 ms
+   attention                                     0.082 ms
+   copies / elementwise                          0.067 ms
+   mhc finish                                    0.064 ms
+   norms                                         0.027 ms
+   indexer                                       0.009 ms
+   torch topk / sort                             0.006 ms
+     dense void <unnamed>::line grid (505, 1, 1)                           1017.5 us
+     dense void <unnamed>::line grid (40, 8, 1)                             173.9 us
+     dense void <unnamed>::line grid (128, 1, 1)                            167.5 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)8, (int)2 grid (256, 1, 1)     151.4 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)8, (int)2 grid (112, 1, 1)      80.2 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (10, 5, 2)                    10.2 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (8, 5, 4)                      6.2 us
+     dense <unnamed>::rot_ grid (3, 5, 1)                                     4.9 us
+     dense <unnamed>::rot_ grid (8, 5, 1)                                     4.4 us
+     dense <unnamed>::rot_ grid (10, 5, 1)                                    1.8 us
+== target 1 row(s): 37 windows, span 30.621 ms, kernels 30.324 ms, idle in window 0.298 ms; exchanges 83.0 a window: transfer 0.622 ms (floor 7.5 us) + wait 0.765 ms
+   experts                                       9.345 ms
+   dense linear (wo_b, head, wk, drafter)        6.823 ms
+   dense seg (x / q / o groups)                  4.698 ms
+   mhc site                                      2.196 ms
+   exchange                                      1.385 ms
+   attention                                     1.334 ms
+   router                                        1.259 ms
+   torch topk / sort                             0.870 ms
+   copies / elementwise                          0.844 ms
+   mhc finish                                    0.837 ms
+   norms                                         0.404 ms
+   indexer                                       0.184 ms
+   other                                         0.144 ms
+     dense void <unnamed>::line grid (40, 8, 1)                            2604.9 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (256, 1, 1)    2292.1 us
+     dense void <unnamed>::line grid (128, 1, 1)                           2231.6 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (112, 1, 1)    1250.2 us
+     dense void <unnamed>::line grid (505, 1, 1)                           1006.2 us
+     dense void <unnamed>::line grid (200, 1, 1)                            816.6 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (192, 1, 1)     729.7 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (176, 1, 1)     165.1 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (8, 1, 4)                     75.1 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (10, 1, 2)                    69.7 us
+     dense <unnamed>::rot_ grid (8, 1, 1)                                    60.5 us
+     dense <unnamed>::rot_ grid (3, 1, 1)                                    48.0 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (144, 1, 1)      45.3 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)12, (int) grid (112, 1, 1)      44.3 us
+== target 2 row(s): 48 windows, span 37.168 ms, kernels 36.876 ms, idle in window 0.293 ms; exchanges 83.0 a window: transfer 0.624 ms (floor 7.5 us) + wait 1.485 ms
+   experts                                      14.368 ms
+   dense linear (wo_b, head, wk, drafter)        6.999 ms
+   dense seg (x / q / o groups)                  4.844 ms
+   mhc site                                      2.243 ms
+   exchange                                      2.108 ms
+   attention                                     1.332 ms
+   router                                        1.294 ms
+   copies / elementwise                          1.061 ms
+   torch topk / sort                             0.934 ms
+   mhc finish                                    0.848 ms
+   norms                                         0.410 ms
+   other                                         0.226 ms
+   indexer                                       0.209 ms
+     dense void <unnamed>::line grid (40, 8, 1)                            2678.0 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (256, 1, 1)    2377.7 us
+     dense void <unnamed>::line grid (128, 1, 1)                           2313.0 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (112, 1, 1)    1265.6 us
+     dense void <unnamed>::line grid (505, 1, 1)                           1012.5 us
+     dense void <unnamed>::line grid (200, 1, 1)                            833.2 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (192, 1, 1)     767.7 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (176, 1, 1)     167.3 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (8, 2, 4)                     76.0 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (10, 2, 2)                    70.9 us
+     dense <unnamed>::rot_ grid (8, 2, 1)                                    59.2 us
+     dense <unnamed>::rot_ grid (3, 2, 1)                                    48.0 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (144, 1, 1)      45.8 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)12, (int) grid (112, 1, 1)      45.8 us
+== target 3 row(s): 30 windows, span 40.295 ms, kernels 40.001 ms, idle in window 0.295 ms; exchanges 83.0 a window: transfer 0.643 ms (floor 7.7 us) + wait 1.129 ms
+   experts                                      17.875 ms
+   dense linear (wo_b, head, wk, drafter)        7.136 ms
+   dense seg (x / q / o groups)                  4.831 ms
+   mhc site                                      2.271 ms
+   exchange                                      1.771 ms
+   router                                        1.351 ms
+   attention                                     1.337 ms
+   torch topk / sort                             0.921 ms
+   mhc finish                                    0.819 ms
+   copies / elementwise                          0.761 ms
+   norms                                         0.400 ms
+   other                                         0.300 ms
+   indexer                                       0.228 ms
+     dense void <unnamed>::line grid (40, 8, 1)                            2743.3 us
+     dense void <unnamed>::line grid (128, 1, 1)                           2381.2 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (256, 1, 1)    2376.6 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (112, 1, 1)    1249.2 us
+     dense void <unnamed>::line grid (505, 1, 1)                           1013.7 us
+     dense void <unnamed>::line grid (200, 1, 1)                            838.7 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (192, 1, 1)     778.8 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (176, 1, 1)     166.9 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (8, 3, 4)                     75.1 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (10, 3, 2)                    68.9 us
+     dense <unnamed>::rot_ grid (8, 3, 1)                                    58.0 us
+     dense <unnamed>::rot_ grid (3, 3, 1)                                    47.1 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)12, (int) grid (112, 1, 1)      44.6 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (144, 1, 1)      44.5 us
+== target 4 row(s): 18 windows, span 45.529 ms, kernels 45.225 ms, idle in window 0.307 ms; exchanges 83.0 a window: transfer 0.648 ms (floor 7.8 us) + wait 1.288 ms
+   experts                                      21.787 ms
+   dense linear (wo_b, head, wk, drafter)        7.359 ms
+   dense seg (x / q / o groups)                  4.886 ms
+   mhc site                                      2.327 ms
+   exchange                                      1.935 ms
+   copies / elementwise                          1.394 ms
+   attention                                     1.384 ms
+   router                                        1.368 ms
+   torch topk / sort                             0.919 ms
+   mhc finish                                    0.822 ms
+   norms                                         0.404 ms
+   other                                         0.365 ms
+   indexer                                       0.273 ms
+     dense void <unnamed>::line grid (40, 8, 1)                            2832.7 us
+     dense void <unnamed>::line grid (128, 1, 1)                           2475.7 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (256, 1, 1)    2373.8 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (112, 1, 1)    1256.2 us
+     dense void <unnamed>::line grid (505, 1, 1)                           1045.5 us
+     dense void <unnamed>::line grid (200, 1, 1)                            841.3 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (192, 1, 1)     813.0 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (176, 1, 1)     170.8 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (8, 4, 4)                     79.5 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (10, 4, 2)                    74.3 us
+     dense <unnamed>::rot_ grid (8, 4, 1)                                    59.3 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)12, (int) grid (112, 1, 1)      47.8 us
+     dense <unnamed>::rot_ grid (3, 4, 1)                                    47.0 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (144, 1, 1)      44.6 us
+== target 5 row(s): 9 windows, span 44.129 ms, kernels 43.779 ms, idle in window 0.353 ms; exchanges 77.3 a window: transfer 0.604 ms (floor 7.8 us) + wait 0.753 ms
+   experts                                      22.034 ms
+   dense linear (wo_b, head, wk, drafter)        7.358 ms
+   dense seg (x / q / o groups)                  4.554 ms
+   mhc site                                      2.179 ms
+   router                                        1.429 ms
+   exchange                                      1.356 ms
+   attention                                     1.279 ms
+   copies / elementwise                          0.861 ms
+   torch topk / sort                             0.837 ms
+   mhc finish                                    0.768 ms
+   other                                         0.466 ms
+   norms                                         0.376 ms
+   indexer                                       0.283 ms
+     dense void <unnamed>::line grid (40, 8, 1)                            2691.6 us
+     dense void <unnamed>::line grid (128, 1, 1)                           2381.7 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (256, 1, 1)    2148.2 us
+     dense void <unnamed>::line grid (505, 1, 1)                           1377.1 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (112, 1, 1)    1129.7 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (192, 1, 1)     768.7 us
+     dense void <unnamed>::line grid (200, 1, 1)                            761.6 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (176, 1, 1)     152.3 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (8, 5, 4)                     76.7 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (10, 5, 2)                    70.2 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)8, (int)2 grid (256, 1, 1)      65.5 us
+     dense <unnamed>::rot_ grid (8, 5, 1)                                    54.2 us
+     dense <unnamed>::rot_ grid (3, 5, 1)                                    43.0 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)12, (int) grid (112, 1, 1)      42.1 us
+== target 6 row(s): 5 windows, span 51.804 ms, kernels 51.506 ms, idle in window 0.301 ms; exchanges 83.0 a window: transfer 0.669 ms (floor 8.1 us) + wait 1.213 ms
+   experts                                      27.938 ms
+   dense linear (wo_b, head, wk, drafter)        7.772 ms
+   dense seg (x / q / o groups)                  4.987 ms
+   mhc site                                      2.331 ms
+   exchange                                      1.881 ms
+   router                                        1.544 ms
+   attention                                     1.435 ms
+   torch topk / sort                             0.923 ms
+   mhc finish                                    0.821 ms
+   copies / elementwise                          0.637 ms
+   other                                         0.506 ms
+   norms                                         0.397 ms
+   indexer                                       0.333 ms
+     dense void <unnamed>::line grid (40, 8, 1)                            3002.3 us
+     dense void <unnamed>::line grid (128, 1, 1)                           2731.4 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (256, 1, 1)    2400.9 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (112, 1, 1)    1254.5 us
+     dense void <unnamed>::line grid (505, 1, 1)                           1028.5 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (192, 1, 1)     881.6 us
+     dense void <unnamed>::line grid (200, 1, 1)                            854.0 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (176, 1, 1)     174.3 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (8, 6, 4)                     81.4 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (10, 6, 2)                    72.5 us
+     dense <unnamed>::rot_ grid (8, 6, 1)                                    56.8 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)12, (int) grid (112, 1, 1)      48.2 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (144, 1, 1)      46.6 us
+     dense <unnamed>::rot_ grid (3, 6, 1)                                    44.6 us
+== target 7 row(s): 4 windows, span 56.051 ms, kernels 55.749 ms, idle in window 0.304 ms; exchanges 83.0 a window: transfer 0.752 ms (floor 9.1 us) + wait 1.14 ms
+   experts                                      31.632 ms
+   dense linear (wo_b, head, wk, drafter)        8.020 ms
+   dense seg (x / q / o groups)                  5.064 ms
+   mhc site                                      2.383 ms
+   exchange                                      1.890 ms
+   router                                        1.579 ms
+   attention                                     1.431 ms
+   torch topk / sort                             0.923 ms
+   mhc finish                                    0.818 ms
+   copies / elementwise                          0.645 ms
+   other                                         0.575 ms
+   norms                                         0.398 ms
+   indexer                                       0.391 ms
+     dense void <unnamed>::line grid (40, 8, 1)                            3130.1 us
+     dense void <unnamed>::line grid (128, 1, 1)                           2830.8 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (256, 1, 1)    2426.0 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (112, 1, 1)    1280.8 us
+     dense void <unnamed>::line grid (505, 1, 1)                           1036.1 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (192, 1, 1)     897.2 us
+     dense void <unnamed>::line grid (200, 1, 1)                            865.9 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (176, 1, 1)     179.5 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (8, 7, 4)                     84.6 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (10, 7, 2)                    73.5 us
+     dense <unnamed>::rot_ grid (8, 7, 1)                                    58.2 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)12, (int) grid (112, 1, 1)      47.3 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (144, 1, 1)      46.8 us
+     dense <unnamed>::rot_ grid (3, 7, 1)                                    44.4 us
+== target 8 row(s): 4 windows, span 61.497 ms, kernels 61.172 ms, idle in window 0.327 ms; exchanges 83.0 a window: transfer 0.768 ms (floor 9.2 us) + wait 1.552 ms
+   experts                                      35.633 ms
+   dense linear (wo_b, head, wk, drafter)        8.476 ms
+   dense seg (x / q / o groups)                  5.273 ms
+   mhc site                                      2.438 ms
+   exchange                                      2.317 ms
+   router                                        1.605 ms
+   attention                                     1.495 ms
+   torch topk / sort                             0.928 ms
+   mhc finish                                    0.861 ms
+   copies / elementwise                          0.673 ms
+   other                                         0.626 ms
+   indexer                                       0.447 ms
+   norms                                         0.398 ms
+     dense void <unnamed>::line grid (40, 8, 1)                            3266.6 us
+     dense void <unnamed>::line grid (128, 1, 1)                           2994.3 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (256, 1, 1)    2515.5 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (112, 1, 1)    1338.7 us
+     dense void <unnamed>::line grid (505, 1, 1)                           1153.8 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (192, 1, 1)     928.2 us
+     dense void <unnamed>::line grid (200, 1, 1)                            879.5 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (176, 1, 1)     187.3 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (8, 8, 4)                     96.2 us
+     dense dsv41_x3seg::seg_rot_in_kernel grid (10, 8, 2)                    80.7 us
+     dense <unnamed>::rot_ grid (8, 8, 1)                                    59.2 us
+     dense void <unnamed>::line grid (1, 1, 1)                               55.9 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)10, (int) grid (144, 1, 1)      51.0 us
+     dense oid dsv41_x3seg::seg_linear_kernel<(int)12, (int) grid (112, 1, 1)      47.7 us
+eager kernels (total ms): void dsv41_x3ld::ld_kernel< 1458.04; void dsv41_x3gm::gm_kernel< 860.52; void <unnamed>::linear_kernel< 383.44; tfroce::gather_kernel 320.5; ncclDevKernel_AllGather_RING_LL 317.85; _gemm 221.49; void dsv41_x3seg::seg_linear_kernel< 216.8; void <unnamed>::unpack_kernel< 181.61; _site 167.33; void dsv41_rg::gemv_kernel< 102.5

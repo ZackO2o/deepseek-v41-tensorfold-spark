@@ -1,0 +1,33 @@
+[boot] r0 +3.3s start: imports, CLI (3.3s) | MemFree 117.1 GiB, MemAvailable 117.2 GiB
+[boot] r0 +5.9s NCCL (both ranks up) (2.6s) | MemFree 114.7 GiB, MemAvailable 114.8 GiB
+[tensorfold] weights: no usable prepared folder (no folder): building from the checkpoint; will write it
+[tensorfold] prepared folder written: /prepared/model/3c52fb1b8d6c90e6/rank0 (101.8 GB in 80.9s)
+[tensorfold] removed an older prepared folder: /prepared/model/5cd84013c11d2944/rank0
+[boot] r0 +307.0s weights: 101.8 GB (301.1s) | MemFree 8.1 GiB, MemAvailable 17.3 GiB
+[tensorfold] dspark: no usable prepared folder (no folder): building from the checkpoint; will write it
+[tensorfold] prepared folder written: /prepared/model/5cd84013c11d2944/rank0 (3.7 GB in 2.9s)
+[tensorfold] removed an older prepared folder: /prepared/model/3c52fb1b8d6c90e6/rank0
+[boot] r0 +318.3s forward built: 99.0 GiB allocated (11.3s) | MemFree 3.1 GiB, MemAvailable 12.5 GiB
+[tensorfold] structured output: on (xgrammar, 129280 columns, DSML tool tag deepseek_v4_1; built in 2.9 s)
+[tensorfold] serving: 4 slot(s) x 16448 tokens; 0 of 4 slots busy; pool 260 of 260 pages free, 0 reserved, 0 mapped; sessions: 0 RAM entries (0 pool pages, 0.0 MiB bounded state); prefill full; floor 5.0 GiB
+[tensorfold] dsv41 calibration: draft 5.47 ms, verify 1/2/4/6/8/16 rows 53.9, 70.6, 88.8, 107.0, 125.2, 190.8 ms (stored /cache/dsv41-calib/calib-c35a588ee93240cb293c.json)
+[boot] r0 +337.8s M2 boot: DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 0, 'hits': 0, 'misses': 166, 'dropped': 0} (19.5s) | MemFree 1.2 GiB, MemAvailable 10.0 GiB
+[boot] r0 +337.8s serving (0.0s) | MemFree 1.2 GiB, MemAvailable 10.0 GiB
+[tensorfold] admission waits for memory (1 queued): usable free 0.99 + allocator cache 0.00 + page cache credit 6.71 (MemAvailable 9.79, MemFree 0.99, Dirty+Writeback 0.00, Mapped 2.10) = 7.70 GiB, less the session store's unused 0.00 GiB, is under 4.00 GiB (GLM53_TF_BATCH_ADMIT_GB + scratch), or free now 0.99 GiB is under the floor
+[tensorfold] admission waits for memory (1 queued): usable free 0.86 + allocator cache 0.00 + page cache credit 6.71 (MemAvailable 9.67, MemFree 0.86, Dirty+Writeback 0.00, Mapped 2.10) = 7.57 GiB, less the session store's unused 0.00 GiB, is under 4.00 GiB (GLM53_TF_BATCH_ADMIT_GB + scratch), or free now 0.86 GiB is under the floor; waiting 30 s
+[tensorfold] admission waits for memory (1 queued): usable free 0.84 + allocator cache 0.00 + page cache credit 6.71 (MemAvailable 9.65, MemFree 0.84, Dirty+Writeback 0.00, Mapped 2.10) = 7.55 GiB, less the session store's unused 0.00 GiB, is under 4.00 GiB (GLM53_TF_BATCH_ADMIT_GB + scratch), or free now 0.84 GiB is under the floor; waiting 60 s
+[tensorfold] admission waits for memory (1 queued): usable free 0.87 + allocator cache 0.00 + page cache credit 6.70 (MemAvailable 9.68, MemFree 0.87, Dirty+Writeback 0.00, Mapped 2.11) = 7.57 GiB, less the session store's unused 0.00 GiB, is under 4.00 GiB (GLM53_TF_BATCH_ADMIT_GB + scratch), or free now 0.87 GiB is under the floor; waiting 90 s
+[tensorfold] admission waits for memory (1 queued): usable free 0.87 + allocator cache 0.00 + page cache credit 6.70 (MemAvailable 9.68, MemFree 0.87, Dirty+Writeback 0.00, Mapped 2.11) = 7.57 GiB, less the session store's unused 0.00 GiB, is under 4.00 GiB (GLM53_TF_BATCH_ADMIT_GB + scratch), or free now 0.87 GiB is under the floor; waiting 120 s
+[tensorfold] admission waits for memory (1 queued): usable free 0.87 + allocator cache 0.00 + page cache credit 6.70 (MemAvailable 9.68, MemFree 0.87, Dirty+Writeback 0.00, Mapped 2.11) = 7.57 GiB, less the session store's unused 0.00 GiB, is under 4.00 GiB (GLM53_TF_BATCH_ADMIT_GB + scratch), or free now 0.87 GiB is under the floor; waiting 150 s
+[tensorfold] admission waits for memory (1 queued): usable free 0.85 + allocator cache 0.00 + page cache credit 6.70 (MemAvailable 9.66, MemFree 0.85, Dirty+Writeback 0.00, Mapped 2.11) = 7.55 GiB, less the session store's unused 0.00 GiB, is under 4.00 GiB (GLM53_TF_BATCH_ADMIT_GB + scratch), or free now 0.85 GiB is under the floor; waiting 180 s
+[tensorfold] admission waits for memory (1 queued): usable free 0.89 + allocator cache 0.00 + page cache credit 6.70 (MemAvailable 9.70, MemFree 0.89, Dirty+Writeback 0.00, Mapped 2.11) = 7.59 GiB, less the session store's unused 0.00 GiB, is under 4.00 GiB (GLM53_TF_BATCH_ADMIT_GB + scratch), or free now 0.89 GiB is under the floor; waiting 210 s
+[tensorfold] admission waits for memory (1 queued): usable free 0.88 + allocator cache 0.00 + page cache credit 6.70 (MemAvailable 9.69, MemFree 0.88, Dirty+Writeback 0.00, Mapped 2.11) = 7.58 GiB, less the session store's unused 0.00 GiB, is under 4.00 GiB (GLM53_TF_BATCH_ADMIT_GB + scratch), or free now 0.88 GiB is under the floor; waiting 240 s
+[tensorfold] admission resumed after 252.9 s waiting for memory
+[m2bench] code: T0 41.93 tok/s, 4.042 tok/round (DSpark 4.042), exact True/True
+[m2bench] prose: T0 22.36 tok/s, 1.684 tok/round (DSpark 1.687), exact True/True
+[m2bench] tweet: T0 55.545 tok/s, 5.655 tok/round (DSpark 5.259), exact True/True
+[m2bench] mmlu: T0 0.0 tok/s, 3.0 tok/round (DSpark 3.0), exact True/True
+[m2bench] edit: T0 61.57 tok/s, 7.014 tok/round (DSpark 5.952), exact True/True
+[m2bench] long: T0 26.715 tok/s, 2.34 tok/round (DSpark 2.34), exact True/True
+[m2bench] 4 streams: 16.01 tok/s aggregate (kit C4 37.6)
+[m2bench] report /out/m2-eager.json: exact True, DSpark mixed 3.475 tok/round

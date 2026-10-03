@@ -1,0 +1,237 @@
+.....[tensorfold] building CUDA extension tensorfold_exl3_linear_v3 (first start after an install or update; later starts reuse it)
+..[tensorfold] prepared folder written: /tmp/pytest-of-root/pytest-0/test_prepared_folder_to_gpu0/dsv41g0/1d44e265dc686be3/rank0 (0.0 GB in 0.0s)
+.....
+3000 keys x 8 rows: materialised 0.34 ms, streaming 3.21 ms (first calls include compiles)
+.
+20000 keys x 8 rows: materialised 0.37 ms, streaming 1.36 ms (first calls include compiles)
+.
+65536 keys x 8 rows: materialised 0.47 ms, streaming 0.58 ms (first calls include compiles)
+.
+chain vs host: 0 of 320 drafts differ []
+.
+k2=4 rows=16 mats=2 (4, 4): upstream 0.719 ms, x3pf 19.208 ms (first calls include builds)
+
+k2=4 rows=16 mats=2 (8, 2): upstream 0.719 ms, x3pf 1.131 ms (first calls include builds)
+
+k2=4 rows=16 mats=1 (4, 4): upstream 0.406 ms, x3pf 0.825 ms (first calls include builds)
+
+k2=4 rows=16 mats=1 (8, 2): upstream 0.406 ms, x3pf 0.446 ms (first calls include builds)
+.
+k2=6 rows=16 mats=2 (4, 4): upstream 1.210 ms, x3pf 1.677 ms (first calls include builds)
+
+k2=6 rows=16 mats=2 (8, 2): upstream 1.210 ms, x3pf 1.065 ms (first calls include builds)
+
+k2=6 rows=16 mats=1 (4, 4): upstream 0.538 ms, x3pf 0.798 ms (first calls include builds)
+
+k2=6 rows=16 mats=1 (8, 2): upstream 0.538 ms, x3pf 0.549 ms (first calls include builds)
+.
+k2=8 rows=16 mats=2 (4, 4): upstream 1.259 ms, x3pf 1.722 ms (first calls include builds)
+
+k2=8 rows=16 mats=2 (8, 2): upstream 1.259 ms, x3pf 1.281 ms (first calls include builds)
+
+k2=8 rows=16 mats=1 (4, 4): upstream 0.654 ms, x3pf 0.877 ms (first calls include builds)
+
+k2=8 rows=16 mats=1 (8, 2): upstream 0.654 ms, x3pf 0.673 ms (first calls include builds)
+.
+k2=4 rows=256 mats=2 (4, 4): upstream 2.609 ms, x3pf 2.638 ms (first calls include builds)
+
+k2=4 rows=256 mats=2 (8, 2): upstream 2.609 ms, x3pf 1.918 ms (first calls include builds)
+
+k2=4 rows=256 mats=1 (4, 4): upstream 1.271 ms, x3pf 1.277 ms (first calls include builds)
+
+k2=4 rows=256 mats=1 (8, 2): upstream 1.271 ms, x3pf 0.895 ms (first calls include builds)
+.
+k2=6 rows=256 mats=2 (4, 4): upstream 3.294 ms, x3pf 3.417 ms (first calls include builds)
+
+k2=6 rows=256 mats=2 (8, 2): upstream 3.294 ms, x3pf 2.335 ms (first calls include builds)
+
+k2=6 rows=256 mats=1 (4, 4): upstream 1.615 ms, x3pf 1.308 ms (first calls include builds)
+
+k2=6 rows=256 mats=1 (8, 2): upstream 1.615 ms, x3pf 1.075 ms (first calls include builds)
+.
+k2=8 rows=256 mats=2 (4, 4): upstream 3.953 ms, x3pf 3.599 ms (first calls include builds)
+
+k2=8 rows=256 mats=2 (8, 2): upstream 3.953 ms, x3pf 2.625 ms (first calls include builds)
+
+k2=8 rows=256 mats=1 (4, 4): upstream 1.945 ms, x3pf 1.442 ms (first calls include builds)
+
+k2=8 rows=256 mats=1 (8, 2): upstream 1.945 ms, x3pf 1.285 ms (first calls include builds)
+.
+k2=4 rows=1024 mats=2 (4, 4): upstream 9.487 ms, x3pf 9.835 ms (first calls include builds)
+
+k2=4 rows=1024 mats=2 (8, 2): upstream 9.487 ms, x3pf 6.940 ms (first calls include builds)
+
+k2=4 rows=1024 mats=1 (4, 4): upstream 4.259 ms, x3pf 3.348 ms (first calls include builds)
+
+k2=4 rows=1024 mats=1 (8, 2): upstream 4.259 ms, x3pf 3.762 ms (first calls include builds)
+.
+k2=6 rows=1024 mats=2 (4, 4): upstream 11.998 ms, x3pf 9.538 ms (first calls include builds)
+
+k2=6 rows=1024 mats=2 (8, 2): upstream 11.998 ms, x3pf 8.995 ms (first calls include builds)
+
+k2=6 rows=1024 mats=1 (4, 4): upstream 5.435 ms, x3pf 4.285 ms (first calls include builds)
+
+k2=6 rows=1024 mats=1 (8, 2): upstream 5.435 ms, x3pf 3.705 ms (first calls include builds)
+.
+k2=8 rows=1024 mats=2 (4, 4): upstream 14.441 ms, x3pf 9.667 ms (first calls include builds)
+
+k2=8 rows=1024 mats=2 (8, 2): upstream 14.441 ms, x3pf 9.671 ms (first calls include builds)
+
+k2=8 rows=1024 mats=1 (4, 4): upstream 6.676 ms, x3pf 3.853 ms (first calls include builds)
+
+k2=8 rows=1024 mats=1 (8, 2): upstream 6.676 ms, x3pf 4.206 ms (first calls include builds)
+.
+k2=4 rows=2048 mats=2 (4, 4): upstream 17.594 ms, x3pf 19.341 ms (first calls include builds)
+
+k2=4 rows=2048 mats=2 (8, 2): upstream 17.594 ms, x3pf 13.834 ms (first calls include builds)
+
+k2=4 rows=2048 mats=1 (4, 4): upstream 8.538 ms, x3pf 7.136 ms (first calls include builds)
+
+k2=4 rows=2048 mats=1 (8, 2): upstream 8.538 ms, x3pf 5.876 ms (first calls include builds)
+.
+k2=6 rows=2048 mats=2 (4, 4): upstream 22.472 ms, x3pf 19.955 ms (first calls include builds)
+
+k2=6 rows=2048 mats=2 (8, 2): upstream 22.472 ms, x3pf 16.492 ms (first calls include builds)
+
+k2=6 rows=2048 mats=1 (4, 4): upstream 11.303 ms, x3pf 6.518 ms (first calls include builds)
+
+k2=6 rows=2048 mats=1 (8, 2): upstream 11.303 ms, x3pf 7.096 ms (first calls include builds)
+.
+k2=8 rows=2048 mats=2 (4, 4): upstream 27.353 ms, x3pf 20.813 ms (first calls include builds)
+
+k2=8 rows=2048 mats=2 (8, 2): upstream 27.353 ms, x3pf 17.673 ms (first calls include builds)
+
+k2=8 rows=2048 mats=1 (4, 4): upstream 13.420 ms, x3pf 7.189 ms (first calls include builds)
+
+k2=8 rows=2048 mats=1 (8, 2): upstream 13.420 ms, x3pf 8.099 ms (first calls include builds)
+....................[tensorfold] prepared folder written: /tmp/pytest-of-root/pytest-0/test_round_trip_bit_for_bit0/dsv41f0/144ee3cdeaa19011/rank1 (0.0 GB in 0.0s)
+.[tensorfold] prepared folder written: /tmp/pytest-of-root/pytest-0/test_folder_logits_equal_check0/dsv41f0/9ff1936d8c824e1f/rank0 (0.0 GB in 0.0s)
+..[tensorfold] prepared folder written: /tmp/pytest-of-root/pytest-0/test_damaged_chunk_and_fallbac0/dsv41f0/9ff1936d8c824e1f/rank0 (0.0 GB in 0.1s)
+[tensorfold] weights: prepared folder /tmp/pytest-of-root/pytest-0/test_damaged_chunk_and_fallbac0/dsv41f0/9ff1936d8c824e1f/rank0 unusable (ValueError: /tmp/pytest-of-root/pytest-0/test_damaged_chunk_and_fallbac0/dsv41f0/9ff1936d8c824e1f/rank0/data.bin: chunk 0 checksum mismatch); building from the checkpoint
+[tensorfold] prepared folder written: /tmp/pytest-of-root/pytest-0/test_damaged_chunk_and_fallbac0/dsv41f0/9ff1936d8c824e1f/rank0 (0.0 GB in 0.0s)
+[tensorfold] weights: no usable prepared folder (no folder): building from the checkpoint; will write it
+[tensorfold] prepared folder written: /tmp/pytest-of-root/pytest-0/test_damaged_chunk_and_fallbac0/dsv41f0/e37c6f6c89531893/rank0 (0.0 GB in 0.0s)
+[tensorfold] removed an older prepared folder: /tmp/pytest-of-root/pytest-0/test_damaged_chunk_and_fallbac0/dsv41f0/9ff1936d8c824e1f/rank0
+[tensorfold] weights: prepared folder /tmp/pytest-of-root/pytest-0/test_damaged_chunk_and_fallbac0/dsv41f0/e37c6f6c89531893/rank0, 0.0 GB in 0.0s (0.2 GB/s, 1 threads, O_DIRECT, 1/1 chunks verified)
+...[boot] r0 +75.5s start: imports, CLI (75.5s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r0 +75.5s NCCL (both ranks up) (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r1 +75.5s start: imports, CLI (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r1 +75.5s NCCL (both ranks up) (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r1 +75.5s weights: 0.0 GB (0.1s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r1 +75.5s weights: 0.0 GB (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r1 +76.0s warm-up window, barrier: serving (0.4s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB[boot] r1 +76.0s warm-up window, barrier: serving (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+
+.[boot] r1 +81.1s start: imports, CLI (5.1s) | MemFree 107.6 GiB, MemAvailable 109.6 GiB[boot] r1 +81.1s start: imports, CLI (0.0s) | MemFree 107.6 GiB, MemAvailable 109.6 GiB
+
+[boot] r1 +81.1s NCCL (both ranks up) (0.0s) | MemFree 107.6 GiB, MemAvailable 109.6 GiB
+[boot] r1 +81.1s NCCL (both ranks up) (0.0s) | MemFree 107.6 GiB, MemAvailable 109.6 GiB
+[boot] r1 +81.2s weights: 0.0 GB (0.1s) | MemFree 107.6 GiB, MemAvailable 109.6 GiB
+[boot] r1 +81.2s weights: 0.0 GB (0.0s) | MemFree 107.6 GiB, MemAvailable 109.6 GiB
+[boot] r1 +81.6s warm-up window, barrier: serving (0.4s) | MemFree 107.6 GiB, MemAvailable 109.6 GiB[boot] r1 +81.6s warm-up window, barrier: serving (0.0s) | MemFree 107.6 GiB, MemAvailable 109.6 GiB
+
+.[boot] r1 +86.2s start: imports, CLI (4.6s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r1 +86.2s start: imports, CLI (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r1 +86.2s NCCL (both ranks up) (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r1 +86.2s NCCL (both ranks up) (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r1 +86.4s weights: 0.0 GB (0.2s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r1 +86.4s weights: 0.0 GB (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r1 +86.8s warm-up window, barrier: serving (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB[boot] r1 +86.8s warm-up window, barrier: serving (0.4s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+
+.[boot] r1 +88.9s start: imports, CLI (2.1s) | MemFree 107.8 GiB, MemAvailable 109.8 GiB
+[boot] r1 +88.9s start: imports, CLI (0.0s) | MemFree 107.8 GiB, MemAvailable 109.8 GiB
+[boot] r1 +88.9s NCCL (both ranks up) (0.0s) | MemFree 107.8 GiB, MemAvailable 109.8 GiB
+[boot] r1 +88.9s NCCL (both ranks up) (0.0s) | MemFree 107.8 GiB, MemAvailable 109.8 GiB
+[boot] r1 +88.9s weights: 0.0 GB (0.1s) | MemFree 107.8 GiB, MemAvailable 109.8 GiB
+[boot] r1 +89.0s weights: 0.0 GB (0.1s) | MemFree 107.8 GiB, MemAvailable 109.8 GiB
+[boot] r1 +89.4s warm-up window, barrier: serving (0.4s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB[boot] r1 +89.4s warm-up window, barrier: serving (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+
+...[boot] r1 +91.8s start: imports, CLI (2.5s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r1 +91.8s start: imports, CLI (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB[boot] r1 +91.8s NCCL (both ranks up) (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+
+[boot] r1 +91.8s NCCL (both ranks up) (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[tensorfold] weights: no usable prepared folder (no folder): building from the checkpoint; will write it[tensorfold] weights: no usable prepared folder (no folder): building from the checkpoint; will write it
+
+[tensorfold] prepared folder written: /prepared/dsv41e0/22478a7d209b4712/rank0 (0.0 GB in 0.0s)
+[boot] r1 +92.0s weights: 0.0 GB (0.1s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[tensorfold] prepared folder written: /prepared/dsv41e0/f147449b8dff3b94/rank1 (0.0 GB in 0.0s)
+[boot] r1 +92.0s weights: 0.0 GB (0.0s) | MemFree 107.8 GiB, MemAvailable 109.7 GiB
+[boot] r1 +92.4s warm-up window, barrier: serving (0.0s) | MemFree 107.8 GiB, MemAvailable 109.7 GiB[boot] r1 +92.4s warm-up window, barrier: serving (0.4s) | MemFree 107.8 GiB, MemAvailable 109.7 GiB
+
+prompt 0: top-1 1.0000 (first copy of 9: 1.0000), prefill 1.2s, decode 8.23 tok/s
+{
+ "boot_s": 0.6,
+ "launch_to_ready_s": 92.4,
+ "knobs": {
+  "GLM53_TF_COMM_BACKEND": "nccl",
+  "TF_DSV41_CHUNK": "8",
+  "TF_DSV41_ENGRAM_DIR": "/tmp/pytest-of-root/pytest-0/dsv41e0/engram",
+  "TF_DSV41_EXPERT_LOADS": "0",
+  "TF_DSV41_EXPERT_PREFILL": "0",
+  "TF_DSV41_LAUNCH_T0": "1790884563.939230116",
+  "TF_DSV41_PREPARED": "/prepared",
+  "TF_DSV41_PREPARED_WRITE": "1",
+  "TF_DSV41_TOKEN_MAP": "/tmp/pytest-of-root/pytest-0/dsv41e0/token_map.json"
+ },
+ "top1_agreement": 1.0,
+ "top1_first_copy": 1.0,
+ "kit_top1_in_our_top5": 1.0,
+ "positions": 29,
+ "median_abs_logprob_err": 3.243156760265956,
+ "row_invariance": {
+  "windows_of_8": true,
+  "one_row": true,
+  "rows": 19
+ },
+ "decode_tok_s_median": 8.23,
+ "memory": {
+  "after_boot_alloc_gib": null,
+  "after_boot_reserved_gib": null,
+  "mem_available_after_boot_gib": 109.75,
+  "peak_alloc_gib": null,
+  "peak_reserved_gib": null,
+  "workspace_peak_gib": null,
+  "mem_available_min_gib": 109.75,
+  "per_rank_mem_available_min_gib": [
+   109.75,
+   109.75
+  ],
+  "per_rank_peak_reserved_gib": [
+   0.0,
+   0.0
+  ]
+ },
+ "gates": {
+  "top1": true,
+  "row_invariance": true,
+  "decode_floor": false,
+  "boot_le_90s": true,
+  "boot_le_60s": true
+ },
+ "pass": false
+}
+.[boot] r0 +98.5s start: imports, CLI (6.1s) | MemFree 107.8 GiB, MemAvailable 109.8 GiB
+[boot] r1 +98.5s start: imports, CLI (0.0s) | MemFree 107.8 GiB, MemAvailable 109.8 GiB
+[boot] r1 +98.5s NCCL (both ranks up) (0.0s) | MemFree 107.8 GiB, MemAvailable 109.8 GiB
+[boot] r1 +98.5s NCCL (both ranks up) (0.0s) | MemFree 107.8 GiB, MemAvailable 109.8 GiB
+[boot] r1 +98.6s weights: 0.0 GB (0.1s) | MemFree 107.8 GiB, MemAvailable 109.8 GiB
+[boot] r1 +98.6s weights: 0.0 GB (0.0s) | MemFree 107.8 GiB, MemAvailable 109.8 GiB
+[tensorfold] serving: 1 slot(s) x 320 tokens; 0 of 1 slots busy; pool 4 of 4 pages free, 0 reserved, 0 mapped; sessions: 0 RAM entries (0 pool pages, 0.0 MiB bounded state); prefill full; floor 5.0 GiB
+[boot] r1 +100.1s serving (0.0s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r1 +100.1s serving (1.5s) | MemFree 107.7 GiB, MemAvailable 109.7 GiB
+[boot] r1 +101.4s start: imports, CLI (1.3s) | MemFree 107.6 GiB, MemAvailable 109.6 GiB
+[boot] r1 +101.4s start: imports, CLI (0.0s) | MemFree 107.6 GiB, MemAvailable 109.6 GiB
+[boot] r1 +101.4s NCCL (both ranks up) (0.0s) | MemFree 107.6 GiB, MemAvailable 109.6 GiB
+[boot] r1 +101.4s NCCL (both ranks up) (0.0s) | MemFree 107.6 GiB, MemAvailable 109.6 GiB
+[boot] r1 +101.5s weights: 0.0 GB (0.1s) | MemFree 107.6 GiB, MemAvailable 109.6 GiB
+[boot] r1 +101.5s weights: 0.0 GB (0.0s) | MemFree 107.6 GiB, MemAvailable 109.6 GiB
+[boot] r1 +103.1s warm-up window, barrier: serving (0.0s) | MemFree 107.5 GiB, MemAvailable 109.6 GiB
+[boot] r1 +103.1s warm-up window, barrier: serving (1.6s) | MemFree 107.5 GiB, MemAvailable 109.6 GiB
+.......
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+67 passed, 1 warning in 152.06s (0:02:32)

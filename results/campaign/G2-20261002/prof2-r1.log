@@ -1,0 +1,8 @@
+[boot] r1 +3.7s start: imports, CLI (3.7s) | MemFree 115.3 GiB, MemAvailable 115.2 GiB
+[boot] r1 +9.0s NCCL (both ranks up) (5.3s) | MemFree 112.9 GiB, MemAvailable 112.8 GiB
+[tensorfold] weights: prepared folder /prepared/model/9529c28bc20acb64/rank1, 101.8 GB in 11.5s (8.9 GB/s, 8 threads, O_DIRECT, 96/1518 chunks verified)
+[boot] r1 +21.0s weights: 101.8 GB (12.0s) | MemFree 16.2 GiB, MemAvailable 16.2 GiB
+[boot] r1 +21.9s forward built: 95.4 GiB allocated (0.9s) | MemFree 15.5 GiB, MemAvailable 15.5 GiB
+[boot] r1 +25.3s warm-up window, barrier: serving (3.4s) | MemFree 14.0 GiB, MemAvailable 14.9 GiB
+USDT:2026-10-01 20:37:36 1:1 SyncActivityProfilerHandler.cpp:52] profiler_start
+USDT:2026-10-01 20:37:37 1:1 SyncActivityProfilerHandler.cpp:59] profiler_stop

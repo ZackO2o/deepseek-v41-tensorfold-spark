@@ -1,0 +1,5 @@
+  image glm53-tensorfold:b13-060; link HEAD_IP <head-link-ip>, enp1s0f1np1 / rocep1s0f1,roceP2p1s0f1
+  sources dsv41-060 @ e42008899ea9 on both nodes
+  prepared folders: head 2, worker 1 (the drafter's folder is written on the first boot)
+  lease: 10; watchdog timer: inactive; :8000 none
+check: OK

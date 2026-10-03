@@ -1,0 +1,56 @@
+[boot] r0 +3.2s start: imports, CLI (3.2s) | MemFree 116.1 GiB, MemAvailable 116.0 GiB
+[boot] r0 +5.7s NCCL (both ranks up) (2.5s) | MemFree 113.8 GiB, MemAvailable 113.8 GiB
+[tensorfold] weights: prepared folder /prepared/model/3c52fb1b8d6c90e6/rank0, 101.8 GB in 11.7s (8.7 GB/s, 8 threads, O_DIRECT, 96/1518 chunks verified)
+[boot] r0 +17.8s weights: 101.8 GB (12.2s) | MemFree 16.8 GiB, MemAvailable 16.8 GiB
+[boot] r0 +18.8s forward built: 95.4 GiB allocated (0.9s) | MemFree 16.1 GiB, MemAvailable 16.2 GiB
+[boot] r0 +21.0s warm-up window, barrier: serving (2.2s) | MemFree 14.6 GiB, MemAvailable 15.6 GiB
+prompt 0: top-1 0.9990 (first copy of 38: 0.9474), prefill 9.3s, decode 18.76 tok/s
+{
+ "boot_s": 17.9,
+ "launch_to_ready_s": 21.1,
+ "knobs": {
+  "GLM53_TF_COMM_BACKEND": "nccl",
+  "TF_DSV41_ENGRAM_DIR": "/engram",
+  "TF_DSV41_EXPERT_LOADS": "1",
+  "TF_DSV41_EXPERT_PREFILL": "0",
+  "TF_DSV41_LAUNCH_T0": "1790887736.086068408",
+  "TF_DSV41_PREPARED": "/prepared",
+  "TF_DSV41_PREPARED_WRITE": "1"
+ },
+ "top1_agreement": 0.9990229604298974,
+ "top1_first_copy": 0.9473684210526315,
+ "kit_top1_in_our_top5": 1.0,
+ "positions": 2047,
+ "median_abs_logprob_err": 9.723535136174632e-06,
+ "row_invariance": {
+  "windows_of_8": false,
+  "one_row": false,
+  "rows": 259
+ },
+ "decode_tok_s_median": 18.76,
+ "memory": {
+  "after_boot_alloc_gib": 95.5,
+  "after_boot_reserved_gib": 95.65,
+  "mem_available_after_boot_gib": 15.59,
+  "peak_alloc_gib": 98.32,
+  "peak_reserved_gib": 98.6,
+  "workspace_peak_gib": 0.11,
+  "mem_available_min_gib": 12.52,
+  "per_rank_mem_available_min_gib": [
+   12.52,
+   10.74
+  ],
+  "per_rank_peak_reserved_gib": [
+   98.6,
+   98.6
+  ]
+ },
+ "gates": {
+  "top1": true,
+  "row_invariance": false,
+  "decode_floor": false,
+  "boot_le_90s": true,
+  "boot_le_60s": true
+ },
+ "pass": false
+}

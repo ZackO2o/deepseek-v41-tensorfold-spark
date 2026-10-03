@@ -1,0 +1,3300 @@
+{
+ "knobs": {
+  "TF_DSV41_CALIB": "real",
+  "TF_DSV41_CALIB_DIR": "/tmp/g10d-calib",
+  "TF_DSV41_DEFAULT_EFFORT": "high",
+  "TF_DSV41_DENSE": "0",
+  "TF_DSV41_DEPTH_JOINT": "0",
+  "TF_DSV41_DISCONNECT": "1",
+  "TF_DSV41_DRAFT_LOG": "/out/draftlog",
+  "TF_DSV41_DRAFT_LOG_HID": "1",
+  "TF_DSV41_DRAFT_LOG_TAPS": "1",
+  "TF_DSV41_DRAFT_LOG_TOPK": "8",
+  "TF_DSV41_ENGRAM_DIR": "/engram",
+  "TF_DSV41_ENGRAM_FUSE_DEC": "1",
+  "TF_DSV41_ENGRAM_GATE": "1",
+  "TF_DSV41_ENGRAM_NATIVE": "1",
+  "TF_DSV41_EXPERT_LOADS": "1",
+  "TF_DSV41_EXPERT_MIN_K": "3",
+  "TF_DSV41_EXPERT_PREFILL": "0",
+  "TF_DSV41_EXPERT_RENORM": "kept",
+  "TF_DSV41_EXPERT_TOPP": "0.85",
+  "TF_DSV41_FAST_EXPERTS": "gm",
+  "TF_DSV41_FLOOR_GIB": "5",
+  "TF_DSV41_FLOOR_HARD_GIB": "4",
+  "TF_DSV41_GRAMMAR": "1",
+  "TF_DSV41_GRAPH_MODE": "rows",
+  "TF_DSV41_INDEX_DTOPK": "1",
+  "TF_DSV41_INDEX_KV": "fp8",
+  "TF_DSV41_INDEX_STREAM_MIN": "16384",
+  "TF_DSV41_LAUNCH_T0": "1790961120.117006165",
+  "TF_DSV41_MHC_BM": "64",
+  "TF_DSV41_MHC_DEC": "1",
+  "TF_DSV41_MHC_FIN2": "1",
+  "TF_DSV41_MHC_FN": "bf16",
+  "TF_DSV41_MHC_WARPS": "8",
+  "TF_DSV41_NATIVE_DIR": "/cache/dsv41-native",
+  "TF_DSV41_PARTIAL_BF16": "1",
+  "TF_DSV41_PHASES": "1",
+  "TF_DSV41_PLAIN_TRITON": "1",
+  "TF_DSV41_PLAN_LINK": "tcp",
+  "TF_DSV41_PREFETCH_AHEAD": "1",
+  "TF_DSV41_PREFILL": "replay",
+  "TF_DSV41_PREFILL_ATTN": "fused",
+  "TF_DSV41_PREFILL_ATTN_BMQ": "32",
+  "TF_DSV41_PREFILL_ATTN_WARPS": "8",
+  "TF_DSV41_PREFILL_CHUNK": "2048",
+  "TF_DSV41_PREFILL_GATHER": "bf16",
+  "TF_DSV41_PREFILL_KERNELS": "fast",
+  "TF_DSV41_PREFILL_ROUTER": "gemv",
+  "TF_DSV41_PREFILL_ROWS": "2048",
+  "TF_DSV41_PREPARED": "/prepared",
+  "TF_DSV41_PREPARED_WRITE": "1",
+  "TF_DSV41_RG_NARROW": "2",
+  "TF_DSV41_RG_TAIL": "1",
+  "TF_DSV41_RMS_PAIR": "1",
+  "TF_DSV41_ROPE_INPLACE": "1",
+  "TF_DSV41_ROUTER": "gemv",
+  "TF_DSV41_SCHEMA_PROMPT": "1",
+  "TF_DSV41_SESSIONS": "1",
+  "TF_DSV41_SESSION_RAM_MIB": "256",
+  "TF_DSV41_SPEC_DRAFT": "1",
+  "TF_DSV41_THINKING": "1",
+  "TF_DSV41_TOOL_GRAMMAR": "0",
+  "TF_DSV41_TREE": "0"
+ },
+ "requests": [
+  {
+   "msg": "Write a 350-word essay on lighthouses and their keepers. Plain prose, no lists o",
+   "tokens": 380,
+   "tok_s": 21.14,
+   "drafting": {
+    "windows": 212,
+    "rows": 544,
+    "dspark_rounds": 212,
+    "dspark_drafts": 332,
+    "dspark_kept": 168,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.792,
+    "tokens_per_round": 1.792
+   }
+  },
+  {
+   "msg": "Explain lighthouses and their keepers to a curious friend in a few warm, convers",
+   "tokens": 364,
+   "tok_s": 21.58,
+   "drafting": {
+    "windows": 203,
+    "rows": 528,
+    "dspark_rounds": 203,
+    "dspark_drafts": 325,
+    "dspark_kept": 161,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.793,
+    "tokens_per_round": 1.793
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of lighthouses ",
+   "tokens": 384,
+   "tok_s": 20.64,
+   "drafting": {
+    "windows": 243,
+    "rows": 609,
+    "dspark_rounds": 242,
+    "dspark_drafts": 366,
+    "dspark_kept": 141,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.583,
+    "tokens_per_round": 1.58
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about lighthouses and their keep",
+   "tokens": 342,
+   "tok_s": 20.53,
+   "drafting": {
+    "windows": 200,
+    "rows": 523,
+    "dspark_rounds": 200,
+    "dspark_drafts": 323,
+    "dspark_kept": 143,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.715,
+    "tokens_per_round": 1.715
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the history of tea in Britain. Plain prose, no lists o",
+   "tokens": 384,
+   "tok_s": 21.15,
+   "drafting": {
+    "windows": 226,
+    "rows": 545,
+    "dspark_rounds": 225,
+    "dspark_drafts": 319,
+    "dspark_kept": 158,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.702,
+    "tokens_per_round": 1.699
+   }
+  },
+  {
+   "msg": "Explain the history of tea in Britain to a curious friend in a few warm, convers",
+   "tokens": 367,
+   "tok_s": 20.27,
+   "drafting": {
+    "windows": 225,
+    "rows": 572,
+    "dspark_rounds": 225,
+    "dspark_drafts": 347,
+    "dspark_kept": 142,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.631,
+    "tokens_per_round": 1.631
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the history ",
+   "tokens": 384,
+   "tok_s": 20.68,
+   "drafting": {
+    "windows": 236,
+    "rows": 583,
+    "dspark_rounds": 234,
+    "dspark_drafts": 345,
+    "dspark_kept": 148,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.632,
+    "tokens_per_round": 1.627
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the history of tea in Brit",
+   "tokens": 311,
+   "tok_s": 19.06,
+   "drafting": {
+    "windows": 199,
+    "rows": 507,
+    "dspark_rounds": 199,
+    "dspark_drafts": 308,
+    "dspark_kept": 113,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.568,
+    "tokens_per_round": 1.568
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on how glaciers shape valleys. Plain prose, no lists or h",
+   "tokens": 384,
+   "tok_s": 23.78,
+   "drafting": {
+    "windows": 211,
+    "rows": 558,
+    "dspark_rounds": 211,
+    "dspark_drafts": 347,
+    "dspark_kept": 173,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.82,
+    "tokens_per_round": 1.82
+   }
+  },
+  {
+   "msg": "Explain how glaciers shape valleys to a curious friend in a few warm, conversati",
+   "tokens": 280,
+   "tok_s": 20.84,
+   "drafting": {
+    "windows": 167,
+    "rows": 444,
+    "dspark_rounds": 167,
+    "dspark_drafts": 277,
+    "dspark_kept": 114,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.683,
+    "tokens_per_round": 1.683
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of how glaciers",
+   "tokens": 372,
+   "tok_s": 22.21,
+   "drafting": {
+    "windows": 225,
+    "rows": 577,
+    "dspark_rounds": 225,
+    "dspark_drafts": 352,
+    "dspark_kept": 147,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.653,
+    "tokens_per_round": 1.653
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about how glaciers shape valleys",
+   "tokens": 314,
+   "tok_s": 21.67,
+   "drafting": {
+    "windows": 181,
+    "rows": 488,
+    "dspark_rounds": 181,
+    "dspark_drafts": 307,
+    "dspark_kept": 133,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.735,
+    "tokens_per_round": 1.735
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the invention of the printing press. Plain prose, no l",
+   "tokens": 384,
+   "tok_s": 23.13,
+   "drafting": {
+    "windows": 210,
+    "rows": 564,
+    "dspark_rounds": 210,
+    "dspark_drafts": 354,
+    "dspark_kept": 174,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.829,
+    "tokens_per_round": 1.829
+   }
+  },
+  {
+   "msg": "Explain the invention of the printing press to a curious friend in a few warm, c",
+   "tokens": 277,
+   "tok_s": 20.54,
+   "drafting": {
+    "windows": 158,
+    "rows": 421,
+    "dspark_rounds": 158,
+    "dspark_drafts": 263,
+    "dspark_kept": 120,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.759,
+    "tokens_per_round": 1.759
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the inventio",
+   "tokens": 384,
+   "tok_s": 21.9,
+   "drafting": {
+    "windows": 232,
+    "rows": 584,
+    "dspark_rounds": 231,
+    "dspark_drafts": 352,
+    "dspark_kept": 152,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.658,
+    "tokens_per_round": 1.655
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the invention of the print",
+   "tokens": 290,
+   "tok_s": 20.92,
+   "drafting": {
+    "windows": 163,
+    "rows": 427,
+    "dspark_rounds": 163,
+    "dspark_drafts": 264,
+    "dspark_kept": 128,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.785,
+    "tokens_per_round": 1.785
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on life in a medieval monastery. Plain prose, no lists or",
+   "tokens": 384,
+   "tok_s": 20.69,
+   "drafting": {
+    "windows": 234,
+    "rows": 600,
+    "dspark_rounds": 234,
+    "dspark_drafts": 366,
+    "dspark_kept": 150,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.641,
+    "tokens_per_round": 1.641
+   }
+  },
+  {
+   "msg": "Explain life in a medieval monastery to a curious friend in a few warm, conversa",
+   "tokens": 383,
+   "tok_s": 21.32,
+   "drafting": {
+    "windows": 223,
+    "rows": 565,
+    "dspark_rounds": 223,
+    "dspark_drafts": 342,
+    "dspark_kept": 161,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.722,
+    "tokens_per_round": 1.722
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of life in a me",
+   "tokens": 384,
+   "tok_s": 20.9,
+   "drafting": {
+    "windows": 230,
+    "rows": 606,
+    "dspark_rounds": 229,
+    "dspark_drafts": 376,
+    "dspark_kept": 154,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.672,
+    "tokens_per_round": 1.67
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about life in a medieval monaste",
+   "tokens": 314,
+   "tok_s": 19.68,
+   "drafting": {
+    "windows": 195,
+    "rows": 489,
+    "dspark_rounds": 195,
+    "dspark_drafts": 294,
+    "dspark_kept": 120,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.615,
+    "tokens_per_round": 1.615
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on why bees dance. Plain prose, no lists or headings.",
+   "tokens": 384,
+   "tok_s": 22.19,
+   "drafting": {
+    "windows": 216,
+    "rows": 580,
+    "dspark_rounds": 215,
+    "dspark_drafts": 364,
+    "dspark_kept": 168,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.781,
+    "tokens_per_round": 1.778
+   }
+  },
+  {
+   "msg": "Explain why bees dance to a curious friend in a few warm, conversational paragra",
+   "tokens": 359,
+   "tok_s": 21.39,
+   "drafting": {
+    "windows": 207,
+    "rows": 550,
+    "dspark_rounds": 207,
+    "dspark_drafts": 343,
+    "dspark_kept": 152,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.734,
+    "tokens_per_round": 1.734
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of why bees dan",
+   "tokens": 369,
+   "tok_s": 20.64,
+   "drafting": {
+    "windows": 229,
+    "rows": 598,
+    "dspark_rounds": 229,
+    "dspark_drafts": 369,
+    "dspark_kept": 140,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.611,
+    "tokens_per_round": 1.611
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about why bees dance, around 300",
+   "tokens": 300,
+   "tok_s": 21.39,
+   "drafting": {
+    "windows": 168,
+    "rows": 452,
+    "dspark_rounds": 168,
+    "dspark_drafts": 284,
+    "dspark_kept": 133,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.792,
+    "tokens_per_round": 1.792
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the first transatlantic telegraph cable. Plain prose, ",
+   "tokens": 374,
+   "tok_s": 20.82,
+   "drafting": {
+    "windows": 215,
+    "rows": 587,
+    "dspark_rounds": 215,
+    "dspark_drafts": 372,
+    "dspark_kept": 160,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.744,
+    "tokens_per_round": 1.744
+   }
+  },
+  {
+   "msg": "Explain the first transatlantic telegraph cable to a curious friend in a few war",
+   "tokens": 365,
+   "tok_s": 20.97,
+   "drafting": {
+    "windows": 206,
+    "rows": 553,
+    "dspark_rounds": 206,
+    "dspark_drafts": 347,
+    "dspark_kept": 160,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.777,
+    "tokens_per_round": 1.777
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the first tr",
+   "tokens": 384,
+   "tok_s": 20.61,
+   "drafting": {
+    "windows": 230,
+    "rows": 584,
+    "dspark_rounds": 228,
+    "dspark_drafts": 350,
+    "dspark_kept": 153,
+    "lookup_rounds": 2,
+    "lookup_drafts": 4,
+    "lookup_kept": 1,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.671,
+    "tokens_per_round": 1.67
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the first transatlantic te",
+   "tokens": 319,
+   "tok_s": 20.01,
+   "drafting": {
+    "windows": 186,
+    "rows": 497,
+    "dspark_rounds": 186,
+    "dspark_drafts": 311,
+    "dspark_kept": 134,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.72,
+    "tokens_per_round": 1.72
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on urban gardens in dense cities. Plain prose, no lists o",
+   "tokens": 352,
+   "tok_s": 20.97,
+   "drafting": {
+    "windows": 211,
+    "rows": 537,
+    "dspark_rounds": 211,
+    "dspark_drafts": 326,
+    "dspark_kept": 142,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.673,
+    "tokens_per_round": 1.673
+   }
+  },
+  {
+   "msg": "Explain urban gardens in dense cities to a curious friend in a few warm, convers",
+   "tokens": 334,
+   "tok_s": 20.83,
+   "drafting": {
+    "windows": 198,
+    "rows": 495,
+    "dspark_rounds": 198,
+    "dspark_drafts": 297,
+    "dspark_kept": 137,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.692,
+    "tokens_per_round": 1.692
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of urban garden",
+   "tokens": 377,
+   "tok_s": 21.05,
+   "drafting": {
+    "windows": 237,
+    "rows": 608,
+    "dspark_rounds": 236,
+    "dspark_drafts": 369,
+    "dspark_kept": 141,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.597,
+    "tokens_per_round": 1.595
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about urban gardens in dense cit",
+   "tokens": 294,
+   "tok_s": 20.82,
+   "drafting": {
+    "windows": 171,
+    "rows": 424,
+    "dspark_rounds": 171,
+    "dspark_drafts": 253,
+    "dspark_kept": 123,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.719,
+    "tokens_per_round": 1.719
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the science of sourdough. Plain prose, no lists or hea",
+   "tokens": 384,
+   "tok_s": 21.95,
+   "drafting": {
+    "windows": 217,
+    "rows": 566,
+    "dspark_rounds": 216,
+    "dspark_drafts": 349,
+    "dspark_kept": 167,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.773,
+    "tokens_per_round": 1.77
+   }
+  },
+  {
+   "msg": "Explain the science of sourdough to a curious friend in a few warm, conversation",
+   "tokens": 384,
+   "tok_s": 21.35,
+   "drafting": {
+    "windows": 226,
+    "rows": 578,
+    "dspark_rounds": 226,
+    "dspark_drafts": 352,
+    "dspark_kept": 158,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.699,
+    "tokens_per_round": 1.699
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the science ",
+   "tokens": 384,
+   "tok_s": 20.65,
+   "drafting": {
+    "windows": 240,
+    "rows": 609,
+    "dspark_rounds": 240,
+    "dspark_drafts": 369,
+    "dspark_kept": 144,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.6,
+    "tokens_per_round": 1.6
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the science of sourdough, ",
+   "tokens": 334,
+   "tok_s": 19.5,
+   "drafting": {
+    "windows": 212,
+    "rows": 529,
+    "dspark_rounds": 212,
+    "dspark_drafts": 317,
+    "dspark_kept": 122,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.575,
+    "tokens_per_round": 1.575
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the Silk Road's trading towns. Plain prose, no lists o",
+   "tokens": 384,
+   "tok_s": 21.68,
+   "drafting": {
+    "windows": 223,
+    "rows": 565,
+    "dspark_rounds": 222,
+    "dspark_drafts": 342,
+    "dspark_kept": 161,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.725,
+    "tokens_per_round": 1.722
+   }
+  },
+  {
+   "msg": "Explain the Silk Road's trading towns to a curious friend in a few warm, convers",
+   "tokens": 336,
+   "tok_s": 20.97,
+   "drafting": {
+    "windows": 193,
+    "rows": 495,
+    "dspark_rounds": 193,
+    "dspark_drafts": 302,
+    "dspark_kept": 144,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.746,
+    "tokens_per_round": 1.746
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the Silk Roa",
+   "tokens": 384,
+   "tok_s": 21.88,
+   "drafting": {
+    "windows": 219,
+    "rows": 592,
+    "dspark_rounds": 219,
+    "dspark_drafts": 373,
+    "dspark_kept": 165,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.753,
+    "tokens_per_round": 1.753
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the Silk Road's trading to",
+   "tokens": 319,
+   "tok_s": 20.49,
+   "drafting": {
+    "windows": 187,
+    "rows": 487,
+    "dspark_rounds": 187,
+    "dspark_drafts": 300,
+    "dspark_kept": 132,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.706,
+    "tokens_per_round": 1.706
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on how vaccines train the immune system. Plain prose, no ",
+   "tokens": 384,
+   "tok_s": 22.55,
+   "drafting": {
+    "windows": 205,
+    "rows": 564,
+    "dspark_rounds": 205,
+    "dspark_drafts": 359,
+    "dspark_kept": 179,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.873,
+    "tokens_per_round": 1.873
+   }
+  },
+  {
+   "msg": "Explain how vaccines train the immune system to a curious friend in a few warm, ",
+   "tokens": 328,
+   "tok_s": 21.26,
+   "drafting": {
+    "windows": 178,
+    "rows": 489,
+    "dspark_rounds": 178,
+    "dspark_drafts": 311,
+    "dspark_kept": 151,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.848,
+    "tokens_per_round": 1.848
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of how vaccines",
+   "tokens": 358,
+   "tok_s": 20.46,
+   "drafting": {
+    "windows": 226,
+    "rows": 577,
+    "dspark_rounds": 225,
+    "dspark_drafts": 349,
+    "dspark_kept": 133,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.591,
+    "tokens_per_round": 1.588
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about how vaccines train the imm",
+   "tokens": 330,
+   "tok_s": 22.2,
+   "drafting": {
+    "windows": 176,
+    "rows": 493,
+    "dspark_rounds": 176,
+    "dspark_drafts": 317,
+    "dspark_kept": 155,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.881,
+    "tokens_per_round": 1.881
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the decline of night skies. Plain prose, no lists or h",
+   "tokens": 384,
+   "tok_s": 22.94,
+   "drafting": {
+    "windows": 220,
+    "rows": 562,
+    "dspark_rounds": 219,
+    "dspark_drafts": 342,
+    "dspark_kept": 164,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.749,
+    "tokens_per_round": 1.745
+   }
+  },
+  {
+   "msg": "Explain the decline of night skies to a curious friend in a few warm, conversati",
+   "tokens": 305,
+   "tok_s": 22.37,
+   "drafting": {
+    "windows": 166,
+    "rows": 442,
+    "dspark_rounds": 166,
+    "dspark_drafts": 276,
+    "dspark_kept": 140,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.843,
+    "tokens_per_round": 1.843
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the decline ",
+   "tokens": 368,
+   "tok_s": 21.61,
+   "drafting": {
+    "windows": 226,
+    "rows": 602,
+    "dspark_rounds": 226,
+    "dspark_drafts": 376,
+    "dspark_kept": 143,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.633,
+    "tokens_per_round": 1.633
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the decline of night skies",
+   "tokens": 228,
+   "tok_s": 18.85,
+   "drafting": {
+    "windows": 144,
+    "rows": 356,
+    "dspark_rounds": 144,
+    "dspark_drafts": 212,
+    "dspark_kept": 85,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.59,
+    "tokens_per_round": 1.59
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the economics of a small bakery. Plain prose, no lists",
+   "tokens": 384,
+   "tok_s": 20.64,
+   "drafting": {
+    "windows": 234,
+    "rows": 585,
+    "dspark_rounds": 233,
+    "dspark_drafts": 351,
+    "dspark_kept": 150,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.644,
+    "tokens_per_round": 1.641
+   }
+  },
+  {
+   "msg": "Explain the economics of a small bakery to a curious friend in a few warm, conve",
+   "tokens": 384,
+   "tok_s": 21.28,
+   "drafting": {
+    "windows": 224,
+    "rows": 597,
+    "dspark_rounds": 223,
+    "dspark_drafts": 373,
+    "dspark_kept": 160,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.717,
+    "tokens_per_round": 1.714
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the economic",
+   "tokens": 384,
+   "tok_s": 20.28,
+   "drafting": {
+    "windows": 242,
+    "rows": 606,
+    "dspark_rounds": 242,
+    "dspark_drafts": 364,
+    "dspark_kept": 142,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.587,
+    "tokens_per_round": 1.587
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the economics of a small b",
+   "tokens": 321,
+   "tok_s": 21.03,
+   "drafting": {
+    "windows": 184,
+    "rows": 468,
+    "dspark_rounds": 184,
+    "dspark_drafts": 284,
+    "dspark_kept": 138,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.75,
+    "tokens_per_round": 1.75
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on learning a second language as an adult. Plain prose, n",
+   "tokens": 384,
+   "tok_s": 21.74,
+   "drafting": {
+    "windows": 217,
+    "rows": 554,
+    "dspark_rounds": 214,
+    "dspark_drafts": 330,
+    "dspark_kept": 165,
+    "lookup_rounds": 2,
+    "lookup_drafts": 7,
+    "lookup_kept": 2,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.771,
+    "tokens_per_round": 1.77
+   }
+  },
+  {
+   "msg": "Explain learning a second language as an adult to a curious friend in a few warm",
+   "tokens": 384,
+   "tok_s": 21.81,
+   "drafting": {
+    "windows": 216,
+    "rows": 569,
+    "dspark_rounds": 216,
+    "dspark_drafts": 353,
+    "dspark_kept": 168,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.778,
+    "tokens_per_round": 1.778
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of learning a s",
+   "tokens": 359,
+   "tok_s": 19.61,
+   "drafting": {
+    "windows": 231,
+    "rows": 570,
+    "dspark_rounds": 231,
+    "dspark_drafts": 339,
+    "dspark_kept": 129,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.558,
+    "tokens_per_round": 1.558
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about learning a second language",
+   "tokens": 331,
+   "tok_s": 20.76,
+   "drafting": {
+    "windows": 192,
+    "rows": 501,
+    "dspark_rounds": 192,
+    "dspark_drafts": 309,
+    "dspark_kept": 140,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.729,
+    "tokens_per_round": 1.729
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the ethics of zoos. Plain prose, no lists or headings.",
+   "tokens": 384,
+   "tok_s": 20.72,
+   "drafting": {
+    "windows": 222,
+    "rows": 583,
+    "dspark_rounds": 221,
+    "dspark_drafts": 361,
+    "dspark_kept": 162,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.733,
+    "tokens_per_round": 1.73
+   }
+  },
+  {
+   "msg": "Explain the ethics of zoos to a curious friend in a few warm, conversational par",
+   "tokens": 384,
+   "tok_s": 20.72,
+   "drafting": {
+    "windows": 222,
+    "rows": 596,
+    "dspark_rounds": 222,
+    "dspark_drafts": 374,
+    "dspark_kept": 162,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.73,
+    "tokens_per_round": 1.73
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the ethics o",
+   "tokens": 382,
+   "tok_s": 20.32,
+   "drafting": {
+    "windows": 228,
+    "rows": 577,
+    "dspark_rounds": 228,
+    "dspark_drafts": 349,
+    "dspark_kept": 155,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.68,
+    "tokens_per_round": 1.68
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the ethics of zoos, around",
+   "tokens": 359,
+   "tok_s": 20.28,
+   "drafting": {
+    "windows": 211,
+    "rows": 552,
+    "dspark_rounds": 211,
+    "dspark_drafts": 341,
+    "dspark_kept": 149,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.706,
+    "tokens_per_round": 1.706
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on deep-sea hydrothermal vents. Plain prose, no lists or ",
+   "tokens": 384,
+   "tok_s": 22.05,
+   "drafting": {
+    "windows": 225,
+    "rows": 577,
+    "dspark_rounds": 224,
+    "dspark_drafts": 352,
+    "dspark_kept": 159,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.71,
+    "tokens_per_round": 1.707
+   }
+  },
+  {
+   "msg": "Explain deep-sea hydrothermal vents to a curious friend in a few warm, conversat",
+   "tokens": 344,
+   "tok_s": 21.54,
+   "drafting": {
+    "windows": 201,
+    "rows": 513,
+    "dspark_rounds": 201,
+    "dspark_drafts": 312,
+    "dspark_kept": 143,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.711,
+    "tokens_per_round": 1.711
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of deep-sea hyd",
+   "tokens": 344,
+   "tok_s": 19.64,
+   "drafting": {
+    "windows": 227,
+    "rows": 569,
+    "dspark_rounds": 227,
+    "dspark_drafts": 342,
+    "dspark_kept": 118,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.52,
+    "tokens_per_round": 1.52
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about deep-sea hydrothermal vent",
+   "tokens": 279,
+   "tok_s": 20.37,
+   "drafting": {
+    "windows": 168,
+    "rows": 432,
+    "dspark_rounds": 168,
+    "dspark_drafts": 264,
+    "dspark_kept": 112,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.667,
+    "tokens_per_round": 1.667
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the craft of bookbinding. Plain prose, no lists or hea",
+   "tokens": 384,
+   "tok_s": 22.71,
+   "drafting": {
+    "windows": 215,
+    "rows": 551,
+    "dspark_rounds": 214,
+    "dspark_drafts": 336,
+    "dspark_kept": 169,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.79,
+    "tokens_per_round": 1.786
+   }
+  },
+  {
+   "msg": "Explain the craft of bookbinding to a curious friend in a few warm, conversation",
+   "tokens": 384,
+   "tok_s": 21.62,
+   "drafting": {
+    "windows": 235,
+    "rows": 609,
+    "dspark_rounds": 234,
+    "dspark_drafts": 374,
+    "dspark_kept": 149,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.637,
+    "tokens_per_round": 1.634
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the craft of",
+   "tokens": 340,
+   "tok_s": 21.02,
+   "drafting": {
+    "windows": 202,
+    "rows": 523,
+    "dspark_rounds": 202,
+    "dspark_drafts": 321,
+    "dspark_kept": 139,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.688,
+    "tokens_per_round": 1.688
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the craft of bookbinding, ",
+   "tokens": 293,
+   "tok_s": 21.74,
+   "drafting": {
+    "windows": 164,
+    "rows": 434,
+    "dspark_rounds": 164,
+    "dspark_drafts": 270,
+    "dspark_kept": 130,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.793,
+    "tokens_per_round": 1.793
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the rise and fall of the telegraph. Plain prose, no li",
+   "tokens": 384,
+   "tok_s": 21.33,
+   "drafting": {
+    "windows": 216,
+    "rows": 575,
+    "dspark_rounds": 216,
+    "dspark_drafts": 359,
+    "dspark_kept": 168,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.778,
+    "tokens_per_round": 1.778
+   }
+  },
+  {
+   "msg": "Explain the rise and fall of the telegraph to a curious friend in a few warm, co",
+   "tokens": 384,
+   "tok_s": 21.18,
+   "drafting": {
+    "windows": 218,
+    "rows": 558,
+    "dspark_rounds": 218,
+    "dspark_drafts": 340,
+    "dspark_kept": 166,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.761,
+    "tokens_per_round": 1.761
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the rise and",
+   "tokens": 384,
+   "tok_s": 19.88,
+   "drafting": {
+    "windows": 246,
+    "rows": 621,
+    "dspark_rounds": 246,
+    "dspark_drafts": 375,
+    "dspark_kept": 138,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.561,
+    "tokens_per_round": 1.561
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the rise and fall of the t",
+   "tokens": 300,
+   "tok_s": 20.17,
+   "drafting": {
+    "windows": 176,
+    "rows": 441,
+    "dspark_rounds": 176,
+    "dspark_drafts": 265,
+    "dspark_kept": 125,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.71,
+    "tokens_per_round": 1.71
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on how rivers change course. Plain prose, no lists or hea",
+   "tokens": 342,
+   "tok_s": 22.28,
+   "drafting": {
+    "windows": 185,
+    "rows": 480,
+    "dspark_rounds": 185,
+    "dspark_drafts": 295,
+    "dspark_kept": 158,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.854,
+    "tokens_per_round": 1.854
+   }
+  },
+  {
+   "msg": "Explain how rivers change course to a curious friend in a few warm, conversation",
+   "tokens": 316,
+   "tok_s": 20.47,
+   "drafting": {
+    "windows": 186,
+    "rows": 489,
+    "dspark_rounds": 185,
+    "dspark_drafts": 301,
+    "dspark_kept": 131,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.708,
+    "tokens_per_round": 1.704
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of how rivers c",
+   "tokens": 384,
+   "tok_s": 21.67,
+   "drafting": {
+    "windows": 240,
+    "rows": 604,
+    "dspark_rounds": 239,
+    "dspark_drafts": 364,
+    "dspark_kept": 144,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.603,
+    "tokens_per_round": 1.6
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about how rivers change course, ",
+   "tokens": 283,
+   "tok_s": 19.08,
+   "drafting": {
+    "windows": 178,
+    "rows": 470,
+    "dspark_rounds": 178,
+    "dspark_drafts": 292,
+    "dspark_kept": 106,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.596,
+    "tokens_per_round": 1.596
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the psychology of habits. Plain prose, no lists or hea",
+   "tokens": 384,
+   "tok_s": 22.08,
+   "drafting": {
+    "windows": 203,
+    "rows": 551,
+    "dspark_rounds": 203,
+    "dspark_drafts": 348,
+    "dspark_kept": 181,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.892,
+    "tokens_per_round": 1.892
+   }
+  },
+  {
+   "msg": "Explain the psychology of habits to a curious friend in a few warm, conversation",
+   "tokens": 357,
+   "tok_s": 22.46,
+   "drafting": {
+    "windows": 187,
+    "rows": 520,
+    "dspark_rounds": 187,
+    "dspark_drafts": 333,
+    "dspark_kept": 171,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.914,
+    "tokens_per_round": 1.914
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the psycholo",
+   "tokens": 384,
+   "tok_s": 22.64,
+   "drafting": {
+    "windows": 206,
+    "rows": 570,
+    "dspark_rounds": 205,
+    "dspark_drafts": 364,
+    "dspark_kept": 178,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.868,
+    "tokens_per_round": 1.864
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the psychology of habits, ",
+   "tokens": 308,
+   "tok_s": 19.94,
+   "drafting": {
+    "windows": 181,
+    "rows": 509,
+    "dspark_rounds": 180,
+    "dspark_drafts": 326,
+    "dspark_kept": 127,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 1,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.706,
+    "tokens_per_round": 1.707
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on Roman roads and their engineering. Plain prose, no lis",
+   "tokens": 376,
+   "tok_s": 21.14,
+   "drafting": {
+    "windows": 227,
+    "rows": 552,
+    "dspark_rounds": 227,
+    "dspark_drafts": 325,
+    "dspark_kept": 150,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.661,
+    "tokens_per_round": 1.661
+   }
+  },
+  {
+   "msg": "Explain Roman roads and their engineering to a curious friend in a few warm, con",
+   "tokens": 324,
+   "tok_s": 20.2,
+   "drafting": {
+    "windows": 197,
+    "rows": 506,
+    "dspark_rounds": 197,
+    "dspark_drafts": 309,
+    "dspark_kept": 128,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.65,
+    "tokens_per_round": 1.65
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of Roman roads ",
+   "tokens": 384,
+   "tok_s": 21.59,
+   "drafting": {
+    "windows": 227,
+    "rows": 588,
+    "dspark_rounds": 227,
+    "dspark_drafts": 361,
+    "dspark_kept": 157,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.692,
+    "tokens_per_round": 1.692
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about Roman roads and their engi",
+   "tokens": 274,
+   "tok_s": 20.02,
+   "drafting": {
+    "windows": 168,
+    "rows": 414,
+    "dspark_rounds": 168,
+    "dspark_drafts": 246,
+    "dspark_kept": 106,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.631,
+    "tokens_per_round": 1.631
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the migration of monarch butterflies. Plain prose, no ",
+   "tokens": 384,
+   "tok_s": 21.42,
+   "drafting": {
+    "windows": 227,
+    "rows": 582,
+    "dspark_rounds": 226,
+    "dspark_drafts": 355,
+    "dspark_kept": 157,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.695,
+    "tokens_per_round": 1.692
+   }
+  },
+  {
+   "msg": "Explain the migration of monarch butterflies to a curious friend in a few warm, ",
+   "tokens": 356,
+   "tok_s": 21.63,
+   "drafting": {
+    "windows": 201,
+    "rows": 538,
+    "dspark_rounds": 201,
+    "dspark_drafts": 337,
+    "dspark_kept": 156,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.776,
+    "tokens_per_round": 1.776
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the migratio",
+   "tokens": 384,
+   "tok_s": 21.11,
+   "drafting": {
+    "windows": 233,
+    "rows": 607,
+    "dspark_rounds": 233,
+    "dspark_drafts": 374,
+    "dspark_kept": 151,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.648,
+    "tokens_per_round": 1.648
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the migration of monarch b",
+   "tokens": 308,
+   "tok_s": 20.23,
+   "drafting": {
+    "windows": 183,
+    "rows": 463,
+    "dspark_rounds": 183,
+    "dspark_drafts": 280,
+    "dspark_kept": 125,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.683,
+    "tokens_per_round": 1.683
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on jazz in 1920s New Orleans. Plain prose, no lists or he",
+   "tokens": 384,
+   "tok_s": 20.32,
+   "drafting": {
+    "windows": 241,
+    "rows": 583,
+    "dspark_rounds": 241,
+    "dspark_drafts": 342,
+    "dspark_kept": 143,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.593,
+    "tokens_per_round": 1.593
+   }
+  },
+  {
+   "msg": "Explain jazz in 1920s New Orleans to a curious friend in a few warm, conversatio",
+   "tokens": 322,
+   "tok_s": 20.14,
+   "drafting": {
+    "windows": 196,
+    "rows": 502,
+    "dspark_rounds": 196,
+    "dspark_drafts": 306,
+    "dspark_kept": 127,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.648,
+    "tokens_per_round": 1.648
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of jazz in 1920",
+   "tokens": 384,
+   "tok_s": 19.74,
+   "drafting": {
+    "windows": 254,
+    "rows": 616,
+    "dspark_rounds": 253,
+    "dspark_drafts": 362,
+    "dspark_kept": 130,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.514,
+    "tokens_per_round": 1.512
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about jazz in 1920s New Orleans,",
+   "tokens": 348,
+   "tok_s": 19.74,
+   "drafting": {
+    "windows": 219,
+    "rows": 551,
+    "dspark_rounds": 219,
+    "dspark_drafts": 332,
+    "dspark_kept": 129,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.589,
+    "tokens_per_round": 1.589
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the restoration of old paintings. Plain prose, no list",
+   "tokens": 384,
+   "tok_s": 22.01,
+   "drafting": {
+    "windows": 217,
+    "rows": 558,
+    "dspark_rounds": 217,
+    "dspark_drafts": 341,
+    "dspark_kept": 167,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.77,
+    "tokens_per_round": 1.77
+   }
+  },
+  {
+   "msg": "Explain the restoration of old paintings to a curious friend in a few warm, conv",
+   "tokens": 291,
+   "tok_s": 20.58,
+   "drafting": {
+    "windows": 167,
+    "rows": 438,
+    "dspark_rounds": 167,
+    "dspark_drafts": 271,
+    "dspark_kept": 125,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.749,
+    "tokens_per_round": 1.749
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the restorat",
+   "tokens": 354,
+   "tok_s": 21.84,
+   "drafting": {
+    "windows": 199,
+    "rows": 514,
+    "dspark_rounds": 199,
+    "dspark_drafts": 315,
+    "dspark_kept": 156,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.784,
+    "tokens_per_round": 1.784
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the restoration of old pai",
+   "tokens": 337,
+   "tok_s": 21.02,
+   "drafting": {
+    "windows": 196,
+    "rows": 510,
+    "dspark_rounds": 196,
+    "dspark_drafts": 314,
+    "dspark_kept": 142,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.724,
+    "tokens_per_round": 1.724
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the challenges of desert agriculture. Plain prose, no ",
+   "tokens": 384,
+   "tok_s": 20.95,
+   "drafting": {
+    "windows": 239,
+    "rows": 584,
+    "dspark_rounds": 239,
+    "dspark_drafts": 345,
+    "dspark_kept": 145,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.607,
+    "tokens_per_round": 1.607
+   }
+  },
+  {
+   "msg": "Explain the challenges of desert agriculture to a curious friend in a few warm, ",
+   "tokens": 308,
+   "tok_s": 20.76,
+   "drafting": {
+    "windows": 184,
+    "rows": 482,
+    "dspark_rounds": 184,
+    "dspark_drafts": 298,
+    "dspark_kept": 125,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.679,
+    "tokens_per_round": 1.679
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the challeng",
+   "tokens": 351,
+   "tok_s": 19.63,
+   "drafting": {
+    "windows": 228,
+    "rows": 554,
+    "dspark_rounds": 227,
+    "dspark_drafts": 324,
+    "dspark_kept": 124,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.546,
+    "tokens_per_round": 1.544
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the challenges of desert a",
+   "tokens": 325,
+   "tok_s": 18.82,
+   "drafting": {
+    "windows": 218,
+    "rows": 523,
+    "dspark_rounds": 218,
+    "dspark_drafts": 305,
+    "dspark_kept": 108,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.495,
+    "tokens_per_round": 1.495
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on why cities flood. Plain prose, no lists or headings.",
+   "tokens": 384,
+   "tok_s": 21.33,
+   "drafting": {
+    "windows": 230,
+    "rows": 590,
+    "dspark_rounds": 230,
+    "dspark_drafts": 360,
+    "dspark_kept": 154,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.67,
+    "tokens_per_round": 1.67
+   }
+  },
+  {
+   "msg": "Explain why cities flood to a curious friend in a few warm, conversational parag",
+   "tokens": 379,
+   "tok_s": 22.78,
+   "drafting": {
+    "windows": 206,
+    "rows": 528,
+    "dspark_rounds": 206,
+    "dspark_drafts": 322,
+    "dspark_kept": 174,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.845,
+    "tokens_per_round": 1.845
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of why cities f",
+   "tokens": 369,
+   "tok_s": 20.49,
+   "drafting": {
+    "windows": 230,
+    "rows": 584,
+    "dspark_rounds": 230,
+    "dspark_drafts": 354,
+    "dspark_kept": 140,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.609,
+    "tokens_per_round": 1.609
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about why cities flood, around 3",
+   "tokens": 313,
+   "tok_s": 21.37,
+   "drafting": {
+    "windows": 178,
+    "rows": 477,
+    "dspark_rounds": 178,
+    "dspark_drafts": 299,
+    "dspark_kept": 136,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.764,
+    "tokens_per_round": 1.764
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the history of the bicycle. Plain prose, no lists or h",
+   "tokens": 384,
+   "tok_s": 21.69,
+   "drafting": {
+    "windows": 215,
+    "rows": 577,
+    "dspark_rounds": 215,
+    "dspark_drafts": 362,
+    "dspark_kept": 169,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.786,
+    "tokens_per_round": 1.786
+   }
+  },
+  {
+   "msg": "Explain the history of the bicycle to a curious friend in a few warm, conversati",
+   "tokens": 384,
+   "tok_s": 20.94,
+   "drafting": {
+    "windows": 228,
+    "rows": 617,
+    "dspark_rounds": 227,
+    "dspark_drafts": 389,
+    "dspark_kept": 156,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.687,
+    "tokens_per_round": 1.684
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the history ",
+   "tokens": 384,
+   "tok_s": 21.22,
+   "drafting": {
+    "windows": 222,
+    "rows": 556,
+    "dspark_rounds": 221,
+    "dspark_drafts": 334,
+    "dspark_kept": 162,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.733,
+    "tokens_per_round": 1.73
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the history of the bicycle",
+   "tokens": 312,
+   "tok_s": 21.2,
+   "drafting": {
+    "windows": 172,
+    "rows": 475,
+    "dspark_rounds": 172,
+    "dspark_drafts": 303,
+    "dspark_kept": 140,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.814,
+    "tokens_per_round": 1.814
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on volcanic islands and new soil. Plain prose, no lists o",
+   "tokens": 381,
+   "tok_s": 20.65,
+   "drafting": {
+    "windows": 232,
+    "rows": 583,
+    "dspark_rounds": 232,
+    "dspark_drafts": 351,
+    "dspark_kept": 150,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.647,
+    "tokens_per_round": 1.647
+   }
+  },
+  {
+   "msg": "Explain volcanic islands and new soil to a curious friend in a few warm, convers",
+   "tokens": 367,
+   "tok_s": 21.89,
+   "drafting": {
+    "windows": 202,
+    "rows": 527,
+    "dspark_rounds": 202,
+    "dspark_drafts": 325,
+    "dspark_kept": 166,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.822,
+    "tokens_per_round": 1.822
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of volcanic isl",
+   "tokens": 384,
+   "tok_s": 21.41,
+   "drafting": {
+    "windows": 230,
+    "rows": 595,
+    "dspark_rounds": 228,
+    "dspark_drafts": 363,
+    "dspark_kept": 154,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.675,
+    "tokens_per_round": 1.67
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about volcanic islands and new s",
+   "tokens": 312,
+   "tok_s": 20.58,
+   "drafting": {
+    "windows": 185,
+    "rows": 494,
+    "dspark_rounds": 185,
+    "dspark_drafts": 309,
+    "dspark_kept": 128,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.692,
+    "tokens_per_round": 1.692
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the life of a lighthouse lens maker. Plain prose, no l",
+   "tokens": 351,
+   "tok_s": 20.96,
+   "drafting": {
+    "windows": 210,
+    "rows": 526,
+    "dspark_rounds": 210,
+    "dspark_drafts": 316,
+    "dspark_kept": 142,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.676,
+    "tokens_per_round": 1.676
+   }
+  },
+  {
+   "msg": "Explain the life of a lighthouse lens maker to a curious friend in a few warm, c",
+   "tokens": 384,
+   "tok_s": 20.86,
+   "drafting": {
+    "windows": 245,
+    "rows": 599,
+    "dspark_rounds": 244,
+    "dspark_drafts": 354,
+    "dspark_kept": 139,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.57,
+    "tokens_per_round": 1.567
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the life of ",
+   "tokens": 357,
+   "tok_s": 20.3,
+   "drafting": {
+    "windows": 225,
+    "rows": 559,
+    "dspark_rounds": 224,
+    "dspark_drafts": 332,
+    "dspark_kept": 133,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.594,
+    "tokens_per_round": 1.591
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the life of a lighthouse l",
+   "tokens": 281,
+   "tok_s": 18.94,
+   "drafting": {
+    "windows": 183,
+    "rows": 443,
+    "dspark_rounds": 183,
+    "dspark_drafts": 260,
+    "dspark_kept": 99,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.541,
+    "tokens_per_round": 1.541
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on public libraries in small towns. Plain prose, no lists",
+   "tokens": 343,
+   "tok_s": 20.27,
+   "drafting": {
+    "windows": 202,
+    "rows": 523,
+    "dspark_rounds": 202,
+    "dspark_drafts": 321,
+    "dspark_kept": 142,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.703,
+    "tokens_per_round": 1.703
+   }
+  },
+  {
+   "msg": "Explain public libraries in small towns to a curious friend in a few warm, conve",
+   "tokens": 362,
+   "tok_s": 21.0,
+   "drafting": {
+    "windows": 207,
+    "rows": 561,
+    "dspark_rounds": 207,
+    "dspark_drafts": 354,
+    "dspark_kept": 156,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.754,
+    "tokens_per_round": 1.754
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of public libra",
+   "tokens": 384,
+   "tok_s": 21.17,
+   "drafting": {
+    "windows": 226,
+    "rows": 593,
+    "dspark_rounds": 225,
+    "dspark_drafts": 365,
+    "dspark_kept": 158,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.702,
+    "tokens_per_round": 1.699
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about public libraries in small ",
+   "tokens": 311,
+   "tok_s": 20.54,
+   "drafting": {
+    "windows": 182,
+    "rows": 478,
+    "dspark_rounds": 182,
+    "dspark_drafts": 296,
+    "dspark_kept": 130,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.714,
+    "tokens_per_round": 1.714
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the long voyage of the Endurance. Plain prose, no list",
+   "tokens": 368,
+   "tok_s": 21.72,
+   "drafting": {
+    "windows": 209,
+    "rows": 569,
+    "dspark_rounds": 208,
+    "dspark_drafts": 358,
+    "dspark_kept": 160,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.769,
+    "tokens_per_round": 1.766
+   }
+  },
+  {
+   "msg": "Explain the long voyage of the Endurance to a curious friend in a few warm, conv",
+   "tokens": 384,
+   "tok_s": 22.02,
+   "drafting": {
+    "windows": 218,
+    "rows": 572,
+    "dspark_rounds": 216,
+    "dspark_drafts": 352,
+    "dspark_kept": 166,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.769,
+    "tokens_per_round": 1.761
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the long voy",
+   "tokens": 384,
+   "tok_s": 21.63,
+   "drafting": {
+    "windows": 225,
+    "rows": 582,
+    "dspark_rounds": 224,
+    "dspark_drafts": 355,
+    "dspark_kept": 159,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.71,
+    "tokens_per_round": 1.707
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the long voyage of the End",
+   "tokens": 314,
+   "tok_s": 21.9,
+   "drafting": {
+    "windows": 173,
+    "rows": 465,
+    "dspark_rounds": 173,
+    "dspark_drafts": 292,
+    "dspark_kept": 142,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.821,
+    "tokens_per_round": 1.821
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on how bridges carry load. Plain prose, no lists or headi",
+   "tokens": 384,
+   "tok_s": 22.91,
+   "drafting": {
+    "windows": 205,
+    "rows": 555,
+    "dspark_rounds": 204,
+    "dspark_drafts": 350,
+    "dspark_kept": 179,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.877,
+    "tokens_per_round": 1.873
+   }
+  },
+  {
+   "msg": "Explain how bridges carry load to a curious friend in a few warm, conversational",
+   "tokens": 344,
+   "tok_s": 21.26,
+   "drafting": {
+    "windows": 195,
+    "rows": 540,
+    "dspark_rounds": 195,
+    "dspark_drafts": 345,
+    "dspark_kept": 150,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.769,
+    "tokens_per_round": 1.769
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of how bridges ",
+   "tokens": 337,
+   "tok_s": 19.68,
+   "drafting": {
+    "windows": 213,
+    "rows": 562,
+    "dspark_rounds": 213,
+    "dspark_drafts": 349,
+    "dspark_kept": 125,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.587,
+    "tokens_per_round": 1.587
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about how bridges carry load, ar",
+   "tokens": 312,
+   "tok_s": 22.04,
+   "drafting": {
+    "windows": 167,
+    "rows": 465,
+    "dspark_rounds": 167,
+    "dspark_drafts": 298,
+    "dspark_kept": 146,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.874,
+    "tokens_per_round": 1.874
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the culture of night markets. Plain prose, no lists or",
+   "tokens": 384,
+   "tok_s": 21.91,
+   "drafting": {
+    "windows": 215,
+    "rows": 562,
+    "dspark_rounds": 215,
+    "dspark_drafts": 347,
+    "dspark_kept": 169,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.786,
+    "tokens_per_round": 1.786
+   }
+  },
+  {
+   "msg": "Explain the culture of night markets to a curious friend in a few warm, conversa",
+   "tokens": 384,
+   "tok_s": 20.86,
+   "drafting": {
+    "windows": 232,
+    "rows": 623,
+    "dspark_rounds": 231,
+    "dspark_drafts": 391,
+    "dspark_kept": 152,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.658,
+    "tokens_per_round": 1.655
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the culture ",
+   "tokens": 384,
+   "tok_s": 21.31,
+   "drafting": {
+    "windows": 223,
+    "rows": 572,
+    "dspark_rounds": 222,
+    "dspark_drafts": 349,
+    "dspark_kept": 161,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.725,
+    "tokens_per_round": 1.722
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the culture of night marke",
+   "tokens": 328,
+   "tok_s": 21.23,
+   "drafting": {
+    "windows": 186,
+    "rows": 499,
+    "dspark_rounds": 185,
+    "dspark_drafts": 311,
+    "dspark_kept": 143,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.773,
+    "tokens_per_round": 1.769
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on coral reefs under warming seas. Plain prose, no lists ",
+   "tokens": 384,
+   "tok_s": 22.45,
+   "drafting": {
+    "windows": 215,
+    "rows": 548,
+    "dspark_rounds": 214,
+    "dspark_drafts": 333,
+    "dspark_kept": 169,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.79,
+    "tokens_per_round": 1.786
+   }
+  },
+  {
+   "msg": "Explain coral reefs under warming seas to a curious friend in a few warm, conver",
+   "tokens": 260,
+   "tok_s": 20.51,
+   "drafting": {
+    "windows": 150,
+    "rows": 401,
+    "dspark_rounds": 150,
+    "dspark_drafts": 251,
+    "dspark_kept": 110,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.733,
+    "tokens_per_round": 1.733
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of coral reefs ",
+   "tokens": 334,
+   "tok_s": 19.61,
+   "drafting": {
+    "windows": 222,
+    "rows": 573,
+    "dspark_rounds": 221,
+    "dspark_drafts": 349,
+    "dspark_kept": 113,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.511,
+    "tokens_per_round": 1.509
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about coral reefs under warming ",
+   "tokens": 331,
+   "tok_s": 21.38,
+   "drafting": {
+    "windows": 194,
+    "rows": 514,
+    "dspark_rounds": 194,
+    "dspark_drafts": 320,
+    "dspark_kept": 138,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.711,
+    "tokens_per_round": 1.711
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the slow food movement. Plain prose, no lists or headi",
+   "tokens": 355,
+   "tok_s": 20.52,
+   "drafting": {
+    "windows": 210,
+    "rows": 521,
+    "dspark_rounds": 210,
+    "dspark_drafts": 311,
+    "dspark_kept": 146,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.695,
+    "tokens_per_round": 1.695
+   }
+  },
+  {
+   "msg": "Explain the slow food movement to a curious friend in a few warm, conversational",
+   "tokens": 384,
+   "tok_s": 22.2,
+   "drafting": {
+    "windows": 210,
+    "rows": 565,
+    "dspark_rounds": 209,
+    "dspark_drafts": 353,
+    "dspark_kept": 173,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 1,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.828,
+    "tokens_per_round": 1.829
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the slow foo",
+   "tokens": 381,
+   "tok_s": 21.56,
+   "drafting": {
+    "windows": 219,
+    "rows": 564,
+    "dspark_rounds": 219,
+    "dspark_drafts": 345,
+    "dspark_kept": 162,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.74,
+    "tokens_per_round": 1.74
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the slow food movement, ar",
+   "tokens": 310,
+   "tok_s": 19.46,
+   "drafting": {
+    "windows": 191,
+    "rows": 510,
+    "dspark_rounds": 191,
+    "dspark_drafts": 319,
+    "dspark_kept": 120,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.628,
+    "tokens_per_round": 1.628
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the history of maps. Plain prose, no lists or headings",
+   "tokens": 384,
+   "tok_s": 21.04,
+   "drafting": {
+    "windows": 233,
+    "rows": 601,
+    "dspark_rounds": 233,
+    "dspark_drafts": 368,
+    "dspark_kept": 151,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.648,
+    "tokens_per_round": 1.648
+   }
+  },
+  {
+   "msg": "Explain the history of maps to a curious friend in a few warm, conversational pa",
+   "tokens": 326,
+   "tok_s": 21.15,
+   "drafting": {
+    "windows": 185,
+    "rows": 481,
+    "dspark_rounds": 185,
+    "dspark_drafts": 296,
+    "dspark_kept": 142,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.768,
+    "tokens_per_round": 1.768
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the history ",
+   "tokens": 384,
+   "tok_s": 20.98,
+   "drafting": {
+    "windows": 234,
+    "rows": 595,
+    "dspark_rounds": 234,
+    "dspark_drafts": 361,
+    "dspark_kept": 150,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.641,
+    "tokens_per_round": 1.641
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the history of maps, aroun",
+   "tokens": 291,
+   "tok_s": 19.16,
+   "drafting": {
+    "windows": 182,
+    "rows": 449,
+    "dspark_rounds": 182,
+    "dspark_drafts": 267,
+    "dspark_kept": 110,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.604,
+    "tokens_per_round": 1.604
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on train travel across Siberia. Plain prose, no lists or ",
+   "tokens": 384,
+   "tok_s": 20.39,
+   "drafting": {
+    "windows": 235,
+    "rows": 582,
+    "dspark_rounds": 234,
+    "dspark_drafts": 347,
+    "dspark_kept": 149,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.637,
+    "tokens_per_round": 1.634
+   }
+  },
+  {
+   "msg": "Explain train travel across Siberia to a curious friend in a few warm, conversat",
+   "tokens": 384,
+   "tok_s": 20.89,
+   "drafting": {
+    "windows": 225,
+    "rows": 575,
+    "dspark_rounds": 225,
+    "dspark_drafts": 350,
+    "dspark_kept": 159,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.707,
+    "tokens_per_round": 1.707
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of train travel",
+   "tokens": 375,
+   "tok_s": 21.27,
+   "drafting": {
+    "windows": 212,
+    "rows": 557,
+    "dspark_rounds": 212,
+    "dspark_drafts": 345,
+    "dspark_kept": 164,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.774,
+    "tokens_per_round": 1.774
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about train travel across Siberi",
+   "tokens": 320,
+   "tok_s": 19.13,
+   "drafting": {
+    "windows": 203,
+    "rows": 515,
+    "dspark_rounds": 203,
+    "dspark_drafts": 312,
+    "dspark_kept": 117,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.576,
+    "tokens_per_round": 1.576
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on what owls hear at night. Plain prose, no lists or head",
+   "tokens": 357,
+   "tok_s": 21.41,
+   "drafting": {
+    "windows": 211,
+    "rows": 542,
+    "dspark_rounds": 211,
+    "dspark_drafts": 331,
+    "dspark_kept": 147,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.697,
+    "tokens_per_round": 1.697
+   }
+  },
+  {
+   "msg": "Explain what owls hear at night to a curious friend in a few warm, conversationa",
+   "tokens": 340,
+   "tok_s": 21.38,
+   "drafting": {
+    "windows": 197,
+    "rows": 518,
+    "dspark_rounds": 197,
+    "dspark_drafts": 321,
+    "dspark_kept": 144,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.731,
+    "tokens_per_round": 1.731
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of what owls he",
+   "tokens": 384,
+   "tok_s": 22.07,
+   "drafting": {
+    "windows": 229,
+    "rows": 579,
+    "dspark_rounds": 228,
+    "dspark_drafts": 348,
+    "dspark_kept": 155,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.68,
+    "tokens_per_round": 1.677
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about what owls hear at night, a",
+   "tokens": 331,
+   "tok_s": 21.92,
+   "drafting": {
+    "windows": 185,
+    "rows": 495,
+    "dspark_rounds": 185,
+    "dspark_drafts": 310,
+    "dspark_kept": 147,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.795,
+    "tokens_per_round": 1.795
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the making of a violin. Plain prose, no lists or headi",
+   "tokens": 362,
+   "tok_s": 22.42,
+   "drafting": {
+    "windows": 206,
+    "rows": 555,
+    "dspark_rounds": 206,
+    "dspark_drafts": 349,
+    "dspark_kept": 157,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.762,
+    "tokens_per_round": 1.762
+   }
+  },
+  {
+   "msg": "Explain the making of a violin to a curious friend in a few warm, conversational",
+   "tokens": 343,
+   "tok_s": 23.41,
+   "drafting": {
+    "windows": 177,
+    "rows": 481,
+    "dspark_rounds": 177,
+    "dspark_drafts": 304,
+    "dspark_kept": 167,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.944,
+    "tokens_per_round": 1.944
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the making o",
+   "tokens": 353,
+   "tok_s": 22.62,
+   "drafting": {
+    "windows": 194,
+    "rows": 537,
+    "dspark_rounds": 194,
+    "dspark_drafts": 343,
+    "dspark_kept": 160,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.825,
+    "tokens_per_round": 1.825
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the making of a violin, ar",
+   "tokens": 297,
+   "tok_s": 20.26,
+   "drafting": {
+    "windows": 177,
+    "rows": 491,
+    "dspark_rounds": 177,
+    "dspark_drafts": 314,
+    "dspark_kept": 121,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.684,
+    "tokens_per_round": 1.684
+   }
+  },
+  {
+   "msg": "Write a 350-word essay on the first airmail. Plain prose, no lists or headings.",
+   "tokens": 382,
+   "tok_s": 20.24,
+   "drafting": {
+    "windows": 229,
+    "rows": 592,
+    "dspark_rounds": 229,
+    "dspark_drafts": 363,
+    "dspark_kept": 154,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.672,
+    "tokens_per_round": 1.672
+   }
+  },
+  {
+   "msg": "Explain the first airmail to a curious friend in a few warm, conversational para",
+   "tokens": 384,
+   "tok_s": 20.59,
+   "drafting": {
+    "windows": 224,
+    "rows": 580,
+    "dspark_rounds": 224,
+    "dspark_drafts": 356,
+    "dspark_kept": 160,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.714,
+    "tokens_per_round": 1.714
+   }
+  },
+  {
+   "msg": "Write a short story (about 300 words) set against the background of the first ai",
+   "tokens": 384,
+   "tok_s": 20.53,
+   "drafting": {
+    "windows": 225,
+    "rows": 583,
+    "dspark_rounds": 224,
+    "dspark_drafts": 358,
+    "dspark_kept": 159,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.71,
+    "tokens_per_round": 1.707
+   }
+  },
+  {
+   "msg": "Write a thoughtful letter to a younger relative about the first airmail, around ",
+   "tokens": 332,
+   "tok_s": 19.33,
+   "drafting": {
+    "windows": 204,
+    "rows": 529,
+    "dspark_rounds": 204,
+    "dspark_drafts": 325,
+    "dspark_kept": 129,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.632,
+    "tokens_per_round": 1.632
+   }
+  },
+  {
+   "msg": "What are the trade-offs between renting and buying a home? Answer in prose.",
+   "tokens": 384,
+   "tok_s": 20.68,
+   "drafting": {
+    "windows": 215,
+    "rows": 567,
+    "dspark_rounds": 215,
+    "dspark_drafts": 352,
+    "dspark_kept": 169,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.786,
+    "tokens_per_round": 1.786
+   }
+  },
+  {
+   "msg": "How should I prepare for a job interview at a small company? Give advice in para",
+   "tokens": 384,
+   "tok_s": 21.06,
+   "drafting": {
+    "windows": 207,
+    "rows": 560,
+    "dspark_rounds": 206,
+    "dspark_drafts": 353,
+    "dspark_kept": 177,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.859,
+    "tokens_per_round": 1.855
+   }
+  },
+  {
+   "msg": "Why do some people find it hard to fall asleep, and what helps?",
+   "tokens": 384,
+   "tok_s": 22.72,
+   "drafting": {
+    "windows": 187,
+    "rows": 554,
+    "dspark_rounds": 187,
+    "dspark_drafts": 367,
+    "dspark_kept": 197,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 2.053,
+    "tokens_per_round": 2.053
+   }
+  },
+  {
+   "msg": "Summarize the causes of the First World War for a high-school student.",
+   "tokens": 384,
+   "tok_s": 21.62,
+   "drafting": {
+    "windows": 199,
+    "rows": 615,
+    "dspark_rounds": 197,
+    "dspark_drafts": 414,
+    "dspark_kept": 183,
+    "lookup_rounds": 1,
+    "lookup_drafts": 2,
+    "lookup_kept": 2,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.929,
+    "tokens_per_round": 1.93
+   }
+  },
+  {
+   "msg": "What makes a good teacher? Discuss in a few paragraphs.",
+   "tokens": 267,
+   "tok_s": 18.88,
+   "drafting": {
+    "windows": 151,
+    "rows": 410,
+    "dspark_rounds": 151,
+    "dspark_drafts": 259,
+    "dspark_kept": 117,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.775,
+    "tokens_per_round": 1.775
+   }
+  },
+  {
+   "msg": "Compare living in a big city with living in the countryside.",
+   "tokens": 384,
+   "tok_s": 24.16,
+   "drafting": {
+    "windows": 193,
+    "rows": 535,
+    "dspark_rounds": 192,
+    "dspark_drafts": 342,
+    "dspark_kept": 191,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 1,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 1.995,
+    "tokens_per_round": 1.99
+   }
+  },
+  {
+   "msg": "Write a Python function that merges overlapping intervals, with a docstring and ",
+   "tokens": 384,
+   "tok_s": 34.11,
+   "drafting": {
+    "windows": 103,
+    "rows": 505,
+    "dspark_rounds": 103,
+    "dspark_drafts": 402,
+    "dspark_kept": 281,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.728,
+    "tokens_per_round": 3.728
+   }
+  },
+  {
+   "msg": "Write a small Rust program that counts word frequencies from stdin and prints th",
+   "tokens": 384,
+   "tok_s": 39.29,
+   "drafting": {
+    "windows": 90,
+    "rows": 450,
+    "dspark_rounds": 90,
+    "dspark_drafts": 360,
+    "dspark_kept": 294,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.267,
+    "tokens_per_round": 4.267
+   }
+  },
+  {
+   "msg": "Write a JavaScript debounce function with comments and an example.",
+   "tokens": 384,
+   "tok_s": 47.19,
+   "drafting": {
+    "windows": 116,
+    "rows": 481,
+    "dspark_rounds": 116,
+    "dspark_drafts": 365,
+    "dspark_kept": 268,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 3.31,
+    "tokens_per_round": 3.31
+   }
+  },
+  {
+   "msg": "Write a SQL schema for a library (books, members, loans) and three example queri",
+   "tokens": 384,
+   "tok_s": 56.4,
+   "drafting": {
+    "windows": 90,
+    "rows": 501,
+    "dspark_rounds": 90,
+    "dspark_drafts": 411,
+    "dspark_kept": 294,
+    "lookup_rounds": 0,
+    "lookup_drafts": 0,
+    "lookup_kept": 0,
+    "serial_rounds": 0,
+    "skip_rounds": 0,
+    "dspark_tokens_per_round": 4.267,
+    "tokens_per_round": 4.267
+   }
+  }
+ ],
+ "wall_s": 791.5,
+ "m2_after": "DSpark on (depth cost, cap 5, joint off, costs measured); draft head full; draft graphs on: 3 held (3 at boot in 0.18 s, 0 on first use), 9859 replays, 0 eager windows; Engram prefetch {'issued': 108, 'hits': 122, 'misses': 2, 'dropped': 0, 'reads': 19622, 'cached': 87657, 'waited': 14679, 'ahead': 0, 'kept': 0}; Engram gate: 9828 rounds (0 reissued), 44534 warm jobs, rows 7989238 (4271639 cached, 3717599 read), 9827 syncs; first layer ready p50/p90/p99 2.74 / 3.36 / 7.71 ms, all 2.82 / 3.47 / 7.80 ms after queueing; speculative DSpark passes 2055 launched, 1926 used, 128 dropped (reset 29, slots 86, unused 13), 0 without a graph; graphs on: 14 held (8 at boot in 2.71 s, 6 on first use), 9877 replays, 6 eager windows; RoCE exchanges 29529 fast / 705 on NCCL; phases (1, ms a round over 9782 rounds): candidates 66.16, commit 3.15, draft 7.44, draft.depth 0.04, draft.pass 6.64, engram.wait 0.15, execute 80.60, forward 0.36, graph.capture 0.12, graph.replay 0.01, graph.stage 0.09, nucleus 0.34, plan 0.03, prefetch 1.12, prefill 0.99, round 80.91, sample 0.16, share 0.11, spec 11.05, window 65.94"
+}

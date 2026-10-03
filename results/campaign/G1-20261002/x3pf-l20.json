@@ -1,0 +1,120 @@
+{
+ "layer": 20,
+ "rank": 0,
+ "k2_gu": [
+  4,
+  8
+ ],
+ "k2_d": [
+  4,
+  8
+ ],
+ "rows": {
+  "16": {
+   "upstream_ms": 1.8128,
+   "x3pf": {
+    "4,4": {
+     "bitwise": true,
+     "ms": 3.7411,
+     "speedup": 0.485
+    },
+    "8,2": {
+     "bitwise": true,
+     "ms": 2.1957,
+     "speedup": 0.826
+    }
+   }
+  },
+  "64": {
+   "upstream_ms": 4.8962,
+   "x3pf": {
+    "4,4": {
+     "bitwise": true,
+     "ms": 8.9624,
+     "speedup": 0.546
+    },
+    "8,2": {
+     "bitwise": true,
+     "ms": 5.6714,
+     "speedup": 0.863
+    }
+   }
+  },
+  "128": {
+   "upstream_ms": 7.2693,
+   "x3pf": {
+    "4,4": {
+     "bitwise": true,
+     "ms": 12.8243,
+     "speedup": 0.567
+    },
+    "8,2": {
+     "bitwise": true,
+     "ms": 8.3777,
+     "speedup": 0.868
+    }
+   }
+  },
+  "256": {
+   "upstream_ms": 11.3482,
+   "x3pf": {
+    "4,4": {
+     "bitwise": true,
+     "ms": 17.2408,
+     "speedup": 0.658
+    },
+    "8,2": {
+     "bitwise": true,
+     "ms": 11.7398,
+     "speedup": 0.967
+    }
+   }
+  },
+  "512": {
+   "upstream_ms": 19.1406,
+   "x3pf": {
+    "4,4": {
+     "bitwise": true,
+     "ms": 22.802,
+     "speedup": 0.839
+    },
+    "8,2": {
+     "bitwise": true,
+     "ms": 18.8545,
+     "speedup": 1.015
+    }
+   }
+  },
+  "768": {
+   "upstream_ms": 28.0215,
+   "x3pf": {
+    "4,4": {
+     "bitwise": true,
+     "ms": 29.0445,
+     "speedup": 0.965
+    },
+    "8,2": {
+     "bitwise": true,
+     "ms": 27.213,
+     "speedup": 1.03
+    }
+   }
+  },
+  "1024": {
+   "upstream_ms": 36.9472,
+   "x3pf": {
+    "4,4": {
+     "bitwise": true,
+     "ms": 41.3268,
+     "speedup": 0.894
+    },
+    "8,2": {
+     "bitwise": true,
+     "ms": 37.2487,
+     "speedup": 0.992
+    }
+   }
+  }
+ },
+ "bitwise": true
+}

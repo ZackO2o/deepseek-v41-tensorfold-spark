@@ -1,0 +1,8 @@
+R=1: 6 experts, upstream 187.1 GB/s, x3ld 8,1 180.0 GB/s ==, 8,2 184.0 GB/s ==, 4,2 202.5 GB/s ==, probe 3 514.6 GB/s
+R=2: 12 experts, upstream 193.0 GB/s, x3ld 8,1 202.9 GB/s ==, 8,2 201.8 GB/s ==, 4,2 202.1 GB/s ==, probe 3 238.5 GB/s
+R=4: 23 experts, upstream 197.1 GB/s, x3ld 8,1 213.0 GB/s ==, 8,2 215.1 GB/s ==, 4,2 227.2 GB/s ==, probe 3 233.3 GB/s
+R=6: 33 experts, upstream 198.7 GB/s, x3ld 8,1 218.8 GB/s ==, 8,2 226.6 GB/s ==, 4,2 223.0 GB/s ==, probe 3 248.4 GB/s
+R=8: 44 experts, upstream 201.5 GB/s, x3ld 8,1 220.2 GB/s ==, 8,2 231.7 GB/s ==, 4,2 232.1 GB/s ==, probe 3 251.0 GB/s
+R=12: 66 experts, upstream 208.2 GB/s, x3ld 8,1 228.0 GB/s ==, 8,2 235.5 GB/s ==, 4,2 236.0 GB/s ==, probe 3 245.8 GB/s
+R=16: 82 experts, upstream 205.0 GB/s, x3ld 8,1 227.2 GB/s ==, 8,2 235.3 GB/s ==, 4,2 234.2 GB/s ==, probe 3 246.2 GB/s
+{"layer": 20, "rank": 0, "k2_gu": [4, 8], "k2_d": [4, 8], "bitwise": true, "probe3_best_gbps": 514.6, "pass": true}

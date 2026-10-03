@@ -1,0 +1,13 @@
+[glm53-tf] config/prod.env: CONTEXT=1048576 tokens a request (prompt + max_tokens), KV cache latent fp8, GLM53_TF_BATCH=4, GLM53_TF_KV_POOL_TOKENS=1048576
+[glm53-tf] MemFree 118 / 116 GiB (head / worker) >= 108
+[glm53-tf] waiting for rank 0 on :8000 (first start compiles the kernels)
+[glm53-tf] ready after 34 s
+{"object": "list", "data": [{"id": "GLM-5.3-Flash-EXL3", "object": "model", "owned_by": "tensorfold", "created": 1790893054, "root": "GLM-5.3-Flash-EXL3", "max_model_len": 1048576, "context_length": 1048576}]}
+[glm53-tf] serving up to 1048576 tokens a request (max_model_len): set your client's context window to it
+[glm53-tf] request slots: 4 (GLM53_TF_BATCH=4)
+[canary] ok: 3 probes, tokens/round 5.71, decode 75.3 tok/s
+[canary] warmup 4096: 4111 prompt tokens, prefill 2.9865 s (3.16 s)
+[canary] warmup 16384: 16398 prompt tokens, prefill 9.4067 s (9.56 s)
+[glm53-tf] after the canary: dropping the page cache on both nodes (head 2 GiB, worker 1 GiB)
+[glm53-tf] dropped the head's page cache (2 GiB)
+[glm53-tf] dropped the worker's page cache (1 GiB)

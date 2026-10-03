@@ -1,0 +1,9 @@
+prompt 0: real at 51 kit 201 ours 110016, kit margin 0.8125, ours = kit #None (gap None); forced top-1 0.9727
+prompt 1: real at 55 kit 7006 ours 37481, kit margin 0.0, ours = kit #3 (gap 0.125); forced top-1 0.9922
+prompt 2: tie at 8 kit 34723 ours 4146, kit margin 0.125, ours = kit #2 (gap 0.125); forced top-1 0.9961
+prompt 3: tie at 27 kit 11273 ours 14114, kit margin 0.0, ours = kit #2 (gap 0.0); forced top-1 0.9766
+prompt 4: real at 26 kit 19585 ours 6944, kit margin 0.375, ours = kit #2 (gap 0.375); forced top-1 0.9648
+prompt 5: real at 6 kit 223 ours 0, kit margin 1.25, ours = kit #None (gap None); forced top-1 0.0234
+prompt 6: tie at 69 kit 201 ours 271, kit margin 0.0, ours = kit #2 (gap 0.0); forced top-1 0.9844
+prompt 7: real at 15 kit 28509 ours 28409, kit margin 0.0, ours = kit #None (gap None); forced top-1 0.9922
+gate 2: 0 of 8 identical (need 6): FAIL; identical or a kit tie: 3; forced top-1 0.8628 (0.8691 without ties)

@@ -1,0 +1,52 @@
+[dsv41 00:41:57] memory ok: MemFree head 117.8, worker 116.0 GiB
+[dsv41 00:41:57] server prod up (serve.sh start, prod.env + '')
+[dsv41 00:42:53] server prod: start rc=0; [dsv41-tf] ready after 42 s: {"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-TF", "object": "model", "owned_by": "tensorfold", "created": 1790962967, "root": "DeepSeek-V4.1-Flash-TF", "max_model_len": 300000, "context_length": 300000}, {"id": "deepseek-v4.1-flash", "object": "model", "owned_by": "tensorfold", "created": 1790962967, "root": "DeepSeek-V4.1-Flash-TF", "max_model_len": 300000,
+[dsv41 00:44:28] structured rc=0: [structured] schemas: PASS (12 cases) [structured] tools: PASS (10 cases) 
+[dsv41 00:44:29] summary: ~/src/deepseek-v41-tensorfold-spark/results/G10-20261002/ship/summary-ship.txt
+[dsv41 00:44:31] server prod: already up
+[dsv41 00:45:03] tooleval chains off: [chains off] score [11] of 12 (pass line 10): PASS
+[dsv41 00:45:50] tooleval chains high: [chains high] score [11] of 12 (pass line 10): PASS
+[dsv41 00:45:50] tooleval: tool-eval-bench not installed here: chains.py only (run TEB from the workstation over a tunnel)
+[dsv41 00:45:51] summary: ~/src/deepseek-v41-tensorfold-spark/results/G10-20261002/ship/summary-ship.txt
+TOOLEVAL-DONE
+[dsv41 00:47:19] memory ok: MemFree head 117.4, worker 116.0 GiB
+[dsv41 00:47:19] server stress up (serve.sh start, prod.env + '')
+[dsv41 00:48:15] server stress: start rc=0; [dsv41-tf] ready after 41 s: {"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-TF", "object": "model", "owned_by": "tensorfold", "created": 1790963289, "root": "DeepSeek-V4.1-Flash-TF", "max_model_len": 300000, "context_length": 300000}, {"id": "deepseek-v4.1-flash", "object": "model", "owned_by": "tensorfold", "created": 1790963289, "root": "DeepSeek-V4.1-Flash-TF", "max_model_len": 300000,
+[dsv41 00:54:16] stress rc=0 (433 s): ode_tok_s": 4.01}, {"role": "decode", "start_s": 1.02, "prompt": 65536, "max_tokens": 2048, "first_token_s": 252.18, "tokens": 2048, "usage_completion": 2048, "total_s": 269.99, "chunks": 138, "decode_tok_s": 114.99, "during_prefill_tokens": 0}, {"role": "decode", "start_s": 2.03, "prompt": 65536, "max_tokens": 2048, "first_token_s": 298.0, "tokens": 2048, "usage_completion": 2048, "total_s": 318.26, "chunks": 146, "decode_tok_s": 101.09, "during_prefill_tokens": 0}, {"role": "decode", "start_s": 3.03, "prompt": 65536, "max_tokens": 2048, "first_token_s": 347.05, "tokens": 2048, "usage_completion": 2048, "total_s": 357.09, "chunks": 147, "decode_tok_s": 203.98, "during_prefill_tokens": 0}]}
+[dsv41 00:54:16] stress memory: head MemFree min 3.19, MemAvailable min 5.50 GiB; worker MemFree min 1.62, MemAvailable min 4.01 GiB
+[dsv41 00:54:19] summary: ~/src/deepseek-v41-tensorfold-spark/results/G10-20261002/ship/summary-ship.txt
+[dsv41 00:54:34] memory ok: MemFree head 118.0, worker 116.1 GiB
+[dsv41 00:54:34] server prod up (serve.sh start, prod.env + '')
+[dsv41 00:55:33] server prod: start rc=0; [dsv41-tf] ready after 44 s: {"object": "list", "data": [{"id": "DeepSeek-V4.1-Flash-TF", "object": "model", "owned_by": "tensorfold", "created": 1790963725, "root": "DeepSeek-V4.1-Flash-TF", "max_model_len": 300000, "context_length": 300000}, {"id": "deepseek-v4.1-flash", "object": "model", "owned_by": "tensorfold", "created": 1790963725, "root": "DeepSeek-V4.1-Flash-TF", "max_model_len": 300000,
+[dsv41 01:25:46] soak rc=0: {"minutes": 30.0, "requests": 529, "errors": 0, "check_fails": 0, "cancelled": 77, "drained": true, "drain_s": 0.0, "answer_17x23": "391", "fatal_seen": false, "stalled_seen": false, "inflight_max": 5, "health_end": {"inflight": 0, "fatal": null, "stalled": null, "running": 0}, "pass": true}
+[dsv41 01:25:46] soak memory: head MemFree min 1.28, MemAvailable min 5.11 GiB; worker MemFree min 1.56, MemAvailable min 4.07 GiB
+[dsv41 01:25:46] soak health: {"ok": true, "mode": "basic", "uptime_s": 1821.7, "inflight": 0, "oldest_s": 0.0, "idle_s": 0.1, "requests": 533, "errors": 0, "backend": "tensorfold", "busy": false, "requests_running": 0, "requests_total": 533, "prompt_tokens_total": 1132273, "completion_tokens_total": 89207, "prefill_seconds_tota
+[dsv41 01:25:47] summary: ~/src/deepseek-v41-tensorfold-spark/results/G10-20261002/ship/summary-ship.txt
+[dsv41 01:25:50] summary: ~/src/deepseek-v41-tensorfold-spark/results/G10-20261002/ship/summary-ship.txt
+G6-ship 2026-10-02T18:25:50Z, sources 38f65008e323b8b1c19c44fff50897f6f90a7611, image glm53-tensorfold:b13-060
+G6 ship gates
+
+| gate | result | detail |
+| --- | --- | --- |
+| replay: teacher-forced top-1 vs kit oracle >= 96% (aim 98%) | MISSING | - |
+| replay: MMLU replay vs full vs kit | MISSING | no compare-mmlu*.json |
+| replay: needles (replay) | MISSING | - |
+| replay: needles (full) | MISSING | - |
+| tooleval: multi-step chains (off) >= 10/12 | PASS | score [11] of 12, malformed calls 0 |
+| tooleval: multi-step chains (high) >= 10/12 | PASS | score [11] of 12, malformed calls 0 |
+| tooleval: tool-eval-bench C >= GLM prod (8/8) | MISSING | not run here (no install); run it from the workstation |
+| structured: schemas + tool choice suites all pass | PASS | schemas ok; tools ok |
+| stress: decode streams reach 2,048 tokens (ignore_eos) | PASS | 2048 tok (None tok/s during the long prefill), 2048 tok (None tok/s during the long prefill), 2048 tok (None tok/s during the long prefill); long first token 216.61 s |
+| stress: MemAvailable >= 5.0 GiB both nodes | FAIL | head 5.5, worker 4.01 GiB (hard stop 4.0) |
+| soak: 0 errors, inflight back to 0, 17*23, no fatal | PASS | 529 requests, 0 errors, 77 cancelled, 0 content checks failed, drained True in 0.0 s, 17*23 -> '391' |
+| soak: MemAvailable >= 4.0 GiB (target 5.0) | PASS | head 5.11, worker 4.07 GiB |
+| speed: code / prose / C4 >= 97% of G4, drafted == serial | MISSING | - |
+
+memory minima per step (MemAvailable GiB, head / worker)
+  structured: 8.11 / 6.79
+  tooleval: 7.78 / 6.28
+  stress: 5.5 / 4.01
+  soak: 5.11 / 4.07
+
+verdict: NOT YET (1 FAIL, 6 MISSING)
+SHIP-DONE

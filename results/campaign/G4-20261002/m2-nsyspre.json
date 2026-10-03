@@ -1,0 +1,114 @@
+{
+ "knobs": {
+  "GLM53_TF_COMM_BACKEND": "roce",
+  "GLM53_TF_ROCE_MAX_KB": "1024",
+  "TF_DSV41_CALIB": "real",
+  "TF_DSV41_CALIB_DIR": "/cache/dsv41-calib",
+  "TF_DSV41_ENGRAM_DIR": "/engram",
+  "TF_DSV41_EXPERT_LOADS": "1",
+  "TF_DSV41_EXPERT_PREFILL": "0",
+  "TF_DSV41_INDEX_KV": "fp8",
+  "TF_DSV41_LAUNCH_T0": "1790903649.149318569",
+  "TF_DSV41_PHASES": "nvtx",
+  "TF_DSV41_PREPARED": "/prepared",
+  "TF_DSV41_PREPARED_WRITE": "1"
+ },
+ "m2": "DSpark on (depth cost, cap 5, costs measured); Engram prefetch {'issued': 0, 'hits': 168, 'misses': 42, 'dropped': 0, 'reads': 5367, 'cached': 21496, 'waited': 0}; graphs on: 16 held (6 at boot in 5.16 s, 10 on first use), 69 replays, 10 eager windows; RoCE exchanges 4209 fast / 324 on NCCL; phases (nvtx, ms a round over 0 rounds): candidates 4005.27, engram.wait 1187.97, forward 2443.62, graph.capture 1531.54, graph.replay 110.82, graph.stage 220.48",
+ "workloads": {},
+ "kit": {
+  "mixed": 2.27,
+  "mmlu": 1.46,
+  "multiturn": 1.83,
+  "tf": 1.78,
+  "kit": 2.17,
+  "tweet": 3.08,
+  "edit": 3.84,
+  "c4_tok_s": 37.6,
+  "code_tok_s": 36.4,
+  "prose_tok_s": 25.1
+ },
+ "targets": {
+  "code_tok_s": 52.0,
+  "prose_tok_s": 38.0,
+  "tokens_per_round_k3": 3.1
+ },
+ "prefill": [
+  {
+   "tokens": 32768,
+   "ttft_s": 161.84,
+   "wall_s": 161.87,
+   "tok_s": 202.5,
+   "phases": {
+    "mode": "nvtx",
+    "wall_ms": 300501.45,
+    "candidates": {
+     "ms": 23.4,
+     "n": 1,
+     "ms_avg": 23.404
+    },
+    "commit": {
+     "ms": 1.96,
+     "n": 18,
+     "ms_avg": 0.109
+    },
+    "engram.wait": {
+     "ms": 30616.49,
+     "n": 518,
+     "ms_avg": 59.105
+    },
+    "execute": {
+     "ms": 161814.48,
+     "n": 18,
+     "ms_avg": 8989.693
+    },
+    "forward": {
+     "ms": 318.18,
+     "n": 1,
+     "ms_avg": 318.175
+    },
+    "graph.capture": {
+     "ms": 254.71,
+     "n": 1,
+     "ms_avg": 254.711
+    },
+    "plan": {
+     "ms": 3.9,
+     "n": 18,
+     "ms_avg": 0.217
+    },
+    "prefetch": {
+     "ms": 1.36,
+     "n": 1,
+     "ms_avg": 1.364
+    },
+    "prefill": {
+     "ms": 161336.4,
+     "n": 17,
+     "ms_avg": 9490.376
+    },
+    "round": {
+     "ms": 162316.74,
+     "n": 18,
+     "ms_avg": 9017.596
+    },
+    "sample": {
+     "ms": 0.7,
+     "n": 18,
+     "ms_avg": 0.039
+    },
+    "share": {
+     "ms": 496.52,
+     "n": 18,
+     "ms_avg": 27.585
+    },
+    "window": {
+     "ms": 341.61,
+     "n": 1,
+     "ms_avg": 341.607
+    }
+   }
+  }
+ ],
+ "exact_all": true,
+ "boot_s": 36.3
+}

@@ -1,0 +1,8 @@
+grouped 96 logits equal True
+  every traced layer equal
+grouped 256 logits equal True
+  every traced layer equal
+grouped 512 logits equal False
+  first diverging layer 2: 2 of 2300 rows differ, first rows [1274, 1353], max diff 0.0156
+grouped 2048 logits equal True
+  every traced layer equal

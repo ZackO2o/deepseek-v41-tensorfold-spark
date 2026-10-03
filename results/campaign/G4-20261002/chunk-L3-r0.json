@@ -1,0 +1,10 @@
+{
+ "layer": 3,
+ "rank": 0,
+ "rows": 2048,
+ "block": 1024,
+ "scratch_rows": 1024,
+ "ms": 936.12,
+ "bitwise": true,
+ "peak_alloc_gib": 3.09
+}

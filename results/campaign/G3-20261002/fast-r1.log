@@ -1,0 +1,41 @@
+[boot] r1 +3.3s start: imports, CLI (3.3s) | MemFree 115.3 GiB, MemAvailable 115.1 GiB
+[boot] r1 +7.9s NCCL (both ranks up) (4.6s) | MemFree 112.9 GiB, MemAvailable 112.7 GiB
+[tensorfold] weights: no usable prepared folder (no folder): building from the checkpoint; will write it
+[tensorfold] prepared folder written: /prepared/model/9529c28bc20acb64/rank1 (101.8 GB in 80.6s)
+[tensorfold] removed an older prepared folder: /prepared/model/38e357c2343b3eb8/rank1
+[boot] r1 +307.1s weights: 101.8 GB (299.3s) | MemFree 5.3 GiB, MemAvailable 14.5 GiB
+[tensorfold] dspark: no usable prepared folder (no folder): building from the checkpoint; will write it
+[tensorfold] prepared folder written: /prepared/model/38e357c2343b3eb8/rank1 (3.7 GB in 3.0s)
+[tensorfold] removed an older prepared folder: /prepared/model/9529c28bc20acb64/rank1
+[boot] r1 +318.4s forward built: 99.0 GiB allocated (11.3s) | MemFree 1.4 GiB, MemAvailable 10.7 GiB
+[boot] r1 +327.0s M2 boot: DSpark on (depth cost, cap 5, costs cached); Engram prefetch {'issued': 0, 'hits': 0, 'misses': 60, 'dropped': 0}; graphs on: 15 held (15 at boot in 5.66 s, 0 on first use), 0 replays, 0 eager windows (8.6s) | MemFree 1.2 GiB, MemAvailable 9.8 GiB
+[boot] r1 +327.0s serving (0.0s) | MemFree 1.2 GiB, MemAvailable 9.8 GiB
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/m2bench.py", line 218, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/m2bench.py", line 198, in main
+    eng.follow()
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/engine.py", line 340, in follow
+    return self.batch.follow()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/batch.py", line 440, in follow
+    self.ex.run(plan)
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/rounds.py", line 98, in run
+    self._windows(plan, res)
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/rounds.py", line 198, in _windows
+    res.cand = self.fwd.window(rows, count=plan.count, masks=masks if any_mask else None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/decode.py", line 133, in window
+    return self.candidates(logits, [len(w.tokens) for w in windows], count, masks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dsv41-tf/src/tensorfold/families/deepseek_v41/cuda/slots.py", line 122, in candidates
+    g = got.view(self.world, R, 2 * k).cpu()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+

@@ -1,0 +1,45 @@
+== target 1 row(s): off 16 windows span 30.767 ms, on 18 windows span 30.237 ms
+   class                                         off       on
+   experts                                     9.562    9.553
+   dense linear (wo_b, head, wk, drafter)      6.876    6.881
+   dense seg (x / q / o groups)                4.717    4.739
+   mhc site                                    2.222    2.343
+   router                                      1.276    1.370
+   exchange                                    1.164    1.363
+   attention                                   1.299    1.259
+   mhc finish                                  0.832    0.905
+   torch topk / sort                           0.904    0.586
+   copies / elementwise                        0.890    0.585
+   norms                                       0.404    0.273
+   indexer                                     0.183    0.173
+   other                                       0.143    0.000
+== target 2 row(s): off 47 windows span 36.604 ms, on 46 windows span 35.867 ms
+   class                                         off       on
+   experts                                    14.470   14.409
+   dense linear (wo_b, head, wk, drafter)      7.051    7.045
+   dense seg (x / q / o groups)                4.815    4.812
+   mhc site                                    2.242    2.364
+   router                                      1.304    1.456
+   exchange                                    1.403    1.320
+   attention                                   1.311    1.284
+   copies / elementwise                        1.153    0.975
+   mhc finish                                  0.832    0.924
+   torch topk / sort                           0.899    0.590
+   norms                                       0.407    0.276
+   other                                       0.223    0.000
+   indexer                                     0.207    0.199
+== draft pass (5 rows): off 98 windows span 3.721 ms, on 98 windows span 3.733 ms
+   class                                         off       on
+   dense linear (wo_b, head, wk, drafter)      1.372    1.369
+   experts                                     0.997    0.992
+   exchange                                    0.396    0.394
+   dense seg (x / q / o groups)                0.253    0.258
+   other                                       0.177    0.155
+   mhc site                                    0.158    0.172
+   router                                      0.086    0.115
+   attention                                   0.082    0.081
+   copies / elementwise                        0.067    0.061
+   mhc finish                                  0.062    0.064
+   norms                                       0.027    0.028
+   indexer                                     0.009    0.009
+   torch topk / sort                           0.006    0.006

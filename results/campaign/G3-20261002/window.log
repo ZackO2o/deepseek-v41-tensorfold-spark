@@ -1,0 +1,18 @@
+[dsv41 03:50:48] G3 output: ~/src/glm53-tensorfold-spark/results/dsv41-G3-20261001-205048
+[dsv41 03:50:50] G3 inside the held campaign window (lease age 11 s, watchdog inactive): no open, no restore
+[dsv41 03:50:50] memory
+[dsv41 03:51:00] memory ok: MemFree head 116.6, worker 999 GiB
+[dsv41 03:51:00] tests: GPU M2 checks on the synthetic checkpoint + the M2 CPU suites
+[dsv41 03:56:09] tests rc=1 4 failed, 24 passed, 1 warning in 304.45s (0:05:04)
+[dsv41 03:56:21] memory ok: MemFree head 117.6, worker 115.9 GiB
+[dsv41 04:03:24] memory ok: MemFree head 117.4, worker 116.2 GiB
+[dsv41 04:15:44] memory ok: MemFree head 117.8, worker 116.2 GiB
+[dsv41 04:39:40] eager: rank 0 rc=0 (3 = a reply differed from serial), rank 1 rc=0; [m2bench] report /out/m2-eager.json: exact True, DSpark mixed 3.475 tok/round
+[dsv41 04:39:40] summary: ~/src/glm53-tensorfold-spark/results/dsv41-G3-20261001-205048/summary.txt
+[dsv41 04:40:29] tests tests/cuda/test_dsv41_m2_gpu.py rc=1 1 failed, 4 passed, 1 warning in 24.03s
+[dsv41 04:40:57] memory ok: MemFree head 117.5, worker 116.0 GiB
+[dsv41 04:46:28] fast: rank 0 rc=1 (3 = a reply differed from serial), rank 1 rc=1; 
+[dsv41 04:46:29] summary: ~/src/glm53-tensorfold-spark/results/dsv41-G3-20261001-205048/summary.txt
+[dsv41 04:47:36] memory ok: MemFree head 118.0, worker 116.0 GiB
+[dsv41 05:09:06] kit: rank 0 rc=0 (3 = a reply differed from serial), rank 1 rc=0; [m2bench] report /out/m2-kit.json: exact True, DSpark mixed 3.1 tok/round
+[dsv41 05:09:06] summary: ~/src/glm53-tensorfold-spark/results/dsv41-G3-20261001-205048/summary.txt

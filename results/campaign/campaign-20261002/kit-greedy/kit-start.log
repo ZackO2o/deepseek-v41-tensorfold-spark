@@ -1,0 +1,552 @@
+detect-gids: head   <head-link-ip> RoCE v2 GID 3 -> 3
+detect-gids: worker <worker-link-ip> RoCE v2 GID 3 -> 3
+detect-gids: .env already correct; no changes written
+dgx-oomwrap-launch: MemAvailable 117GiB >= 105GiB; profile=vllm pressure=1G swap=1G
+
+  [1;36m┌────────────────────────────────────────────┐[0m
+  [1;36m│[0m  [1mDeepSeek-V4.1 Flash EXL3[0m  [2mstart.sh  [0m [1;36m│[0m
+  [1;36m└────────────────────────────────────────────┘[0m
+
+[1;36m[dsv41-exl3][0m checking worker <worker-ssh> ...
+[1;36m[dsv41-exl3][0m memory headroom: weights 99.5 GiB/rank + 12 GiB margin = need 111.5 GiB MemAvailable; head=116.9 worker=115.6
+[1;36m[dsv41-exl3][0m weight backend: rsync (WEIGHT_SYNC=rsync)
+[1;36m[dsv41-exl3][0m preflight OK (head=head <head-link-ip>, worker=<worker-ssh>)
+[1;36m[dsv41-exl3][0m GPU EXL3 self-check on ghcr.io/miaai-lab/deepseek-v4.1-flash-exl3-2x-dgx-sparks:2.9bpw (log: ~/src/dsv41-2x-kit/logs/overlay-verify.log) ...
+[1;36m[dsv41-exl3][0m overlay verify OK
+[1;36m[dsv41-exl3][0m image ready on both nodes
+[1;36m[dsv41-exl3][0m EXL3 checkpoint: ~/models/dsv41-uncensored-2.9bpw (39 shards, expected 39)
+[1;36m[dsv41-exl3][0m SKIP_SYNC=1 — not sharing/syncing to worker
+[1;36m[dsv41-exl3][0m model load path (in-container): /model
+[1;36m[dsv41-exl3][0m engram path (in-container): /engram-src  host=~/.cache/vllm-dsv41-flash-exl3/engram-src  worker=~/.cache/dsv41-flash-exl3/engram-src
+[1;36m[dsv41-exl3][0m config: image=ghcr.io/miaai-lab/deepseek-v4.1-flash-exl3-2x-dgx-sparks:2.9bpw tp=2 nnodes=2 quant=exl3 spec=dspark dspark_k=3 max-len=600000 mnbt=2048 gpu-util=0.88 kv=native kv-pool=2684354560 kv-block=64 lm-only=0 port=8888
+[1;36m[dsv41-exl3][0m memory: engram cache=0GiB resident_scales=0 io_threads=32 guard=off boot-margin=12GiB
+[1;36m[dsv41-exl3][0m exl3: fused=1 fat_kernel=0 fat_grouped=1 temp_rows=16 (E3 v2 kernels: K2/K3/K4 mul1 + K4 mcg; E2 stays K4/MCG-only)
+[1;36m[dsv41-exl3][0m worker packed Engram: ~/dsv41-engram -> /engram-packed
+[1;36m[dsv41-exl3][0m head packed Engram: ~/dsv41-engram -> /engram-packed
+[1;36m[dsv41-exl3][0m starting worker on <worker-ssh> (NCCL if=enp1s0f1np1 hca=rocep1s0f1) ...
+[1;36m[dsv41-exl3][0m starting head (vLLM API :8888; NCCL if=enp1s0f1np1 hca=rocep1s0f1) ...
+[1;36m[dsv41-exl3][0m containers up — head=dsv41-exl3-head, worker=dsv41-exl3-worker
+[1;36m[dsv41-exl3][0m memory guards disabled (DSV41_MEM_GUARD=0) — no container is killed on low MemAvailable
+[1;36m[dsv41-exl3][0m waiting for http://127.0.0.1:8888/health (weight load + warmup on V4.1-Flash EXL3 + Engram is slow; timeout 1500s) ...
+[1;36m[dsv41-exl3][0m streaming head logs live — Ctrl-C detaches, the server keeps running
+[1;36m[dsv41-exl3][0m t+0s MemAvailable head=116.2 GiB worker=115.3 GiB
+[dsv41-exl3-head] installed runtime EXL3 overlay
+[dsv41-exl3-head] MemAvailable=116.5 GiB engram: cache=0GiB resident_scales=0 io_threads=32
+[dsv41-exl3-head] vision on: limit-mm={"image":100} skip-mm-profiling=1
+[suppress-stops-in-reasoning] skipped: /usr/local/lib/python3.12/dist-packages/vllm/v1/engine/detokenizer.py
+scheduler.py: # [glm53-decode-floor] already present — skipping
+backend_xgrammar.py: termination fix already upstream (#52805)
+__init__.py: reasoning fix already upstream (#53046)
+shm_broadcast.py: spinwait stock (stock)
+packed-suffix scan: files_with_mcg_trellis=7 patched=0
+exl3 lm_head: draft-wo-a-slices:skipped (models/deepseek_v4_1/amd/dspark.py)
+exl3 lm_head: ctor:skipped, llm-suffix:skipped, wo-a-slices:skipped (models/deepseek_v4_1/amd/model.py)
+exl3 lm_head: vl-suffix:skipped (models/deepseek_v4_1/amd/vl_model.py)
+exl3 lm_head: compressor-score:skipped, indexer-wk:skipped (models/deepseek_v4_1/attention.py)
+exl3 lm_head: draft-wo-a-slices:skipped (models/deepseek_v4_1/nvidia/dspark.py)
+exl3 lm_head: ctor:skipped, llm-suffix:skipped, wo-a-slices:skipped (models/deepseek_v4_1/nvidia/model.py)
+exl3 lm_head: vl-suffix:skipped (models/deepseek_v4_1/nvidia/vl_model.py)
+engram file-backend: already applied llm
+engram file-backend: already applied vl
+engram file-backend: already applied loader
+engram file install: already applied
+h2d stage: already applied (model_executor/model_loader/weight_utils.py)
+h2d stage: already applied (model_executor/layers/linear.py)
+h2d stage: already applied (model_executor/layers/vocab_parallel_embedding.py)
+h2d stage: already applied (models/deepseek_v4_1/nvidia/model.py)
+h2d stage: already applied (models/deepseek_v4_1/nvidia/dspark.py)
+sm120 block64: already applied (models/deepseek_v4_1/attention.py)
+sm120 block64: already applied (models/deepseek_v4_1/attention.py)
+sm120 block64: already applied (models/deepseek_v4_1/attention.py)
+sm120 block64: already applied (v1/attention/backends/mla/sparse_swa.py)
+sm120 block64: already applied (models/deepseek_v4_1/attention.py)
+sm120 block64: already applied (model_executor/warmup/flashinfer_sparse_mla_warmup.py)
+sm120 block64: already applied (models/deepseek_v4_1/nvidia/model.py)
+sm120 block64: already applied (models/deepseek_v4/nvidia/mtp.py)
+sm120 block64: already applied (models/deepseek_v4_1/common/engram.py)
+sm120 block64: already applied (v1/attention/backends/mla/indexer.py)
+sm120 block64: already applied (model_executor/layers/sparse_attn_indexer.py)
+sm120 block64: already applied (model_executor/layers/sparse_attn_indexer_kpool.py)
+sm120 block64: already applied (v1/attention/backends/mla/indexer.py)
+sm120 block64: already applied (models/deepseek_v4_1/nvidia/flashinfer_sparse.py)
+memory log: already applied
+[dsv41-exl3-head] launching: vllm serve /model --served-model-name DeepSeek-v4.1-Flash-EXL3 --host 0.0.0.0 --port 8888 --tensor-parallel-size 2 --nnodes 2 --node-rank 0 --master-addr <head-link-ip> --master-port 29521 --distributed-executor-backend mp --tokenizer-mode deepseek_v41 --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --enable-auto-tool-choice --enable-prefix-caching --no-enable-flashinfer-autotune --hf-overrides {"engram_table_dir":"/engram-src"} --quantization exl3 --max-model-len 600000 --gpu-memory-utilization 0.88 --max-num-seqs 4 --max-num-batched-tokens 2048 --long-prefill-token-threshold 1280 --kv-cache-memory-bytes 2684354560 --block-size 64 --speculative-config {"method":"dspark","num_speculative_tokens":3} --chat-template /opt/dsv41/chat_template.jinja --mm-encoder-tp-mode data --limit-mm-per-prompt {"image":100} --skip-mm-profiling --cudagraph-capture-sizes 1 2 3 4 6 8 12 18 24
+(APIServer pid=1) INFO 10-01 22:10:29 [api_utils.py:347] 
+(APIServer pid=1) INFO 10-01 22:10:29 [api_utils.py:347]        █     █     █▄   ▄█
+(APIServer pid=1) INFO 10-01 22:10:29 [api_utils.py:347]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.1.dev20904+g179dd0fa9
+(APIServer pid=1) INFO 10-01 22:10:29 [api_utils.py:347]   █▄█▀ █     █     █     █  model   /model
+(APIServer pid=1) INFO 10-01 22:10:29 [api_utils.py:347]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=1) INFO 10-01 22:10:29 [api_utils.py:347] 
+(APIServer pid=1) INFO 10-01 22:10:29 [api_utils.py:286] non-default args: {'model_tag': '/model', 'chat_template': '/opt/dsv41/chat_template.jinja', 'enable_auto_tool_choice': True, 'tool_call_parser': 'deepseek_v41', 'host': '0.0.0.0', 'port': 8888, 'model': '/model', 'tokenizer_mode': 'deepseek_v41', 'max_model_len': 600000, 'quantization': 'exl3', 'served_model_name': ['DeepSeek-v4.1-Flash-EXL3'], 'hf_overrides': {'engram_table_dir': '/engram-src'}, 'reasoning_parser': 'deepseek_v41', 'distributed_executor_backend': 'mp', 'master_addr': '<head-link-ip>', 'master_port': 29521, 'nnodes': 2, 'tensor_parallel_size': 2, 'block_size': 64, 'gpu_memory_utilization': 0.88, 'kv_cache_memory_bytes': 2684354560, 'enable_prefix_caching': True, 'limit_mm_per_prompt': {'image': 100}, 'mm_encoder_tp_mode': 'data', 'skip_mm_profiling': True, 'max_num_batched_tokens': 2048, 'max_num_seqs': 4, 'long_prefill_token_threshold': 1280, 'cudagraph_capture_sizes': [1, 2, 3, 4, 6, 8, 12, 18, 24], 'enable_flashinfer_autotune': False, 'speculative_config': {'method': 'dspark', 'num_speculative_tokens': 3}}
+(APIServer pid=1) INFO 10-01 22:10:29 [model.py:692] Resolved architecture: DeepseekV41ForCausalLM
+(APIServer pid=1) INFO 10-01 22:10:29 [model.py:2035] Using max model len 600000
+(APIServer pid=1) INFO 10-01 22:10:32 [arg_utils.py:2232] Inferred data_parallel_rank 0 from node_rank 0
+(APIServer pid=1) INFO 10-01 22:10:32 [model.py:692] Resolved architecture: DeepseekV41ForCausalLM
+(APIServer pid=1) INFO 10-01 22:10:32 [model.py:2035] Using max model len 1048576
+(APIServer pid=1) INFO 10-01 22:10:33 [speculative.py:1623] Overriding draft model max model len from 1048576 to 600000
+(APIServer pid=1) INFO 10-01 22:10:33 [vllm.py:734] Auto-enabling VLLM_USE_BREAKABLE_CUDAGRAPH=1. Set VLLM_USE_BREAKABLE_CUDAGRAPH=0 to opt out.
+(APIServer pid=1) INFO 10-01 22:10:33 [kernel.py:373] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+(APIServer pid=1) WARNING 10-01 22:10:33 [vllm.py:1959] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+(APIServer pid=1) WARNING 10-01 22:10:33 [cuda.py:336] Forcing --disable_chunked_mm_input for models with multimodal-bidirectional attention.
+(APIServer pid=1) INFO 10-01 22:10:33 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+(APIServer pid=1) INFO 10-01 22:10:33 [base.py:264] Multi-modal warmup completed in 0.047s
+(APIServer pid=1) INFO 10-01 22:10:33 [base.py:264] Readonly multi-modal warmup completed in 0.020s
+(EngineCore pid=365) INFO 10-01 22:10:38 [core.py:123] Initializing a V1 LLM engine (v0.1.dev20904+g179dd0fa9) with config: model='/model', speculative_config=SpeculativeConfig(method='dspark', model='/model', num_spec_tokens=3), tokenizer='/model', skip_tokenizer_init=False, tokenizer_mode=deepseek_v41, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=600000, download_dir=None, load_format=auto, tensor_parallel_size=2, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=exl3, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='deepseek_v41', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=DeepSeek-v4.1-Flash-EXL3, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 3, 4, 6, 8, 12, 18, 24], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 24, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native']), enable_flashinfer_autotune=False, enable_cutedsl_warmup=True, enable_jit_warmup=True, enable_bf16x3_router_gemm=False, moe_backend='auto', linear_backend='auto')
+(EngineCore pid=365) INFO 10-01 22:10:38 [multiproc_executor.py:153] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=<head-link-ip>, mq_connect_ip=<head-link-ip> (local), world_size=2, local_world_size=1
+[dsv41-mem] prefill empty_cache hook armed (threshold 8192 tokens, release when MemAvailable < 2.5 GiB, prefill-end release off)
+INFO 10-01 22:10:43 [gpu_worker.py:1556] [dsv41-mem] prefill empty_cache hook armed (threshold 8192 tokens, release when MemAvailable < 2.5 GiB, prefill-end release off)
+(Worker pid=433) [dsv41-mem] before init_device: MemAvailable=113.49GiB MemFree=111.60GiB rss=1.28GiB cuda_free=111.99GiB/121.69GiB torch_alloc=0.00GiB torch_reserved=0.00GiB torch_peak=0.00GiB
+(Worker pid=433) INFO 10-01 22:10:43 [gpu_worker.py:1556] [dsv41-mem] before init_device: MemAvailable=113.49GiB MemFree=111.60GiB rss=1.28GiB cuda_free=111.99GiB/121.69GiB torch_alloc=0.00GiB torch_reserved=0.00GiB torch_peak=0.00GiB
+(Worker pid=433) INFO 10-01 22:10:43 [parallel_state.py:1817] world_size=2 rank=0 local_rank=0 distributed_init_method=tcp://<head-link-ip>:29521 backend=nccl
+(Worker pid=433) INFO 10-01 22:10:45 [pynccl.py:120] vLLM is using nccl==2.30.7
+(Worker pid=433) WARNING 10-01 22:10:46 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.1 not supported, communicator is not available.
+(Worker pid=433) WARNING 10-01 22:10:46 [flashinfer_all_reduce.py:383] FlashInfer All Reduce is disabled because it is not supported for world_size=2.
+(Worker pid=433) WARNING 10-01 22:10:46 [custom_all_reduce.py:201] Custom collectives are disabled because this multi-node group does not have MNNVL-capable GPUs on every rank.
+(Worker pid=433) INFO 10-01 22:10:46 [cuda_communicator.py:296] Using ['PYNCCL'] all-reduce backends (in dispatch order) for group 'tp:0' out of potential backends: ['FLASHINFER_PCIE_IPC', 'FLASHINFER', 'NCCL_SYMM_MEM', 'QUICK_REDUCE', 'AITER_CUSTOM', 'CUSTOM', 'SYMM_MEM', 'PYNCCL'].
+(Worker pid=433) INFO 10-01 22:10:46 [cuda_communicator.py:296] Using ['PYNCCL'] all-reduce backends (in dispatch order) for group 'ep:0' out of potential backends: ['FLASHINFER_PCIE_IPC', 'FLASHINFER', 'NCCL_SYMM_MEM', 'QUICK_REDUCE', 'AITER_CUSTOM', 'CUSTOM', 'SYMM_MEM', 'PYNCCL'].
+(Worker pid=433) INFO 10-01 22:10:46 [parallel_state.py:2234] rank 0 in world size 2 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank 0, EPLB rank N/A
+(Worker pid=433) INFO 10-01 22:10:46 [gpu_worker.py:436] Using V2 Model Runner
+(Worker pid=433) [dsv41-mem] after init_device (3s): MemAvailable=113.13GiB MemFree=111.23GiB rss=1.90GiB cuda_free=111.23GiB/121.69GiB torch_alloc=0.02GiB torch_reserved=0.10GiB torch_peak=0.10GiB
+(Worker pid=433) INFO 10-01 22:10:46 [gpu_worker.py:1556] [dsv41-mem] after init_device (3s): MemAvailable=113.13GiB MemFree=111.23GiB rss=1.90GiB cuda_free=111.23GiB/121.69GiB torch_alloc=0.02GiB torch_reserved=0.10GiB torch_peak=0.10GiB
+(Worker_TP0 pid=433) [dsv41-mem] before load_model: MemAvailable=113.13GiB MemFree=111.23GiB rss=1.90GiB cuda_free=111.23GiB/121.69GiB torch_alloc=0.02GiB torch_reserved=0.10GiB torch_peak=0.10GiB
+(Worker_TP0 pid=433) INFO 10-01 22:10:46 [gpu_worker.py:1556] [dsv41-mem] before load_model: MemAvailable=113.13GiB MemFree=111.23GiB rss=1.90GiB cuda_free=111.23GiB/121.69GiB torch_alloc=0.02GiB torch_reserved=0.10GiB torch_peak=0.10GiB
+(Worker_TP0 pid=433) INFO 10-01 22:10:46 [model_runner.py:383] Loading model from scratch...
+(Worker_TP0 pid=433) INFO 10-01 22:10:46 [cuda.py:581] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(Worker_TP0 pid=433) INFO 10-01 22:10:46 [mm_encoder_attention.py:372] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(Worker_TP0 pid=433) INFO 10-01 22:10:47 [attention.py:140] Using DeepSeek's fp8_ds_mla KV cache format.
+(Worker_TP0 pid=433) File-backed Engram layer=1 rank=0/2 rows=[0,192001740) cache=0.0GiB packed=True
+(Worker_TP0 pid=433) INFO 10-01 22:10:48 [attention.py:1070] Using FP8 indexer cache for Lightning Indexer.
+(Worker_TP0 pid=433) File-backed Engram layer=14 rank=0/2 rows=[0,192007016) cache=0.0GiB packed=True
+(Worker_TP0 pid=433) INFO 10-01 22:10:53 [engram.py:436] Built engram token map (129280 -> 99092 ids) for layers (1, 14)
+(Worker_TP0 pid=433) [dsv41-mem] before load_weights: MemAvailable=13.44GiB MemFree=11.46GiB rss=2.33GiB cuda_free=11.46GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.39GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) INFO 10-01 22:10:53 [gpu_worker.py:1556] [dsv41-mem] before load_weights: MemAvailable=13.44GiB MemFree=11.46GiB rss=2.33GiB cuda_free=11.46GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.39GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) INFO 10-01 22:10:53 [weight_utils.py:863] Filesystem type for checkpoints: EXT4. Checkpoint size: 196.14 GiB. Available RAM: 13.43 GiB.
+(Worker_TP0 pid=433) INFO 10-01 22:10:53 [weight_utils.py:893] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre) and the checkpoint size (196.14 GiB) exceeds 90% of available RAM (13.43 GiB).
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:   0% Completed | 0/39 [00:00<?, ?it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:   3% Completed | 1/39 [00:00<00:15,  2.38it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:   5% Completed | 2/39 [00:01<00:19,  1.88it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:   8% Completed | 3/39 [00:01<00:17,  2.00it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  10% Completed | 4/39 [00:02<00:17,  1.95it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  13% Completed | 5/39 [00:02<00:16,  2.12it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  15% Completed | 6/39 [00:02<00:15,  2.18it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  18% Completed | 7/39 [00:03<00:14,  2.18it/s]
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +10s: MemAvailable=13.46GiB MemFree=9.31GiB rss=2.96GiB cuda_free=9.31GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.39GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) INFO 10-01 22:10:56 [gpu_worker.py:1556] [dsv41-mem] tick load_model +10s: MemAvailable=13.46GiB MemFree=9.31GiB rss=2.96GiB cuda_free=9.31GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.39GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  21% Completed | 8/39 [00:03<00:13,  2.23it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  23% Completed | 9/39 [00:04<00:13,  2.28it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  26% Completed | 10/39 [00:04<00:12,  2.38it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  28% Completed | 11/39 [00:04<00:11,  2.43it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  31% Completed | 12/39 [00:05<00:10,  2.47it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  33% Completed | 13/39 [00:05<00:10,  2.41it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  36% Completed | 14/39 [00:06<00:10,  2.37it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  38% Completed | 15/39 [00:06<00:09,  2.42it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  41% Completed | 16/39 [00:07<00:11,  2.07it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  44% Completed | 17/39 [00:07<00:09,  2.20it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  46% Completed | 18/39 [00:08<00:09,  2.27it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  49% Completed | 19/39 [00:08<00:11,  1.78it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  51% Completed | 20/39 [00:09<00:11,  1.60it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  54% Completed | 21/39 [00:10<00:09,  1.82it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  56% Completed | 22/39 [00:10<00:08,  1.92it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  59% Completed | 23/39 [00:10<00:07,  2.00it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  62% Completed | 24/39 [00:11<00:07,  2.10it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  64% Completed | 25/39 [00:11<00:06,  2.23it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  67% Completed | 26/39 [00:12<00:05,  2.34it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  69% Completed | 27/39 [00:12<00:05,  2.40it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  72% Completed | 28/39 [00:12<00:04,  2.42it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  74% Completed | 29/39 [00:13<00:04,  2.39it/s]
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +20s: MemAvailable=13.30GiB MemFree=1.94GiB rss=5.12GiB cuda_free=1.94GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.39GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) INFO 10-01 22:11:06 [gpu_worker.py:1556] [dsv41-mem] tick load_model +20s: MemAvailable=13.30GiB MemFree=1.94GiB rss=5.12GiB cuda_free=1.94GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.39GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  77% Completed | 30/39 [00:13<00:03,  2.41it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  79% Completed | 31/39 [00:14<00:03,  2.44it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  82% Completed | 32/39 [00:14<00:03,  2.06it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  85% Completed | 33/39 [00:15<00:02,  2.19it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  87% Completed | 34/39 [00:15<00:02,  2.22it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  90% Completed | 35/39 [00:16<00:01,  2.29it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  92% Completed | 36/39 [00:16<00:01,  2.37it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  95% Completed | 37/39 [00:16<00:00,  2.36it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  97% Completed | 38/39 [00:17<00:00,  2.08it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards: 100% Completed | 39/39 [00:17<00:00,  2.30it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards: 100% Completed | 39/39 [00:17<00:00,  2.19it/s]
+(Worker_TP0 pid=433) 
+[1;36m[dsv41-exl3][0m t+60s MemAvailable head=13.7 GiB worker=12.4 GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +30s: MemAvailable=15.71GiB MemFree=0.67GiB rss=10.09GiB cuda_free=0.67GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.39GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) INFO 10-01 22:11:16 [gpu_worker.py:1556] [dsv41-mem] tick load_model +30s: MemAvailable=15.71GiB MemFree=0.67GiB rss=10.09GiB cuda_free=0.67GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.39GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +40s: MemAvailable=15.68GiB MemFree=0.96GiB rss=16.36GiB cuda_free=1.00GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.41GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) INFO 10-01 22:11:26 [gpu_worker.py:1556] [dsv41-mem] tick load_model +40s: MemAvailable=15.68GiB MemFree=0.96GiB rss=16.36GiB cuda_free=1.00GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.41GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +50s: MemAvailable=15.66GiB MemFree=0.95GiB rss=16.49GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.41GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) INFO 10-01 22:11:36 [gpu_worker.py:1556] [dsv41-mem] tick load_model +50s: MemAvailable=15.66GiB MemFree=0.95GiB rss=16.49GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.41GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +60s: MemAvailable=15.62GiB MemFree=0.95GiB rss=15.49GiB cuda_free=0.96GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.41GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) INFO 10-01 22:11:46 [gpu_worker.py:1556] [dsv41-mem] tick load_model +60s: MemAvailable=15.62GiB MemFree=0.95GiB rss=15.49GiB cuda_free=0.96GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.41GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +70s: MemAvailable=15.58GiB MemFree=0.95GiB rss=15.41GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.43GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) INFO 10-01 22:11:56 [gpu_worker.py:1556] [dsv41-mem] tick load_model +70s: MemAvailable=15.58GiB MemFree=0.95GiB rss=15.41GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.43GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +80s: MemAvailable=15.53GiB MemFree=0.95GiB rss=15.35GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.43GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) INFO 10-01 22:12:06 [gpu_worker.py:1556] [dsv41-mem] tick load_model +80s: MemAvailable=15.53GiB MemFree=0.95GiB rss=15.35GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.43GiB torch_peak=96.37GiB
+[1;36m[dsv41-exl3][0m t+120s MemAvailable head=15.5 GiB worker=13.6 GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +90s: MemAvailable=15.48GiB MemFree=0.95GiB rss=15.32GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.45GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) INFO 10-01 22:12:16 [gpu_worker.py:1556] [dsv41-mem] tick load_model +90s: MemAvailable=15.48GiB MemFree=0.95GiB rss=15.32GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.45GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +100s: MemAvailable=15.46GiB MemFree=0.95GiB rss=15.32GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.45GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) INFO 10-01 22:12:26 [gpu_worker.py:1556] [dsv41-mem] tick load_model +100s: MemAvailable=15.46GiB MemFree=0.95GiB rss=15.32GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.45GiB torch_peak=96.37GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +110s: MemAvailable=15.45GiB MemFree=0.94GiB rss=15.28GiB cuda_free=0.94GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.45GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:12:36 [gpu_worker.py:1556] [dsv41-mem] tick load_model +110s: MemAvailable=15.45GiB MemFree=0.94GiB rss=15.28GiB cuda_free=0.94GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.45GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +120s: MemAvailable=15.42GiB MemFree=0.95GiB rss=15.24GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.47GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:12:46 [gpu_worker.py:1556] [dsv41-mem] tick load_model +120s: MemAvailable=15.42GiB MemFree=0.95GiB rss=15.24GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.47GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +130s: MemAvailable=15.42GiB MemFree=0.94GiB rss=15.25GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.47GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:12:56 [gpu_worker.py:1556] [dsv41-mem] tick load_model +130s: MemAvailable=15.42GiB MemFree=0.94GiB rss=15.25GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.47GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +140s: MemAvailable=15.40GiB MemFree=0.95GiB rss=15.22GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.47GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:06 [gpu_worker.py:1556] [dsv41-mem] tick load_model +140s: MemAvailable=15.40GiB MemFree=0.95GiB rss=15.22GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.47GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +150s: MemAvailable=15.35GiB MemFree=0.94GiB rss=15.15GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.47GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:16 [gpu_worker.py:1556] [dsv41-mem] tick load_model +150s: MemAvailable=15.35GiB MemFree=0.94GiB rss=15.15GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.47GiB torch_peak=96.38GiB
+[1;36m[dsv41-exl3][0m t+180s MemAvailable head=15.3 GiB worker=13.5 GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +160s: MemAvailable=15.30GiB MemFree=0.94GiB rss=15.09GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.49GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:26 [gpu_worker.py:1556] [dsv41-mem] tick load_model +160s: MemAvailable=15.30GiB MemFree=0.94GiB rss=15.09GiB cuda_free=0.95GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.49GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +170s: MemAvailable=14.98GiB MemFree=0.86GiB rss=4.26GiB cuda_free=0.86GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.49GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:36 [gpu_worker.py:1556] [dsv41-mem] tick load_model +170s: MemAvailable=14.98GiB MemFree=0.86GiB rss=4.26GiB cuda_free=0.86GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.49GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:40 [default_loader.py:437] Loading weights took 166.93 seconds
+(Worker_TP0 pid=433) [dsv41-mem] after load_weights (167s): MemAvailable=15.65GiB MemFree=1.54GiB rss=0.46GiB cuda_free=1.54GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.49GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:40 [gpu_worker.py:1556] [dsv41-mem] after load_weights (167s): MemAvailable=15.65GiB MemFree=1.54GiB rss=0.46GiB cuda_free=1.54GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.49GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) [dsv41-mem] before process_weights_after_loading: MemAvailable=15.65GiB MemFree=1.53GiB rss=0.46GiB cuda_free=1.53GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.49GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:40 [gpu_worker.py:1556] [dsv41-mem] before process_weights_after_loading: MemAvailable=15.65GiB MemFree=1.53GiB rss=0.46GiB cuda_free=1.53GiB/121.69GiB torch_alloc=96.37GiB torch_reserved=97.49GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:603] exl3 e2 diag schema=2 configured_tier=grouped effective_tier=grouped tier_reason=grouped_ok shared_suh=0 shared_suh_layers=0/1 sym_exl3_moe=1 sym_fat_gemm=1 sym_fat_gemm_scatter=1 sym_fat_moe=1 grouped_eligible=1 grouped_calls=0 grouped_scratch_bytes=0 cap=12.1 cap_ok=1 tp_rank=0 tp_size=2 prefill_layer_calls=0 thin_calls=0 row_tile_calls=0 fallback_calls=grouped=0,kernel=0,batched=0,sorted=0,legacy=0 fallback_reasons=none fat_expert_runs=0 direct_calls=0 scatter_calls=0 fat_layers=0 fat_expert_slots=0 max_rows=0 fused_temps_allocs=0 fused_temps_bytes=0 fat_scratch_allocs=0 fat_scratch_bytes=0 fat_scratch_peak_bytes=0
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:1558] exl3_moe_x engaged: shape=2 K=2 -> instance 4 (k2_tk32_shs6_frs2_minb2) groups=12 group_size=8 [regs, smem, blocks/SM, block, SMs, local, maxthreads]=[64, 20480, 2, 512, 48, 48, 512]
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:1558] exl3_moe_x engaged: shape=2 K=3 -> instance 5 (k3_tk32_shs6_frs2_minb2) groups=12 group_size=8 [regs, smem, blocks/SM, block, SMs, local, maxthreads]=[64, 23552, 2, 512, 48, 56, 512]
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:1558] exl3_moe_x engaged: shape=2 K=4 -> instance 6 (k4_tk32_shs6_frs2_minb2) groups=12 group_size=8 [regs, smem, blocks/SM, block, SMs, local, maxthreads]=[64, 26624, 2, 512, 48, 48, 512]
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=2 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=2 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=2 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=2 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=2 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:13:42 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=3 avg_bits=2.9 mcg=0 mul1=1 experts_local=384 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) [dsv41-mem] after process_weights_after_loading (12s): MemAvailable=16.18GiB MemFree=2.00GiB rss=0.96GiB cuda_free=2.00GiB/121.69GiB torch_alloc=96.38GiB torch_reserved=96.51GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:52 [gpu_worker.py:1556] [dsv41-mem] after process_weights_after_loading (12s): MemAvailable=16.18GiB MemFree=2.00GiB rss=0.96GiB cuda_free=2.00GiB/121.69GiB torch_alloc=96.38GiB torch_reserved=96.51GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +186s: MemAvailable=16.18GiB MemFree=2.00GiB rss=0.96GiB cuda_free=2.00GiB/121.69GiB torch_alloc=96.38GiB torch_reserved=96.51GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:52 [gpu_worker.py:1556] [dsv41-mem] tick load_model +186s: MemAvailable=16.18GiB MemFree=2.00GiB rss=0.96GiB cuda_free=2.00GiB/121.69GiB torch_alloc=96.38GiB torch_reserved=96.51GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:52 [eagle3_utils.py:28] Using Eagle3 auxiliary layers from config: (37, 38, 39)
+(Worker_TP0 pid=433) [dsv41-mem] before dspark_draft.load_model: MemAvailable=16.18GiB MemFree=2.00GiB rss=0.96GiB cuda_free=2.00GiB/121.69GiB torch_alloc=96.38GiB torch_reserved=96.51GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:52 [gpu_worker.py:1556] [dsv41-mem] before dspark_draft.load_model: MemAvailable=16.18GiB MemFree=2.00GiB rss=0.96GiB cuda_free=2.00GiB/121.69GiB torch_alloc=96.38GiB torch_reserved=96.51GiB torch_peak=96.38GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:52 [kernel.py:373] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+(Worker_TP0 pid=433) WARNING 10-01 22:13:52 [vllm.py:1959] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+(Worker_TP0 pid=433) INFO 10-01 22:13:52 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+(Worker_TP0 pid=433) [dsv41-mem] before load_weights: MemAvailable=11.37GiB MemFree=3.68GiB rss=0.96GiB cuda_free=3.68GiB/121.69GiB torch_alloc=101.09GiB torch_reserved=101.18GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:53 [gpu_worker.py:1556] [dsv41-mem] before load_weights: MemAvailable=11.37GiB MemFree=3.68GiB rss=0.96GiB cuda_free=3.68GiB/121.69GiB torch_alloc=101.09GiB torch_reserved=101.18GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) INFO 10-01 22:13:54 [weight_utils.py:863] Filesystem type for checkpoints: EXT4. Checkpoint size: 196.14 GiB. Available RAM: 11.31 GiB.
+(Worker_TP0 pid=433) INFO 10-01 22:13:54 [weight_utils.py:893] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre) and the checkpoint size (196.14 GiB) exceeds 90% of available RAM (11.31 GiB).
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:   0% Completed | 0/39 [00:00<?, ?it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:   3% Completed | 1/39 [00:00<00:18,  2.07it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:   5% Completed | 2/39 [00:00<00:18,  2.03it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:   8% Completed | 3/39 [00:01<00:17,  2.09it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  10% Completed | 4/39 [00:01<00:16,  2.18it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  13% Completed | 5/39 [00:02<00:15,  2.23it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  15% Completed | 6/39 [00:02<00:14,  2.28it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  18% Completed | 7/39 [00:02<00:11,  2.73it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  21% Completed | 8/39 [00:03<00:10,  3.02it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  23% Completed | 9/39 [00:03<00:10,  2.91it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  28% Completed | 11/39 [00:04<00:08,  3.29it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  31% Completed | 12/39 [00:04<00:09,  2.81it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  33% Completed | 13/39 [00:05<00:09,  2.61it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  36% Completed | 14/39 [00:05<00:10,  2.46it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  38% Completed | 15/39 [00:05<00:09,  2.40it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  41% Completed | 16/39 [00:06<00:09,  2.40it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  44% Completed | 17/39 [00:06<00:09,  2.42it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  46% Completed | 18/39 [00:07<00:08,  2.46it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  49% Completed | 19/39 [00:07<00:10,  1.89it/s]
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +196s: MemAvailable=11.63GiB MemFree=0.87GiB rss=1.03GiB cuda_free=0.86GiB/121.69GiB torch_alloc=101.09GiB torch_reserved=101.18GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:02 [gpu_worker.py:1556] [dsv41-mem] tick load_model +196s: MemAvailable=11.63GiB MemFree=0.87GiB rss=1.03GiB cuda_free=0.86GiB/121.69GiB torch_alloc=101.09GiB torch_reserved=101.18GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  51% Completed | 20/39 [00:08<00:11,  1.61it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  54% Completed | 21/39 [00:09<00:10,  1.78it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  56% Completed | 22/39 [00:09<00:09,  1.87it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  59% Completed | 23/39 [00:10<00:08,  1.93it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  62% Completed | 24/39 [00:10<00:07,  2.07it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  64% Completed | 25/39 [00:10<00:06,  2.21it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  67% Completed | 26/39 [00:11<00:05,  2.29it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  69% Completed | 27/39 [00:11<00:05,  2.33it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  72% Completed | 28/39 [00:12<00:04,  2.39it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  74% Completed | 29/39 [00:12<00:04,  2.39it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  77% Completed | 30/39 [00:13<00:03,  2.42it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  79% Completed | 31/39 [00:13<00:03,  2.38it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  82% Completed | 32/39 [00:13<00:03,  2.33it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  85% Completed | 33/39 [00:14<00:03,  1.82it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  87% Completed | 34/39 [00:15<00:03,  1.62it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  90% Completed | 35/39 [00:16<00:02,  1.52it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  92% Completed | 36/39 [00:17<00:02,  1.40it/s]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  95% Completed | 37/39 [00:17<00:01,  1.35it/s]
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +206s: MemAvailable=12.12GiB MemFree=0.78GiB rss=0.51GiB cuda_free=0.79GiB/121.69GiB torch_alloc=101.09GiB torch_reserved=101.18GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:12 [gpu_worker.py:1556] [dsv41-mem] tick load_model +206s: MemAvailable=12.12GiB MemFree=0.78GiB rss=0.51GiB cuda_free=0.79GiB/121.69GiB torch_alloc=101.09GiB torch_reserved=101.18GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards:  97% Completed | 38/39 [00:19<00:01,  1.06s/it]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards: 100% Completed | 39/39 [00:22<00:00,  1.45s/it]
+(Worker_TP0 pid=433) 
+Loading safetensors checkpoint shards: 100% Completed | 39/39 [00:22<00:00,  1.77it/s]
+(Worker_TP0 pid=433) 
+(Worker_TP0 pid=433) INFO 10-01 22:14:16 [dspark.py:524] DSpark draft model loaded: 144 params
+(Worker_TP0 pid=433) INFO 10-01 22:14:16 [default_loader.py:437] Loading weights took 22.27 seconds
+(Worker_TP0 pid=433) [dsv41-mem] after load_weights (22s): MemAvailable=12.41GiB MemFree=1.95GiB rss=0.37GiB cuda_free=1.95GiB/121.69GiB torch_alloc=101.09GiB torch_reserved=101.18GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:16 [gpu_worker.py:1556] [dsv41-mem] after load_weights (22s): MemAvailable=12.41GiB MemFree=1.95GiB rss=0.37GiB cuda_free=1.95GiB/121.69GiB torch_alloc=101.09GiB torch_reserved=101.18GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) [dsv41-mem] before process_weights_after_loading: MemAvailable=12.41GiB MemFree=1.95GiB rss=0.37GiB cuda_free=1.95GiB/121.69GiB torch_alloc=101.09GiB torch_reserved=101.18GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:16 [gpu_worker.py:1556] [dsv41-mem] before process_weights_after_loading: MemAvailable=12.41GiB MemFree=1.95GiB rss=0.37GiB cuda_free=1.95GiB/121.69GiB torch_alloc=101.09GiB torch_reserved=101.18GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:16 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=4 avg_bits=2.9 mcg=0 mul1=1 experts_local=128 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:14:16 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=4 avg_bits=2.9 mcg=0 mul1=1 experts_local=128 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) INFO 10-01 22:14:16 [exl3.py:2462] EXL3 mul1 trellis engaged for routed experts: K=4 avg_bits=2.9 mcg=0 mul1=1 experts_local=128 hidden=5120 intermediate_local=1152 fused_moe=exl3_moe concurrency=12 (no BF16 expert reconstruct at load; E3 fat kernels are K4/MCG-only)
+(Worker_TP0 pid=433) [dsv41-mem] after process_weights_after_loading (1s): MemAvailable=12.39GiB MemFree=1.93GiB rss=0.38GiB cuda_free=1.93GiB/121.69GiB torch_alloc=101.09GiB torch_reserved=101.19GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:16 [gpu_worker.py:1556] [dsv41-mem] after process_weights_after_loading (1s): MemAvailable=12.39GiB MemFree=1.93GiB rss=0.38GiB cuda_free=1.93GiB/121.69GiB torch_alloc=101.09GiB torch_reserved=101.19GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) WARNING 10-01 22:14:17 [speculator.py:203] Draft model DSparkDeepseekV4ForCausalLM does not support external multimodal embeddings. Embeddings from the target model will not be passed to the drafter; using text-only draft inputs instead.
+(Worker_TP0 pid=433) [dsv41-mem] after dspark_draft.load_model (25s): MemAvailable=12.38GiB MemFree=1.92GiB rss=0.39GiB cuda_free=1.92GiB/121.69GiB torch_alloc=101.09GiB torch_reserved=101.19GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:17 [gpu_worker.py:1556] [dsv41-mem] after dspark_draft.load_model (25s): MemAvailable=12.38GiB MemFree=1.92GiB rss=0.39GiB cuda_free=1.92GiB/121.69GiB torch_alloc=101.09GiB torch_reserved=101.19GiB torch_peak=101.09GiB
+[1;36m[dsv41-exl3][0m t+240s MemAvailable head=11.9 GiB worker=11.0 GiB
+(Worker_TP0 pid=433) [dsv41-mem] tick load_model +222s: MemAvailable=11.71GiB MemFree=1.22GiB rss=0.96GiB cuda_free=1.22GiB/121.69GiB torch_alloc=100.48GiB torch_reserved=101.19GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:28 [gpu_worker.py:1556] [dsv41-mem] tick load_model +222s: MemAvailable=11.71GiB MemFree=1.22GiB rss=0.96GiB cuda_free=1.22GiB/121.69GiB torch_alloc=100.48GiB torch_reserved=101.19GiB torch_peak=101.09GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:28 [model_runner.py:408] Model loading took 99.84 GiB memory and 221.961604 seconds
+(Worker_TP0 pid=433) INFO 10-01 22:14:28 [topk_topp_sampler.py:62] Using FlashInfer for top-p & top-k sampling.
+(Worker_TP0 pid=433) [dsv41-mem] after load_model (222s): MemAvailable=12.86GiB MemFree=2.37GiB rss=0.97GiB cuda_free=2.37GiB/121.69GiB torch_alloc=99.88GiB torch_reserved=100.01GiB torch_peak=99.88GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:28 [gpu_worker.py:1556] [dsv41-mem] after load_model (222s): MemAvailable=12.86GiB MemFree=2.37GiB rss=0.97GiB cuda_free=2.37GiB/121.69GiB torch_alloc=99.88GiB torch_reserved=100.01GiB torch_peak=99.88GiB
+(Worker_TP0 pid=433) [dsv41-mem] dropped page cache of 39 shard files: MemFree 2.37GiB -> 13.67GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:30 [gpu_worker.py:1556] [dsv41-mem] dropped page cache of 39 shard files: MemFree 2.37GiB -> 13.67GiB
+(EngineCore pid=365) INFO 10-01 22:14:31 [torch_utils.py:280] Reducing Torch threads from 20 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(EngineCore pid=365) INFO 10-01 22:14:31 [utils.py:306] Using BLHNC KV cache layout.
+(Worker_TP0 pid=433) [dsv41-mem] before determine_available_memory: MemAvailable=13.03GiB MemFree=13.64GiB rss=0.98GiB cuda_free=13.64GiB/121.69GiB torch_alloc=99.88GiB torch_reserved=100.02GiB torch_peak=99.88GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:31 [gpu_worker.py:1556] [dsv41-mem] before determine_available_memory: MemAvailable=13.03GiB MemFree=13.64GiB rss=0.98GiB cuda_free=13.64GiB/121.69GiB torch_alloc=99.88GiB torch_reserved=100.02GiB torch_peak=99.88GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:32 [deep_gemm.py:191] deep_gemm not found in site-packages, trying vendored vllm.third_party.deep_gemm
+(Worker_TP0 pid=433) INFO 10-01 22:14:32 [deep_gemm.py:218] DeepGEMM PDL enabled on vllm.third_party.deep_gemm.
+(Worker_TP0 pid=433) INFO 10-01 22:14:37 [gpu_worker.py:551] Initial free memory 113.26 GiB, reserved 2.5 GiB memory for KV Cache as specified by kv_cache_memory_bytes config and skipped memory profiling. This does not respect the gpu_memory_utilization config. Only use kv_cache_memory_bytes config when you want manual control of KV cache memory size. If OOM'ed, check the difference of initial free memory between the current run and the previous run where kv_cache_memory_bytes is suggested and update it correspondingly.
+(Worker_TP0 pid=433) [dsv41-mem] after determine_available_memory (6s): MemAvailable=10.69GiB MemFree=10.40GiB rss=2.04GiB cuda_free=10.40GiB/121.69GiB torch_alloc=100.49GiB torch_reserved=101.34GiB torch_peak=101.10GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:37 [gpu_worker.py:1556] [dsv41-mem] after determine_available_memory (6s): MemAvailable=10.69GiB MemFree=10.40GiB rss=2.04GiB cuda_free=10.40GiB/121.69GiB torch_alloc=100.49GiB torch_reserved=101.34GiB torch_peak=101.10GiB
+(EngineCore pid=365) INFO 10-01 22:14:38 [kv_cache_utils.py:2321] GPU KV cache size: 773,163 tokens, Maximum concurrency for 600,000 tokens per request: 1.29x
+(Worker_TP0 pid=433) [dsv41-mem] before initialize_from_config: MemAvailable=10.67GiB MemFree=10.38GiB rss=2.04GiB cuda_free=10.38GiB/121.69GiB torch_alloc=100.49GiB torch_reserved=101.34GiB torch_peak=101.10GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:38 [gpu_worker.py:1556] [dsv41-mem] before initialize_from_config: MemAvailable=10.67GiB MemFree=10.38GiB rss=2.04GiB cuda_free=10.38GiB/121.69GiB torch_alloc=100.49GiB torch_reserved=101.34GiB torch_peak=101.10GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:38 [indexer.py:752] DSA indexer decode path: use_flattening=True supports_varlen=False (next_n=4, use_fp4_cache=False)
+(Worker_TP0 pid=433) [dsv41-mem] after initialize_from_config (0s): MemAvailable=8.71GiB MemFree=8.42GiB rss=2.05GiB cuda_free=8.42GiB/121.69GiB torch_alloc=103.14GiB torch_reserved=103.35GiB torch_peak=103.14GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:38 [gpu_worker.py:1556] [dsv41-mem] after initialize_from_config (0s): MemAvailable=8.71GiB MemFree=8.42GiB rss=2.05GiB cuda_free=8.42GiB/121.69GiB torch_alloc=103.14GiB torch_reserved=103.35GiB torch_peak=103.14GiB
+(Worker_TP0 pid=433) [dsv41-mem] dropped page cache of 39 shard files: MemFree 8.41GiB -> 8.41GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:38 [gpu_worker.py:1556] [dsv41-mem] dropped page cache of 39 shard files: MemFree 8.41GiB -> 8.41GiB
+(Worker_TP0 pid=433) [dsv41-mem] EXL3 pretune: 26 distinct shapes x 5 row buckets = 130 launches in 2.8s
+(Worker_TP0 pid=433) INFO 10-01 22:14:41 [gpu_worker.py:1556] [dsv41-mem] EXL3 pretune: 26 distinct shapes x 5 row buckets = 130 launches in 2.8s
+(Worker_TP0 pid=433) [dsv41-mem] before compile_or_warm_up_model: MemAvailable=8.61GiB MemFree=8.28GiB rss=2.13GiB cuda_free=8.28GiB/121.69GiB torch_alloc=103.14GiB torch_reserved=103.36GiB torch_peak=103.19GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:41 [gpu_worker.py:1556] [dsv41-mem] before compile_or_warm_up_model: MemAvailable=8.61GiB MemFree=8.28GiB rss=2.13GiB cuda_free=8.28GiB/121.69GiB torch_alloc=103.14GiB torch_reserved=103.36GiB torch_peak=103.19GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:41 [kernel_warmup.py:136] JIT kernel warmup starting.
+(Worker_TP0 pid=433) INFO 10-01 22:14:42 [kernel_warmup.py:146] JIT kernel warmup finished in 0.47s.
+(Worker_TP0 pid=433) 
+JIT kernel warmup (78 compile keys):   0%|          | 0/7 [00:00<?, ?kernel/s]
+JIT kernel warmup (78 compile keys):  57%|█████▋    | 4/7 [00:00<00:00, 14.47kernel/s, MHCPreNormKernel (9 keys)]
+JIT kernel warmup (78 compile keys): 100%|██████████| 7/7 [00:00<00:00, 15.84kernel/s, BuildPrefillChunkMetadataKernel (36 keys)]
+JIT kernel warmup (78 compile keys): 100%|██████████| 7/7 [00:00<00:00, 15.58kernel/s, BuildPrefillChunkMetadataKernel (36 keys)]
+(Worker_TP0 pid=433) INFO 10-01 22:14:42 [spec_decode_rejection_warmup.py:64] Warming up spec-decode rejection sampler kernels (vocab=129280, num_spec=3, dtype_pairs=[('torch.float32', 'torch.float32'), ('torch.bfloat16', 'torch.bfloat16'), ('torch.float32', 'torch.bfloat16'), ('torch.bfloat16', 'torch.float32')], block_verify=False).
+(Worker_TP0 pid=433) INFO 10-01 22:14:42 [kernel_warmup.py:98] Warming up ll_bf16 router GEMM kernels for shapes: ((5120, 384),).
+(Worker_TP0 pid=433) INFO 10-01 22:14:42 [flashinfer_sparse_mla_warmup.py:241] Warming up DeepSeek V4 sparse MLA attention for mixed tokens=16.
+(Worker_TP0 pid=433) INFO 10-01 22:14:43 [kernel_warmup.py:218] Skipping FlashInfer autotune because it is disabled.
+(Worker_TP0 pid=433) INFO 10-01 22:14:43 [breakable_cudagraph.py:290] Breakable CUDA graph enabled
+(Worker_TP0 pid=433) 
+Capturing CUDA graphs (PIECEWISE):   0%|          | 0/9 [00:00<?, ?it/s]
+Capturing CUDA graphs (PIECEWISE):  11%|█         | 1/9 [00:00<00:02,  3.39it/s]
+Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 2/9 [00:00<00:01,  4.23it/s]
+Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 3/9 [00:00<00:01,  5.22it/s]
+Capturing CUDA graphs (PIECEWISE):  44%|████▍     | 4/9 [00:00<00:00,  6.24it/s]
+Capturing CUDA graphs (PIECEWISE):  56%|█████▌    | 5/9 [00:00<00:00,  6.87it/s]
+Capturing CUDA graphs (PIECEWISE):  67%|██████▋   | 6/9 [00:00<00:00,  7.24it/s]
+Capturing CUDA graphs (PIECEWISE):  78%|███████▊  | 7/9 [00:01<00:00,  7.67it/s]
+Capturing CUDA graphs (PIECEWISE):  89%|████████▉ | 8/9 [00:01<00:00,  8.09it/s]
+Capturing CUDA graphs (PIECEWISE): 100%|██████████| 9/9 [00:01<00:00,  7.86it/s]
+Capturing CUDA graphs (PIECEWISE): 100%|██████████| 9/9 [00:01<00:00,  6.70it/s]
+(Worker_TP0 pid=433) 
+Capturing CUDA graphs (FULL):   0%|          | 0/3 [00:00<?, ?it/s]
+Capturing CUDA graphs (FULL):  33%|███▎      | 1/3 [00:00<00:00,  7.17it/s]
+Capturing CUDA graphs (FULL):  67%|██████▋   | 2/3 [00:00<00:00,  7.98it/s]
+Capturing CUDA graphs (FULL): 100%|██████████| 3/3 [00:00<00:00,  8.10it/s]
+Capturing CUDA graphs (FULL): 100%|██████████| 3/3 [00:00<00:00,  7.98it/s]
+(Worker_TP0 pid=433) INFO 10-01 22:14:45 [speculator.py:141] Capturing model for DSpark speculator...
+(Worker_TP0 pid=433) 
+Capturing dspark CUDA graphs (FULL):   0%|          | 0/4 [00:00<?, ?it/s]
+Capturing dspark CUDA graphs (FULL): 100%|██████████| 4/4 [00:00<00:00, 50.67it/s]
+(Worker_TP0 pid=433) INFO 10-01 22:14:45 [model_runner.py:974] Graph capturing finished in 2 secs, took 0.78 GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:46 [jit_monitor.py:85] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP0 pid=433) INFO 10-01 22:14:47 [torch_utils.py:280] Reducing Torch threads from 20 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(Worker_TP0 pid=433) [dsv41-mem] after compile_or_warm_up_model (6s): MemAvailable=7.62GiB MemFree=7.21GiB rss=2.71GiB cuda_free=7.21GiB/121.69GiB torch_alloc=103.22GiB torch_reserved=103.49GiB torch_peak=103.25GiB
+(Worker_TP0 pid=433) INFO 10-01 22:14:47 [gpu_worker.py:1556] [dsv41-mem] after compile_or_warm_up_model (6s): MemAvailable=7.62GiB MemFree=7.21GiB rss=2.71GiB cuda_free=7.21GiB/121.69GiB torch_alloc=103.22GiB torch_reserved=103.49GiB torch_peak=103.25GiB
+(EngineCore pid=365) INFO 10-01 22:14:47 [core.py:379] init engine (profile, create kv cache, warmup model) took 15.91 s
+(EngineCore pid=365) INFO 10-01 22:15:01 [kernel.py:373] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+(EngineCore pid=365) WARNING 10-01 22:15:01 [vllm.py:1959] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+(EngineCore pid=365) INFO 10-01 22:15:01 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+(APIServer pid=1) INFO 10-01 22:15:02 [entry.py:135] Supported tasks: ['generate']
+(APIServer pid=1) INFO 10-01 22:15:06 [factories.py:82] Scale-out endpoints are disabled. Set VLLM_ENABLE_SCALE_OUT_ENDPOINTS=1 to enable them.
+(APIServer pid=1) INFO 10-01 22:15:06 [parser_manager.py:36] "auto" tool choice has been enabled.
+(APIServer pid=1) INFO 10-01 22:15:07 [entry.py:139] Starting vLLM server on http://0.0.0.0:8888
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:61] Available routes are:
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /openapi.json, Methods: GET, HEAD
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /docs, Methods: GET, HEAD
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /docs/oauth2-redirect, Methods: GET, HEAD
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /redoc, Methods: GET, HEAD
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /load, Methods: GET
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /version, Methods: GET
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /health, Methods: GET
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /metrics, Methods: GET
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /tokenize, Methods: POST
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /detokenize, Methods: POST
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /v1/models, Methods: GET
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /ping, Methods: GET
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /ping, Methods: POST
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /invocations, Methods: POST
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /v1/chat/completions, Methods: POST
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /v1/chat/completions/batch, Methods: POST
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /v1/responses, Methods: POST
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /v1/responses/{response_id}, Methods: GET
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /v1/responses/{response_id}/cancel, Methods: POST
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /v1/completions, Methods: POST
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /v1/messages, Methods: POST
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /v1/messages/count_tokens, Methods: POST
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /generative_scoring, Methods: POST
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /scale_elastic_ep, Methods: POST
+(APIServer pid=1) INFO 10-01 22:15:07 [launcher.py:70] Route: /is_scaling_elastic_ep, Methods: POST
+(APIServer pid=1) INFO:     Started server process [1]
+(APIServer pid=1) INFO:     Waiting for application startup.
+(APIServer pid=1) INFO:     Application startup complete.
+(APIServer pid=1) INFO:     127.0.0.1:55412 - "GET /health HTTP/1.1" 200 OK
+[1;36m[dsv41-exl3][0m health check passed after 290s — server is up
+[1;36m[dsv41-exl3][0m post-ready DSpark/sampler warmup (nonfatal; timeout 240s/req) ...
+boot-shape-warmup: sweeping DSpark k=3 / sampler shapes
+  ladder s=1: tokenize 1/1 -> BLOCK 8 fired (0s)
+  ladder s=10: tokenize 10/10 -> BLOCK 16 fired (0s)
+  ladder s=26: tokenize 26/26 -> BLOCK 32 fired (0s)
+  ladder s=58: tokenize 58/58 -> BLOCK 64 fired (0s)
+  ladder s=122: tokenize 122/122 -> BLOCK 128 fired (0s)
+  ladder s=250: tokenize 250/250 -> BLOCK 256 fired (0s)
+  arm c1: C=1 x ~32 tok, profile=bounded, think=false, 0s
+  arm think-c1: C=1 x ~16 tok, profile=bounded, think=true, 5s
+  arm short-c1: C=1 x ~8 tok, profile=serve-default, think=false, 1s
+  arm samp-k: C=1 x ~8 tok, profile=sampling-k, think=false, 0s
+  arm samp-p: C=1 x ~8 tok, profile=sampling-p, think=false, 2s
+  arm samp-kp: C=1 x ~8 tok, profile=sampling-kp, think=false, 0s
+  arm short-c2: C=2 x ~8 tok, profile=serve-default, think=false, 1s
+  arm samp-kp-c3: C=3 x ~8 tok, profile=sampling-kp, think=false, 1s
+  arm short-c4: C=4 x ~8 tok, profile=serve-default, think=false, 1s
+  sampler-cache postcondition: unmet — p-only:0/1 (constexpr combos)
+boot-shape-warmup: 21/21 requests ok in 12s
+boot-shape-warmup: sampler-cache postcondition UNMET — _topk_topp_kernel variants may JIT mid-serve
+[1;33m[dsv41-exl3][0m boot shape warmup incomplete — uncovered shapes may JIT mid-serve on TP=2
+[1;36m[dsv41-exl3][0m ======================================================================
+[1;36m[dsv41-exl3][0m DeepSeek-V4.1-Flash EXL3 is UP (TP=2, nnodes=2)
+[1;36m[dsv41-exl3][0m   endpoints  : http://127.0.0.1:8888/v1   (LAN: <head-link-ip>:8888)
+[1;36m[dsv41-exl3][0m   model name : DeepSeek-v4.1-Flash-EXL3
+[1;36m[dsv41-exl3][0m   weights    : ~/models/dsv41-uncensored-2.9bpw  quant=exl3  kv=native-fp4  sync=rsync/rsync
+[1;36m[dsv41-exl3][0m   engram     : file-backed ~/.cache/vllm-dsv41-flash-exl3/engram-src (no 47GiB pin; packed=~/dsv41-engram) worker=~/.cache/dsv41-flash-exl3/engram-src
+[1;36m[dsv41-exl3][0m   features   : tokenizer=deepseek_v41 tools=deepseek_v41 reasoning=deepseek_v41 spec=DSpark k=3 (in-checkpoint) vision=on
+[1;36m[dsv41-exl3][0m   auth       : none (VLLM_API_KEY empty)
+[1;36m[dsv41-exl3][0m   sampling   : temperature=1.0 top_p=0.95 (official). Thinking defaults ON.
+[1;36m[dsv41-exl3][0m   quick test :
+[1;36m[dsv41-exl3][0m     curl -s http://127.0.0.1:8888/v1/chat/completions \
+[1;36m[dsv41-exl3][0m       -H 'Content-Type: application/json' \
+[1;36m[dsv41-exl3][0m       -d '{"model":"DeepSeek-v4.1-Flash-EXL3","messages":[{"role":"user","content":"17*19="}],"max_tokens":32,"temperature":0,"chat_template_kwargs":{"enable_thinking":false}}'
+[1;36m[dsv41-exl3][0m   memory     : head MemAvailable=5.7 GiB worker=5.0 GiB; guards disabled
+[1;36m[dsv41-exl3][0m   manage     : ./start.sh status | ./start.sh logs | ./start.sh logs worker | ./start.sh stop
+[1;36m[dsv41-exl3][0m ======================================================================
+kit-start-rc=0

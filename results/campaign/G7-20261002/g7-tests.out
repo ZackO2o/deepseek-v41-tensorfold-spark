@@ -1,0 +1,17 @@
+[dsv41 13:37:16] prebuild: head 8 built / 0 failed; worker 8 / 0
+[dsv41 13:37:27] memory ok: MemFree head 112.7, worker 110.2 GiB
+[dsv41 13:37:27] testq head router: tests/cuda/test_dsv41_router_gemv_gpu.py tests/cuda/test_dsv41_router_gpu.py tests/test_dsv41_router_gemv_emu.py tests/test_dsv41_router_gemv_compile.py
+[dsv41 13:37:27] testq head interp: tests/test_dsv41_router_softplus_interp.py tests/test_dsv41_router_interp.py tests/test_dsv41_draft_head_interp.py tests/test_dsv41_decode_glue_interp.py tests/test_dsv41_mhc_interp.py tests/test_dsv41_prefill2_interp.py
+[dsv41 13:37:27] testq worker draft: tests/cuda/test_dsv41_draft_gpu.py tests/cuda/test_dsv41_m2_gpu.py tests/test_dsv41_draft_head.py tests/test_dsv41_m2_decode.py tests/test_dsv41_dspark_exact.py
+[dsv41 13:37:28] testq worker draft rc=1 (1 s): 
+[dsv41 13:37:28] testq worker prefill2: tests/cuda/test_dsv41_prefill2_gpu.py tests/test_dsv41_prefill2.py tests/test_dsv41_prefill.py tests/test_dsv41_engram_native.py tests/test_dsv41_replay.py
+[dsv41 13:37:29] testq worker prefill2 rc=1 (1 s): 
+[dsv41 13:37:29] testq worker x3gm: tests/cuda/test_dsv41_x3gm_gpu.py tests/cuda/test_dsv41_prefill_gpu.py::test_fast_prefill_row_independent_and_close tests/test_dsv41_x3gm_emu.py tests/test_dsv41_prefill_fast.py
+[dsv41 13:37:30] testq worker x3gm rc=1 (1 s): 
+[dsv41 13:37:52] testq head router rc=0 (25 s): 67 passed, 1 warning in 19.97s
+[dsv41 13:37:52] testq head proj: tests/cuda/test_dsv41_fused_proj_gpu.py tests/test_dsv41_fused_proj.py tests/test_dsv41_fused_proj_emu.py tests/test_dsv41_fused_proj_compile.py
+[dsv41 13:38:22] testq head proj rc=0 (30 s): 37 passed, 3 skipped, 1 warning in 27.77s
+[dsv41 13:38:22] testq head glue: tests/cuda/test_dsv41_decode_glue_gpu.py tests/cuda/test_dsv41_gpu.py tests/test_dsv41_decode_xchg.py tests/test_dsv41_forward.py tests/test_dsv41_slots.py
+[dsv41 13:40:38] testq head glue rc=1 (136 s): 2 failed, 45 passed, 1 warning in 134.20s (0:02:14)
+[dsv41 13:42:49] testq head interp rc=0 (322 s): 63 passed, 8 warnings in 317.44s (0:05:17)
+[dsv41 13:42:49] tests done: router: 67 passed, 1 warning in 19.97s; proj: 37 passed, 3 skipped, 1 warning in 27.77s; glue: 2 failed, 45 passed, 1 warning in 134.20s (0:02:14); draft: ; prefill2: ; x3gm: ; interp: 63 passed, 8 warnings in 317.44s (0:05:17); 

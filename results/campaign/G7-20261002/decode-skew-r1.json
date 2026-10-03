@@ -1,0 +1,32 @@
+{
+ "windows": 195,
+ "span_ms": 40.332,
+ "ms": {
+  "all kernels": 40.022,
+  "other": 33.702,
+  "mhc site": 2.344,
+  "gather": 2.015,
+  "mhc finish": 0.841,
+  "rms fused": 0.401,
+  "other elementwise": 0.336,
+  "copies": 0.294,
+  "cast to bf16": 0.089
+ },
+ "launches": {
+  "other": 837.6,
+  "other elementwise": 244.2,
+  "copies": 156.0,
+  "cast to bf16": 90.7,
+  "mhc site": 82.7,
+  "gather": 80.7,
+  "mhc finish": 80.7,
+  "rms fused": 79.7
+ },
+ "gather_us": {
+  "p10": 7.7,
+  "p50": 13.8,
+  "p90": 42.8,
+  "p99": 211.9
+ },
+ "gather_wait_ms": 1.391
+}

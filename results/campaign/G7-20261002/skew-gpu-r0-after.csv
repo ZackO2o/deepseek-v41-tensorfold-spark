@@ -1,0 +1,2 @@
+clocks.current.sm [MHz], clocks.max.sm [MHz], temperature.gpu, power.draw [W], clocks_event_reasons.active
+208 MHz, 3003 MHz, 52, 5.99 W, 0x0000000000000004

@@ -1,0 +1,17 @@
+keys [('attn_in', 2), ('attn_in', 3), ('attn_out', 2), ('attn_out', 3), ('moe_in', 2), ('moe_in', 3), ('moe_out', 2), ('moe_out', 3)]
+512 ('attn_in', 2) rows differ [] 
+512 ('attn_out', 2) rows differ [] 
+512 ('moe_in', 2) rows differ [] 
+512 ('moe_out', 2) rows differ [] 
+512 ('attn_in', 3) rows differ [] 
+512 ('attn_out', 3) rows differ [1423, 2186] max 0.000106
+512 ('moe_in', 3) rows differ [2186] max 0.00391
+512 ('moe_out', 3) rows differ [2186] max 0.000206
+2048 ('attn_in', 2) rows differ [] 
+2048 ('attn_out', 2) rows differ [] 
+2048 ('moe_in', 2) rows differ [] 
+2048 ('moe_out', 2) rows differ [] 
+2048 ('attn_in', 3) rows differ [] 
+2048 ('attn_out', 3) rows differ [2186] max 0.000106
+2048 ('moe_in', 3) rows differ [2186] max 0.00391
+2048 ('moe_out', 3) rows differ [2186] max 0.000206

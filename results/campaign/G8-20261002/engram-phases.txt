@@ -1,0 +1,9 @@
+cfg  C     tok/s rounds       round     execute      window     forward graph.stage engram.wait  draft.pass    prefetch      commit   (ms a round)
+off  C1     71.9    104       54.60       53.93       46.74        0.94        0.90        0.97        3.61        0.24        0.53
+off  C2    52.27    231       66.32       65.21       56.78       24.70        1.55        8.19        4.67        0.52        0.95
+off  C4    78.97    230       88.26       87.36       72.48       34.56        0.27       13.12        5.18        0.63        1.10
+off: exact_all True; DSpark on (depth cost, cap 5, costs measured); draft head full; draft graphs on: 6 held (1 at boot in 0.07 s, 5 on first use), 771 replays, 5 eager windows; Engram prefetch {'issued': 3096, 'hits': 3272, 'misses': 40, 'dropped': 0, 'reads': 38014, 'cached': 123988, 'waited': 24652, 'ahead': 0, 'kept
+on   C1    72.45    104       54.26       53.58       46.16        0.12        0.07        0.16        3.69        0.18        0.48
+on   C2    54.08    231       64.19       63.16       54.89       19.40        0.04        0.19        4.46        0.42        0.79
+on   C4    81.02    230       85.46       84.09       69.94       31.00        0.04        0.06        5.07        0.38        1.15
+on: exact_all True; DSpark on (depth cost, cap 5, costs measured); draft head full; draft graphs on: 6 held (1 at boot in 0.07 s, 5 on first use), 769 replays, 5 eager windows; Engram prefetch {'issued': 16, 'hits': 18, 'misses': 2, 'dropped': 0, 'reads': 7127, 'cached': 11336, 'waited': 2184, 'ahead': 0, 'kept': 0}; E

@@ -1,0 +1,43 @@
+layer 0 9.7s
+layer 1 6.9s
+layer 2 5.4s
+layer 3 5.4s
+layer 4 5.3s
+layer 5 5.1s
+layer 6 4.9s
+layer 7 5.0s
+layer 8 4.5s
+layer 9 4.4s
+layer 10 4.7s
+layer 11 4.9s
+layer 12 4.9s
+layer 13 6.4s
+layer 14 5.8s
+layer 15 6.5s
+layer 16 4.9s
+layer 17 6.1s
+layer 18 4.6s
+layer 19 6.4s
+layer 20 4.7s
+layer 21 6.1s
+layer 22 6.3s
+layer 23 8.3s
+layer 24 5.9s
+layer 25 4.5s
+layer 26 5.9s
+layer 27 7.3s
+layer 28 5.4s
+layer 29 5.3s
+layer 30 5.7s
+layer 31 6.1s
+layer 32 6.9s
+layer 33 6.6s
+layer 34 6.5s
+layer 35 6.9s
+layer 36 5.4s
+layer 37 6.5s
+layer 38 7.3s
+layer 39 6.1s
+prompt 7: ref vs kit top-1 123/127; misses at [45, 67, 89, 111]
+prompt 0: ref vs kit top-1 102/127; misses at [7, 12, 13, 17, 18, 19, 28, 31, 32, 33, 36, 38, 40, 42, 51, 56, 66, 69, 70, 76, 77, 80, 108, 115, 118]
+done 241.26557779312134

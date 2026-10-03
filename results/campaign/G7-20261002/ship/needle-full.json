@@ -1,0 +1,20 @@
+{
+ "label": "full",
+ "needles": [
+  {
+   "size": 32768,
+   "prompt_tokens": 32473,
+   "found": true,
+   "reply": "77479162",
+   "seconds": 34.7
+  },
+  {
+   "size": 131072,
+   "prompt_tokens": 130696,
+   "found": true,
+   "reply": "16636298",
+   "seconds": 137.3
+  }
+ ],
+ "ok": true
+}

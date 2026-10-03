@@ -1,0 +1,8 @@
+1422 R 1024 2048 count 3 3 lo 0 0 tokens equal True sorted equal True key rows equal True
+   q equal True swa vals equal True swa scales equal True comp scales equal True
+1423 R 1024 2048 count 3 3 lo 0 0 tokens equal True sorted equal True key rows equal True
+   q equal True swa vals equal True swa scales equal True comp scales equal True
+2185 R 252 252 count 3 3 lo 0 0 tokens equal True sorted equal True key rows equal True
+   q equal True swa vals equal True swa scales equal True comp scales equal True
+2186 R 252 252 count 3 3 lo 0 0 tokens equal True sorted equal True key rows equal True
+   q equal False swa vals equal True swa scales equal True comp scales equal True

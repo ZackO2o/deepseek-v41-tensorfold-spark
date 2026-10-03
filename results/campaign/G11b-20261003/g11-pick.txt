@@ -1,0 +1,4 @@
+off: prose 41.285 (1.587 tok/round), code 81.205, structured 116.845, C2 66.94, C4 93.92
+A: exact_all True, prose 42.965 (+4.1%), tok/round prose 1.648 code 3.657, code 78.845, structured 116.945, C2 65.71, C4 93.14 -> fail
+B: no report
+adopt: none

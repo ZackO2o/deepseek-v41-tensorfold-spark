@@ -1,0 +1,23 @@
+kit ~/src/dsv41-2x-kit
+  kit git 8404ac7d389c (11 modified tracked files)
+  MODEL_HOST=~/models/dsv41-uncensored-2.9bpw
+  SPEC_METHOD=dspark
+  DSPARK_TOKENS=3
+  MAX_MODEL_LEN=600000
+  MAX_NUM_SEQS=4
+  MAX_NUM_BATCHED_TOKENS=1536
+  KV_CACHE_MEMORY_BYTES=2684354560
+  DSV41_EXL3_MOE_X=2,12,8
+  LANGUAGE_MODEL_ONLY=0
+  WEIGHT_SYNC=rsync
+  PORT=8888
+  weights: 39/39 shards, index db5906a60898477555194d04f708c584, 210600499333 bytes on both nodes
+  worker sync marker current: start.sh skips the 197 GiB rsync
+  packed Engram rows present on both nodes (start.sh pack, 09-18)
+  image head 6c944f262702 worker 704645c57798
+  disk free: head 1.2T worker 2.4T
+  rigmark pinned + clean at ~/rigmark
+  lease: 4; watchdog timer: inactive; :8000 none; :8888 none
+  MemFree / MemAvailable now: head 115.6 / 116.4, worker 114.4 / 114.9 GiB (GLM prod running)
+expected: open+stop+memory 3-15 min; kit boot ~6 min (09-20: start.sh 10:52:44 -> healthy 10:58:32); benches ~119 min (cap 150); kit stop + GLM restore 5-12 min
+check: OK
