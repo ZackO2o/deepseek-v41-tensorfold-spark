@@ -1,0 +1,17 @@
+[G8] row graphs: graphs on: 17 held (8 at boot in 1.49 s, 9 on first use), 15 replays, 9 eager windows; keys [(1, 0), (2, 0), (3, 0), (4, 0), (4, 1), (5, 0), (6, 0), (7, 0), (7, 1), (8, 0), (8, 1), (12, 1), (16, 1), (24, 1), (32, 1), (48, 1), (64, 1)]
+..[G8] replies == serial: DSpark on (depth cost, cap 5, joint on: 35 rounds, 5.34 rows, 2.23 drafts a round, costs default); draft head full; draft graphs on: 3 held (3 at boot in 0.11 s, 0 on first use), 52 replays, 0 eager windows; graphs on: 16 held (8 at boot in 0.33 s, 8 on first use), 45 replays, 8 eager windows
+..[G8] 4 slots x 4 rows, host ms a forward: replay 0.44, eager 19.97
+.........[G10] PDL late writer: every waiting consumer read the final x in 20 / 20 trials; a no-wait PDL consumer read stale x in 0 / 20 (early starts not seen on this GPU)
+.[dsv41] l2pf: bulk, 8 MiB a site, sites x,o,f (f 0.3 MiB, o 5.3 MiB, x 5.9 MiB); windows <= 16 rows
+.[G10] l2probe NVIDIA GB10: attrs {'l2': 25165824, 'persist_max': 18874368, 'window_max': 134217728}
+[G10] l2probe 6.0 MB: cold 32.6 us (192.9 GB/s), hot 11.2 (563.3), l2pf 16.2 (388.6), persist {'us': 14.2, 'gbps': 443.8, 'window_mb': 6.0}
+[G10] l2probe 12.0 MB: cold 52.1 us (241.7 GB/s), hot 13.2 (956.7), l2pf 18.5 (680.3), persist {'us': 24.4, 'gbps': 516.7, 'window_mb': 12.0}
+.
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+16 passed, 1 warning in 24.53s

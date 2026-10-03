@@ -1,0 +1,20 @@
+..............[G13] dense3 x4 (9.0 MB, random weights) R=1 cold L2: x3seg 91.0 us 99 GB/s -> dense3 40.6 us 222 GB/s
+[G13] dense3 x2_l0 (6.9 MB, random weights) R=1 cold L2: x3seg 44.2 us 156 GB/s -> dense3 48.8 us 141 GB/s
+[G13] dense3 q (16.4 MB, random weights) R=1 cold L2: x3seg 91.8 us 178 GB/s -> dense3 79.0 us 207 GB/s
+[G13] dense3 o (10.5 MB, random weights) R=1 cold L2: x3seg 71.2 us 147 GB/s -> dense3 57.3 us 183 GB/s
+.[G13] dense3 real layers 0..39 rank 0: 335 matrices repacked; every dense output == x3seg at R = 1..16, rows of a window == alone, to_strips == the loaded words
+......[G7] fused_proj x4 R=1 (eager, random weights): 80.5 -> 38.0 us
+[G7] fused_proj x2_l0 R=1 (eager, random weights): 43.7 -> 29.8 us
+[G7] fused_proj q R=1 (eager, random weights): 54.5 -> 44.7 us
+[G7] fused_proj o R=1 (eager, random weights): 73.3 -> 33.5 us
+.[G7] fused_proj plan upstream, real layers [0, 1, 2]..39 rank 0: R = 1..16 fused == unfused and rows of a window == alone, bit for bit; drift vs upstream 0.00e+00; dense ms (eager, R=1, sum) 12.13 -> 10.49
+.[G7] fused_proj plan long, real layers [0, 1, 2]..39 rank 0: R = 1..16 fused == unfused and rows of a window == alone, bit for bit; drift vs upstream 3.62e-03; dense ms (eager, R=1, sum) 14.93 -> 10.72
+.
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+24 passed, 1 warning in 19.01s

@@ -1,0 +1,4 @@
+config   1 row  2 rows  4 rows 16 rows    code   prose      C2  exact  (vs off)
+off      26.60   32.20   39.80   73.00       -   40.32       -  True  
+on       26.40   31.00   38.60   71.80       -   41.82       -  True  1 rows -0.20 ms, 2 rows -1.20 ms, 4 rows -1.20 ms, 16 rows -1.20 ms, prose +3.7%
+on42     26.30   32.10   39.80   74.20       -   40.49       -  True  1 rows -0.30 ms, 2 rows -0.10 ms, 4 rows +0.00 ms, 16 rows +1.20 ms, prose +0.4%

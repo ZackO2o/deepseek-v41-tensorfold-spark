@@ -1,0 +1,18 @@
+...........................................
+[G13] moe_fused sm_121: 21 kernels, registers 40..216, no spills / stack
+......................................................[G7] gemv model vs float64 picks (E 384): 1.0000 of 96 rows; min margin of a differing row -
+.[G7] gemv model vs float64 picks (E 128): 1.0000 of 96 rows; min margin of a differing row -
+...................................[G7] router_gemv sm_121: 40 instances, registers 79..216, smem <= 40964 B, no spills
+......................
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+tests/test_dsv41_prune.py: 10 warnings
+  /usr/local/lib/python3.12/dist-packages/triton/runtime/interpreter.py:491: RuntimeWarning: invalid value encountered in divide
+    output = op(lhs.data, rhs.data)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+155 passed, 11 warnings in 100.64s (0:01:40)

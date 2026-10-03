@@ -32,35 +32,41 @@ engine these patches build. Raw files: [`results/`](results/README.md).
 
 | | **TensorFold (this recipe)** | MiaAI-Lab vLLM kit | ratio |
 | --- | ---: | ---: | ---: |
-| Code, 1 stream, greedy | **79.0-81.5** | 41.9-45.0 | **1.8-1.9x** |
-| Prose (essay), 1 stream, greedy | **40.9-41.2** | 32.5 | 1.26x |
-| Structured (count 1-200), 1 stream, greedy | **116.6** | 38.0 (50.2 on a JSON task) | **2.3-3.1x** |
-| 1 stream, decode aggregate | **82-83** | 32.2 | **2.6x** |
-| 2 streams, decode aggregate | **67.1** | 46.7 | 1.44x |
-| 4 streams, decode aggregate | **93.5** | 37.6 | **2.5x** |
+| Code, 1 stream, greedy | **82.8** | 41.9-45.0 | **1.8-2.0x** |
+| Prose (essay), 1 stream, greedy | **44.25** | 32.5 | 1.36x |
+| Structured (count 1-200), 1 stream, greedy | **117.8** | 38.0 (50.2 on a JSON task) | **2.3-3.1x** |
+| 1 stream, decode aggregate | **85.1** | 32.2 | **2.6x** |
+| 2 streams, decode aggregate | **70.3** | 46.7 | 1.5x |
+| 4 streams, decode aggregate | **96.6** | 37.6 | **2.6x** |
 | Cold prefill 8K / 32K / 64K / 128K (CED replay, the default) | **1,833 / 2,043 / 2,068 / 1,953** | 1,073 / 1,075 / 1,060 / 1,031 | **1.7-1.95x** |
 | Cold prefill, `TF_DSV41_PREFILL=full` (no replay) | 969 / 1,004 / 1,003 / 876 | same | 0.85-0.95x |
 | Start to ready | **34-44 s** | 378 s | ~9x |
 
-At temperature 0.7 the single-stream cells are code 72, prose 42, structured 117.5.
+At temperature 0.7 the single-stream cells are code 75.0, prose 45.3, structured 117.6. The decode cells are G13
+(engine `767ad9f` with `TF_DSV41_MHC_CUDA`, `ATTN_CUDA` and `DENSE_V3` on): against the same engine with the three off,
+in the same session, code +1.3%, prose +7.2%, C2 +3.9%, C4 +2.8%, and the 1-token verify step 26.8 -> ~23.4-24.8 ms
+([`docs/campaign/G13-RESULTS.md`](docs/campaign/G13-RESULTS.md)). Before G13 (`38f6500`): code 79.0-81.5, prose
+40.9-41.2, structured 116.6, C1 / C2 / C4 82-83 / 67.1 / 93.5.
 
 ### Quality and robustness
 
 | | **TensorFold** | kit |
 | --- | --- | --- |
-| Teacher-forced top-1 agreement with the kit (8 prompts x 2,048 positions) | 0.9963 (first copy of each prompt: 0.9502) | 1 by definition |
+| Teacher-forced top-1 agreement with the kit (8 prompts x 2,048 positions) | 0.9961 (first copy of each prompt: 0.9502); the same with the G13 rewrites on or off | 1 by definition |
 | MMLU-200, 0-shot, greedy, thinking off | **87.5%** | 87.5% |
 | MMLU-200 with a 20-question preamble (~2.1K-token prompts), replay vs full prefill | 81.1% / 81.1% (178 of 180 answers equal) | - |
 | Needle at 32K / 128K / 299K (replay prefill) | found (19.9 s / 74.0 s / 195 s) | - |
-| Multi-step tool chains (`bench/tooleval/chains.py`, 6 scenarios, 12 points), thinking off / high | 11 / 12, 11 / 12 | - |
+| Multi-step tool chains (`bench/tooleval/chains.py`, 6 scenarios, 12 points), thinking off / high | 11 / 12, 11 / 12 (G13: off 11 / 12) | - |
 | tool-eval-bench category C (multi-step), thinking off | 8 / 8 (score 100) | - |
 | Structured output: 12 JSON-schema cases + 10 tool-choice cases (drafted == serial == batched, valid, no markup) | 22 / 22 | - |
 | 30-minute soak (1-4 streams, cancels, disconnects, long prompts) | 529 requests, 0 errors, drained | - |
 | Stress: one 299K prefill + three 64K prompts decoding 2,048 tokens each | every stream completes; 299K prefill **175 s**; host RSS growth ~0.7 GiB a rank; worker MemAvailable minimum 3.0-3.7 GiB (the boot budget, not growth) | 4.40 GiB at <= 256K (lighter load) |
 
-Top-1, MMLU-200, tool calling, structured output and soak ran on the final configuration (engine `38f6500`); the
-stress row is the current engine (`a6f5792`, G12); the 20-question MMLU and the needles ran on the G7 engine commit
-with the same prefill path. On the current engine a 299K prefill takes 175 s inside the stress (three other streams
+Top-1, MMLU-200 and tool chains (thinking off) were re-run on the current engine (G13, `767ad9f` + the three
+rewrites): top-1 0.9961, the same as with the rewrites off (they change no bits; the G10 / G11 runs on `38f6500` read
+0.9963), MMLU-200 87.5% (175 / 200), chains 11 / 12, drafted == serial in every run. Structured output, soak and the
+chains with thinking ran on `38f6500`; the stress row on `a6f5792` (G12); the 20-question MMLU and the needles on the
+G7 engine commit with the same prefill path. On the current engine a 299K prefill takes 175 s inside the stress (three other streams
 decoding), against 181-185 s before the G12 memory fixes; the needles were not re-run.
 
 ### What measures what
@@ -68,16 +74,17 @@ decoding), against 181-185 s before the G12 memory fixes; the needles were not r
 - **Decode cells, ours:** `m2bench` (inside the engine, both ranks, no HTTP; `scripts/serve.sh run`), tok/s from the
   first to the last token of a 384-token reply, the median of the repetitions (2 by default), request slots sized
   for 16K tokens. Prompts: an LRU-cache
-  class with tests (code), a 400-word essay (prose), counting 1 to 200 (structured). The ranges are the spread over
-  the runs of the final configuration (G10 / G11 in the development log).
+  class with tests (code), a 400-word essay (prose), counting 1 to 200 (structured). The cells are one G13 run of the
+  production configuration (`results/campaign/G13-20261003/m2-g13cs-combo.json`); earlier configurations gave ranges
+  over several runs (G10 / G11 in the development log).
 - **Decode cells, kit:** HTTP clients (`glmbench`, `multiturn` of the GLM recipe): code = a 64-token code reply
   (41.9) and a 512-token one (45.0), prose = a 200-token essay, structured = count 1-200, thinking off.
 - **2 / 4 streams:** both sides report decode aggregate = all tokens / (last token - first token). Ours mixes code,
   prose, a JSON task and a copy-heavy edit, every other stream at T = 0.7; the kit's mix is its chat / code prompts,
   256 tokens each. Same metric, different prompts.
 - **Prefill:** one request, cold, after a 2K warm-up. Ours: fresh random text through `m2bench --prefill` (measured
-  at the G7 engine commit; G8-G11 changed decode paths only, and G12's host-memory fixes were measured only on the
-  299K stress prefill: 175 s). The kit: a repeated filler document over HTTP.
+  at the G7 engine commit; G8-G11 and G13 changed decode paths only, and G12's host-memory fixes were measured only
+  on the 299K stress prefill: 175 s). The kit: a repeated filler document over HTTP.
   Repeated fillers can make Engram reads look cheaper, so the kit's cells are not pessimistic.
 - **Start to ready:** ours = `docker run` to `/v1/models` answering, with prepared folders and compiled kernels
   cached, page cache dropped first. The kit's = its start script to `/health` on freshly rebooted nodes. The first
@@ -103,12 +110,33 @@ decoding), against 181-185 s before the G12 memory fixes; the needles were not r
   - mHC mixing weights in bf16 (`TF_DSV41_MHC_FN=bf16`): +2-5% prose, top-1 vs the kit 0.9963.
 - **Not bit-identical to the kit.** Different kernels and summation orders; the agreement is the top-1 row above.
 
+### Strict mode: every precision trade off
+
+The same engine and the G13 rewrites (which change no bits) with every knob that trades precision turned off:
+`TF_DSV41_EXPERT_TOPP=0` (no expert pruning), `EXPERT_RENORM=orig`, `MHC_FN=fp32`, `KIT_ROUNDING=0`, `LOGITS=fp32`,
+`INDEX_KV=bf16`, `PREFILL=full` (no bounded replay). The fast prefill GEMMs and the fused prefill attention stay on.
+Measured in G13, same build, same session ([`docs/campaign/G13-RESULTS.md`](docs/campaign/G13-RESULTS.md)):
+
+| | strict | production | kit | strict / kit |
+| --- | ---: | ---: | ---: | ---: |
+| Code, 1 stream, greedy | **76.9** | 82.8 | 41.9-45.0 | 1.71-1.83x |
+| Prose, 1 stream, greedy | **44.2** | 44.25 | 32.5 | 1.36x |
+| Structured, 1 stream, greedy | **111.9** | 117.8 | 38.0-50.2 | 2.24-2.95x |
+| 1 / 2 / 4 streams, decode aggregate | **79.0 / 64.0 / 89.5** | 85.1 / 70.3 / 96.6 | 32.2 / 46.7 / 37.6 | 2.45x / 1.37x / 2.38x |
+| Cold prefill 8K / 32K / 64K / 128K | **915 / 965 / 959 / 923** | (replay) 1,833-2,068 | 1,073 / 1,075 / 1,060 / 1,031 | **0.85-0.90x** |
+| Teacher-forced top-1 vs the kit | 0.9963 | 0.9961 | 1 | |
+
+Decode costs 5-9% against production (prose at T = 0 is level only because the strict reply drafts a little better on
+that prompt; at T = 0.7 it is -6.9%), and is still 1.4-2.9x the kit. Prefill without replay is below the kit. Strict
+MMLU and tool chains were not run.
+
 ### Where we are not at 2x
 
-Prose (1.26x) and 2 streams (1.44x). Prose drafts poorly: DSpark keeps ~1.6 tokens a round on prose against ~3.9 on
-code, so prose speed is the verify window's cost. A 1-row window is 26.9 ms against a bandwidth floor of ~17 ms a
-rank (the 2.9 bpw weights read once), and the second row costs ~6 ms more because a second token brings ~5 new
-experts a layer. 2 streams pair a code stream with a T = 0.7 prose stream, so the prose stream sets the pace.
+Prose (1.36x) and 2 streams (1.5x). Prose drafts poorly: DSpark keeps ~1.6 tokens a round on prose against ~3.8 on
+code, so prose speed is the verify window's cost. A 1-row window is ~23.4 ms since G13 (26.9 before) against a
+bandwidth floor of ~17 ms a rank (the 2.9 bpw weights read once), and the second row costs ~6 ms more because a
+second token brings ~5 new experts a layer. That is why G13's rewrites helped prose (+7.2%) far more than code (+1.3%:
+code verifies ~4.6 rows a round, where the savings are smaller). 2 streams pair a code stream with a T = 0.7 prose stream, so the prose stream sets the pace.
 [`docs/DECODE.md`](docs/DECODE.md) has the roofline and what was tried.
 
 ## Quick start
@@ -155,12 +183,14 @@ the MiaAI-Lab kit (`./start.sh pack`), which writes the same format; `--check` c
 **4. Build, check, start:**
 
 ```bash
-scripts/serve.sh build        # docker/Dockerfile: TensorFold v0.6.0 + patches/, shipped to the worker
+scripts/serve.sh build        # docker/Dockerfile: TensorFold v0.6.0 + patches/, shipped to the worker, then prebuild
 scripts/serve.sh preflight    # image on both nodes, weights, Engram shards, RoCE ports, free ports, idle GPUs
 scripts/serve.sh start        # memory gate, rank 1 then rank 0, /v1/models, slot check, canary
 ```
 
-The first start compiles the CUDA / Triton kernels into the `CACHE_VOL` volume and writes the prepared rank folders
+`build` ends with `scripts/serve.sh prebuild`: the CUDA extensions (15, the G13 kernels included) are compiled into
+the `CACHE_VOL` volume on both nodes with no weights loaded, so no extension is built beside the weights. Run it again
+after clearing the volume. The first start compiles the Triton kernels and writes the prepared rank folders
 (`TF_DSV41_PREPARED_WRITE=1`, ~95 GB a node, several minutes); later starts read them back in ~40 s. Then:
 
 ```bash
@@ -214,9 +244,8 @@ Dockerfile:
 | [`0001-spark-stack-060.patch`](patches/0001-spark-stack-060.patch) | the GLM-5.3-Flash two-Spark engine (`families/glm5_next/spark/`) rebased onto 0.6.0, the CUDA communicator interface (`cuda/comm.py`), the family `CUDA_SERVE` hook (`cli.py`, `families/glm5_next/__init__.py`), the server's descriptor fix (`server/cancellation.py`), packaging (`pyproject.toml`), recipes and tests |
 | [`0002-deepseek-v41-family.patch`](patches/0002-deepseek-v41-family.patch) | `families/deepseek_v41/` and its tests, the EXL3 linear's device-side skip (`cuda/exl3/linear.*`), fp64 in `cuda/comm.py`, `--kv-dtype fp8` (`cli_args.py`), model aliases in the GLM server, packaging, NOTICE entries |
 
-Together they are every engine change production runs (development commit `a6f5792`, 356 files over v0.6.0): applying
-them to v0.6.0 reproduces that tree except for reworded comments, a later test-only fix and the excluded
-draft-vocabulary files
+Together they are every engine change production runs (development commit `767ad9f`, 390 files over v0.6.0): applying
+them to v0.6.0 reproduces that tree except for reworded comments and the excluded draft-vocabulary files
 ([`docs/ENGINE.md`](docs/ENGINE.md) lists each difference).
 
 [`docs/ENGINE.md`](docs/ENGINE.md) explains how the patches were produced, how to get the same tree as a git branch,
@@ -230,8 +259,11 @@ TP=2 split.
   comes from the boot budget (the 4 x 300K KV pool) and the first segments' CUDA reservations, not from host growth
   (fixed in G12). Open. `CONTEXT=196608` lowers the exposure.
 - **Prose and 2 streams** are not at 2x (above).
-- **The speed table predates G12.** It was measured on `38f6500`; the current engine has the same decode kernels, so
-  no change is expected, but it has not been re-measured.
+- **Two G13 rewrites ship off.** The shortened decode MoE chain (`TF_DSV41_MOE_FUSED`) and the CSA2 indexer /
+  compressor on a side stream (`TF_DSV41_BRANCHES`) are exact but did not help: MOE_FUSED measured +0.7 ms on a 1-row
+  window, and BRANCHES left the 1-row window unstable between boots (26.2 / 31.5 ms, +2.25 ms on average). Both are in
+  the engine, default 0. The CUDA attention core in `TF_DSV41_ATTN_CUDA` is slower than Triton on its own and helps
+  only with the top-k beside it.
 - **`/health`** reports `drafted_total` / `accepted_total` as 0 for this family (the counters are not wired).
 - **Vision** is not wired for this family.
 - **No trimmed draft-head vocabulary is shipped** (`TF_DSV41_DRAFT_HEAD=trim`, off by default and not adopted). The
@@ -248,13 +280,14 @@ TP=2 split.
 | `patches/` | the engine changes ([`docs/ENGINE.md`](docs/ENGINE.md)) |
 | `docker/Dockerfile` | the image: NVIDIA PyTorch 26.07 + xgrammar + TensorFold with the patches |
 | `config/prod.env.example` | the measured configuration, with placeholders for your hosts and paths |
-| `scripts/serve.sh` | build / preflight / start / stop / status / watchdog / `run` (engine benchmarks on both ranks) |
+| `scripts/serve.sh` | build / prebuild / preflight / start / stop / status / watchdog / `run` (engine benchmarks on both ranks) |
+| `scripts/prebuild_ext.py` | builds every CUDA extension a rank loads (`scripts/serve.sh prebuild` runs it in the image on both nodes) |
 | `scripts/pack_engram.py` | the per-rank Engram shards from DeepSeek's checkpoint |
 | `scripts/canary.py`, `scripts/boot-start.sh`, `scripts/systemd/` | post-start canary, start at boot, watchdog units |
 | `scripts/check-public.sh` | the sanitizer this repository was checked with |
 | `bench/` | HTTP clients: quality (MMLU, needles), structured output, soak, stress, tool calling |
 | `docs/` | results, benchmark method, architecture, decode roofline and lessons, operations, the engine |
-| `results/` | the raw files behind the tables ([`results/README.md`](results/README.md)); `results/campaign/` every tracked result of the development windows G1-G12 |
+| `results/` | the raw files behind the tables ([`results/README.md`](results/README.md)); `results/campaign/` every tracked result of the development windows G1-G13 |
 | `docs/campaign/` | the development log: plans, targets, the landscape study, the results of every window ([`docs/campaign/README.md`](docs/campaign/README.md)) |
 | `engine/`, `tests/` | the development staging tree: the PyTorch reference model (the correctness oracle), the kernels and serving layer before they were ported into the TensorFold family, and their tests |
 | `scripts/campaign/` | analysis tools of the windows (nsys window / idle / skew breakdowns, summaries), the draft-vocabulary study tool, the porting script |
@@ -316,19 +349,23 @@ format (file-format facts), and implements DeepSeek's prompt encoding from DeepS
 
 ## Current focus
 
-**Fixed in G12** (engine `a6f5792`, [`docs/campaign/G12-RESULTS.md`](docs/campaign/G12-RESULTS.md)):
+**G13: decode kernel rewrites** (engine `767ad9f`, [`docs/campaign/G13-RESULTS.md`](docs/campaign/G13-RESULTS.md)).
+Five rewrites from the rewrite study ([`docs/campaign/REWRITE-PLAN.md`](docs/campaign/REWRITE-PLAN.md)), each behind
+a lever that defaults to 0, each exact (drafted == serial, same gate top-1). Three are on in the config:
 
-- **Host memory growth in long prompts.** torch's CPU allocator in NVIDIA's PyTorch build is an embedded mimalloc,
-  and it kept the memory of large blocks freed on another thread: a prompt segment's Engram rows, made on a prefetch
-  thread and freed on the round thread. The rows now live in reused NumPy-owned buffers. Growth per rank during a
-  299K prefill went from 4.1-5.6 GiB to ~0.7 GiB, and the 299K prefill takes 175 s (was 181-185 s).
-- **The 19-minute stall.** It was transparent-huge-page faults compacting memory synchronously under memory pressure,
-  not a hang. NumPy's huge-page request is off in the engine, and `MIMALLOC_ALLOW_THP=0` is in the config
-  (`scripts/serve.sh` passes `MIMALLOC_*` to both ranks). A stall watchdog and deadlines were added as a safety net.
-- **Fast-prefill segmentation dependence.** The RoPE tables are built in fixed blocks, so the segment split no longer
-  changes bits.
+- `TF_DSV41_MHC_CUDA`: an mHC boundary as one CUDA launch (1-row window -1.3 ms).
+- `TF_DSV41_ATTN_CUDA`: CSA2's decode attention core and the indexer's top-k in CUDA (-0.7 ms).
+- `TF_DSV41_DENSE_V3`: the dense EXL3 linears over a 16-byte-coalesced repack (-1.2 ms at 2-16 rows).
 
-**Still open:** the worker's boot-time memory floor of ~3-3.7 GiB in the stress, and the speed table, which has not
-been re-measured on `a6f5792` (the decode path is unchanged, so no change is expected).
+Together: the 1-token step 26.8 -> ~23.4-24.8 ms, prose +7.2% (44.25 tok/s), code +1.3% (82.8), C2 +3.9%, C4 +2.8%;
+gate top-1 0.9961, MMLU-200 87.5%, tool chains pass. `TF_DSV41_MOE_FUSED` and `TF_DSV41_BRANCHES` ship off (no
+gain, above). `scripts/serve.sh build` now prebuilds every CUDA extension, the new ones included.
 
-**Next:** the optimisation round, with engine and kernel rewrites.
+**Fixed in G12** (engine `a6f5792`, [`docs/campaign/G12-RESULTS.md`](docs/campaign/G12-RESULTS.md)): host memory
+growth in long prompts (torch's embedded mimalloc kept cross-thread frees; ~0.7 GiB a rank now, was 4.1-5.6), the
+19-minute stall (transparent-huge-page compaction; `MIMALLOC_ALLOW_THP=0`), and the fast-prefill segmentation
+dependence (RoPE tables in fixed blocks).
+
+**Still open:** the worker's boot-time memory floor of ~3-3.7 GiB in the stress; where MOE_FUSED's isolated gain goes
+inside the window graph (an nsys run); BRANCHES' slow boot; strict-mode MMLU and tool chains; the 2K anomaly and the
+~11% gap between HTTP and in-engine prefill in upstream's `prefill_cold`.

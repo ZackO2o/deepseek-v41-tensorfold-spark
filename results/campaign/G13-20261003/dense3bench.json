@@ -1,0 +1,2253 @@
+{
+ "rank": 0,
+ "layers": [
+  1,
+  2,
+  3,
+  20,
+  24
+ ],
+ "load_s": 0.6,
+ "shapes": {
+  "L1 x": {
+   "1": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 44.9,
+     "gbps": 127.6,
+     "warm_us": 15.4
+    },
+    "dense3 3,1": {
+     "us": 35.2,
+     "gbps": 162.8,
+     "warm_us": 14.5
+    },
+    "dense3 4,2": {
+     "us": 40.2,
+     "gbps": 142.7,
+     "warm_us": 16.8
+    }
+   },
+   "2": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 53.8,
+     "gbps": 106.6,
+     "warm_us": 15.5
+    },
+    "dense3 3,1": {
+     "us": 31.1,
+     "gbps": 184.6,
+     "warm_us": 14.5
+    },
+    "dense3 4,2": {
+     "us": 45.6,
+     "gbps": 125.9,
+     "warm_us": 17.4
+    }
+   },
+   "4": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 48.0,
+     "gbps": 119.4,
+     "warm_us": 16.2
+    },
+    "dense3 3,1": {
+     "us": 28.0,
+     "gbps": 205.1,
+     "warm_us": 14.9
+    },
+    "dense3 4,2": {
+     "us": 64.6,
+     "gbps": 88.8,
+     "warm_us": 19.3
+    }
+   },
+   "8": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 46.9,
+     "gbps": 122.3,
+     "warm_us": 18.2
+    },
+    "dense3 3,1": {
+     "us": 38.2,
+     "gbps": 150.0,
+     "warm_us": 17.1
+    },
+    "dense3 4,2": {
+     "us": 61.3,
+     "gbps": 93.6,
+     "warm_us": 21.4
+    }
+   },
+   "16": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 55.2,
+     "gbps": 104.0,
+     "warm_us": 22.1
+    },
+    "dense3 3,1": {
+     "us": 40.5,
+     "gbps": 141.5,
+     "warm_us": 20.8
+    },
+    "dense3 4,2": {
+     "us": 55.9,
+     "gbps": 102.5,
+     "warm_us": 25.6
+    }
+   }
+  },
+  "L1 q": {
+   "1": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 64.0,
+     "gbps": 204.7,
+     "warm_us": 27.4
+    },
+    "dense3 3,1": {
+     "us": 44.6,
+     "gbps": 294.0,
+     "warm_us": 24.5
+    },
+    "dense3 4,2": {
+     "us": 91.9,
+     "gbps": 142.6,
+     "warm_us": 27.2
+    }
+   },
+   "2": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 76.2,
+     "gbps": 172.0,
+     "warm_us": 27.6
+    },
+    "dense3 3,1": {
+     "us": 62.5,
+     "gbps": 209.8,
+     "warm_us": 24.6
+    },
+    "dense3 4,2": {
+     "us": 75.7,
+     "gbps": 173.2,
+     "warm_us": 28.9
+    }
+   },
+   "4": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 45.9,
+     "gbps": 285.4,
+     "warm_us": 28.1
+    },
+    "dense3 3,1": {
+     "us": 70.1,
+     "gbps": 186.9,
+     "warm_us": 24.8
+    },
+    "dense3 4,2": {
+     "us": 88.8,
+     "gbps": 147.5,
+     "warm_us": 31.8
+    }
+   },
+   "8": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 67.0,
+     "gbps": 195.7,
+     "warm_us": 29.4
+    },
+    "dense3 3,1": {
+     "us": 65.3,
+     "gbps": 200.7,
+     "warm_us": 25.8
+    },
+    "dense3 4,2": {
+     "us": 90.4,
+     "gbps": 145.0,
+     "warm_us": 33.5
+    }
+   },
+   "16": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 79.0,
+     "gbps": 165.9,
+     "warm_us": 32.8
+    },
+    "dense3 3,1": {
+     "us": 68.9,
+     "gbps": 190.2,
+     "warm_us": 29.2
+    },
+    "dense3 4,2": {
+     "us": 82.5,
+     "gbps": 158.9,
+     "warm_us": 37.7
+    }
+   }
+  },
+  "L1 o": {
+   "1": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 75.8,
+     "gbps": 138.3,
+     "warm_us": 23.7
+    },
+    "dense3 3,1": {
+     "us": 63.8,
+     "gbps": 164.3,
+     "warm_us": 20.6
+    },
+    "dense3 4,2": {
+     "us": 79.3,
+     "gbps": 132.2,
+     "warm_us": 24.1
+    }
+   },
+   "2": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 72.9,
+     "gbps": 143.8,
+     "warm_us": 24.0
+    },
+    "dense3 3,1": {
+     "us": 55.5,
+     "gbps": 188.9,
+     "warm_us": 20.8
+    },
+    "dense3 4,2": {
+     "us": 86.9,
+     "gbps": 120.7,
+     "warm_us": 26.2
+    }
+   },
+   "4": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 77.3,
+     "gbps": 135.6,
+     "warm_us": 25.1
+    },
+    "dense3 3,1": {
+     "us": 59.3,
+     "gbps": 176.8,
+     "warm_us": 21.3
+    },
+    "dense3 4,2": {
+     "us": 83.2,
+     "gbps": 126.0,
+     "warm_us": 30.5
+    }
+   },
+   "8": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 80.7,
+     "gbps": 130.0,
+     "warm_us": 28.5
+    },
+    "dense3 3,1": {
+     "us": 60.7,
+     "gbps": 172.7,
+     "warm_us": 24.5
+    },
+    "dense3 4,2": {
+     "us": 109.8,
+     "gbps": 95.5,
+     "warm_us": 33.4
+    }
+   },
+   "16": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 90.7,
+     "gbps": 115.6,
+     "warm_us": 33.0
+    },
+    "dense3 3,1": {
+     "us": 69.6,
+     "gbps": 150.6,
+     "warm_us": 29.7
+    },
+    "dense3 4,2": {
+     "us": 121.0,
+     "gbps": 86.7,
+     "warm_us": 40.6
+    }
+   }
+  },
+  "L1 wo_b": {
+   "1": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 57.1,
+     "gbps": 229.6,
+     "warm_us": 36.4
+    },
+    "dense3 3,1": {
+     "us": 63.5,
+     "gbps": 206.5,
+     "warm_us": 23.4
+    },
+    "dense3 4,2": {
+     "us": 88.8,
+     "gbps": 147.5,
+     "warm_us": 27.7
+    }
+   },
+   "2": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 69.4,
+     "gbps": 188.8,
+     "warm_us": 28.0
+    },
+    "dense3 3,1": {
+     "us": 49.1,
+     "gbps": 267.2,
+     "warm_us": 24.2
+    },
+    "dense3 4,2": {
+     "us": 92.4,
+     "gbps": 141.9,
+     "warm_us": 30.5
+    }
+   },
+   "4": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 74.5,
+     "gbps": 175.8,
+     "warm_us": 28.3
+    },
+    "dense3 3,1": {
+     "us": 67.0,
+     "gbps": 195.6,
+     "warm_us": 24.4
+    },
+    "dense3 4,2": {
+     "us": 75.0,
+     "gbps": 174.8,
+     "warm_us": 34.8
+    }
+   },
+   "8": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 47.6,
+     "gbps": 275.2,
+     "warm_us": 31.1
+    },
+    "dense3 3,1": {
+     "us": 95.5,
+     "gbps": 137.2,
+     "warm_us": 27.5
+    },
+    "dense3 4,2": {
+     "us": 101.2,
+     "gbps": 129.5,
+     "warm_us": 37.8
+    }
+   },
+   "16": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 85.6,
+     "gbps": 153.1,
+     "warm_us": 35.2
+    },
+    "dense3 3,1": {
+     "us": 70.9,
+     "gbps": 184.9,
+     "warm_us": 32.2
+    },
+    "dense3 4,2": {
+     "us": 100.6,
+     "gbps": 130.3,
+     "warm_us": 46.5
+    }
+   }
+  },
+  "L2 x4": {
+   "1": {
+    "mb": 9.01,
+    "x3seg": {
+     "us": 80.8,
+     "gbps": 111.6,
+     "warm_us": 23.4
+    },
+    "dense3 3,1": {
+     "us": 50.5,
+     "gbps": 178.5,
+     "warm_us": 20.3
+    },
+    "dense3 4,2": {
+     "us": 75.4,
+     "gbps": 119.5,
+     "warm_us": 22.9
+    }
+   },
+   "2": {
+    "mb": 9.01,
+    "x3seg": {
+     "us": 70.2,
+     "gbps": 128.3,
+     "warm_us": 23.8
+    },
+    "dense3 3,1": {
+     "us": 63.7,
+     "gbps": 141.5,
+     "warm_us": 20.6
+    },
+    "dense3 4,2": {
+     "us": 70.0,
+     "gbps": 128.8,
+     "warm_us": 24.0
+    }
+   },
+   "4": {
+    "mb": 9.01,
+    "x3seg": {
+     "us": 73.2,
+     "gbps": 123.0,
+     "warm_us": 25.1
+    },
+    "dense3 3,1": {
+     "us": 51.8,
+     "gbps": 174.0,
+     "warm_us": 21.3
+    },
+    "dense3 4,2": {
+     "us": 86.6,
+     "gbps": 104.0,
+     "warm_us": 25.8
+    }
+   },
+   "8": {
+    "mb": 9.01,
+    "x3seg": {
+     "us": 83.2,
+     "gbps": 108.3,
+     "warm_us": 27.7
+    },
+    "dense3 3,1": {
+     "us": 59.7,
+     "gbps": 150.9,
+     "warm_us": 24.0
+    },
+    "dense3 4,2": {
+     "us": 75.5,
+     "gbps": 119.3,
+     "warm_us": 28.4
+    }
+   },
+   "16": {
+    "mb": 9.01,
+    "x3seg": {
+     "us": 84.8,
+     "gbps": 106.2,
+     "warm_us": 33.5
+    },
+    "dense3 3,1": {
+     "us": 77.8,
+     "gbps": 115.8,
+     "warm_us": 29.2
+    },
+    "dense3 4,2": {
+     "us": 87.8,
+     "gbps": 102.6,
+     "warm_us": 34.1
+    }
+   }
+  },
+  "L2 q+ix": {
+   "1": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 84.8,
+     "gbps": 193.3,
+     "warm_us": 37.5
+    },
+    "dense3 3,1": {
+     "us": 78.3,
+     "gbps": 209.1,
+     "warm_us": 30.2
+    },
+    "dense3 4,2": {
+     "us": 80.3,
+     "gbps": 204.1,
+     "warm_us": 32.3
+    }
+   },
+   "2": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 61.2,
+     "gbps": 267.8,
+     "warm_us": 37.7
+    },
+    "dense3 3,1": {
+     "us": 78.9,
+     "gbps": 207.5,
+     "warm_us": 31.0
+    },
+    "dense3 4,2": {
+     "us": 100.9,
+     "gbps": 162.4,
+     "warm_us": 33.8
+    }
+   },
+   "4": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 85.4,
+     "gbps": 191.8,
+     "warm_us": 38.1
+    },
+    "dense3 3,1": {
+     "us": 62.9,
+     "gbps": 260.6,
+     "warm_us": 31.7
+    },
+    "dense3 4,2": {
+     "us": 102.2,
+     "gbps": 160.4,
+     "warm_us": 38.2
+    }
+   },
+   "8": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 89.3,
+     "gbps": 183.6,
+     "warm_us": 42.4
+    },
+    "dense3 3,1": {
+     "us": 81.2,
+     "gbps": 201.9,
+     "warm_us": 32.0
+    },
+    "dense3 4,2": {
+     "us": 106.6,
+     "gbps": 153.7,
+     "warm_us": 47.5
+    }
+   },
+   "16": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 61.8,
+     "gbps": 265.0,
+     "warm_us": 47.9
+    },
+    "dense3 3,1": {
+     "us": 110.5,
+     "gbps": 148.2,
+     "warm_us": 37.7
+    },
+    "dense3 4,2": {
+     "us": 111.4,
+     "gbps": 147.0,
+     "warm_us": 45.2
+    }
+   }
+  },
+  "L2 o": {
+   "1": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 70.9,
+     "gbps": 147.9,
+     "warm_us": 22.9
+    },
+    "dense3 3,1": {
+     "us": 54.1,
+     "gbps": 193.7,
+     "warm_us": 20.5
+    },
+    "dense3 4,2": {
+     "us": 94.9,
+     "gbps": 110.5,
+     "warm_us": 24.1
+    }
+   },
+   "2": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 86.0,
+     "gbps": 121.9,
+     "warm_us": 23.2
+    },
+    "dense3 3,1": {
+     "us": 56.0,
+     "gbps": 187.3,
+     "warm_us": 20.9
+    },
+    "dense3 4,2": {
+     "us": 79.8,
+     "gbps": 131.4,
+     "warm_us": 26.2
+    }
+   },
+   "4": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 73.8,
+     "gbps": 142.0,
+     "warm_us": 24.3
+    },
+    "dense3 3,1": {
+     "us": 73.1,
+     "gbps": 143.4,
+     "warm_us": 21.3
+    },
+    "dense3 4,2": {
+     "us": 80.5,
+     "gbps": 130.3,
+     "warm_us": 30.0
+    }
+   },
+   "8": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 82.3,
+     "gbps": 127.4,
+     "warm_us": 27.2
+    },
+    "dense3 3,1": {
+     "us": 60.1,
+     "gbps": 174.5,
+     "warm_us": 24.4
+    },
+    "dense3 4,2": {
+     "us": 99.4,
+     "gbps": 105.5,
+     "warm_us": 33.3
+    }
+   },
+   "16": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 107.1,
+     "gbps": 97.9,
+     "warm_us": 33.5
+    },
+    "dense3 3,1": {
+     "us": 71.8,
+     "gbps": 146.0,
+     "warm_us": 29.5
+    },
+    "dense3 4,2": {
+     "us": 82.7,
+     "gbps": 126.8,
+     "warm_us": 48.1
+    }
+   }
+  },
+  "L2 wo_b": {
+   "1": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 73.3,
+     "gbps": 178.8,
+     "warm_us": 25.5
+    },
+    "dense3 3,1": {
+     "us": 45.3,
+     "gbps": 289.2,
+     "warm_us": 24.6
+    },
+    "dense3 4,2": {
+     "us": 110.9,
+     "gbps": 118.2,
+     "warm_us": 27.3
+    }
+   },
+   "2": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 74.1,
+     "gbps": 176.9,
+     "warm_us": 25.8
+    },
+    "dense3 3,1": {
+     "us": 67.1,
+     "gbps": 195.3,
+     "warm_us": 23.7
+    },
+    "dense3 4,2": {
+     "us": 89.8,
+     "gbps": 146.0,
+     "warm_us": 30.4
+    }
+   },
+   "4": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 63.7,
+     "gbps": 205.6,
+     "warm_us": 26.1
+    },
+    "dense3 3,1": {
+     "us": 70.3,
+     "gbps": 186.5,
+     "warm_us": 24.1
+    },
+    "dense3 4,2": {
+     "us": 91.1,
+     "gbps": 143.9,
+     "warm_us": 34.2
+    }
+   },
+   "8": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 74.1,
+     "gbps": 177.0,
+     "warm_us": 30.5
+    },
+    "dense3 3,1": {
+     "us": 63.4,
+     "gbps": 206.7,
+     "warm_us": 26.8
+    },
+    "dense3 4,2": {
+     "us": 99.7,
+     "gbps": 131.4,
+     "warm_us": 37.3
+    }
+   },
+   "16": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 88.1,
+     "gbps": 148.7,
+     "warm_us": 35.2
+    },
+    "dense3 3,1": {
+     "us": 83.1,
+     "gbps": 157.8,
+     "warm_us": 32.0
+    },
+    "dense3 4,2": {
+     "us": 130.7,
+     "gbps": 100.3,
+     "warm_us": 44.1
+    }
+   }
+  },
+  "L3 x": {
+   "1": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 30.6,
+     "gbps": 187.3,
+     "warm_us": 15.4
+    },
+    "dense3 3,1": {
+     "us": 46.6,
+     "gbps": 123.2,
+     "warm_us": 14.3
+    },
+    "dense3 4,2": {
+     "us": 45.3,
+     "gbps": 126.7,
+     "warm_us": 16.6
+    }
+   },
+   "2": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 48.1,
+     "gbps": 119.2,
+     "warm_us": 15.5
+    },
+    "dense3 3,1": {
+     "us": 33.2,
+     "gbps": 172.6,
+     "warm_us": 14.5
+    },
+    "dense3 4,2": {
+     "us": 57.4,
+     "gbps": 99.9,
+     "warm_us": 17.5
+    }
+   },
+   "4": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 61.7,
+     "gbps": 92.9,
+     "warm_us": 16.2
+    },
+    "dense3 3,1": {
+     "us": 35.5,
+     "gbps": 161.7,
+     "warm_us": 14.9
+    },
+    "dense3 4,2": {
+     "us": 44.0,
+     "gbps": 130.3,
+     "warm_us": 19.4
+    }
+   },
+   "8": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 49.9,
+     "gbps": 114.9,
+     "warm_us": 18.1
+    },
+    "dense3 3,1": {
+     "us": 52.4,
+     "gbps": 109.3,
+     "warm_us": 17.0
+    },
+    "dense3 4,2": {
+     "us": 49.1,
+     "gbps": 116.8,
+     "warm_us": 21.5
+    }
+   },
+   "16": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 51.9,
+     "gbps": 110.5,
+     "warm_us": 22.1
+    },
+    "dense3 3,1": {
+     "us": 43.1,
+     "gbps": 133.1,
+     "warm_us": 20.7
+    },
+    "dense3 4,2": {
+     "us": 54.6,
+     "gbps": 105.0,
+     "warm_us": 25.8
+    }
+   }
+  },
+  "L3 q": {
+   "1": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 63.2,
+     "gbps": 207.5,
+     "warm_us": 27.4
+    },
+    "dense3 3,1": {
+     "us": 61.9,
+     "gbps": 211.6,
+     "warm_us": 24.4
+    },
+    "dense3 4,2": {
+     "us": 85.2,
+     "gbps": 153.9,
+     "warm_us": 26.8
+    }
+   },
+   "2": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 65.9,
+     "gbps": 198.8,
+     "warm_us": 27.6
+    },
+    "dense3 3,1": {
+     "us": 56.9,
+     "gbps": 230.5,
+     "warm_us": 24.5
+    },
+    "dense3 4,2": {
+     "us": 106.8,
+     "gbps": 122.7,
+     "warm_us": 28.3
+    }
+   },
+   "4": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 66.3,
+     "gbps": 197.6,
+     "warm_us": 28.0
+    },
+    "dense3 3,1": {
+     "us": 67.7,
+     "gbps": 193.6,
+     "warm_us": 24.8
+    },
+    "dense3 4,2": {
+     "us": 81.0,
+     "gbps": 161.8,
+     "warm_us": 31.7
+    }
+   },
+   "8": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 57.8,
+     "gbps": 227.0,
+     "warm_us": 29.4
+    },
+    "dense3 3,1": {
+     "us": 65.1,
+     "gbps": 201.5,
+     "warm_us": 25.8
+    },
+    "dense3 4,2": {
+     "us": 90.2,
+     "gbps": 145.3,
+     "warm_us": 33.0
+    }
+   },
+   "16": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 71.3,
+     "gbps": 183.8,
+     "warm_us": 32.8
+    },
+    "dense3 3,1": {
+     "us": 63.9,
+     "gbps": 205.2,
+     "warm_us": 28.9
+    },
+    "dense3 4,2": {
+     "us": 95.1,
+     "gbps": 137.8,
+     "warm_us": 37.3
+    }
+   }
+  },
+  "L3 o": {
+   "1": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 83.1,
+     "gbps": 126.1,
+     "warm_us": 22.9
+    },
+    "dense3 3,1": {
+     "us": 52.6,
+     "gbps": 199.2,
+     "warm_us": 20.5
+    },
+    "dense3 4,2": {
+     "us": 73.8,
+     "gbps": 142.0,
+     "warm_us": 28.8
+    }
+   },
+   "2": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 54.4,
+     "gbps": 192.9,
+     "warm_us": 23.2
+    },
+    "dense3 3,1": {
+     "us": 61.2,
+     "gbps": 171.3,
+     "warm_us": 20.9
+    },
+    "dense3 4,2": {
+     "us": 81.3,
+     "gbps": 129.0,
+     "warm_us": 26.0
+    }
+   },
+   "4": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 77.2,
+     "gbps": 135.9,
+     "warm_us": 24.4
+    },
+    "dense3 3,1": {
+     "us": 56.3,
+     "gbps": 186.1,
+     "warm_us": 22.6
+    },
+    "dense3 4,2": {
+     "us": 85.9,
+     "gbps": 122.1,
+     "warm_us": 30.3
+    }
+   },
+   "8": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 96.3,
+     "gbps": 108.9,
+     "warm_us": 27.2
+    },
+    "dense3 3,1": {
+     "us": 60.9,
+     "gbps": 172.0,
+     "warm_us": 24.4
+    },
+    "dense3 4,2": {
+     "us": 66.9,
+     "gbps": 156.8,
+     "warm_us": 33.1
+    }
+   },
+   "16": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 90.9,
+     "gbps": 115.3,
+     "warm_us": 32.8
+    },
+    "dense3 3,1": {
+     "us": 82.3,
+     "gbps": 127.5,
+     "warm_us": 29.5
+    },
+    "dense3 4,2": {
+     "us": 96.0,
+     "gbps": 109.2,
+     "warm_us": 39.5
+    }
+   }
+  },
+  "L3 wo_b": {
+   "1": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 71.1,
+     "gbps": 184.3,
+     "warm_us": 25.5
+    },
+    "dense3 3,1": {
+     "us": 67.0,
+     "gbps": 195.7,
+     "warm_us": 23.4
+    },
+    "dense3 4,2": {
+     "us": 103.8,
+     "gbps": 126.3,
+     "warm_us": 27.4
+    }
+   },
+   "2": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 71.9,
+     "gbps": 182.3,
+     "warm_us": 25.7
+    },
+    "dense3 3,1": {
+     "us": 68.5,
+     "gbps": 191.3,
+     "warm_us": 23.7
+    },
+    "dense3 4,2": {
+     "us": 94.9,
+     "gbps": 138.1,
+     "warm_us": 30.2
+    }
+   },
+   "4": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 75.8,
+     "gbps": 172.9,
+     "warm_us": 26.1
+    },
+    "dense3 3,1": {
+     "us": 69.8,
+     "gbps": 187.9,
+     "warm_us": 24.1
+    },
+    "dense3 4,2": {
+     "us": 115.6,
+     "gbps": 113.4,
+     "warm_us": 34.5
+    }
+   },
+   "8": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 78.6,
+     "gbps": 166.7,
+     "warm_us": 28.4
+    },
+    "dense3 3,1": {
+     "us": 75.5,
+     "gbps": 173.7,
+     "warm_us": 26.8
+    },
+    "dense3 4,2": {
+     "us": 116.3,
+     "gbps": 112.7,
+     "warm_us": 37.2
+    }
+   },
+   "16": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 89.5,
+     "gbps": 146.5,
+     "warm_us": 33.1
+    },
+    "dense3 3,1": {
+     "us": 83.5,
+     "gbps": 157.0,
+     "warm_us": 32.7
+    },
+    "dense3 4,2": {
+     "us": 111.6,
+     "gbps": 117.4,
+     "warm_us": 44.0
+    }
+   }
+  },
+  "L20 x4": {
+   "1": {
+    "mb": 7.37,
+    "x3seg": {
+     "us": 59.1,
+     "gbps": 124.7,
+     "warm_us": 17.6
+    },
+    "dense3 3,1": {
+     "us": 23.7,
+     "gbps": 311.1,
+     "warm_us": 16.8
+    },
+    "dense3 4,2": {
+     "us": 62.6,
+     "gbps": 117.9,
+     "warm_us": 19.5
+    }
+   },
+   "2": {
+    "mb": 7.37,
+    "x3seg": {
+     "us": 64.9,
+     "gbps": 113.5,
+     "warm_us": 18.0
+    },
+    "dense3 3,1": {
+     "us": 43.7,
+     "gbps": 168.7,
+     "warm_us": 17.1
+    },
+    "dense3 4,2": {
+     "us": 44.2,
+     "gbps": 166.9,
+     "warm_us": 20.5
+    }
+   },
+   "4": {
+    "mb": 7.37,
+    "x3seg": {
+     "us": 34.9,
+     "gbps": 211.4,
+     "warm_us": 19.1
+    },
+    "dense3 3,1": {
+     "us": 67.3,
+     "gbps": 109.6,
+     "warm_us": 17.4
+    },
+    "dense3 4,2": {
+     "us": 62.0,
+     "gbps": 119.0,
+     "warm_us": 23.0
+    }
+   },
+   "8": {
+    "mb": 7.37,
+    "x3seg": {
+     "us": 63.8,
+     "gbps": 115.6,
+     "warm_us": 21.1
+    },
+    "dense3 3,1": {
+     "us": 35.4,
+     "gbps": 208.6,
+     "warm_us": 19.6
+    },
+    "dense3 4,2": {
+     "us": 63.6,
+     "gbps": 115.9,
+     "warm_us": 25.0
+    }
+   },
+   "16": {
+    "mb": 7.37,
+    "x3seg": {
+     "us": 73.5,
+     "gbps": 100.3,
+     "warm_us": 25.5
+    },
+    "dense3 3,1": {
+     "us": 49.2,
+     "gbps": 150.0,
+     "warm_us": 23.8
+    },
+    "dense3 4,2": {
+     "us": 67.0,
+     "gbps": 110.1,
+     "warm_us": 30.1
+    }
+   }
+  },
+  "L20 q+ix": {
+   "1": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 85.0,
+     "gbps": 192.7,
+     "warm_us": 43.4
+    },
+    "dense3 3,1": {
+     "us": 90.9,
+     "gbps": 180.2,
+     "warm_us": 32.0
+    },
+    "dense3 4,2": {
+     "us": 101.3,
+     "gbps": 161.8,
+     "warm_us": 31.7
+    }
+   },
+   "2": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 85.7,
+     "gbps": 191.3,
+     "warm_us": 43.6
+    },
+    "dense3 3,1": {
+     "us": 78.8,
+     "gbps": 208.0,
+     "warm_us": 32.0
+    },
+    "dense3 4,2": {
+     "us": 114.5,
+     "gbps": 143.0,
+     "warm_us": 33.5
+    }
+   },
+   "4": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 92.5,
+     "gbps": 177.1,
+     "warm_us": 44.1
+    },
+    "dense3 3,1": {
+     "us": 80.4,
+     "gbps": 203.9,
+     "warm_us": 32.4
+    },
+    "dense3 4,2": {
+     "us": 102.2,
+     "gbps": 160.3,
+     "warm_us": 38.1
+    }
+   },
+   "8": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 89.4,
+     "gbps": 183.2,
+     "warm_us": 46.3
+    },
+    "dense3 3,1": {
+     "us": 87.5,
+     "gbps": 187.1,
+     "warm_us": 33.7
+    },
+    "dense3 4,2": {
+     "us": 125.2,
+     "gbps": 130.9,
+     "warm_us": 39.5
+    }
+   },
+   "16": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 94.8,
+     "gbps": 172.9,
+     "warm_us": 49.4
+    },
+    "dense3 3,1": {
+     "us": 89.4,
+     "gbps": 183.4,
+     "warm_us": 37.7
+    },
+    "dense3 4,2": {
+     "us": 114.1,
+     "gbps": 143.6,
+     "warm_us": 45.0
+    }
+   }
+  },
+  "L20 o": {
+   "1": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 54.5,
+     "gbps": 192.6,
+     "warm_us": 22.9
+    },
+    "dense3 3,1": {
+     "us": 53.6,
+     "gbps": 195.6,
+     "warm_us": 20.6
+    },
+    "dense3 4,2": {
+     "us": 81.3,
+     "gbps": 129.0,
+     "warm_us": 24.0
+    }
+   },
+   "2": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 76.3,
+     "gbps": 137.5,
+     "warm_us": 23.2
+    },
+    "dense3 3,1": {
+     "us": 26.3,
+     "gbps": 398.7,
+     "warm_us": 20.9
+    },
+    "dense3 4,2": {
+     "us": 78.1,
+     "gbps": 134.2,
+     "warm_us": 26.0
+    }
+   },
+   "4": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 81.0,
+     "gbps": 129.4,
+     "warm_us": 24.4
+    },
+    "dense3 3,1": {
+     "us": 52.0,
+     "gbps": 201.8,
+     "warm_us": 21.3
+    },
+    "dense3 4,2": {
+     "us": 70.5,
+     "gbps": 148.8,
+     "warm_us": 30.3
+    }
+   },
+   "8": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 50.3,
+     "gbps": 208.3,
+     "warm_us": 27.3
+    },
+    "dense3 3,1": {
+     "us": 82.8,
+     "gbps": 126.6,
+     "warm_us": 24.4
+    },
+    "dense3 4,2": {
+     "us": 91.2,
+     "gbps": 115.0,
+     "warm_us": 33.2
+    }
+   },
+   "16": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 89.5,
+     "gbps": 117.1,
+     "warm_us": 32.7
+    },
+    "dense3 3,1": {
+     "us": 56.7,
+     "gbps": 184.8,
+     "warm_us": 29.8
+    },
+    "dense3 4,2": {
+     "us": 79.6,
+     "gbps": 131.7,
+     "warm_us": 39.5
+    }
+   }
+  },
+  "L20 wo_b": {
+   "1": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 83.8,
+     "gbps": 156.4,
+     "warm_us": 25.5
+    },
+    "dense3 3,1": {
+     "us": 65.3,
+     "gbps": 200.7,
+     "warm_us": 23.4
+    },
+    "dense3 4,2": {
+     "us": 91.7,
+     "gbps": 143.0,
+     "warm_us": 27.0
+    }
+   },
+   "2": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 69.2,
+     "gbps": 189.3,
+     "warm_us": 25.7
+    },
+    "dense3 3,1": {
+     "us": 81.2,
+     "gbps": 161.3,
+     "warm_us": 23.6
+    },
+    "dense3 4,2": {
+     "us": 92.3,
+     "gbps": 142.1,
+     "warm_us": 30.2
+    }
+   },
+   "4": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 75.0,
+     "gbps": 174.7,
+     "warm_us": 26.1
+    },
+    "dense3 3,1": {
+     "us": 70.2,
+     "gbps": 186.6,
+     "warm_us": 24.0
+    },
+    "dense3 4,2": {
+     "us": 116.0,
+     "gbps": 113.0,
+     "warm_us": 33.9
+    }
+   },
+   "8": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 94.7,
+     "gbps": 138.4,
+     "warm_us": 30.2
+    },
+    "dense3 3,1": {
+     "us": 75.5,
+     "gbps": 173.6,
+     "warm_us": 26.9
+    },
+    "dense3 4,2": {
+     "us": 98.0,
+     "gbps": 133.8,
+     "warm_us": 37.2
+    }
+   },
+   "16": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 89.2,
+     "gbps": 147.0,
+     "warm_us": 34.5
+    },
+    "dense3 3,1": {
+     "us": 92.7,
+     "gbps": 141.5,
+     "warm_us": 32.5
+    },
+    "dense3 4,2": {
+     "us": 111.6,
+     "gbps": 117.4,
+     "warm_us": 43.9
+    }
+   }
+  },
+  "L24 x": {
+   "1": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 45.1,
+     "gbps": 127.1,
+     "warm_us": 15.4
+    },
+    "dense3 3,1": {
+     "us": 32.9,
+     "gbps": 174.4,
+     "warm_us": 14.5
+    },
+    "dense3 4,2": {
+     "us": 28.4,
+     "gbps": 201.9,
+     "warm_us": 16.8
+    }
+   },
+   "2": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 28.4,
+     "gbps": 201.9,
+     "warm_us": 15.5
+    },
+    "dense3 3,1": {
+     "us": 35.5,
+     "gbps": 161.4,
+     "warm_us": 14.5
+    },
+    "dense3 4,2": {
+     "us": 46.2,
+     "gbps": 124.2,
+     "warm_us": 17.6
+    }
+   },
+   "4": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 46.7,
+     "gbps": 122.7,
+     "warm_us": 16.2
+    },
+    "dense3 3,1": {
+     "us": 14.1,
+     "gbps": 405.6,
+     "warm_us": 14.9
+    },
+    "dense3 4,2": {
+     "us": 48.7,
+     "gbps": 117.8,
+     "warm_us": 19.4
+    }
+   },
+   "8": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 47.8,
+     "gbps": 120.1,
+     "warm_us": 18.2
+    },
+    "dense3 3,1": {
+     "us": 34.7,
+     "gbps": 165.0,
+     "warm_us": 17.0
+    },
+    "dense3 4,2": {
+     "us": 39.0,
+     "gbps": 147.2,
+     "warm_us": 21.5
+    }
+   },
+   "16": {
+    "mb": 5.73,
+    "x3seg": {
+     "us": 26.9,
+     "gbps": 213.0,
+     "warm_us": 22.1
+    },
+    "dense3 3,1": {
+     "us": 61.0,
+     "gbps": 94.1,
+     "warm_us": 20.8
+    },
+    "dense3 4,2": {
+     "us": 54.9,
+     "gbps": 104.4,
+     "warm_us": 25.7
+    }
+   }
+  },
+  "L24 q+ix": {
+   "1": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 86.6,
+     "gbps": 189.2,
+     "warm_us": 41.8
+    },
+    "dense3 3,1": {
+     "us": 80.5,
+     "gbps": 203.6,
+     "warm_us": 30.3
+    },
+    "dense3 4,2": {
+     "us": 125.3,
+     "gbps": 130.7,
+     "warm_us": 32.2
+    }
+   },
+   "2": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 103.9,
+     "gbps": 157.7,
+     "warm_us": 41.9
+    },
+    "dense3 3,1": {
+     "us": 82.4,
+     "gbps": 198.9,
+     "warm_us": 30.3
+    },
+    "dense3 4,2": {
+     "us": 102.7,
+     "gbps": 159.6,
+     "warm_us": 33.8
+    }
+   },
+   "4": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 87.9,
+     "gbps": 186.3,
+     "warm_us": 44.2
+    },
+    "dense3 3,1": {
+     "us": 96.4,
+     "gbps": 169.9,
+     "warm_us": 30.7
+    },
+    "dense3 4,2": {
+     "us": 104.1,
+     "gbps": 157.3,
+     "warm_us": 38.7
+    }
+   },
+   "8": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 90.7,
+     "gbps": 180.6,
+     "warm_us": 43.8
+    },
+    "dense3 3,1": {
+     "us": 83.1,
+     "gbps": 197.2,
+     "warm_us": 32.0
+    },
+    "dense3 4,2": {
+     "us": 109.2,
+     "gbps": 150.0,
+     "warm_us": 40.9
+    }
+   },
+   "16": {
+    "mb": 16.38,
+    "x3seg": {
+     "us": 119.8,
+     "gbps": 136.8,
+     "warm_us": 44.2
+    },
+    "dense3 3,1": {
+     "us": 90.1,
+     "gbps": 181.8,
+     "warm_us": 37.2
+    },
+    "dense3 4,2": {
+     "us": 99.9,
+     "gbps": 164.0,
+     "warm_us": 44.6
+    }
+   }
+  },
+  "L24 o": {
+   "1": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 73.7,
+     "gbps": 142.2,
+     "warm_us": 23.0
+    },
+    "dense3 3,1": {
+     "us": 38.7,
+     "gbps": 270.7,
+     "warm_us": 20.6
+    },
+    "dense3 4,2": {
+     "us": 98.1,
+     "gbps": 106.9,
+     "warm_us": 24.4
+    }
+   },
+   "2": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 74.4,
+     "gbps": 140.9,
+     "warm_us": 23.3
+    },
+    "dense3 3,1": {
+     "us": 56.4,
+     "gbps": 185.9,
+     "warm_us": 20.9
+    },
+    "dense3 4,2": {
+     "us": 81.3,
+     "gbps": 129.0,
+     "warm_us": 26.3
+    }
+   },
+   "4": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 69.2,
+     "gbps": 151.6,
+     "warm_us": 24.4
+    },
+    "dense3 3,1": {
+     "us": 57.9,
+     "gbps": 181.0,
+     "warm_us": 21.4
+    },
+    "dense3 4,2": {
+     "us": 82.6,
+     "gbps": 126.9,
+     "warm_us": 30.2
+    }
+   },
+   "8": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 82.3,
+     "gbps": 127.4,
+     "warm_us": 27.2
+    },
+    "dense3 3,1": {
+     "us": 57.3,
+     "gbps": 183.0,
+     "warm_us": 24.5
+    },
+    "dense3 4,2": {
+     "us": 94.7,
+     "gbps": 110.7,
+     "warm_us": 33.5
+    }
+   },
+   "16": {
+    "mb": 10.49,
+    "x3seg": {
+     "us": 89.0,
+     "gbps": 117.8,
+     "warm_us": 32.7
+    },
+    "dense3 3,1": {
+     "us": 71.7,
+     "gbps": 146.2,
+     "warm_us": 29.5
+    },
+    "dense3 4,2": {
+     "us": 112.5,
+     "gbps": 93.2,
+     "warm_us": 39.8
+    }
+   }
+  },
+  "L24 wo_b": {
+   "1": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 49.6,
+     "gbps": 264.3,
+     "warm_us": 26.4
+    },
+    "dense3 3,1": {
+     "us": 77.5,
+     "gbps": 169.0,
+     "warm_us": 23.4
+    },
+    "dense3 4,2": {
+     "us": 90.5,
+     "gbps": 144.8,
+     "warm_us": 27.1
+    }
+   },
+   "2": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 69.5,
+     "gbps": 188.7,
+     "warm_us": 25.7
+    },
+    "dense3 3,1": {
+     "us": 64.2,
+     "gbps": 204.2,
+     "warm_us": 23.6
+    },
+    "dense3 4,2": {
+     "us": 101.5,
+     "gbps": 129.1,
+     "warm_us": 29.6
+    }
+   },
+   "4": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 92.7,
+     "gbps": 141.3,
+     "warm_us": 26.2
+    },
+    "dense3 3,1": {
+     "us": 68.6,
+     "gbps": 191.1,
+     "warm_us": 24.0
+    },
+    "dense3 4,2": {
+     "us": 81.1,
+     "gbps": 161.5,
+     "warm_us": 34.0
+    }
+   },
+   "8": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 75.3,
+     "gbps": 174.0,
+     "warm_us": 28.4
+    },
+    "dense3 3,1": {
+     "us": 92.9,
+     "gbps": 141.2,
+     "warm_us": 26.8
+    },
+    "dense3 4,2": {
+     "us": 97.9,
+     "gbps": 133.9,
+     "warm_us": 37.1
+    }
+   },
+   "16": {
+    "mb": 13.11,
+    "x3seg": {
+     "us": 85.0,
+     "gbps": 154.2,
+     "warm_us": 33.0
+    },
+    "dense3 3,1": {
+     "us": 82.1,
+     "gbps": 159.6,
+     "warm_us": 33.8
+    },
+    "dense3 4,2": {
+     "us": 114.1,
+     "gbps": 114.9,
+     "warm_us": 43.5
+    }
+   }
+  }
+ },
+ "bitwise": true,
+ "row_invariant": true,
+ "minb": [
+  "3,1",
+  "4,2"
+ ],
+ "repacked": 46,
+ "window": {
+  "lines": [
+   "R=1 MINB 3,1: GB/s a class (x3seg->dense3) x 143->150, x4 117->221, q 206->246, q+ix 192->197, o 147->200, wo_b 196->206; attention dense -1.44 ms a window (cold, the window's launches)",
+   "R=1 MINB 4,2: GB/s a class (x3seg->dense3) x 143->151, x4 117->119, q 206->148, q+ix 192->160, o 147->123, wo_b 196->135; attention dense +2.61 ms a window (cold, the window's launches)",
+   "R=2 MINB 3,1: GB/s a class (x3seg->dense3) x 132->172, x4 121->153, q 185->220, q+ix 196->205, o 144->205, wo_b 185->199; attention dense -1.87 ms a window (cold, the window's launches)",
+   "R=2 MINB 4,2: GB/s a class (x3seg->dense3) x 132->115, x4 121->143, q 185->144, q+ix 196->154, o 144->129, wo_b 185->139; attention dense +2.29 ms a window (cold, the window's launches)",
+   "R=4 MINB 3,1: GB/s a class (x3seg->dense3) x 110->222, x4 152->138, q 234->190, q+ix 185->205, o 139->176, wo_b 172->190; attention dense -1.51 ms a window (cold, the window's launches)",
+   "R=4 MINB 4,2: GB/s a class (x3seg->dense3) x 110->109, x4 152->110, q 234->154, q+ix 185->159, o 139->130, wo_b 172->137; attention dense +2.10 ms a window (cold, the window's launches)",
+   "R=8 MINB 3,1: GB/s a class (x3seg->dense3) x 119->137, x4 111->172, q 210->201, q+ix 182->195, o 134->163, wo_b 177->163; attention dense -0.59 ms a window (cold, the window's launches)",
+   "R=8 MINB 4,2: GB/s a class (x3seg->dense3) x 119->115, x4 111->118, q 210->145, q+ix 182->144, o 134->114, wo_b 177->128; attention dense +2.83 ms a window (cold, the window's launches)",
+   "R=16 MINB 3,1: GB/s a class (x3seg->dense3) x 128->119, x4 103->129, q 174->197, q+ix 178->169, o 112->149, wo_b 150->159; attention dense -1.30 ms a window (cold, the window's launches)",
+   "R=16 MINB 4,2: GB/s a class (x3seg->dense3) x 128->104, x4 103->106, q 174->148, q+ix 178->151, o 112->107, wo_b 150->115; attention dense +2.18 ms a window (cold, the window's launches)"
+  ],
+  "classes": {
+   "x R=1 dense3 3,1": {
+    "x3seg_us": 40.2,
+    "dense3_us": 38.2,
+    "x3seg_gbps": 142.5,
+    "dense3_gbps": 149.9
+   },
+   "x4 R=1 dense3 3,1": {
+    "x3seg_us": 70.0,
+    "dense3_us": 37.1,
+    "x3seg_gbps": 117.1,
+    "dense3_gbps": 220.8
+   },
+   "q R=1 dense3 3,1": {
+    "x3seg_us": 63.6,
+    "dense3_us": 53.2,
+    "x3seg_gbps": 206.1,
+    "dense3_gbps": 246.2
+   },
+   "q+ix R=1 dense3 3,1": {
+    "x3seg_us": 85.5,
+    "dense3_us": 83.2,
+    "x3seg_gbps": 191.7,
+    "dense3_gbps": 196.8
+   },
+   "o R=1 dense3 3,1": {
+    "x3seg_us": 71.6,
+    "dense3_us": 52.6,
+    "x3seg_gbps": 146.5,
+    "dense3_gbps": 199.6
+   },
+   "wo_b R=1 dense3 3,1": {
+    "x3seg_us": 67.0,
+    "dense3_us": 63.7,
+    "x3seg_gbps": 195.7,
+    "dense3_gbps": 205.7
+   },
+   "x R=1 dense3 4,2": {
+    "x3seg_us": 40.2,
+    "dense3_us": 38.0,
+    "x3seg_gbps": 142.5,
+    "dense3_gbps": 150.9
+   },
+   "x4 R=1 dense3 4,2": {
+    "x3seg_us": 70.0,
+    "dense3_us": 69.0,
+    "x3seg_gbps": 117.1,
+    "dense3_gbps": 118.7
+   },
+   "q R=1 dense3 4,2": {
+    "x3seg_us": 63.6,
+    "dense3_us": 88.6,
+    "x3seg_gbps": 206.1,
+    "dense3_gbps": 148.1
+   },
+   "q+ix R=1 dense3 4,2": {
+    "x3seg_us": 85.5,
+    "dense3_us": 102.3,
+    "x3seg_gbps": 191.7,
+    "dense3_gbps": 160.1
+   },
+   "o R=1 dense3 4,2": {
+    "x3seg_us": 71.6,
+    "dense3_us": 85.5,
+    "x3seg_gbps": 146.5,
+    "dense3_gbps": 122.7
+   },
+   "wo_b R=1 dense3 4,2": {
+    "x3seg_us": 67.0,
+    "dense3_us": 97.1,
+    "x3seg_gbps": 195.7,
+    "dense3_gbps": 135.0
+   },
+   "x R=2 dense3 3,1": {
+    "x3seg_us": 43.4,
+    "dense3_us": 33.3,
+    "x3seg_gbps": 131.9,
+    "dense3_gbps": 172.2
+   },
+   "x4 R=2 dense3 3,1": {
+    "x3seg_us": 67.6,
+    "dense3_us": 53.7,
+    "x3seg_gbps": 121.2,
+    "dense3_gbps": 152.5
+   },
+   "q R=2 dense3 3,1": {
+    "x3seg_us": 71.1,
+    "dense3_us": 59.7,
+    "x3seg_gbps": 184.5,
+    "dense3_gbps": 219.6
+   },
+   "q+ix R=2 dense3 3,1": {
+    "x3seg_us": 83.6,
+    "dense3_us": 80.0,
+    "x3seg_gbps": 195.9,
+    "dense3_gbps": 204.7
+   },
+   "o R=2 dense3 3,1": {
+    "x3seg_us": 72.8,
+    "dense3_us": 51.1,
+    "x3seg_gbps": 144.1,
+    "dense3_gbps": 205.4
+   },
+   "wo_b R=2 dense3 3,1": {
+    "x3seg_us": 70.8,
+    "dense3_us": 66.0,
+    "x3seg_gbps": 185.1,
+    "dense3_gbps": 198.6
+   },
+   "x R=2 dense3 4,2": {
+    "x3seg_us": 43.4,
+    "dense3_us": 49.7,
+    "x3seg_gbps": 131.9,
+    "dense3_gbps": 115.2
+   },
+   "x4 R=2 dense3 4,2": {
+    "x3seg_us": 67.6,
+    "dense3_us": 57.1,
+    "x3seg_gbps": 121.2,
+    "dense3_gbps": 143.4
+   },
+   "q R=2 dense3 4,2": {
+    "x3seg_us": 71.1,
+    "dense3_us": 91.2,
+    "x3seg_gbps": 184.5,
+    "dense3_gbps": 143.7
+   },
+   "q+ix R=2 dense3 4,2": {
+    "x3seg_us": 83.6,
+    "dense3_us": 106.0,
+    "x3seg_gbps": 195.9,
+    "dense3_gbps": 154.5
+   },
+   "o R=2 dense3 4,2": {
+    "x3seg_us": 72.8,
+    "dense3_us": 81.5,
+    "x3seg_gbps": 144.1,
+    "dense3_gbps": 128.7
+   },
+   "wo_b R=2 dense3 4,2": {
+    "x3seg_us": 70.8,
+    "dense3_us": 94.2,
+    "x3seg_gbps": 185.1,
+    "dense3_gbps": 139.2
+   },
+   "x R=4 dense3 3,1": {
+    "x3seg_us": 52.1,
+    "dense3_us": 25.9,
+    "x3seg_gbps": 109.9,
+    "dense3_gbps": 221.5
+   },
+   "x4 R=4 dense3 3,1": {
+    "x3seg_us": 54.0,
+    "dense3_us": 59.5,
+    "x3seg_gbps": 151.5,
+    "dense3_gbps": 137.5
+   },
+   "q R=4 dense3 3,1": {
+    "x3seg_us": 56.1,
+    "dense3_us": 68.9,
+    "x3seg_gbps": 233.7,
+    "dense3_gbps": 190.3
+   },
+   "q+ix R=4 dense3 3,1": {
+    "x3seg_us": 88.6,
+    "dense3_us": 79.9,
+    "x3seg_gbps": 184.9,
+    "dense3_gbps": 205.0
+   },
+   "o R=4 dense3 3,1": {
+    "x3seg_us": 75.7,
+    "dense3_us": 59.7,
+    "x3seg_gbps": 138.6,
+    "dense3_gbps": 175.7
+   },
+   "wo_b R=4 dense3 3,1": {
+    "x3seg_us": 76.3,
+    "dense3_us": 69.2,
+    "x3seg_gbps": 171.7,
+    "dense3_gbps": 189.5
+   },
+   "x R=4 dense3 4,2": {
+    "x3seg_us": 52.1,
+    "dense3_us": 52.4,
+    "x3seg_gbps": 109.9,
+    "dense3_gbps": 109.3
+   },
+   "x4 R=4 dense3 4,2": {
+    "x3seg_us": 54.0,
+    "dense3_us": 74.3,
+    "x3seg_gbps": 151.5,
+    "dense3_gbps": 110.2
+   },
+   "q R=4 dense3 4,2": {
+    "x3seg_us": 56.1,
+    "dense3_us": 84.9,
+    "x3seg_gbps": 233.7,
+    "dense3_gbps": 154.4
+   },
+   "q+ix R=4 dense3 4,2": {
+    "x3seg_us": 88.6,
+    "dense3_us": 102.8,
+    "x3seg_gbps": 184.9,
+    "dense3_gbps": 159.3
+   },
+   "o R=4 dense3 4,2": {
+    "x3seg_us": 75.7,
+    "dense3_us": 80.5,
+    "x3seg_gbps": 138.6,
+    "dense3_gbps": 130.2
+   },
+   "wo_b R=4 dense3 4,2": {
+    "x3seg_us": 76.3,
+    "dense3_us": 95.8,
+    "x3seg_gbps": 171.7,
+    "dense3_gbps": 136.9
+   },
+   "x R=8 dense3 3,1": {
+    "x3seg_us": 48.2,
+    "dense3_us": 41.8,
+    "x3seg_gbps": 118.9,
+    "dense3_gbps": 137.2
+   },
+   "x4 R=8 dense3 3,1": {
+    "x3seg_us": 73.5,
+    "dense3_us": 47.5,
+    "x3seg_gbps": 111.4,
+    "dense3_gbps": 172.2
+   },
+   "q R=8 dense3 3,1": {
+    "x3seg_us": 62.4,
+    "dense3_us": 65.2,
+    "x3seg_gbps": 210.1,
+    "dense3_gbps": 201.1
+   },
+   "q+ix R=8 dense3 3,1": {
+    "x3seg_us": 89.8,
+    "dense3_us": 83.9,
+    "x3seg_gbps": 182.4,
+    "dense3_gbps": 195.2
+   },
+   "o R=8 dense3 3,1": {
+    "x3seg_us": 78.4,
+    "dense3_us": 64.4,
+    "x3seg_gbps": 133.8,
+    "dense3_gbps": 163.0
+   },
+   "wo_b R=8 dense3 3,1": {
+    "x3seg_us": 74.1,
+    "dense3_us": 80.6,
+    "x3seg_gbps": 177.0,
+    "dense3_gbps": 162.7
+   },
+   "x R=8 dense3 4,2": {
+    "x3seg_us": 48.2,
+    "dense3_us": 49.8,
+    "x3seg_gbps": 118.9,
+    "dense3_gbps": 115.1
+   },
+   "x4 R=8 dense3 4,2": {
+    "x3seg_us": 73.5,
+    "dense3_us": 69.5,
+    "x3seg_gbps": 111.4,
+    "dense3_gbps": 117.8
+   },
+   "q R=8 dense3 4,2": {
+    "x3seg_us": 62.4,
+    "dense3_us": 90.3,
+    "x3seg_gbps": 210.1,
+    "dense3_gbps": 145.2
+   },
+   "q+ix R=8 dense3 4,2": {
+    "x3seg_us": 89.8,
+    "dense3_us": 113.7,
+    "x3seg_gbps": 182.4,
+    "dense3_gbps": 144.1
+   },
+   "o R=8 dense3 4,2": {
+    "x3seg_us": 78.4,
+    "dense3_us": 92.4,
+    "x3seg_gbps": 133.8,
+    "dense3_gbps": 113.5
+   },
+   "wo_b R=8 dense3 4,2": {
+    "x3seg_us": 74.1,
+    "dense3_us": 102.6,
+    "x3seg_gbps": 177.0,
+    "dense3_gbps": 127.8
+   },
+   "x R=16 dense3 3,1": {
+    "x3seg_us": 44.7,
+    "dense3_us": 48.2,
+    "x3seg_gbps": 128.3,
+    "dense3_gbps": 118.9
+   },
+   "x4 R=16 dense3 3,1": {
+    "x3seg_us": 79.2,
+    "dense3_us": 63.5,
+    "x3seg_gbps": 103.5,
+    "dense3_gbps": 129.0
+   },
+   "q R=16 dense3 3,1": {
+    "x3seg_us": 75.2,
+    "dense3_us": 66.4,
+    "x3seg_gbps": 174.5,
+    "dense3_gbps": 197.4
+   },
+   "q+ix R=16 dense3 3,1": {
+    "x3seg_us": 92.1,
+    "dense3_us": 96.7,
+    "x3seg_gbps": 177.8,
+    "dense3_gbps": 169.4
+   },
+   "o R=16 dense3 3,1": {
+    "x3seg_us": 93.4,
+    "dense3_us": 70.4,
+    "x3seg_gbps": 112.3,
+    "dense3_gbps": 149.0
+   },
+   "wo_b R=16 dense3 3,1": {
+    "x3seg_us": 87.5,
+    "dense3_us": 82.5,
+    "x3seg_gbps": 149.9,
+    "dense3_gbps": 159.0
+   },
+   "x R=16 dense3 4,2": {
+    "x3seg_us": 44.7,
+    "dense3_us": 55.1,
+    "x3seg_gbps": 128.3,
+    "dense3_gbps": 103.9
+   },
+   "x4 R=16 dense3 4,2": {
+    "x3seg_us": 79.2,
+    "dense3_us": 77.4,
+    "x3seg_gbps": 103.5,
+    "dense3_gbps": 105.8
+   },
+   "q R=16 dense3 4,2": {
+    "x3seg_us": 75.2,
+    "dense3_us": 88.8,
+    "x3seg_gbps": 174.5,
+    "dense3_gbps": 147.6
+   },
+   "q+ix R=16 dense3 4,2": {
+    "x3seg_us": 92.1,
+    "dense3_us": 108.5,
+    "x3seg_gbps": 177.8,
+    "dense3_gbps": 151.0
+   },
+   "o R=16 dense3 4,2": {
+    "x3seg_us": 93.4,
+    "dense3_us": 98.4,
+    "x3seg_gbps": 112.3,
+    "dense3_gbps": 106.6
+   },
+   "wo_b R=16 dense3 4,2": {
+    "x3seg_us": 87.5,
+    "dense3_us": 113.7,
+    "x3seg_gbps": 149.9,
+    "dense3_gbps": 115.3
+   }
+  },
+  "R=1 dense3 3,1": -1.443,
+  "R=1 dense3 4,2": 2.61,
+  "R=2 dense3 3,1": -1.874,
+  "R=2 dense3 4,2": 2.292,
+  "R=4 dense3 3,1": -1.509,
+  "R=4 dense3 4,2": 2.098,
+  "R=8 dense3 3,1": -0.594,
+  "R=8 dense3 4,2": 2.829,
+  "R=16 dense3 3,1": -1.301,
+  "R=16 dense3 4,2": 2.184
+ },
+ "x3ld_gbps": {
+  "1": 198.6,
+  "2": 198.4,
+  "4": 213.0,
+  "8": 218.7,
+  "16": 217.4
+ }
+}

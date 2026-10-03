@@ -1,0 +1,7 @@
+tests: pass
+nsys 1-row DRAM-idle us a layer: off None -> on None (target <= 35): FAIL or not run; launches a chain None -> None
+window 1-row verify ms: early 26.7 (+0.00), off 26.7, on 27.4 (+0.70); on exact + replies == off: True
+speed on vs off: not run; exact + replies == off: None / None: pass
+gate top-1: off None, on 0.9960918417195896: NOT equal or not run
+target (DRAM-idle <= 35 us a layer and 1-row verify <= -0.4 ms): not met
+adopt: nothing (TF_DSV41_MOE_FUSED stays 0)

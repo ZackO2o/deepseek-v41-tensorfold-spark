@@ -1,0 +1,23 @@
+...[G13] branches: on (row graphs) == off (eager) over 24 windows; graphs on: 17 held (8 at boot in 1.05 s, 9 on first use), 15 replays, 9 eager windows
+.[G13] branches: 1-row window graph nodes / fan-out nodes: off (3089, 0), on (3075, 18)
+..
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+tests/cuda/test_dsv41_branches_gpu.py::test_the_window_graph_forks
+  /usr/local/lib/python3.12/dist-packages/torch/cuda/graphs.py:215: UserWarning: DEBUG: calling debug_dump() (Triggered internally at /opt/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:280.)
+    return super().debug_dump(debug_path)
+
+tests/cuda/test_dsv41_branches_gpu.py::test_the_window_graph_forks
+  /usr/local/lib/python3.12/dist-packages/torch/cuda/graphs.py:215: UserWarning: DEBUG: calling cudaGraphDebugDotPrint() with /cache/pytest-g13-br/test_the_window_graph_forks0/off.dot (Triggered internally at /opt/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:282.)
+    return super().debug_dump(debug_path)
+
+tests/cuda/test_dsv41_branches_gpu.py::test_the_window_graph_forks
+  /usr/local/lib/python3.12/dist-packages/torch/cuda/graphs.py:215: UserWarning: DEBUG: calling cudaGraphDebugDotPrint() with /cache/pytest-g13-br/test_the_window_graph_forks0/on.dot (Triggered internally at /opt/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:282.)
+    return super().debug_dump(debug_path)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+6 passed, 4 warnings in 17.71s

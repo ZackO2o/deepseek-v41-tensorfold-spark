@@ -1,0 +1,70 @@
+G13 dense3 2026-10-03T09:13:24Z, sources b7b12010ca9df6f9be045c36bd342e5a3bc09915, image glm53-tensorfold:b13-060
+GPU tests: 24 passed, 1 warning in 19.01s
+CPU tests: 74 passed, 6 skipped, 1 warning in 19.54s
+..............[G13] dense3 x4 (9.0 MB, random weights) R=1 cold L2: x3seg 91.0 us 99 GB/s -> dense3 40.6 us 222 GB/s
+[G13] dense3 x2_l0 (6.9 MB, random weights) R=1 cold L2: x3seg 44.2 us 156 GB/s -> dense3 48.8 us 141 GB/s
+[G13] dense3 q (16.4 MB, random weights) R=1 cold L2: x3seg 91.8 us 178 GB/s -> dense3 79.0 us 207 GB/s
+[G13] dense3 o (10.5 MB, random weights) R=1 cold L2: x3seg 71.2 us 147 GB/s -> dense3 57.3 us 183 GB/s
+.[G13] dense3 real layers 0..39 rank 0: 335 matrices repacked; every dense output == x3seg at R = 1..16, rows of a window == alone, to_strips == the loaded words
+.sss[G13] dense3 sm_121: K2 10 WK 4 MINB 3: 168 regs, 0 B spill; K2 10 WK 4 MINB 4: 128 regs, 124 B spill; K2 10 WK 8 MINB 1: 212 regs, 0 B spill; K2 10 WK 8 MINB 2: 128 regs, 112 B spill; K2 12 WK 4 MINB 3: 168 regs, 0 B spill; K2 12 WK 4 MINB 4: 128 regs, 216 B spill; K2 12 WK 8 MINB 1: 222 regs, 
+.[G13] dense3 SASS K2 10 / 4 warps / 3 blocks: 10 LDG.E.128 (weights), 12 LDG.E 4-byte (input fragments), 8 SHFL.IDX, 32 HMMA a 2-step group, no LDL / STL
+[G13] dense3 L1 x (5.73 MB) R=1 cold L2: x3seg 44.9 us 127.6 GB/s -> dense3 3,1 35.2 us 162.8 GB/s (warm 15.4 -> 14.5 us)
+[G13] dense3 L1 q (13.11 MB) R=1 cold L2: x3seg 64.0 us 204.7 GB/s -> dense3 3,1 44.6 us 294.0 GB/s (warm 27.4 -> 24.5 us)
+[G13] dense3 L1 o (10.49 MB) R=1 cold L2: x3seg 75.8 us 138.3 GB/s -> dense3 3,1 63.8 us 164.3 GB/s (warm 23.7 -> 20.6 us)
+[G13] dense3 L1 wo_b (13.11 MB) R=1 cold L2: x3seg 57.1 us 229.6 GB/s -> dense3 3,1 63.5 us 206.5 GB/s (warm 36.4 -> 23.4 us)
+[G13] dense3 L2 x4 (9.01 MB) R=1 cold L2: x3seg 80.8 us 111.6 GB/s -> dense3 3,1 50.5 us 178.5 GB/s (warm 23.4 -> 20.3 us)
+[G13] dense3 L2 q+ix (16.38 MB) R=1 cold L2: x3seg 84.8 us 193.3 GB/s -> dense3 3,1 78.3 us 209.1 GB/s (warm 37.5 -> 30.2 us)
+[G13] dense3 L2 o (10.49 MB) R=1 cold L2: x3seg 70.9 us 147.9 GB/s -> dense3 3,1 54.1 us 193.7 GB/s (warm 22.9 -> 20.5 us)
+[G13] dense3 L2 wo_b (13.11 MB) R=1 cold L2: x3seg 73.3 us 178.8 GB/s -> dense3 3,1 45.3 us 289.2 GB/s (warm 25.5 -> 24.6 us)
+[G13] dense3 L3 x (5.73 MB) R=1 cold L2: x3seg 30.6 us 187.3 GB/s -> dense3 3,1 46.6 us 123.2 GB/s (warm 15.4 -> 14.3 us)
+[G13] dense3 L3 q (13.11 MB) R=1 cold L2: x3seg 63.2 us 207.5 GB/s -> dense3 3,1 61.9 us 211.6 GB/s (warm 27.4 -> 24.4 us)
+[G13] dense3 L3 o (10.49 MB) R=1 cold L2: x3seg 83.1 us 126.1 GB/s -> dense3 3,1 52.6 us 199.2 GB/s (warm 22.9 -> 20.5 us)
+[G13] dense3 L3 wo_b (13.11 MB) R=1 cold L2: x3seg 71.1 us 184.3 GB/s -> dense3 3,1 67.0 us 195.7 GB/s (warm 25.5 -> 23.4 us)
+[G13] dense3 L20 x4 (7.37 MB) R=1 cold L2: x3seg 59.1 us 124.7 GB/s -> dense3 3,1 23.7 us 311.1 GB/s (warm 17.6 -> 16.8 us)
+[G13] dense3 L20 q+ix (16.38 MB) R=1 cold L2: x3seg 85.0 us 192.7 GB/s -> dense3 3,1 90.9 us 180.2 GB/s (warm 43.4 -> 32.0 us)
+[G13] dense3 L20 o (10.49 MB) R=1 cold L2: x3seg 54.5 us 192.6 GB/s -> dense3 3,1 53.6 us 195.6 GB/s (warm 22.9 -> 20.6 us)
+[G13] dense3 L20 wo_b (13.11 MB) R=1 cold L2: x3seg 83.8 us 156.4 GB/s -> dense3 3,1 65.3 us 200.7 GB/s (warm 25.5 -> 23.4 us)
+[G13] dense3 L24 x (5.73 MB) R=1 cold L2: x3seg 45.1 us 127.1 GB/s -> dense3 3,1 32.9 us 174.4 GB/s (warm 15.4 -> 14.5 us)
+[G13] dense3 L24 q+ix (16.38 MB) R=1 cold L2: x3seg 86.6 us 189.2 GB/s -> dense3 3,1 80.5 us 203.6 GB/s (warm 41.8 -> 30.3 us)
+[G13] dense3 L24 o (10.49 MB) R=1 cold L2: x3seg 73.7 us 142.2 GB/s -> dense3 3,1 38.7 us 270.7 GB/s (warm 23.0 -> 20.6 us)
+[G13] dense3 L24 wo_b (13.11 MB) R=1 cold L2: x3seg 49.6 us 264.3 GB/s -> dense3 3,1 77.5 us 169.0 GB/s (warm 26.4 -> 23.4 us)
+[G13] dense3 L1 x (5.73 MB) R=1 cold L2: x3seg 44.9 us 127.6 GB/s -> dense3 4,2 40.2 us 142.7 GB/s (warm 15.4 -> 16.8 us)
+[G13] dense3 L1 q (13.11 MB) R=1 cold L2: x3seg 64.0 us 204.7 GB/s -> dense3 4,2 91.9 us 142.6 GB/s (warm 27.4 -> 27.2 us)
+[G13] dense3 L1 o (10.49 MB) R=1 cold L2: x3seg 75.8 us 138.3 GB/s -> dense3 4,2 79.3 us 132.2 GB/s (warm 23.7 -> 24.1 us)
+[G13] dense3 L1 wo_b (13.11 MB) R=1 cold L2: x3seg 57.1 us 229.6 GB/s -> dense3 4,2 88.8 us 147.5 GB/s (warm 36.4 -> 27.7 us)
+[G13] dense3 L2 x4 (9.01 MB) R=1 cold L2: x3seg 80.8 us 111.6 GB/s -> dense3 4,2 75.4 us 119.5 GB/s (warm 23.4 -> 22.9 us)
+[G13] dense3 L2 q+ix (16.38 MB) R=1 cold L2: x3seg 84.8 us 193.3 GB/s -> dense3 4,2 80.3 us 204.1 GB/s (warm 37.5 -> 32.3 us)
+[G13] dense3 L2 o (10.49 MB) R=1 cold L2: x3seg 70.9 us 147.9 GB/s -> dense3 4,2 94.9 us 110.5 GB/s (warm 22.9 -> 24.1 us)
+[G13] dense3 L2 wo_b (13.11 MB) R=1 cold L2: x3seg 73.3 us 178.8 GB/s -> dense3 4,2 110.9 us 118.2 GB/s (warm 25.5 -> 27.3 us)
+[G13] dense3 L3 x (5.73 MB) R=1 cold L2: x3seg 30.6 us 187.3 GB/s -> dense3 4,2 45.3 us 126.7 GB/s (warm 15.4 -> 16.6 us)
+[G13] dense3 L3 q (13.11 MB) R=1 cold L2: x3seg 63.2 us 207.5 GB/s -> dense3 4,2 85.2 us 153.9 GB/s (warm 27.4 -> 26.8 us)
+[G13] dense3 L3 o (10.49 MB) R=1 cold L2: x3seg 83.1 us 126.1 GB/s -> dense3 4,2 73.8 us 142.0 GB/s (warm 22.9 -> 28.8 us)
+[G13] dense3 L3 wo_b (13.11 MB) R=1 cold L2: x3seg 71.1 us 184.3 GB/s -> dense3 4,2 103.8 us 126.3 GB/s (warm 25.5 -> 27.4 us)
+[G13] dense3 L20 x4 (7.37 MB) R=1 cold L2: x3seg 59.1 us 124.7 GB/s -> dense3 4,2 62.6 us 117.9 GB/s (warm 17.6 -> 19.5 us)
+[G13] dense3 L20 q+ix (16.38 MB) R=1 cold L2: x3seg 85.0 us 192.7 GB/s -> dense3 4,2 101.3 us 161.8 GB/s (warm 43.4 -> 31.7 us)
+[G13] dense3 L20 o (10.49 MB) R=1 cold L2: x3seg 54.5 us 192.6 GB/s -> dense3 4,2 81.3 us 129.0 GB/s (warm 22.9 -> 24.0 us)
+[G13] dense3 L20 wo_b (13.11 MB) R=1 cold L2: x3seg 83.8 us 156.4 GB/s -> dense3 4,2 91.7 us 143.0 GB/s (warm 25.5 -> 27.0 us)
+[G13] dense3 L24 x (5.73 MB) R=1 cold L2: x3seg 45.1 us 127.1 GB/s -> dense3 4,2 28.4 us 201.9 GB/s (warm 15.4 -> 16.8 us)
+[G13] dense3 L24 q+ix (16.38 MB) R=1 cold L2: x3seg 86.6 us 189.2 GB/s -> dense3 4,2 125.3 us 130.7 GB/s (warm 41.8 -> 32.2 us)
+[G13] dense3 L24 o (10.49 MB) R=1 cold L2: x3seg 73.7 us 142.2 GB/s -> dense3 4,2 98.1 us 106.9 GB/s (warm 23.0 -> 24.4 us)
+[G13] dense3 L24 wo_b (13.11 MB) R=1 cold L2: x3seg 49.6 us 264.3 GB/s -> dense3 4,2 90.5 us 144.8 GB/s (warm 26.4 -> 27.1 us)
+[G13] dense3 R=1 MINB 3,1: GB/s a class (x3seg->dense3) x 143->150, x4 117->221, q 206->246, q+ix 192->197, o 147->200, wo_b 196->206; attention dense -1.44 ms a window (cold, the window's launches)
+[G13] dense3 R=1 MINB 4,2: GB/s a class (x3seg->dense3) x 143->151, x4 117->119, q 206->148, q+ix 192->160, o 147->123, wo_b 196->135; attention dense +2.61 ms a window (cold, the window's launches)
+[G13] dense3 x3ld reference (layer 3 experts) GB/s: {1: 198.6, 2: 198.4, 4: 213.0, 8: 218.7, 16: 217.4}
+[G13] dense3: 46 matrices repacked; bitwise == x3seg True; row invariant True
+== dense3-window.txt
+config   1 row  2 rows  4 rows 16 rows    code   prose      C2  exact  (vs off)
+off      26.60   32.20   39.80   73.00       -   40.32       -  True  
+on       26.40   31.00   38.60   71.80       -   41.82       -  True  1 rows -0.20 ms, 2 rows -1.20 ms, 4 rows -1.20 ms, 16 rows -1.20 ms, prose +3.7%
+on42     26.30   32.10   39.80   74.20       -   40.49       -  True  1 rows -0.30 ms, 2 rows -0.10 ms, 4 rows +0.00 ms, 16 rows +1.20 ms, prose +0.4%
+== dense3-verdict.txt
+tests: pass
+bench: bitwise True, row invariant True; R=1 GB/s a class (x3seg -> dense3): x 142.5->149.9, x4 117.1->220.8, q 206.1->246.2, q+ix 191.7->196.8, o 146.5->199.6, wo_b 195.7->205.7; estimate -1.443 ms a window: pass
+window 1-row verify vs off: on -0.20 ms (2 rows -1.2000000000000028), on42 -0.30 ms (2 rows -0.10000000000000142); exact {'off': True, 'on': True, 'on42': True}
+speed on vs off: not run; exact None: pass
+gate top-1: {'on': None, 'on42': None, 'off': None} (>= 0.96; prod 0.9963 expected exactly: the same bits): pass
+window line (1-row verify <= off - 0.5 ms, exact, 2 rows below off): NOT met
+adopt: nothing (TF_DSV41_DENSE_V3 stays 0)
+[dsv41 16:10:01] g13d3w-off memory: head MemFree min 9.87, MemAvailable min 10.93 GiB; worker MemFree min 7.79, MemAvailable min 8.80 GiB
+[dsv41 16:11:42] g13d3w-on memory: head MemFree min 9.51, MemAvailable min 10.71 GiB; worker MemFree min 8.40, MemAvailable min 9.39 GiB
+[dsv41 16:13:24] g13d3w-on42 memory: head MemFree min 10.09, MemAvailable min 11.15 GiB; worker MemFree min 8.38, MemAvailable min 9.36 GiB

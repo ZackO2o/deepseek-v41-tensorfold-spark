@@ -1,0 +1,14 @@
+G13 launch 2026-10-03T08:12:44Z, sources 59b065f297d0b9ab8c250b51a8b094e3cde38a7a, image glm53-tensorfold:b13-060
+code T0: 80.18 tok/s
+prose T0: 39.93 tok/s
+C1: decode aggregate 82.68 tok/s, per stream [82.46]
+C2: decode aggregate 67.53 tok/s, per stream [58.33, 33.68]
+exact_all True
+verify ms: 1 rows 26.7, 2 rows 31.9, 4 rows 39.7, 16 rows 73.7
+r0 report: 223 rounds: round 53.4, forward 0.14, graph.stage 0.08, graph.replay 0.02 ms a round
+H = 0.02 ms (graph.replay host wall a round, the larger rank)
+graph mode: window launch idle L None us (call None us, host gap before it None us)
+node mode (G9's reference): idle None us, call None us
+no profiler: graph.replay host wall H 0.02 ms a round
+verdict: d1 CLOSED: graph.replay host wall 0.02 ms a round without a profiler (rule H <= 0.05; no graph-mode nsys run)
+[dsv41 15:12:44] g13-phases memory: head MemFree min 7.64, MemAvailable min 8.74 GiB; worker MemFree min 5.89, MemAvailable min 6.89 GiB

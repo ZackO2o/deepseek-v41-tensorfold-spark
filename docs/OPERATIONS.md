@@ -18,6 +18,12 @@
 
 `scripts/serve.sh args 0|1` prints the exact `docker run` arguments without starting anything.
 
+A start does not build the CUDA extensions on purpose: `scripts/serve.sh build` ends with `scripts/serve.sh prebuild`,
+which compiles them into `CACHE_VOL` on both nodes with no weights loaded (a build next to ~100 GB of weights once
+took the worker to 1.26 GiB MemAvailable). Run `scripts/serve.sh prebuild` yourself after `PREBUILD=0 scripts/serve.sh
+build`, after deleting the cache volume, or before turning on a lever whose extension was never built. A start that
+finds an extension missing builds it at load time, slowly and beside the weights.
+
 ## Knobs
 
 Every `TF_DSV41_*`, `GLM53_TF_*`, `MALLOC_*` and `MIMALLOC_*` line of the config reaches both ranks. A non-empty caller export wins
@@ -31,6 +37,9 @@ over the file: `CONTEXT=196608 scripts/serve.sh restart`.
 | `TF_DSV41_EXPERT_TOPP` / `_MIN_K` / `_RENORM` | 0.85 / 3 / kept (lossy, +5%) | delete the three lines: the unpruned model |
 | `TF_DSV41_MHC_FN` | `bf16` | unset: fp32 mixing weights (prose -2.4%) |
 | `TF_DSV41_L2PF` / `_MB` | 1 / 12 | 0 |
+| `TF_DSV41_MHC_CUDA` | 1: an mHC boundary of a decode window as one CUDA launch (G13, same bits) | 0 (the engine's default): the Triton boundary |
+| `TF_DSV41_ATTN_CUDA` | 1: CSA2's decode attention core and the indexer's top-k in CUDA (G13, same bits) | 0: Triton |
+| `TF_DSV41_DENSE_V3` | 1: dense EXL3 linears over a 16-byte-coalesced repack of the trellis (G13, same bits) | 0: x3seg |
 | `TF_DSV41_GRAPH_MODE` | `rows` | `mix`: C2 / C4 slower |
 | `TF_DSV41_ROUTER` | `gemv` | `fused` / `split` |
 | `GLM53_TF_COMM_BACKEND` | `roce` | `nccl` (-11% / -17%). A RoCE failure at run time writes `/cache/roce-failed` in the cache volume and the next start of both ranks uses NCCL; delete it to retry RoCE |
@@ -42,6 +51,10 @@ over the file: `CONTEXT=196608 scripts/serve.sh restart`.
 Knobs left at their defaults that you may meet in the code: `TF_DSV41_DEPTH` / `TF_DSV41_DRAFT_DEPTH` (draft depth:
 the default policy reads the boot calibration and caps at 5; `static` + 3 is the kit's), `TF_DSV41_DRAFT_HEAD` (full),
 `TF_DSV41_VERIFY_BUDGET` (unset; lossy, do not use), `TF_DSV41_TREE_PC` (0), `TF_DSV41_DSPARK_DELTA` (unset).
+From G13: `TF_DSV41_MOE_FUSED` (0: the shortened decode MoE chain, exact but +0.7 ms on a 1-row window),
+`TF_DSV41_BRANCHES` (0: the CSA2 indexer / compressor on a side stream, exact but an unstable 1-row window, +2.25 ms
+mean), `TF_DSV41_ATTN_CUDA_PARTS` (`attn,topk`; either alone for an A/B) and `TF_DSV41_MHC_CUDA_ROWS` (16, the largest
+window the mHC kernel takes; 8 measured the same).
 
 Host memory and stalls (G12; defaults in brackets):
 

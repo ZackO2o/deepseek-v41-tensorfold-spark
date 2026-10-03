@@ -1,0 +1,23 @@
+G13 branches 2026-10-03T09:31:47Z, sources 767ad9ff024a39663fb6dccff133d6e39d0f338d, image glm53-tensorfold:b13-060
+tests-g13-br.log: 6 passed, 4 warnings in 17.71s
+tests-g13-br-on.log: 16 passed, 1 warning in 24.53s
+tests-g13-br-cpu.log: 63 passed, 6 warnings in 283.10s (0:04:43)
+...[G13] branches: on (row graphs) == off (eager) over 24 windows; graphs on: 17 held (8 at boot in 1.05 s, 9 on first use), 15 replays, 9 eager windows
+.[G13] branches: 1-row window graph nodes / fan-out nodes: off (3089, 0), on (3075, 18)
+== branches-window.txt
+config    1 row  2 rows  4 rows  16 rows    code   prose      C2  exact  replies==off
+off       26.60   31.90   39.60    73.00       -   40.76       -  True  None
+off2      26.60   32.10   39.70    73.70       -   40.04       -  True  None
+on        26.20   31.90   39.30    73.30       -   41.03       -  True  True
+on2       31.50   32.90   40.20    72.30       -   39.39       -  True  True
+on - off (means): 1 rows +2.25 ms, 2 rows +0.40 ms, 4 rows +0.10 ms, 16 rows -0.55 ms; prose -0.5%; 1-row spread off 0.0 / on 5.3 ms
+== branches-verdict.txt
+tests: pass
+window (PHASES=1, means of 2 runs): 1 rows +2.25 ms, 2 rows +0.40 ms, 4 rows +0.10 ms, 16 rows -0.55 ms; exact True; 1-row <= -0.3 (target -0.5), 2-row < 0: FAIL or not run
+speed on vs off: not run; exact None, replies == off None: pass
+target (1-row verify <= -0.5 ms): not met
+adopt: nothing (TF_DSV41_BRANCHES stays 0)
+[dsv41 16:26:37] g13bw-off memory: head MemFree min 9.12, MemAvailable min 10.32 GiB; worker MemFree min 8.05, MemAvailable min 8.97 GiB
+[dsv41 16:28:20] g13bw-on memory: head MemFree min 9.68, MemAvailable min 10.76 GiB; worker MemFree min 7.31, MemAvailable min 8.37 GiB
+[dsv41 16:30:04] g13bw-off2 memory: head MemFree min 9.51, MemAvailable min 10.57 GiB; worker MemFree min 7.45, MemAvailable min 8.49 GiB
+[dsv41 16:31:47] g13bw-on2 memory: head MemFree min 8.65, MemAvailable min 10.23 GiB; worker MemFree min 6.70, MemAvailable min 8.07 GiB

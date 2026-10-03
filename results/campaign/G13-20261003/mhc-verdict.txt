@@ -1,0 +1,11 @@
+tests: PASS
+  [G13] mhc boundary R=1: triton 32.9 us, cuda 12.7 us, 2.60x (in a graph, fn bf16, DRAM-cold ring of 48)
+  [G13] mhc boundary R=2: triton 32.4 us, cuda 14.6 us, 2.22x (in a graph, fn bf16, DRAM-cold ring of 48)
+  [G13] mhc boundary R=4: triton 32.7 us, cuda 24.0 us, 1.36x (in a graph, fn bf16, DRAM-cold ring of 48)
+  [G13] mhc boundary R=8: triton 33.1 us, cuda 31.6 us, 1.05x (in a graph, fn bf16, DRAM-cold ring of 48)
+  [G13] mhc boundary R=16: triton 35.1 us, cuda 55.5 us, 0.63x (in a graph, fn bf16, DRAM-cold ring of 48)
+nsys: on 1 row None us a boundary (<= 15), 2 rows on ? vs off ?: PASS
+window: 1-row -1.30 ms (<= -1.0; plan -1.2), 2-row -0.50 ms, exact ['True', 'True']: PASS
+gate: on top-1 0.9959697117733268 (>= 0.96; prod 0.9963, expected equal: same bits): PASS  NOTE: differs from 0.9963: check the bit claim
+speed: off None, on None: PASS
+verdict: ADOPT: TF_DSV41_MHC_CUDA=1 into config/prod.env

@@ -1,0 +1,60 @@
+...[G13] branches: on (row graphs) == off (eager) over 24 windows; graphs on: 17 held (8 at boot in 0.95 s, 9 on first use), 15 replays, 9 eager windows
+.F.
+=================================== FAILURES ===================================
+_________________________ test_the_window_graph_forks __________________________
+
+ck = (PosixPath('/cache/pytest-g13-br/dsv41br0'), Config(vocab_size=256, hidden_size=128, num_hidden_layers=8, num_attentio...date_block_size=2, decoder_start=4, taps=(5, 6, 7), hidden=128, heads=16, head_dim=512, vocab=256, engram_layers=(1,)))
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xe06570138c80>
+tmp_path = PosixPath('/cache/pytest-g13-br/test_the_window_graph_forks0')
+
+    def test_the_window_graph_forks(ck, monkeypatch, tmp_path):
+        real = torch.cuda.CUDAGraph
+    
+        class Dbg(real):
+            # torch 2.13 destroys the cudaGraph_t at capture_end unless keep_graph=True (debug mode alone no longer
+            # keeps it: G13, debug_dump wrote nothing); the exec graph is then instantiated at the first replay
+            def __new__(cls, keep_graph: bool = False):
+                return super().__new__(cls, True)
+    
+            def __init__(self, *a, **k):
+                super().__init__()
+                self.enable_debug_mode()
+    
+        monkeypatch.setattr(torch.cuda, "CUDAGraph", Dbg)
+        fan = {}
+        for name, on in (("off", False), ("on", True)):
+            fw, _ = _fw(ck, monkeypatch, on, True)
+            key = next(k for k in fw.graphs.cache.graphs if k[0] == 1)
+            e = fw.graphs.cache.graphs[key]
+            path = tmp_path / f"{name}.dot"
+            e.graph.debug_dump(str(path))
+>           fan[name] = _fanout(path)
+                        ^^^^^^^^^^^^^
+
+tests/cuda/test_dsv41_branches_gpu.py:220: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/cache/pytest-g13-br/test_the_window_graph_forks0/off.dot')
+
+    def _fanout(path) -> tuple[int, int]:
+        """(nodes, nodes with more than one successor) of a CUDA graph DOT dump."""
+    
+>       with open(path, errors="replace") as f:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/cache/pytest-g13-br/test_the_window_graph_forks0/off.dot'
+
+tests/cuda/test_dsv41_branches_gpu.py:190: FileNotFoundError
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+tests/cuda/test_dsv41_branches_gpu.py::test_the_window_graph_forks
+  /usr/local/lib/python3.12/dist-packages/torch/cuda/graphs.py:215: UserWarning: DEBUG: calling debug_dump() (Triggered internally at /opt/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:280.)
+    return super().debug_dump(debug_path)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/cuda/test_dsv41_branches_gpu.py::test_the_window_graph_forks - F...
+1 failed, 5 passed, 2 warnings in 14.28s

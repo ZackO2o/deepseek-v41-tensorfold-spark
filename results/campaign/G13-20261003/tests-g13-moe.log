@@ -1,0 +1,59 @@
+
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 384 top-6 rule off: R 1..16 bit for bit (0 slots pruned)
+.
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 384 top-6 rule p85k: R 1..16 bit for bit (6 slots pruned)
+.
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 384 top-6 rule p85: R 1..16 bit for bit (6 slots pruned)
+.
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 384 top-6 rule w10k: R 1..16 bit for bit (0 slots pruned)
+.
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 128 top-3 rule off: R 1..16 bit for bit (0 slots pruned)
+.
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 128 top-3 rule p85k: R 1..16 bit for bit (0 slots pruned)
+.
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 128 top-3 rule p85: R 1..16 bit for bit (0 slots pruned)
+.
+[G13] moe_fused route == router -> prune -> kit -> group -> rot_in, E 128 top-3 rule w10k: R 1..16 bit for bit (0 slots pruned)
+...............[G13] moe_fused bench real layer 1 p85k R=1: old 292.9 us, fused 272.3 us (-20.5)
+[G13] moe_fused bench real layer 1 p85k R=2: old 421.7 us, fused 395.3 us (-26.3)
+[G13] moe_fused bench real layer 1 p85k R=4: old 754.7 us, fused 724.8 us (-29.9)
+[G13] moe_fused bench real layer 1 p85k R=8: old 1413.2 us, fused 1433.1 us (+19.9)
+[G13] moe_fused bench real layer 1 p85k R=16: old 2196.4 us, fused 2111.2 us (-85.3)
+[G13] moe_fused real layer 1: on == off, R 1..16, p85k and off, bit for bit
+[G13] moe_fused bench real layer 20 p85k R=1: old 249.6 us, fused 203.2 us (-46.4)
+[G13] moe_fused bench real layer 20 p85k R=2: old 357.0 us, fused 336.6 us (-20.4)
+[G13] moe_fused bench real layer 20 p85k R=4: old 598.9 us, fused 576.2 us (-22.7)
+[G13] moe_fused bench real layer 20 p85k R=8: old 1057.7 us, fused 1041.1 us (-16.6)
+[G13] moe_fused bench real layer 20 p85k R=16: old 1880.7 us, fused 1853.3 us (-27.4)
+[G13] moe_fused real layer 20: on == off, R 1..16, p85k and off, bit for bit
+[G13] moe_fused bench real layer 39 p85k R=1: old 294.7 us, fused 263.7 us (-31.0)
+[G13] moe_fused bench real layer 39 p85k R=2: old 424.1 us, fused 408.7 us (-15.4)
+[G13] moe_fused bench real layer 39 p85k R=4: old 798.4 us, fused 766.3 us (-32.1)
+[G13] moe_fused bench real layer 39 p85k R=8: old 1399.1 us, fused 1407.1 us (+8.0)
+[G13] moe_fused bench real layer 39 p85k R=16: old 2613.4 us, fused 2590.5 us (-22.9)
+[G13] moe_fused real layer 39: on == off, R 1..16, p85k and off, bit for bit
+.s...................
+prune topp 0.8 on a random block: kept 5.00 a row, relative output change 0.188
+..........................[G10] router E 384 R 1: old 26.2 us | narrow nw1 30.1 nw2 30.2 nw4 30.2 nw8 30.0 | best nw8 0.87x | 40 a window: old 1.05 ms, best 1.20 ms
+[G10] router + kit casts + group, E 384 R 1: today 31.4 us, narrow nw8 + folded tail 31.6 us a layer (-0.01 ms a 40-layer window)
+[G10] router E 384 R 2: old 26.3 us | narrow nw1 35.6 nw2 30.5 nw4 30.5 nw8 30.6 | best nw4 0.86x | 40 a window: old 1.05 ms, best 1.22 ms
+[G10] router + kit casts + group, E 384 R 2: today 34.1 us, narrow nw4 + folded tail 32.4 us a layer (0.07 ms a 40-layer window)
+[G10] router E 384 R 4: old 26.8 us | narrow nw1 48.6 nw2 37.8 nw4 32.3 nw8 32.9 | best nw4 0.83x | 40 a window: old 1.07 ms, best 1.29 ms
+[G10] router + kit casts + group, E 384 R 4: today 38.5 us, narrow nw4 + folded tail 34.2 us a layer (0.17 ms a 40-layer window)
+[G10] router E 384 R 8: old 27.9 us | narrow nw1 75.6 nw2 54.8 nw4 43.7 nw8 38.4 | best nw8 0.73x | 40 a window: old 1.12 ms, best 1.54 ms
+[G10] router E 384 R 16: old 38.5 us | narrow nw1 131.6 nw2 87.5 nw4 65.4 nw8 55.0 | best nw8 0.70x | 40 a window: old 1.54 ms, best 2.20 ms
+[G10] router E 128 R 1: old 11.2 us | narrow nw1 12.5 nw2 12.5 nw4 12.5 nw8 12.4 | best nw8 0.90x | 40 a window: old 0.45 ms, best 0.50 ms
+[G10] router E 128 R 2: old 11.6 us | narrow nw1 15.1 nw2 12.9 nw4 12.9 nw8 12.9 | best nw2 0.90x | 40 a window: old 0.46 ms, best 0.52 ms
+[G10] router E 128 R 4: old 12.8 us | narrow nw1 21.2 nw2 16.2 nw4 14.0 nw8 14.5 | best nw4 0.91x | 40 a window: old 0.51 ms, best 0.56 ms
+[G10] router E 128 R 8: old 17.0 us | narrow nw1 36.4 nw2 26.2 nw4 21.0 nw8 19.1 | best nw8 0.89x | 40 a window: old 0.68 ms, best 0.76 ms
+[G10] router E 128 R 16: old 27.4 us | narrow nw1 63.9 nw2 46.9 nw4 36.5 nw8 31.5 | best nw8 0.87x | 40 a window: old 1.10 ms, best 1.26 ms
+..........[tensorfold] prepared folder written: /cache/pytest-g13-moe/test_prepared_folder_to_gpu0/dsv41g0/1d44e265dc686be3/rank0 (0.0 GB in 0.0s)
+.
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+79 passed, 1 skipped, 1 warning in 37.26s

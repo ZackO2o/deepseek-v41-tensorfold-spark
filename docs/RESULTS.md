@@ -1,7 +1,7 @@
 # Results
 
 Everything measured on one pair of DGX Sparks (GB10, 128 GB each, CX7 link, RoCE), 2026-10-01 to 10-03, on
-`dealignai/DeepSeek-V4.1-Flash-UNCENSORED-EXL3-2.9bpw`. Development ran in numbered test windows (G1-G12); the window
+`dealignai/DeepSeek-V4.1-Flash-UNCENSORED-EXL3-2.9bpw`. Development ran in numbered test windows (G1-G13); the window
 names are kept so the raw files in [`../results/`](../results/README.md) can be matched to a row. How each cell is
 measured: [BENCHMARKS.md](BENCHMARKS.md).
 
@@ -29,16 +29,22 @@ measured: [BENCHMARKS.md](BENCHMARKS.md).
 Two findings from the baseline that shaped the work: the kit's C4 is *below* its C2 (4 x 4 verify rows run slower
 than 2 x 4), and the kit renders `reasoning_effort: "low"` as effort 25 (vLLM's mapping), not DeepSeek's 50.
 
-## 2. The final configuration (G10 / G11, engine = this repository's patches)
+## 2. The final configuration (G10 / G11, engine = this repository's patches; decode updated in G13)
 
 | tok/s (T=0 / T=0.7; C = decode aggregate) | code | prose | structured | C1 | C2 | C4 | 1-row window |
 | --- | --- | --- | --- | ---: | ---: | ---: | ---: |
-| **final** | **79.0-81.5 / 72** | **40.9-41.2 / 42** | **116.6 / 117.5** | **82-83** | **67.1** | **93.5** | **26.9 ms** |
+| **G13 production** (`767ad9f`, MHC_CUDA + ATTN_CUDA + DENSE_V3) | **82.83 / 75.02** | **44.25 / 45.30** | **117.84 / 117.59** | **85.05** | **70.27** | **96.61** | **~23.4-24.8 ms** |
+| G13, the same engine with the three off (same session) | 81.74 / 71.94 | 41.28 / 42.22 | 116.79 / 116.61 | 82.46 | 67.64 | 93.95 | 26.8-27.0 ms |
+| G10 / G11 final (`38f6500`) | 79.0-81.5 / 72 | 40.9-41.2 / 42 | 116.6 / 117.5 | 82-83 | 67.1 | 93.5 | 26.9 ms |
 | kit | 41.9-45 | 32.5 | 38-50 | 32.2 | 46.7 | 37.6 | |
-| final / kit | 1.8-1.9x | 1.26x | 2.3-3.1x | 2.6x | 1.44x | 2.5x | |
+| G13 production / kit | 1.8-2.0x | 1.36x | 2.3-3.1x | 2.6x | 1.5x | 2.6x | |
 
-`exact_all True` (drafted == serial) in every run. DSpark tokens a round: code 3.88, prose 1.57-1.59, structured
-5.91.
+`exact_all True` (drafted == serial) in every run. DSpark tokens a round (G10 / G11): code 3.88, prose 1.57-1.59,
+structured 5.91; in G13 code read 3.80 (the depth policy reads the cheaper calibrated windows and drafts a little
+differently; the replies are the same). G13 gates on the production set: top-1 vs the kit 0.9961 (first copy 0.9502),
+equal to the rewrites off; MMLU-200 0-shot 87.5% (175 / 200); tool chains thinking off 11 / 12; a tool call
+`get_weather {"city":"Hanoi"}`. One boot a configuration; the 1-row window range is the spread over the G13 combo
+boots (`results/campaign/G13-20261003/combo-window.txt`, `combo-speed.txt`).
 
 Ship gates on the final configuration (a test server started by `scripts/serve.sh` from the production config):
 
@@ -69,6 +75,27 @@ Earlier gates with the same prefill path (G7 engine commit): MMLU-200 replay / f
 TTFT at 128K: 67 s. One run of the production prefill was anomalous (854 tok/s at 128K: both GPUs at ~36 W instead of
 ~52 W at normal clocks) and did not reproduce in two later runs.
 
+### Strict mode (G13: every precision trade off)
+
+Production's set with `TF_DSV41_EXPERT_TOPP=0`, `EXPERT_RENORM=orig`, `MHC_FN=fp32`, `KIT_ROUNDING=0`, `LOGITS=fp32`,
+`INDEX_KV=bf16` and `PREFILL=full`; the fast prefill GEMMs and the fused prefill attention stay on. Same build and
+session as the G13 production row.
+
+| | strict | production | strict vs production | kit | strict / kit |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| code, T0 / T0.7 | **76.88** / 74.94 | 82.83 / 75.02 | -7.2% / -0.1% | 42-45 | 1.71-1.83x |
+| prose, T0 / T0.7 | **44.21** / 42.18 | 44.25 / 45.30 | -0.1% / -6.9% | 32.5 | 1.36x |
+| structured, T0 / T0.7 | **111.92** / 109.59 | 117.84 / 117.59 | -5.0% / -6.8% | 38-50 | 2.24-2.95x |
+| C1 / C2 / C4 | **78.96 / 64.00 / 89.53** | 85.05 / 70.27 / 96.61 | -7.2% / -8.9% / -7.3% | 32.2 / 46.7 / 37.6 | 2.45x / 1.37x / 2.38x |
+| 1-row / 16-row window | 24.7 / 81.3 ms | 23.5 / 72.1 ms | +1.2 / +9.2 ms | | |
+| cold prefill 8K / 32K / 64K / 128K (`full`, in-engine) | **915 / 965 / 959 / 923** | | | 1,073 / 1,075 / 1,060 / 1,031 | **0.85 / 0.90 / 0.90 / 0.89x** |
+| top-1 vs the kit (first copy) | 0.9963 (0.9601) | 0.9961 (0.9502) | | | |
+
+Prose at T0 is level only because the strict reply differs on that prompt and drafts better (1.607 tokens a round
+against 1.567). The 16-row cost is mostly the unpruned experts. Strict MMLU and tool chains were not run. Upstream
+TensorFold's own clients against a strict test server: `bench_concurrent` 0 failures, every stream == alone == serial;
+`prefill_cold` over HTTP 853-920 tok/s at 8K-64K ([campaign/G13-RESULTS.md](campaign/G13-RESULTS.md)).
+
 ### Start
 
 34-44 s from `docker run` to `/v1/models` on the G10 / G11 test servers (4 slots x 300K pool, prepared folders,
@@ -84,6 +111,7 @@ prepared folders with parallel O_DIRECT readers; M1 measured 18 s for the weight
 | G8 | 72.7 | 39.0 | 109.1 | 69.1 | 58.9 | 77.5 | the GPU waits for Engram rows instead of the host; slot-agnostic row graphs (C2 +34%, C4 +12%); round plan over TCP; speculative DSpark pass |
 | G9 | 80.2 | 39.9 | 114.5 | 76.0 | 63.0 | 92.8 | decode glue (bit for bit) + bf16 mHC weights; routed-expert pruning p85k (x1.05) |
 | G10 (final) | 79.0-81.5 | 40.9-41.2 | 116.6 | 82-83 | 67.1 | 93.5 | cross-op L2 prefetch, 12 MiB a site (code +2.5%, prose +3.5%) |
+| G13 | 82.8 | 44.25 | 117.8 | 85.1 | 70.3 | 96.6 | three CUDA rewrites, bit for bit: the mHC boundary in one launch, the decode attention core + indexer top-k, dense EXL3 over a coalesced repack (1-row window 26.8 -> ~23.4 ms) |
 
 ## 4. Measured and not adopted
 
@@ -100,6 +128,9 @@ prepared folders with parallel O_DIRECT readers; M1 measured 18 s for the weight
 | DSpark self-distillation (LoRA deltas on our own drafting logs) | delta A: prose **+5.5%** (43.3) but code -4.4%; delta B: +17.6% tokens a round offline, only +11% in the engine, code -5.7%; a balanced re-capture: prose +4.1%, code -2.9%. The training port disagrees with the engine's drafter after position 1 (agreement 0.39); that comes first. |
 | x3pf prefill experts, x3tc tensor-core experts | slower at every size (x3tc 3-5x) |
 | Streaming top-k from 4K keys | -2% |
+| Shortened decode MoE chain (`TF_DSV41_MOE_FUSED`, G13) | exact (bit for bit R 1..16 on real layers), 9-46 us a layer faster in isolation, but **+0.7 ms** on a 1-row window in the graph and 0 at 2 rows. Off; where the isolated gain goes is not measured yet (nsys) |
+| CSA2 indexer / compressor on a side stream (`TF_DSV41_BRANCHES`, G13) | exact (on == off over 24 windows), but the 1-row window was 26.2 ms in one boot and 31.5 ms in another (+2.25 ms mean); 16 rows -0.55 ms. A fork / join per layer costs more than the overlap returns. Off |
+| Hiding the window graph's submission (G13 d1) | nothing to hide: `graph.replay` takes 0.02 ms of host time a round without a profiler (the 1.3 ms seen earlier was nsys overhead) |
 
 ## 5. Memory
 

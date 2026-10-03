@@ -1,0 +1,10 @@
+...............[G13] mhc_cuda sm_121: 7 instances, registers 62..125, static smem <= 21392 B (+ R x 128 B dynamic), no spills
+.....
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+20 passed, 1 warning in 13.11s

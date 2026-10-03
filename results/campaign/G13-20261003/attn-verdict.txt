@@ -1,0 +1,26 @@
+tests: PASS
+  attention a layer, 1 row(s): 23.1 -> 29.1 us (in-graph, DRAM-cold)
+  attention a layer, 2 row(s): 24.3 -> 30.9 us (in-graph, DRAM-cold)
+  attention a layer, 4 row(s): 25.5 -> 34.4 us (in-graph, DRAM-cold)
+  attention a layer, 8 row(s): 46.0 -> 56.3 us (in-graph, DRAM-cold)
+  attention a layer, 16 row(s): 85.0 -> 89.8 us (in-graph, DRAM-cold)
+  topk n=2048 R=1: select dtopk 11.0 -> cuda 10.4 us; select+blocks 13.7 -> 10.3; reindex top-k (16,384) 59.6 -> 18.6
+  topk n=2048 R=4: select dtopk 14.4 -> cuda 12.4 us; select+blocks 16.5 -> 17.0; reindex top-k (16,384) 64.2 -> 21.9
+  topk n=2048 R=16: select dtopk 14.4 -> cuda 12.3 us; select+blocks 16.5 -> 12.3; reindex top-k (16,384) 72.1 -> 23.7
+  topk n=16384 R=1: select dtopk 47.8 -> cuda 18.4 us; select+blocks 53.3 -> 18.4; reindex top-k (16,384) 59.5 -> 20.6
+  topk n=16384 R=4: select dtopk 48.2 -> cuda 18.4 us; select+blocks 53.6 -> 18.4; reindex top-k (16,384) 58.8 -> 20.8
+  topk n=16384 R=16: select dtopk 48.9 -> cuda 21.4 us; select+blocks 54.0 -> 22.5; reindex top-k (16,384) 71.5 -> 25.3
+  topk n=32768 R=1: select dtopk 91.1 -> cuda 24.7 us; select+blocks 184.4 -> 24.7; reindex top-k (16,384) 44.6 -> 18.9
+  topk n=32768 R=4: select dtopk 113.8 -> cuda 28.7 us; select+blocks 206.5 -> 34.1; reindex top-k (16,384) 59.3 -> 20.6
+  topk n=32768 R=16: select dtopk 114.3 -> cuda 57.6 us; select+blocks 206.9 -> 98.2; reindex top-k (16,384) 58.9 -> 24.6
+  topk n=75000 R=1: select dtopk 222.5 -> cuda 30.8 us; select+blocks 481.1 -> 33.3; reindex top-k (16,384) 62.9 -> 22.7
+  topk n=75000 R=4: select dtopk 223.3 -> cuda 30.8 us; select+blocks 493.6 -> 38.4; reindex top-k (16,384) 58.8 -> 20.5
+  topk n=75000 R=16: select dtopk 223.2 -> cuda 68.9 us; select+blocks 548.6 -> 102.9; reindex top-k (16,384) 59.3 -> 24.6
+attention a layer at 1 row: 29.1 us (<= 12): FAIL / missing
+
+window: 1-row -0.6999999999999993 ms (<= -0.4; target -0.6), 2-row -0.3000000000000007 ms, exact True, replies == off True: PASS
+  attn alone: 1-row +0.00 ms
+  topk alone: 1-row -0.50 ms
+speed: on vs off None, replies == off None: PASS
+gate: on top-1 0.9959697117733268 (>= 0.96; prod 0.9963, expected equal: same bits): PASS  NOTE: differs from 0.9963: check the bit claim
+verdict: do not adopt yet (see the failing lines)

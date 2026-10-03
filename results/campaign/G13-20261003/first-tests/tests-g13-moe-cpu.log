@@ -1,0 +1,248 @@
+...........................................
+[G13] moe_fused sm_121: 21 kernels, registers 40..216, no spills / stack
+......................................................[G7] gemv model vs float64 picks (E 384): 1.0000 of 96 rows; min margin of a differing row -
+.[G7] gemv model vs float64 picks (E 128): 1.0000 of 96 rows; min margin of a differing row -
+...................................F.....................
+=================================== FAILURES ===================================
+_____________________ test_builds_for_sm121_without_spills _____________________
+
+tmp_path = PosixPath('/cache/pytest-g13-moe-cpu/test_builds_for_sm121_without_0')
+
+    def test_builds_for_sm121_without_spills(tmp_path):
+        src = tmp_path / "inst.cu"
+        src.write_text(f'#include "{CU.name}"\n' + "".join(
+            f"template cudaError_t dsv41_rg::by_rt<{nw}, {ew}>(const dsv41_rg::Args&, int, cudaStream_t);\n"
+            for nw, ew in RG.CFGS) + "".join(
+            f"template cudaError_t dsv41_rg::by_rt_narrow<{nw}>(const dsv41_rg::Args&, int, cudaStream_t);\n"
+            for nw in RG.NARROW_NW))
+        out = subprocess.run([NVCC, "-std=c++17", "-O3", "-DDSV41_RG_NO_TORCH", f"-I{CU.parent}",
+                              "-gencode=arch=compute_121,code=sm_121", "-Xptxas", "-v", "-c", str(src), "-o",
+                              str(tmp_path / "inst.o")], capture_output=True, text=True, timeout=600, check=False)
+        assert out.returncode == 0, out.stderr[-3000:]
+        log = out.stderr
+        entries = re.findall(r"Compiling entry function '(\S+)'", log)
+        assert len(entries) == (len(RG.CFGS) + len(RG.NARROW_NW)) * len(RG.TILES)
+        spills = re.findall(r"(\d+) bytes spill stores, (\d+) bytes spill loads", log)
+>       assert len(spills) >= len(entries) and all(a == "0" and b == "0" for a, b in spills), log
+E       AssertionError: ptxas info    : 0 bytes gmem
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi16ELi4ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi16ELi4ELi2EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 216 registers, used 1 barriers, 32772 bytes smem
+E         ptxas info    : Compile time = 467.715 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi8ELi4ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi8ELi4ELi2EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 112 registers, used 1 barriers, 16388 bytes smem
+E         ptxas info    : Compile time = 259.291 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi4ELi4ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi4ELi4ELi2EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 84 registers, used 1 barriers, 8196 bytes smem
+E         ptxas info    : Compile time = 168.392 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi2ELi4ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi2ELi4ELi2EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 80 registers, used 1 barriers, 4100 bytes smem
+E         ptxas info    : Compile time = 127.382 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi1ELi4ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi1ELi4ELi2EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 79 registers, used 1 barriers, 2052 bytes smem
+E         ptxas info    : Compile time = 109.141 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi16ELi8ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi16ELi8ELi2EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 180 registers, used 1 barriers, 32772 bytes smem
+E         ptxas info    : Compile time = 423.573 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi8ELi8ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi8ELi8ELi2EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 114 registers, used 1 barriers, 16388 bytes smem
+E         ptxas info    : Compile time = 234.208 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi4ELi8ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi4ELi8ELi2EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 80 registers, used 1 barriers, 8196 bytes smem
+E         ptxas info    : Compile time = 161.390 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi2ELi8ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi2ELi8ELi2EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 84 registers, used 1 barriers, 4100 bytes smem
+E         ptxas info    : Compile time = 128.966 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi1ELi8ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi1ELi8ELi2EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 79 registers, used 1 barriers, 2052 bytes smem
+E         ptxas info    : Compile time = 108.444 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi16ELi4ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi16ELi4ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 199 registers, used 1 barriers, 32772 bytes smem
+E         ptxas info    : Compile time = 352.733 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi8ELi4ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi8ELi4ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 106 registers, used 1 barriers, 16388 bytes smem
+E         ptxas info    : Compile time = 201.582 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi4ELi4ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi4ELi4ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 90 registers, used 1 barriers, 8196 bytes smem
+E         ptxas info    : Compile time = 134.971 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi2ELi4ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi2ELi4ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 80 registers, used 1 barriers, 4100 bytes smem
+E         ptxas info    : Compile time = 111.545 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi1ELi4ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi1ELi4ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 80 registers, used 1 barriers, 2052 bytes smem
+E         ptxas info    : Compile time = 93.048 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi16ELi8ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi16ELi8ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 118 registers, used 1 barriers, 32772 bytes smem
+E         ptxas info    : Compile time = 291.063 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi8ELi8ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi8ELi8ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 94 registers, used 1 barriers, 16388 bytes smem
+E         ptxas info    : Compile time = 184.106 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi4ELi8ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi4ELi8ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 84 registers, used 1 barriers, 8196 bytes smem
+E         ptxas info    : Compile time = 124.702 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi2ELi8ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi2ELi8ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 80 registers, used 1 barriers, 4100 bytes smem
+E         ptxas info    : Compile time = 109.350 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg11gemv_kernelILi1ELi8ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg11gemv_kernelILi1ELi8ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 80 registers, used 1 barriers, 2052 bytes smem
+E         ptxas info    : Compile time = 94.965 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi16ELi8EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi16ELi8EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 170 registers, used 1 barriers, 40964 bytes smem
+E         ptxas info    : Compile time = 429.531 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi8ELi8EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi8ELi8EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 142 registers, used 1 barriers, 40964 bytes smem
+E         ptxas info    : Compile time = 253.897 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi4ELi8EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi4ELi8EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 128 registers, used 1 barriers, 40964 bytes smem
+E         ptxas info    : Compile time = 173.014 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi2ELi8EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi2ELi8EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 118 registers, used 1 barriers, 40964 bytes smem
+E         ptxas info    : Compile time = 136.199 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi1ELi8EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi1ELi8EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 94 registers, used 1 barriers, 40964 bytes smem
+E         ptxas info    : Compile time = 119.058 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi16ELi4EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi16ELi4EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 158 registers, used 1 barriers, 20484 bytes smem
+E         ptxas info    : Compile time = 420.741 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi8ELi4EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi8ELi4EEEvNS_4ArgsE
+E             8 bytes stack frame, 4 bytes spill stores, 4 bytes spill loads
+E         ptxas info    : Used 128 registers, used 1 barriers, 8 bytes cumulative stack size, 20484 bytes smem
+E         ptxas info    : Compile time = 285.226 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi4ELi4EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi4ELi4EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 197 registers, used 1 barriers, 40964 bytes smem
+E         ptxas info    : Compile time = 165.422 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi2ELi4EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi2ELi4EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 113 registers, used 1 barriers, 40964 bytes smem
+E         ptxas info    : Compile time = 128.963 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi1ELi4EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi1ELi4EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 100 registers, used 1 barriers, 40964 bytes smem
+E         ptxas info    : Compile time = 113.185 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi16ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi16ELi2EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 158 registers, used 1 barriers, 10244 bytes smem
+E         ptxas info    : Compile time = 421.952 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi8ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi8ELi2EEEvNS_4ArgsE
+E             8 bytes stack frame, 4 bytes spill stores, 4 bytes spill loads
+E         ptxas info    : Used 128 registers, used 1 barriers, 8 bytes cumulative stack size, 10244 bytes smem
+E         ptxas info    : Compile time = 285.402 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi4ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi4ELi2EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 192 registers, used 1 barriers, 20484 bytes smem
+E         ptxas info    : Compile time = 171.283 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi2ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi2ELi2EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 114 registers, used 1 barriers, 20484 bytes smem
+E         ptxas info    : Compile time = 129.879 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi1ELi2EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi1ELi2EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 100 registers, used 1 barriers, 20484 bytes smem
+E         ptxas info    : Compile time = 113.049 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi16ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi16ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 210 registers, used 1 barriers, 5636 bytes smem
+E         ptxas info    : Compile time = 438.149 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi8ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi8ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 142 registers, used 1 barriers, 5636 bytes smem
+E         ptxas info    : Compile time = 244.114 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi4ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi4ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 191 registers, used 1 barriers, 10244 bytes smem
+E         ptxas info    : Compile time = 152.248 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi2ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi2ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 110 registers, used 1 barriers, 10244 bytes smem
+E         ptxas info    : Compile time = 117.986 ms
+E         ptxas info    : Compiling entry function '_ZN8dsv41_rg13narrow_kernelILi1ELi1EEEvNS_4ArgsE' for 'sm_121'
+E         ptxas info    : Function properties for _ZN8dsv41_rg13narrow_kernelILi1ELi1EEEvNS_4ArgsE
+E             0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+E         ptxas info    : Used 89 registers, used 1 barriers, 10244 bytes smem
+E         ptxas info    : Compile time = 96.994 ms
+E         
+E       assert (40 >= 40 and False)
+E        +  where 40 = len([('0', '0'), ('0', '0'), ('0', '0'), ('0', '0'), ('0', '0'), ('0', '0'), ...])
+E        +  and   40 = len(['_ZN8dsv41_rg11gemv_kernelILi16ELi4ELi2EEEvNS_4ArgsE', '_ZN8dsv41_rg11gemv_kernelILi8ELi4ELi2EEEvNS_4ArgsE', '_ZN8dsv...gsE', '_ZN8dsv41_rg11gemv_kernelILi1ELi4ELi2EEEvNS_4ArgsE', '_ZN8dsv41_rg11gemv_kernelILi16ELi8ELi2EEEvNS_4ArgsE', ...])
+E        +  and   False = all(<generator object test_builds_for_sm121_without_spills.<locals>.<genexpr> at 0xe97fc798acf0>)
+
+tests/test_dsv41_router_gemv_compile.py:56: AssertionError
+=============================== warnings summary ===============================
+../cache/pylib/_pytest/config/__init__.py:1464
+  /cache/pylib/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: cache_dir
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+tests/test_dsv41_prune.py: 10 warnings
+  /usr/local/lib/python3.12/dist-packages/triton/runtime/interpreter.py:491: RuntimeWarning: invalid value encountered in divide
+    output = op(lhs.data, rhs.data)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_dsv41_router_gemv_compile.py::test_builds_for_sm121_without_spills
+1 failed, 154 passed, 11 warnings in 101.90s (0:01:41)

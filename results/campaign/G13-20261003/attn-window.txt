@@ -1,0 +1,5 @@
+config    1 row  2 rows  4 rows  16 rows    code   prose      C2  exact  replies==off  (vs off)
+attn      26.70   31.80   39.50    73.20       -   40.20       -  True  True  1 row +0.00 ms, 2 rows +0.30 ms; prose -0.8%
+off       26.70   31.50   39.30    72.90       -   40.51       -  True  None  
+on        26.00   31.20   38.80    72.60       -   40.88       -  True  True  1 row -0.70 ms, 2 rows -0.30 ms; prose +0.9%
+topk      26.20   31.60   39.20    73.60       -   41.09       -  True  True  1 row -0.50 ms, 2 rows +0.10 ms; prose +1.4%

@@ -1,0 +1,3 @@
+off: verify 1 rows 26.90, 2 rows 31.90, 4 rows 39.70, 16 rows 73.70 ms; prose 40.46 tok/s; exact True
+on: verify 1 rows 25.60, 2 rows 31.40, 4 rows 39.70, 16 rows 74.70 ms; prose 41.68 tok/s; exact True
+on - off: 1 rows -1.30 ms, 2 rows -0.50 ms, 4 rows +0.00 ms, 16 rows +1.00 ms
