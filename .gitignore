@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# run output (scripts/serve.sh run, bench clients)
+results/run-*/
+results/tooleval/
+*.log
+*.out
+
+# local config: cp config/prod.env.example config/prod.env and fill it in
+config/*.env
+.env
+
+# build context exports (docker TF_SRC=build/...)
+build/
+
+# private names for scripts/check-public.sh
+.check-public.local
+
+# editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+!results/campaign/**/*.log
+!results/campaign/**/*.out
