@@ -1,0 +1,60 @@
+    +0.0 MiB (+23 blocks) x3gm.py:152 <- x3gm.py:245 <- x3gm.py:207 <- prefill_moe.py:98 <- moe.py:198 <- forward.py:458
+    +0.0 MiB (+20 blocks) decode.py:73 <- forward.py:436 <- forward.py:401 <- forward.py:361 <- replay.py:123 <- slots.py:102
+    -0.0 MiB (-18 blocks) pick.py:83 <- prefill_moe.py:81 <- moe.py:198 <- forward.py:458 <- forward.py:401 <- forward.py:361
+    +0.0 MiB (+12 blocks) stores.py:31 <- stores.py:64 <- blocks.py:279 <- blocks.py:287 <- blocks.py:223 <- forward.py:450
+    +0.0 MiB (+0 blocks) kvpool.py:187 <- rounds.py:93 <- batch.py:499 <- engine.py:373 <- cli.py:276 <- cli.py:356
+    +0.0 MiB (+13 blocks) _stride_tricks_impl.py:119 <- _stride_tricks_impl.py:346 <- engram_native.py:288 <- engram_native.py:280 <- engram_native.py:302 <- engram_host.py:314
+    +0.0 MiB (+10 blocks) fromnumeric.py:57 <- fromnumeric.py:2980 <- _arraysetops_impl.py:380 <- _arraysetops_impl.py:291 <- engram_native.py:299 <- engram_host.py:314
+    +0.0 MiB (+9 blocks) engram_host.py:201 <- prefetch.py:368 <- thread.py:58 <- thread.py:92 <- threading.py:1010 <- threading.py:1073; cpu tensors 83.1 MiB in 94 storages: [*,8,32] float32 x2 48.0 MiB; [*,20480] int16 x4 19.8 MiB; [*,2,24] int64 x8 6.0 MiB; [*,5120] int16 x4 5.0 MiB; [*,2,128,3072] int16 x1 3.0 MiB; [*,] int64 x53 1.1 MiB; [*,] float64 x1 0.0 MiB; [*,16] float32 x4 0.0 MiB; anon rss glibc-arenas 0.34, heap 1.00, mimalloc 0.80, other 0.90 GiB (THP 0.00)
+[dsv41 memprobe] r1 round 88 t 539s prompt rows 104842; RssAnon 2.49 RssShmem 1.26 VmRSS 4.16 GiB; MemAvailable 5.27 GiB; gc (547, 7, 3); cuda alloc 101.87 reserved 103.69 GiB; pinned 0.02 / reserved 0.00 GiB; tracemalloc 129.6 MiB, grew:
+    +0.2 MiB (+0 blocks) rounds.py:96 <- batch.py:499 <- engine.py:373 <- cli.py:276 <- cli.py:356 <- cli.py:41
+    +0.0 MiB (+11 blocks) __init__.py:373 <- hostmem.py:69 <- hostmem.py:81 <- hostmem.py:145 <- hostmem.py:135 <- rounds.py:104
+    +0.0 MiB (+19 blocks) decode.py:73 <- forward.py:436 <- forward.py:401 <- forward.py:361 <- replay.py:123 <- slots.py:102
+    -0.0 MiB (-12 blocks) x3gm.py:152 <- x3gm.py:245 <- x3gm.py:207 <- prefill_moe.py:98 <- moe.py:198 <- forward.py:458
+    +0.0 MiB (+14 blocks) engram_native.py:275 <- engram_native.py:302 <- engram_host.py:314 <- prefetch.py:367 <- thread.py:58 <- thread.py:92
+    +0.0 MiB (+11 blocks) prefetch.py:307 <- prefetch.py:333 <- decode.py:308 <- rounds.py:258 <- rounds.py:100 <- batch.py:499
+    -0.0 MiB (-9 blocks) stores.py:31 <- stores.py:64 <- blocks.py:279 <- blocks.py:287 <- blocks.py:223 <- forward.py:450
+    +0.0 MiB (+9 blocks) forward.py:261 <- forward.py:460 <- forward.py:401 <- forward.py:361 <- replay.py:123 <- slots.py:102
+    -0.0 MiB (-9 blocks) forward.py:261 <- forward.py:452 <- forward.py:401 <- forward.py:361 <- replay.py:123 <- slots.py:102
+    +0.0 MiB (+9 blocks) prefetch.py:306 <- prefetch.py:333 <- decode.py:308 <- rounds.py:258 <- rounds.py:100 <- batch.py:499
+    +0.0 MiB (+0 blocks) kvpool.py:187 <- rounds.py:93 <- batch.py:499 <- engine.py:373 <- cli.py:276 <- cli.py:356
+    +0.0 MiB (+7 blocks) prefetch.py:307 <- prefetch.py:336 <- decode.py:308 <- rounds.py:258 <- rounds.py:100 <- batch.py:499; cpu tensors 83.1 MiB in 94 storages: [*,8,32] float32 x2 48.0 MiB; [*,20480] int16 x4 19.8 MiB; [*,2,24] int64 x8 6.0 MiB; [*,5120] int16 x4 5.0 MiB; [*,2,128,3072] int16 x1 3.0 MiB; [*,] int64 x53 1.1 MiB; [*,] float64 x1 0.0 MiB; [*,16] float32 x4 0.0 MiB; anon rss glibc-arenas 0.33, heap 1.00, mimalloc 0.20, other 0.90 GiB (THP 0.00)
+[dsv41 memprobe] r1 round 96 t 695s prompt rows 121226; RssAnon 2.86 RssShmem 1.26 VmRSS 4.52 GiB; MemAvailable 5.11 GiB; gc (546, 9, 0); cuda alloc 101.87 reserved 103.69 GiB; pinned 0.02 / reserved 0.00 GiB; tracemalloc 129.7 MiB, grew:
+    +0.1 MiB (+0 blocks) rounds.py:96 <- batch.py:499 <- engine.py:373 <- cli.py:276 <- cli.py:356 <- cli.py:41
+    -0.0 MiB (-11 blocks) __init__.py:373 <- hostmem.py:69 <- hostmem.py:81 <- hostmem.py:145 <- hostmem.py:135 <- rounds.py:104
+    +0.0 MiB (+19 blocks) decode.py:73 <- forward.py:436 <- forward.py:401 <- forward.py:361 <- replay.py:123 <- slots.py:102
+    +0.0 MiB (+12 blocks) prefetch.py:307 <- prefetch.py:336 <- decode.py:308 <- rounds.py:258 <- rounds.py:100 <- batch.py:499
+    -0.0 MiB (-11 blocks) backend.py:354 <- blocks.py:314 <- blocks.py:288 <- blocks.py:223 <- forward.py:450 <- forward.py:401
+    +0.0 MiB (+10 blocks) kvpool.py:166 <- kvpool.py:188 <- rounds.py:93 <- batch.py:499 <- engine.py:373 <- cli.py:276
+    +0.0 MiB (+0 blocks) kvpool.py:187 <- rounds.py:93 <- batch.py:499 <- engine.py:373 <- cli.py:276 <- cli.py:356
+    +0.0 MiB (+8 blocks) prefetch.py:306 <- prefetch.py:336 <- decode.py:308 <- rounds.py:258 <- rounds.py:100 <- batch.py:499
+    -0.0 MiB (-8 blocks) x3gm.py:235 <- x3gm.py:207 <- prefill_moe.py:98 <- moe.py:198 <- forward.py:458 <- forward.py:401
+    +0.0 MiB (+8 blocks) fromnumeric.py:57 <- fromnumeric.py:2980 <- _arraysetops_impl.py:380 <- _arraysetops_impl.py:291 <- engram_native.py:299 <- engram_host.py:314
+    +0.0 MiB (+9 blocks) engram_native.py:276 <- engram_native.py:302 <- engram_host.py:314 <- prefetch.py:367 <- thread.py:58 <- thread.py:92
+    +0.0 MiB (+7 blocks) fromnumeric.py:57 <- fromnumeric.py:2980 <- engram_native.py:256 <- engram_native.py:270 <- engram_native.py:302 <- engram_host.py:314; cpu tensors 83.1 MiB in 94 storages: [*,8,32] float32 x2 48.0 MiB; [*,20480] int16 x4 19.8 MiB; [*,2,24] int64 x8 6.0 MiB; [*,5120] int16 x4 5.0 MiB; [*,2,128,3072] int16 x1 3.0 MiB; [*,] int64 x53 1.1 MiB; [*,] float64 x1 0.0 MiB; [*,16] float32 x4 0.0 MiB; anon rss glibc-arenas 0.34, heap 1.00, mimalloc 0.59, other 0.90 GiB (THP 0.00)
+[dsv41 memprobe] r1 round 104 t 825s prompt rows 134521; RssAnon 3.13 RssShmem 1.24 VmRSS 4.77 GiB; MemAvailable 6.64 GiB; gc (50, 3, 0); cuda alloc 101.77 reserved 102.21 GiB; pinned 0.00 / reserved 0.00 GiB; tracemalloc 135.9 MiB, grew:
+    +2.2 MiB (+15 blocks) <frozen codecs>:322 <- pathlib.py:1030 <- compiler.py:427 <- compiler.py:270 <- jit.py:884 <- jit.py:739
+    +1.4 MiB (+6 blocks) shape_base.py:464 <- slots.py:237 <- decode.py:354 <- rounds.py:159 <- rounds.py:108 <- batch.py:499
+    +1.1 MiB (+2 blocks) sessions.py:190 <- rounds.py:162 <- rounds.py:108 <- batch.py:499 <- engine.py:373 <- cli.py:276
+    +0.7 MiB (+3 blocks) pathlib.py:1022 <- compiler.py:427 <- compiler.py:270 <- jit.py:884 <- jit.py:739 <- jit.py:370
+    -0.4 MiB (-3 blocks) prefetch.py:252 <- prefetch.py:291 <- prefetch.py:318 <- prefetch.py:338 <- decode.py:308 <- rounds.py:258
+    +0.3 MiB (+5 blocks) <frozen codecs>:322 <- pathlib.py:1030 <- compiler.py:427 <- compiler.py:270 <- jit.py:884 <- jit.py:739
+    +0.2 MiB (+4 blocks) shape_base.py:464 <- drafter.py:303 <- decode.py:356 <- rounds.py:159 <- rounds.py:108 <- batch.py:499
+    +0.2 MiB (+5 blocks) <frozen codecs>:322 <- pathlib.py:1030 <- compiler.py:427 <- compiler.py:270 <- jit.py:884 <- jit.py:739
+    +0.1 MiB (+0 blocks) rounds.py:96 <- batch.py:499 <- engine.py:373 <- cli.py:276 <- cli.py:356 <- cli.py:41
+    +0.1 MiB (+760 blocks) prefetch.py:145 <- thread.py:58 <- thread.py:92 <- threading.py:1010 <- threading.py:1073 <- threading.py:1030
+    +0.1 MiB (+10 blocks) <frozen codecs>:322 <- pathlib.py:1030 <- compiler.py:427 <- compiler.py:270 <- jit.py:884 <- jit.py:739
+    +0.1 MiB (+5 blocks) <frozen codecs>:322 <- pathlib.py:1030 <- compiler.py:427 <- compiler.py:270 <- jit.py:884 <- jit.py:739; cpu tensors 41.3 MiB in 99 storages: [*,20480] int16 x5 24.8 MiB; [*,5120] int16 x5 6.2 MiB; [*,2,24] int64 x12 6.0 MiB; [*,2,128,3072] int16 x1 3.0 MiB; [*,] int64 x51 1.1 MiB; [*,16] float32 x5 0.0 MiB; [*,] float64 x1 0.0 MiB; [*,4] float32 x10 0.0 MiB; anon rss glibc-arenas 0.32, heap 1.02, mimalloc 0.91, other 0.90 GiB (THP 0.00)
+[dsv41 memprobe] r1 round 112 t 874s prompt rows 134521; RssAnon 3.16 RssShmem 1.24 VmRSS 4.80 GiB; MemAvailable 5.30 GiB; gc (145, 11, 8); cuda alloc 101.77 reserved 102.21 GiB; pinned 0.00 / reserved 0.00 GiB; tracemalloc 136.2 MiB, grew:
+    -0.1 MiB (-2049 blocks) prefetch.py:104 <- prefetch.py:306 <- prefetch.py:336 <- decode.py:308 <- rounds.py:258 <- rounds.py:100
+    +0.0 MiB (+1144 blocks) engram_gate.py:126 <- engram_gate.py:404 <- engram_gate.py:413 <- engram_gate.py:368 <- threading.py:1010 <- threading.py:1073
+    +0.0 MiB (+1144 blocks) engram_gate.py:124 <- engram_gate.py:404 <- engram_gate.py:413 <- engram_gate.py:368 <- threading.py:1010 <- threading.py:1073
+    +0.0 MiB (+80 blocks) jit.py:760 <- jit.py:370 <- rmsnorm.py:178 <- blocks.py:66 <- blocks.py:201 <- forward.py:450
+    +0.0 MiB (+80 blocks) jit.py:760 <- jit.py:370 <- rmsnorm.py:178 <- blocks.py:66 <- blocks.py:201 <- forward.py:450
+    +0.0 MiB (+80 blocks) jit.py:760 <- jit.py:370 <- rmsnorm.py:178 <- blocks.py:66 <- blocks.py:201 <- forward.py:450
+    -0.0 MiB (+6 blocks) prefetch.py:116 <- engram_gate.py:214 <- engram_gate.py:242 <- decode.py:266 <- rounds.py:212 <- rounds.py:122
+    +0.0 MiB (+163 blocks) hostmem.py:206 <- hostmem.py:270 <- rounds.py:124 <- batch.py:499 <- engine.py:373 <- cli.py:276
+    +0.0 MiB (+72 blocks) __init__.py:518 <- _internal.py:294 <- engram_native.py:342 <- engram_gate.py:400 <- engram_gate.py:413 <- engram_gate.py:368
+    +0.0 MiB (+24 blocks) jit.py:575 <- jit.py:731 <- jit.py:370 <- dtopk.py:167 <- dtopk.py:193 <- backend.py:332
+    +0.0 MiB (+18 blocks) jit.py:575 <- jit.py:731 <- jit.py:370 <- dtopk.py:167 <- dtopk.py:176 <- backend.py:266
+    +0.0 MiB (+10 blocks) prefetch.py:116 <- engram_gate.py:214 <- engram_gate.py:242 <- decode.py:287 <- rounds.py:137 <- rounds.py:78; cpu tensors 40.5 MiB in 122 storages: [*,20480] int16 x5 24.8 MiB; [*,5120] int16 x5 6.2 MiB; [*,2,24] int64 x34 5.3 MiB; [*,2,128,3072] int16 x1 3.0 MiB; [*,] int64 x52 1.1 MiB; [*,16] float32 x5 0.0 MiB; [*,] float64 x1 0.0 MiB; [*,4] float32 x10 0.0 MiB; anon rss glibc-arenas 0.32, heap 1.04, mimalloc 0.90, other 0.90 GiB (THP 0.00)

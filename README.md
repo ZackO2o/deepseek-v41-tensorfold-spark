@@ -56,10 +56,12 @@ At temperature 0.7 the single-stream cells are code 72, prose 42, structured 117
 | tool-eval-bench category C (multi-step), thinking off | 8 / 8 (score 100) | - |
 | Structured output: 12 JSON-schema cases + 10 tool-choice cases (drafted == serial == batched, valid, no markup) | 22 / 22 | - |
 | 30-minute soak (1-4 streams, cancels, disconnects, long prompts) | 529 requests, 0 errors, drained | - |
-| Stress: one 299K prefill + three 64K prompts decoding 2,048 tokens each | every stream completes; worker MemAvailable minimum **4.01 GiB** | 4.40 GiB at <= 256K (lighter load) |
+| Stress: one 299K prefill + three 64K prompts decoding 2,048 tokens each | every stream completes; 299K prefill **175 s**; host RSS growth ~0.7 GiB a rank; worker MemAvailable minimum 3.0-3.7 GiB (the boot budget, not growth) | 4.40 GiB at <= 256K (lighter load) |
 
-Top-1, MMLU-200, tool calling, structured output, soak and stress ran on the final configuration; the 20-question
-MMLU and the needles ran on the G7 engine commit with the same prefill path.
+Top-1, MMLU-200, tool calling, structured output and soak ran on the final configuration (engine `38f6500`); the
+stress row is the current engine (`a6f5792`, G12); the 20-question MMLU and the needles ran on the G7 engine commit
+with the same prefill path. On the current engine a 299K prefill takes 175 s inside the stress (three other streams
+decoding), against 181-185 s before the G12 memory fixes; the needles were not re-run.
 
 ### What measures what
 
@@ -74,7 +76,8 @@ MMLU and the needles ran on the G7 engine commit with the same prefill path.
   prose, a JSON task and a copy-heavy edit, every other stream at T = 0.7; the kit's mix is its chat / code prompts,
   256 tokens each. Same metric, different prompts.
 - **Prefill:** one request, cold, after a 2K warm-up. Ours: fresh random text through `m2bench --prefill` (measured
-  at the G7 engine commit; later commits changed decode paths only). The kit: a repeated filler document over HTTP.
+  at the G7 engine commit; G8-G11 changed decode paths only, and G12's host-memory fixes were measured only on the
+  299K stress prefill: 175 s). The kit: a repeated filler document over HTTP.
   Repeated fillers can make Engram reads look cheaper, so the kit's cells are not pessimistic.
 - **Start to ready:** ours = `docker run` to `/v1/models` answering, with prepared folders and compiled kernels
   cached, page cache dropped first. The kit's = its start script to `/health` on freshly rebooted nodes. The first
@@ -211,8 +214,9 @@ Dockerfile:
 | [`0001-spark-stack-060.patch`](patches/0001-spark-stack-060.patch) | the GLM-5.3-Flash two-Spark engine (`families/glm5_next/spark/`) rebased onto 0.6.0, the CUDA communicator interface (`cuda/comm.py`), the family `CUDA_SERVE` hook (`cli.py`, `families/glm5_next/__init__.py`), the server's descriptor fix (`server/cancellation.py`), packaging (`pyproject.toml`), recipes and tests |
 | [`0002-deepseek-v41-family.patch`](patches/0002-deepseek-v41-family.patch) | `families/deepseek_v41/` and its tests, the EXL3 linear's device-side skip (`cuda/exl3/linear.*`), fp64 in `cuda/comm.py`, `--kv-dtype fp8` (`cli_args.py`), model aliases in the GLM server, packaging, NOTICE entries |
 
-Together they are every engine change production ran (development commit `38f6500`, 347 files over v0.6.0): applying
-them to v0.6.0 reproduces that tree except for reworded comments and the excluded draft-vocabulary files
+Together they are every engine change production runs (development commit `a6f5792`, 356 files over v0.6.0): applying
+them to v0.6.0 reproduces that tree except for reworded comments, a later test-only fix and the excluded
+draft-vocabulary files
 ([`docs/ENGINE.md`](docs/ENGINE.md) lists each difference).
 
 [`docs/ENGINE.md`](docs/ENGINE.md) explains how the patches were produced, how to get the same tree as a git branch,
@@ -221,16 +225,14 @@ TP=2 split.
 
 ## What is not solved
 
-- **Stress memory.** The 4 x 300K stress dips the worker to 3.6-4.4 GiB MemAvailable for about a minute during a
-  299K prefill (six runs), under our own 5 GiB target and near the 4 GiB admission floor (nothing new is admitted
-  below it). The growth is rank 1's host anonymous memory during long prefills; not the session tier, the Engram
-  cache, malloc arenas, the L2 prefetch or pruning. Open. `CONTEXT=196608` lowers the exposure.
+- **The worker's memory floor.** In the 4 x 300K stress the worker's MemAvailable bottoms out at 3.0-3.7 GiB early in
+  the 299K prefill, under our own 5 GiB target and the 4 GiB admission floor (nothing new is admitted below it). It
+  comes from the boot budget (the 4 x 300K KV pool) and the first segments' CUDA reservations, not from host growth
+  (fixed in G12). Open. `CONTEXT=196608` lowers the exposure.
 - **Prose and 2 streams** are not at 2x (above).
-- **A hang seen once** under a 1 s `nvidia-smi` sampler during the stress (4 requests in flight, no progress for
-  19 min, GPUs spinning). It did not recur in six later stress runs without the sampler. Avoid polling `nvidia-smi`
-  every second while serving.
+- **The speed table predates G12.** It was measured on `38f6500`; the current engine has the same decode kernels, so
+  no change is expected, but it has not been re-measured.
 - **`/health`** reports `drafted_total` / `accepted_total` as 0 for this family (the counters are not wired).
-- **Fast prefill** has a ~1-ulp segmentation dependence in 1-3 of ~2,300 rows (layer 3's q path); two tests stay red.
 - **Vision** is not wired for this family.
 - **No trimmed draft-head vocabulary is shipped** (`TF_DSV41_DRAFT_HEAD=trim`, off by default and not adopted). The
   development ranking was counted from private chat transcripts and is excluded, so `trim` needs
@@ -252,7 +254,7 @@ TP=2 split.
 | `scripts/check-public.sh` | the sanitizer this repository was checked with |
 | `bench/` | HTTP clients: quality (MMLU, needles), structured output, soak, stress, tool calling |
 | `docs/` | results, benchmark method, architecture, decode roofline and lessons, operations, the engine |
-| `results/` | the raw files behind the tables ([`results/README.md`](results/README.md)); `results/campaign/` every tracked result of the development windows G1-G11 |
+| `results/` | the raw files behind the tables ([`results/README.md`](results/README.md)); `results/campaign/` every tracked result of the development windows G1-G12 |
 | `docs/campaign/` | the development log: plans, targets, the landscape study, the results of every window ([`docs/campaign/README.md`](docs/campaign/README.md)) |
 | `engine/`, `tests/` | the development staging tree: the PyTorch reference model (the correctness oracle), the kernels and serving layer before they were ported into the TensorFold family, and their tests |
 | `scripts/campaign/` | analysis tools of the windows (nsys window / idle / skew breakdowns, summaries), the draft-vocabulary study tool, the porting script |
@@ -312,20 +314,21 @@ format (file-format facts), and implements DeepSeek's prompt encoding from DeepS
 - [MMLU](https://github.com/hendrycks/test) (Hendrycks et al.): the 200 questions in `bench/data/`.
 - NVIDIA: the DGX Spark and the PyTorch container.
 
-## Current focus: memory bugs
+## Current focus
 
-Work in progress on the engine, being fixed now:
+**Fixed in G12** (engine `a6f5792`, [`docs/campaign/G12-RESULTS.md`](docs/campaign/G12-RESULTS.md)):
 
-- **Host memory grows during very long prompts.** During a 299K-token prefill while three other streams decode, both
-  ranks' host memory (anonymous RSS) grows by about 5 GB and is not returned afterwards, so the worker's free memory
-  dips to about 3-4 GiB for a minute (the stress row above). Every stream still completes. It is not allocator
-  fragmentation (swapping in mimalloc gives the same growth) and not the knobs this recipe adopts (it reproduces with
-  L2 prefetch, expert pruning, the session tier and prefetch-ahead each turned off). Two prompt-length-proportional
-  host buffers have been bounded so far (an Engram hash cache and the native reader's index temporaries); the rest is
-  being traced with allocation tracing on both ranks.
-- **A one-off 19-minute stall** early in a 299K prefill (both GPUs idle-spinning, nothing logged) did not reproduce.
-  A stall watchdog (per-rank phase and stack dump when a round exceeds a deadline) and deadlines on the remaining
-  unbounded waits are being added.
-- **Fast-prefill segmentation dependence** (a 1-ulp difference in a few rows when the same prompt is prefilled in
-  different segment sizes) is found and fixed in the engine branch: the RoPE table was rebuilt at a length that
-  depended on the segment split. The fix lands in the next patch update.
+- **Host memory growth in long prompts.** torch's CPU allocator in NVIDIA's PyTorch build is an embedded mimalloc,
+  and it kept the memory of large blocks freed on another thread: a prompt segment's Engram rows, made on a prefetch
+  thread and freed on the round thread. The rows now live in reused NumPy-owned buffers. Growth per rank during a
+  299K prefill went from 4.1-5.6 GiB to ~0.7 GiB, and the 299K prefill takes 175 s (was 181-185 s).
+- **The 19-minute stall.** It was transparent-huge-page faults compacting memory synchronously under memory pressure,
+  not a hang. NumPy's huge-page request is off in the engine, and `MIMALLOC_ALLOW_THP=0` is in the config
+  (`scripts/serve.sh` passes `MIMALLOC_*` to both ranks). A stall watchdog and deadlines were added as a safety net.
+- **Fast-prefill segmentation dependence.** The RoPE tables are built in fixed blocks, so the segment split no longer
+  changes bits.
+
+**Still open:** the worker's boot-time memory floor of ~3-3.7 GiB in the stress, and the speed table, which has not
+been re-measured on `a6f5792` (the decode path is unchanged, so no change is expected).
+
+**Next:** the optimisation round, with engine and kernel rewrites.

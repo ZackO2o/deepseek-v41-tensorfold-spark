@@ -1,0 +1,10 @@
+some avg10=72.38 avg60=69.47 avg300=67.46 total=1387878152
+full avg10=71.13 avg60=68.68 avg300=66.65 total=1369503014
+compact_stall 239112
+compact_fail 225187
+thp_fault_alloc 1021724
+thp_fault_fallback 60304
+%Cpu(s): 10.3 us,  5.8 sy,  0.0 ni, 83.4 id,  0.4 wa,  0.0 hi,  0.0 si,  0.0 st 
+MiB Mem : 122540.6 total,   3570.1 free, 116516.0 used,   1958.0 buff/cache     
+threads_in_compaction=0
+58

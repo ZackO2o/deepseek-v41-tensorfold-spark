@@ -1,0 +1,43 @@
+G12 2026-10-03T05:54:09Z, sources a6f5792e053c1d281d6e12de975a3bbf3a535ca1, image glm53-tensorfold:b13-060
+[dsv41 10:42:51] tests new rc=0 (373 s): 64 passed, 1 warning in 370.69s (0:06:10)
+[dsv41 10:43:16] tests red rc=1 (25 s): 3 failed, 3 passed, 1 warning in 23.19s
+[dsv41 11:00:56] stress stress-fix rc=1 (761 s): irst_token_s": null, "tokens": 0, "total_s": 757.78, "chunks": 0, "error": "no streamed tokens (does the server stream /v1/completions?)", "decode_tok_s": null}, {"role": "decode", "start_s": 3.03, "prompt": 65536, "max_tokens": 2048, "first_token_s": null, "tokens": 0, "total_s": 756.77, "chunks": 0, "error": "no streamed tokens (does the server stream /v1/completions?)", "decode_tok_s": null}]}
+[dsv41 11:00:56] stress stress-fix rank 0: RssAnon 1.91 -> max 5.06 -> 4.94 GiB (growth 3.15), MemAvailable min 6.12 GiB
+[dsv41 11:00:56] stress stress-fix rank 1: RssAnon 1.87 -> max 5.03 -> 5.03 GiB (growth 3.16), MemAvailable min 5.79 GiB
+[dsv41 11:00:57] stress stress-fix: stall reports r0 0 r1 0; memprobe lines r1 0
+[dsv41 11:07:31] stress stress-notrim rc=0 (320 s): max_tokens": 2048, "first_token_s": 261.17, "tokens": 2048, "usage_completion": 2048, "total_s": 280.3, "chunks": 146, "decode_tok_s": 107.06, "during_prefill_tokens": 0}, {"role": "decode", "start_s": 3.03, "prompt": 65536, "max_tokens": 2048, "first_token_s": 305.81, "tokens": 2048, "usage_completion": 2048, "total_s": 316.48, "chunks": 147, "decode_tok_s": 191.94, "during_prefill_tokens": 0}]}
+[dsv41 11:07:31] stress stress-notrim rank 0: RssAnon 1.93 -> max 7.17 -> 6.67 GiB (growth 5.24), MemAvailable min 6.00 GiB
+[dsv41 11:07:31] stress stress-notrim rank 1: RssAnon 1.90 -> max 5.98 -> 5.44 GiB (growth 4.08), MemAvailable min 3.26 GiB
+[dsv41 11:07:34] stress stress-notrim: stall reports r0 0 r1 0; memprobe lines r1 43
+[dsv41 11:08:56] stress stress-smi rc=1 (5 s): , "first_token_s": null, "tokens": 0, "total_s": 1.25, "chunks": 0, "error": "no streamed tokens (does the server stream /v1/completions?)", "decode_tok_s": null}, {"role": "decode", "start_s": 3.03, "prompt": 65536, "max_tokens": 2048, "first_token_s": null, "tokens": 0, "total_s": 0.24, "chunks": 0, "error": "no streamed tokens (does the server stream /v1/completions?)", "decode_tok_s": null}]}
+[dsv41 11:08:56] stress stress-smi rank 0: RssAnon 1.91 -> max 2.48 -> 2.48 GiB (growth 0.57), MemAvailable min 6.93 GiB
+[dsv41 11:08:56] stress stress-smi rank 1: RssAnon 1.93 -> max 2.44 -> 2.44 GiB (growth 0.51), MemAvailable min 5.47 GiB
+[dsv41 11:08:59] stress stress-smi: stall reports r0 0 r1 0; memprobe lines r1 1
+[dsv41 11:28:35] stress stress-fix rc=0 (904 s): max_tokens": 2048, "first_token_s": 800.73, "tokens": 2048, "usage_completion": 2048, "total_s": 821.97, "chunks": 146, "decode_tok_s": 96.42, "during_prefill_tokens": 0}, {"role": "decode", "start_s": 3.03, "prompt": 65536, "max_tokens": 2048, "first_token_s": 889.67, "tokens": 2048, "usage_completion": 2048, "total_s": 900.34, "chunks": 146, "decode_tok_s": 191.94, "during_prefill_tokens": 0}]}
+[dsv41 11:28:35] stress stress-fix rank 0: RssAnon 1.69 -> max 4.41 -> 3.99 GiB (growth 2.72), MemAvailable min 4.75 GiB
+[dsv41 11:28:35] stress stress-fix rank 1: RssAnon 1.62 -> max 6.60 -> 5.98 GiB (growth 4.98), MemAvailable min 3.00 GiB
+[dsv41 11:28:39] stress stress-fix: stall reports r0 0 r1 0; memprobe lines r1 43
+[dsv41 11:35:57] stress stress-mi rc=0 (324 s): ax_tokens": 2048, "first_token_s": 262.82, "tokens": 2048, "usage_completion": 2048, "total_s": 281.98, "chunks": 146, "decode_tok_s": 106.89, "during_prefill_tokens": 0}, {"role": "decode", "start_s": 3.03, "prompt": 65536, "max_tokens": 2048, "first_token_s": 308.08, "tokens": 2048, "usage_completion": 2048, "total_s": 319.21, "chunks": 147, "decode_tok_s": 184.01, "during_prefill_tokens": 0}]}
+[dsv41 11:35:57] stress stress-mi rank 0: RssAnon 1.91 -> max 7.54 -> 6.76 GiB (growth 5.63), MemAvailable min 3.96 GiB
+[dsv41 11:35:57] stress stress-mi rank 1: RssAnon 1.84 -> max 6.56 -> 5.38 GiB (growth 4.72), MemAvailable min 3.34 GiB
+[dsv41 11:36:00] stress stress-mi: stall reports r0 0 r1 0; memprobe lines r1 43
+[dsv41 11:42:50] stress stress-mipurge rc=0 (321 s): max_tokens": 2048, "first_token_s": 264.96, "tokens": 2048, "usage_completion": 2048, "total_s": 283.96, "chunks": 146, "decode_tok_s": 107.79, "during_prefill_tokens": 0}, {"role": "decode", "start_s": 3.03, "prompt": 65536, "max_tokens": 2048, "first_token_s": 305.7, "tokens": 2048, "usage_completion": 2048, "total_s": 316.42, "chunks": 147, "decode_tok_s": 191.04, "during_prefill_tokens": 0}]}
+[dsv41 11:42:50] stress stress-mipurge rank 0: RssAnon 1.91 -> max 7.18 -> 6.64 GiB (growth 5.27), MemAvailable min 5.11 GiB
+[dsv41 11:42:50] stress stress-mipurge rank 1: RssAnon 1.84 -> max 6.79 -> 5.40 GiB (growth 4.95), MemAvailable min 3.69 GiB
+[dsv41 11:42:53] stress stress-mipurge: stall reports r0 0 r1 0; memprobe lines r1 43
+[dsv41 11:53:36] trace rank 1: RssAnon 1.93 -> max 5.64 -> 5.63 GiB (growth 3.71), MemAvailable min 4.80 GiB
+[dsv41 12:14:30] trace rank 1: RssAnon 1.91 -> max 4.61 -> 3.19 GiB (growth 2.70), MemAvailable min 4.63 GiB
+[dsv41 12:25:14] stress stress-bulk rc=0 (366 s): max_tokens": 2048, "first_token_s": 302.67, "tokens": 2048, "usage_completion": 2048, "total_s": 322.45, "chunks": 146, "decode_tok_s": 103.54, "during_prefill_tokens": 0}, {"role": "decode", "start_s": 3.03, "prompt": 65536, "max_tokens": 2048, "first_token_s": 351.03, "tokens": 2048, "usage_completion": 2048, "total_s": 361.73, "chunks": 147, "decode_tok_s": 191.4, "during_prefill_tokens": 0}]}
+[dsv41 12:25:14] stress stress-bulk rank 0: RssAnon 1.85 -> max 2.85 -> 2.64 GiB (growth 1.00), MemAvailable min 3.78 GiB
+[dsv41 12:25:14] stress stress-bulk rank 1: RssAnon 1.82 -> max 2.75 -> 2.53 GiB (growth 0.93), MemAvailable min 3.15 GiB
+[dsv41 12:25:18] stress stress-bulk: stall reports r0 0 r1 0; memprobe lines r1 43
+[dsv41 12:33:06] stress stress-bulk-smi rc=0 (372 s): ax_tokens": 2048, "first_token_s": 314.36, "tokens": 2048, "usage_completion": 2048, "total_s": 334.48, "chunks": 146, "decode_tok_s": 101.79, "during_prefill_tokens": 0}, {"role": "decode", "start_s": 3.03, "prompt": 65536, "max_tokens": 2048, "first_token_s": 356.09, "tokens": 2048, "usage_completion": 2048, "total_s": 368.31, "chunks": 147, "decode_tok_s": 167.59, "during_prefill_tokens": 0}]}
+[dsv41 12:33:06] stress stress-bulk-smi rank 0: RssAnon 1.91 -> max 3.02 -> 2.71 GiB (growth 1.11), MemAvailable min 4.89 GiB
+[dsv41 12:33:06] stress stress-bulk-smi rank 1: RssAnon 1.82 -> max 2.79 -> 2.60 GiB (growth 0.97), MemAvailable min 3.66 GiB
+[dsv41 12:33:09] stress stress-bulk-smi: stall reports r0 0 r1 0; memprobe lines r1 43
+[dsv41 12:47:23] stress stress-pool rc=0 (340 s): max_tokens": 2048, "first_token_s": 272.12, "tokens": 2048, "usage_completion": 2048, "total_s": 292.2, "chunks": 146, "decode_tok_s": 101.99, "during_prefill_tokens": 0}, {"role": "decode", "start_s": 3.03, "prompt": 65536, "max_tokens": 2048, "first_token_s": 324.57, "tokens": 2048, "usage_completion": 2048, "total_s": 335.29, "chunks": 146, "decode_tok_s": 191.04, "during_prefill_tokens": 0}]}
+[dsv41 12:47:23] stress stress-pool rank 0: RssAnon 1.68 -> max 2.37 -> 2.18 GiB (growth 0.69), MemAvailable min 4.31 GiB
+[dsv41 12:47:23] stress stress-pool rank 1: RssAnon 1.61 -> max 2.28 -> 2.08 GiB (growth 0.67), MemAvailable min 3.60 GiB
+[dsv41 12:47:26] stress stress-pool: stall reports r0 0 r1 0; memprobe lines r1 43
+[dsv41 12:53:53] tests new rc=0 (374 s): 68 passed, 1 warning in 369.89s (0:06:09)
+[dsv41 12:54:09] tests red rc=0 (16 s): 6 passed, 1 warning in 13.82s
