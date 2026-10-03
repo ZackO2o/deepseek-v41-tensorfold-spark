@@ -1,0 +1,13 @@
+torch 2.13.0a0+9186a08b2c.nv26.07, threads 20, cpu DEFAULT
+  length 4224 table 0: 307 positions differ from length 8192 [213, 226, 235, 240, 246, 279, 280, 282, 283, 301, 307, 310]
+  length 4224 table 1: 480 positions differ from length 8192 [214, 236, 250, 251, 253, 255, 283, 365, 371, 418, 419, 428]
+  length 4352 table 0: 0 positions differ from length 8192 []
+  length 4352 table 1: 0 positions differ from length 8192 []
+  length 4608 table 0: 299 positions differ from length 8192 [235, 238, 240, 246, 249, 251, 266, 279, 282, 286, 287, 290]
+  length 4608 table 1: 517 positions differ from length 8192 [234, 235, 236, 244, 248, 250, 251, 253, 255, 269, 283, 287]
+  length 5120 table 0: 0 positions differ from length 8192 []
+  length 5120 table 1: 0 positions differ from length 8192 []
+  length 6144 table 0: 324 positions differ from length 8192 [307, 310, 315, 334, 338, 340, 351, 352, 357, 362, 378, 381]
+  length 6144 table 1: 701 positions differ from length 8192 [365, 371, 418, 419, 449, 450, 451, 497, 498, 516, 519, 562]
+  length 302112 table 0: 0 positions differ from length 8192 []
+  length 302112 table 1: 0 positions differ from length 8192 []

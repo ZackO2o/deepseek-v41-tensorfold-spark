@@ -1,0 +1,10 @@
+# stress-fix (f0010be, prod knobs + MEMPROBE=16), rank 1, copied from `docker logs` at 10:58 (the container logs were lost at the abort)
+[dsv41 memprobe] r1 round 16 t 25s prompt rows 324; RssAnon 1.81 RssShmem 1.24 VmRSS 3.47 GiB; MemAvailable 7.84 GiB; gc (240, 11, 13); cuda alloc 101.73 reserved 102.22 GiB; pinned 0.01 / reserved 0.00 GiB
+[dsv41 memprobe] r1 round 32 t 152s prompt rows 18813; RssAnon 2.61 RssShmem 1.26 VmRSS 4.25 GiB; MemAvailable 6.28 GiB; gc (247, 6, 0); cuda alloc 101.84 reserved 103.37 GiB; pinned 0.02 / reserved 0.00 GiB
+[dsv41 memprobe] r1 round 48 t 375s prompt rows 51581; RssAnon 3.36 RssShmem 1.26 VmRSS 5.00 GiB; MemAvailable 5.96 GiB; gc (520, 9, 0); cuda alloc 101.84 reserved 103.70 GiB; pinned 0.02 / reserved 0.00 GiB
+[dsv41 memprobe] r1 round 64 t 578s prompt rows 84349; RssAnon 4.12 RssShmem 1.26 VmRSS 5.76 GiB; MemAvailable 5.89 GiB; gc (556, 10, 0); cuda alloc 101.84 reserved 103.70 GiB; pinned 0.02 / reserved 0.00 GiB
+# head at 10:58: 96% util at 17 W both GPUs; top: 45-51% sys; PSI memory full avg10 64%; compact_stall +33/s;
+# 10 rank-0 threads sampled in __do_huge_pmd_anonymous_page -> __alloc_pages_direct_compact -> compact_zone ->
+# migrate_pages -> try_to_migrate_one -> arm_smmu_tlb_inv_range_asid (THP fault, direct compaction, SMMU TLB invalidations)
+# rank 0 smaps: VMAs with VmFlags hg (MADV_HUGEPAGE) of ~6.2 MB each (numpy >= 4 MiB buffers are madvised by default)
+# worker: PSI memory full avg10 71%, 58 hg VMAs

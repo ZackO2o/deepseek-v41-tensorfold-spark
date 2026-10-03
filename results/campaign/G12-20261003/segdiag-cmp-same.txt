@@ -1,0 +1,44 @@
+/out/same/same-1024.pt (size 1024, stage 2048, ws 10518528) vs /out/same/same-96.pt (size 96, stage None, ws 18907136); logits equal: False
+  row 1259: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 128, 'p0': 1152, 'table_len': 4224}: first differing step cs; all ['cs', 'part']
+    row alone == in its segment (wq_a): True / True
+  row 1277: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 128, 'p0': 1152, 'table_len': 4224}: first differing step None; all []
+    row alone == in its segment (wq_a): True / True
+  row 1329: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 128, 'p0': 1280, 'table_len': 4224}: first differing step None; all []
+    row alone == in its segment (wq_a): True / True
+  row 1423: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 128, 'p0': 1408, 'table_len': 4224}: first differing step cs; all ['cs', 'q_rope', 'part']
+    row alone == in its segment (wq_a): True / True
+  row 2186: {'segment_rows': 252, 'p0': 2048, 'table_len': 5120} vs {'segment_rows': 124, 'p0': 2176, 'table_len': 4224}: first differing step None; all []
+    row alone == in its segment (wq_a): True / True
+/out/same/same-1024.pt (size 1024, stage 2048, ws 10518528) vs /out/same/same-256.pt (size 256, stage 512, ws 18907136); logits equal: True
+  row 1259: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 256, 'p0': 1024, 'table_len': 4352}: first differing step None; all []
+    row alone == in its segment (wq_a): True / True
+  row 1277: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 256, 'p0': 1024, 'table_len': 4352}: first differing step None; all []
+    row alone == in its segment (wq_a): True / True
+  row 1329: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 256, 'p0': 1280, 'table_len': 4352}: first differing step None; all []
+    row alone == in its segment (wq_a): True / True
+  row 1423: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 256, 'p0': 1280, 'table_len': 4352}: first differing step None; all []
+    row alone == in its segment (wq_a): True / True
+  row 2186: {'segment_rows': 252, 'p0': 2048, 'table_len': 5120} vs {'segment_rows': 252, 'p0': 2048, 'table_len': 4352}: first differing step None; all []
+    row alone == in its segment (wq_a): True / True
+/out/same/same-1024.pt (size 1024, stage 2048, ws 10518528) vs /out/same/same-512.pt (size 512, stage 1024, ws 18907136); logits equal: False
+  row 1259: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 512, 'p0': 1024, 'table_len': 4608}: first differing step cs; all ['cs', 'part']
+    row alone == in its segment (wq_a): True / True
+  row 1277: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 512, 'p0': 1024, 'table_len': 4608}: first differing step x; all ['x', 'qa', 'kva', 'qr', 'kv', 'q_lin', 'q_rope', 'part', 'qa_alone']
+    row alone == in its segment (wq_a): True / True
+  row 1329: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 512, 'p0': 1024, 'table_len': 4608}: first differing step x; all ['x', 'qa', 'kva', 'qr', 'kv', 'q_lin', 'q_rope', 'part', 'qa_alone']
+    row alone == in its segment (wq_a): True / True
+  row 1423: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 512, 'p0': 1024, 'table_len': 4608}: first differing step cs; all ['cs', 'q_rope', 'part']
+    row alone == in its segment (wq_a): True / True
+  row 2186: {'segment_rows': 252, 'p0': 2048, 'table_len': 5120} vs {'segment_rows': 252, 'p0': 2048, 'table_len': 4608}: first differing step cs; all ['cs', 'q_rope', 'part']
+    row alone == in its segment (wq_a): True / True
+/out/same/same-1024.pt (size 1024, stage 2048, ws 10518528) vs /out/same/same-2048.pt (size 2048, stage 4096, ws 18907136); logits equal: False
+  row 1259: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 2048, 'p0': 0, 'table_len': 6144}: first differing step None; all []
+    row alone == in its segment (wq_a): True / True
+  row 1277: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 2048, 'p0': 0, 'table_len': 6144}: first differing step None; all []
+    row alone == in its segment (wq_a): True / True
+  row 1329: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 2048, 'p0': 0, 'table_len': 6144}: first differing step None; all []
+    row alone == in its segment (wq_a): True / True
+  row 1423: {'segment_rows': 1024, 'p0': 1024, 'table_len': 5120} vs {'segment_rows': 2048, 'p0': 0, 'table_len': 6144}: first differing step None; all []
+    row alone == in its segment (wq_a): True / True
+  row 2186: {'segment_rows': 252, 'p0': 2048, 'table_len': 5120} vs {'segment_rows': 252, 'p0': 2048, 'table_len': 6144}: first differing step cs; all ['cs', 'q_rope', 'part']
+    row alone == in its segment (wq_a): True / True

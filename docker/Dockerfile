@@ -5,7 +5,8 @@
 # scripts/serve.sh build builds it on the head and ships it to the worker (docker save | ssh worker docker load).
 #
 # The production measurements in README.md ran an image of this content: the same base, xgrammar 0.2.8,
-# transformers 5.17.0, and the engine tree these patches produce (engine commit 38f6500 in the development history).
+# transformers 5.17.0, and the engine tree these patches produce (engine commit a6f5792 in the development history;
+# the speed and quality tables ran 38f6500: the same decode kernels, before the G12 host-memory and RoPE fixes).
 FROM nvcr.io/nvidia/pytorch:26.07-py3
 
 ENV PIP_NO_CACHE_DIR=1 \

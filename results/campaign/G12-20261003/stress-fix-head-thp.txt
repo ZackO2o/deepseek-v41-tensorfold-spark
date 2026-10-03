@@ -1,0 +1,6 @@
+some avg10=56.84 avg60=64.04 avg300=61.14 total=482473704
+full avg10=55.93 avg60=63.22 avg300=60.46 total=477160925
+compact_stall 78296
+compact_fail 72660
+thp_fault_alloc 1043009
+thp_fault_fallback 18263

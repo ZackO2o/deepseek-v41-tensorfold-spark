@@ -1,6 +1,6 @@
-From 6c702f80d4596ec6c91cdf14f89adac384be748b Mon Sep 17 00:00:00 2001
+From 8a622c31154bf55306816ff285480e400aea5129 Mon Sep 17 00:00:00 2001
 From: Jay Leaton <contact@buildthings.co>
-Date: Sat, 03 Oct 2026 02:00:00 +0000
+Date: Sat, 03 Oct 2026 06:15:00 +0000
 Subject: [PATCH 2/2] DeepSeek-V4.1-Flash family for two DGX Sparks (TP=2, EXL3
  2.9 bpw)
 
@@ -11,6 +11,16 @@ the routed experts on EXL3 kernels for GB10 (x3ld / x3seg / x3gm), exact DSpark
 speculative decoding (drafted replies == serial replies), CED bounded-replay prefill,
 a 4-slot batcher with a shared FP8 pool, sessions with an NVMe tier, prepared per-rank
 folders for fast restarts, structured output, DSML tool calls, and an OpenAI API.
+
+Host memory in long prefills (hostmem.py, G12): a segment's Engram rows live in reused
+NumPy-owned buffers, not torch's CPU allocator (its embedded mimalloc kept frees made on
+another thread); NumPy's transparent-huge-page request is off on the ranks; the Engram
+hash memo is bounded by the rows it holds; TF_DSV41_MEMPROBE diagnostics. A round stall
+watchdog (stall.py, TF_DSV41_STALL_S) and deadlines on Engram reads
+(TF_DSV41_ENGRAM_WAIT_S). RoPE tables built in fixed blocks, so an entry no longer
+depends on the table's length (prefill bits independent of the segment split). DSpark
+self-distillation tooling (dsparkdata / dsparktrain / dsparkdelta,
+TF_DSV41_DSPARK_DELTA, off by default).
 
 Also: the EXL3 linear's device-side skip (graph-safe), fp64 in the communicator's
 dtype table, --kv-dtype fp8, extra model ids in /v1/models, the family's tests.
@@ -29,7 +39,7 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  .../families/deepseek_v41/__init__.py         | 107 ++
  .../families/deepseek_v41/cuda/__init__.py    |   5 +
  .../families/deepseek_v41/cuda/app.py         | 394 +++++++
- .../families/deepseek_v41/cuda/batch.py       | 490 +++++++++
+ .../families/deepseek_v41/cuda/batch.py       | 530 ++++++++++
  .../families/deepseek_v41/cuda/blocks.py      | 334 ++++++
  .../families/deepseek_v41/cuda/budget.py      | 389 +++++++
  .../families/deepseek_v41/cuda/calib.py       | 261 +++++
@@ -54,22 +64,25 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  .../families/deepseek_v41/cuda/depth.py       | 408 ++++++++
  .../deepseek_v41/cuda/draft_graphs.py         | 237 +++++
  .../families/deepseek_v41/cuda/draft_head.py  | 321 ++++++
- .../families/deepseek_v41/cuda/draftcap.py    | 151 +++
- .../families/deepseek_v41/cuda/drafter.py     | 507 +++++++++
+ .../families/deepseek_v41/cuda/draftcap.py    | 169 +++
+ .../families/deepseek_v41/cuda/drafter.py     | 510 +++++++++
  .../families/deepseek_v41/cuda/draftlog.py    | 149 +++
  .../families/deepseek_v41/cuda/draftsim.py    | 406 ++++++++
  .../families/deepseek_v41/cuda/drafttrain.py  | 260 +++++
  .../families/deepseek_v41/cuda/dsml.py        | 299 ++++++
  .../families/deepseek_v41/cuda/dspark.py      | 303 ++++++
+ .../families/deepseek_v41/cuda/dsparkdata.py  | 203 ++++
+ .../families/deepseek_v41/cuda/dsparkdelta.py | 151 +++
+ .../families/deepseek_v41/cuda/dsparktrain.py | 540 ++++++++++
  .../families/deepseek_v41/cuda/encoding.py    | 296 ++++++
- .../families/deepseek_v41/cuda/engine.py      | 379 +++++++
+ .../families/deepseek_v41/cuda/engine.py      | 382 +++++++
  .../families/deepseek_v41/cuda/engram.py      | 312 ++++++
  .../families/deepseek_v41/cuda/engram_dec.py  | 125 +++
  .../deepseek_v41/cuda/engram_gate.cpp         |  38 +
  .../families/deepseek_v41/cuda/engram_gate.cu |  73 ++
- .../families/deepseek_v41/cuda/engram_gate.py | 483 +++++++++
- .../families/deepseek_v41/cuda/engram_host.py | 347 ++++++
- .../deepseek_v41/cuda/engram_native.py        | 371 +++++++
+ .../families/deepseek_v41/cuda/engram_gate.py | 491 +++++++++
+ .../families/deepseek_v41/cuda/engram_host.py | 403 +++++++
+ .../deepseek_v41/cuda/engram_native.py        | 379 +++++++
  .../deepseek_v41/cuda/engram_pcache.py        | 239 +++++
  .../deepseek_v41/cuda/expert_loads.py         | 137 +++
  .../deepseek_v41/cuda/expert_prefill.py       | 107 ++
@@ -80,6 +93,7 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  .../families/deepseek_v41/cuda/gate.py        | 307 ++++++
  .../families/deepseek_v41/cuda/gmbench.py     | 145 +++
  .../families/deepseek_v41/cuda/graphs.py      | 400 +++++++
+ .../families/deepseek_v41/cuda/hostmem.py     | 292 ++++++
  .../families/deepseek_v41/cuda/joint.py       | 102 ++
  .../families/deepseek_v41/cuda/kbench.py      | 256 +++++
  .../families/deepseek_v41/cuda/l2pf.py        | 258 +++++
@@ -99,9 +113,9 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  .../families/deepseek_v41/cuda/pick.py        |  86 ++
  .../families/deepseek_v41/cuda/plain_fp64.py  |  75 ++
  .../families/deepseek_v41/cuda/plan.py        | 127 +++
- .../families/deepseek_v41/cuda/planlink.py    | 113 ++
+ .../families/deepseek_v41/cuda/planlink.py    | 128 +++
  .../families/deepseek_v41/cuda/pool.py        | 263 +++++
- .../families/deepseek_v41/cuda/prefetch.py    | 391 +++++++
+ .../families/deepseek_v41/cuda/prefetch.py    | 422 ++++++++
  .../families/deepseek_v41/cuda/prefill_mm.py  | 207 ++++
  .../families/deepseek_v41/cuda/prefill_moe.py | 108 ++
  .../families/deepseek_v41/cuda/projbench.py   | 281 +++++
@@ -109,9 +123,9 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  .../families/deepseek_v41/cuda/prune.py       | 286 +++++
  .../families/deepseek_v41/cuda/replay.py      | 175 ++++
  .../families/deepseek_v41/cuda/rmsnorm.py     | 184 ++++
- .../families/deepseek_v41/cuda/rope.py        | 125 +++
+ .../families/deepseek_v41/cuda/rope.py        | 140 +++
  .../families/deepseek_v41/cuda/rope_fused.py  | 110 ++
- .../families/deepseek_v41/cuda/rounds.py      | 263 +++++
+ .../families/deepseek_v41/cuda/rounds.py      | 285 +++++
  .../families/deepseek_v41/cuda/router.py      | 392 +++++++
  .../deepseek_v41/cuda/router_check.py         | 114 ++
  .../deepseek_v41/cuda/router_gemv.cpp         |  42 +
@@ -128,6 +142,7 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  .../families/deepseek_v41/cuda/slots.py       | 268 +++++
  .../families/deepseek_v41/cuda/spec.py        | 351 +++++++
  .../families/deepseek_v41/cuda/stack.py       |  79 ++
+ .../families/deepseek_v41/cuda/stall.py       | 214 ++++
  .../families/deepseek_v41/cuda/state.py       | 174 ++++
  .../families/deepseek_v41/cuda/structured.py  | 162 +++
  .../families/deepseek_v41/cuda/topology.py    | 113 ++
@@ -199,6 +214,7 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  tests/test_dsv41_drafttrain.py                | 110 ++
  tests/test_dsv41_dspark_exact.py              | 132 +++
  tests/test_dsv41_dspark_interp.py             | 190 ++++
+ tests/test_dsv41_dsparktrain.py               | 146 +++
  tests/test_dsv41_dtopk_interp.py              | 191 ++++
  tests/test_dsv41_engine.py                    | 252 +++++
  tests/test_dsv41_engram_gate.py               | 231 ++++
@@ -217,6 +233,7 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  tests/test_dsv41_glue_interp.py               |  99 ++
  tests/test_dsv41_host_round.py                | 320 ++++++
  tests/test_dsv41_joint.py                     | 254 +++++
+ tests/test_dsv41_long_prefill_memory.py       | 393 +++++++
  tests/test_dsv41_m2_decode.py                 | 304 ++++++
  tests/test_dsv41_m2_policy.py                 | 342 ++++++
  tests/test_dsv41_mhc_dec_interp.py            | 183 ++++
@@ -236,6 +253,7 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  tests/test_dsv41_prune.py                     | 311 ++++++
  tests/test_dsv41_replay.py                    | 228 ++++
  tests/test_dsv41_rope_fused_interp.py         |  70 ++
+ tests/test_dsv41_rope_tables.py               |  59 ++
  tests/test_dsv41_router_fused_interp.py       | 121 +++
  tests/test_dsv41_router_gemv_compile.py       |  76 ++
  tests/test_dsv41_router_gemv_emu.py           | 362 +++++++
@@ -250,13 +268,14 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  tests/test_dsv41_serving_memory.py            | 159 +++
  tests/test_dsv41_serving_template.py          | 157 +++
  tests/test_dsv41_slots.py                     | 205 ++++
+ tests/test_dsv41_stall.py                     | 152 +++
  tests/test_dsv41_stream_topk_interp.py        | 120 +++
  tests/test_dsv41_tree.py                      | 253 +++++
  tests/test_dsv41_weights.py                   | 141 +++
  tests/test_dsv41_x3gm_emu.py                  | 203 ++++
  tests/test_dsv41_x3tc_compile.py              |  31 +
  tests/test_dsv41_x3tc_interp.py               | 116 +++
- 238 files changed, 50717 insertions(+), 23 deletions(-)
+ 247 files changed, 53086 insertions(+), 23 deletions(-)
  create mode 100644 src/tensorfold/families/deepseek_v41/__init__.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/__init__.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/app.py
@@ -292,6 +311,9 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/drafttrain.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/dsml.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/dspark.py
+ create mode 100644 src/tensorfold/families/deepseek_v41/cuda/dsparkdata.py
+ create mode 100644 src/tensorfold/families/deepseek_v41/cuda/dsparkdelta.py
+ create mode 100644 src/tensorfold/families/deepseek_v41/cuda/dsparktrain.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/encoding.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/engine.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/engram.py
@@ -311,6 +333,7 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/gate.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/gmbench.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/graphs.py
+ create mode 100644 src/tensorfold/families/deepseek_v41/cuda/hostmem.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/joint.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/kbench.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/l2pf.py
@@ -359,6 +382,7 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/slots.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/spec.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/stack.py
+ create mode 100644 src/tensorfold/families/deepseek_v41/cuda/stall.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/state.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/structured.py
  create mode 100644 src/tensorfold/families/deepseek_v41/cuda/topology.py
@@ -427,6 +451,7 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  create mode 100644 tests/test_dsv41_drafttrain.py
  create mode 100644 tests/test_dsv41_dspark_exact.py
  create mode 100644 tests/test_dsv41_dspark_interp.py
+ create mode 100644 tests/test_dsv41_dsparktrain.py
  create mode 100644 tests/test_dsv41_dtopk_interp.py
  create mode 100644 tests/test_dsv41_engine.py
  create mode 100644 tests/test_dsv41_engram_gate.py
@@ -445,6 +470,7 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  create mode 100644 tests/test_dsv41_glue_interp.py
  create mode 100644 tests/test_dsv41_host_round.py
  create mode 100644 tests/test_dsv41_joint.py
+ create mode 100644 tests/test_dsv41_long_prefill_memory.py
  create mode 100644 tests/test_dsv41_m2_decode.py
  create mode 100644 tests/test_dsv41_m2_policy.py
  create mode 100644 tests/test_dsv41_mhc_dec_interp.py
@@ -464,6 +490,7 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  create mode 100644 tests/test_dsv41_prune.py
  create mode 100644 tests/test_dsv41_replay.py
  create mode 100644 tests/test_dsv41_rope_fused_interp.py
+ create mode 100644 tests/test_dsv41_rope_tables.py
  create mode 100644 tests/test_dsv41_router_fused_interp.py
  create mode 100644 tests/test_dsv41_router_gemv_compile.py
  create mode 100644 tests/test_dsv41_router_gemv_emu.py
@@ -478,6 +505,7 @@ draft-vocabulary ranking is shipped for TF_DSV41_DRAFT_HEAD=trim (off by default
  create mode 100644 tests/test_dsv41_serving_memory.py
  create mode 100644 tests/test_dsv41_serving_template.py
  create mode 100644 tests/test_dsv41_slots.py
+ create mode 100644 tests/test_dsv41_stall.py
  create mode 100644 tests/test_dsv41_stream_topk_interp.py
  create mode 100644 tests/test_dsv41_tree.py
  create mode 100644 tests/test_dsv41_weights.py
@@ -1236,10 +1264,10 @@ index 0000000..54f43c2
 +                "completion_tokens": used, "stats": stats}, thinking
 diff --git a/src/tensorfold/families/deepseek_v41/cuda/batch.py b/src/tensorfold/families/deepseek_v41/cuda/batch.py
 new file mode 100644
-index 0000000..44304f9
+index 0000000..93c0e18
 --- /dev/null
 +++ b/src/tensorfold/families/deepseek_v41/cuda/batch.py
-@@ -0,0 +1,490 @@
+@@ -0,0 +1,530 @@
 +# SPDX-License-Identifier: MIT
 +# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
 +"""The V4.1 Batcher (``--parallel`` slots on one engine): GLM's batcher protocol (``glm5_next/spark/batch.py``: a job
@@ -1369,6 +1397,8 @@ index 0000000..44304f9
 +        self.planner = Planner(getattr(fwd, "costs", None), dspark=self.depth > 0, cap=self.depth, eos=self.eos)
 +        # top-p without top-k from TF_DSV41_NUCLEUS candidates a row when the forward supports it (``nucleus.py``)
 +        self.nucleus = NU.candidates() if getattr(fwd, "nucleus", False) else 0
++        dl = getattr(fwd, "dlog", None)
++        self.log_topk = int(dl.topk) if dl is not None else 0      # more candidates fetched: the same choices
 +        self.poll_s = poll_s
 +        # GLM 0120 / 0200: prefill pieces take at most this share of the time while others decode; prompts with at
 +        # most ``short`` tokens left go at once
@@ -1384,6 +1414,12 @@ index 0000000..44304f9
 +                             f"{self.prefill_concurrent} (>= 0)")
 +        self.ex = Executor(fwd, pool, self.n, capacity, store=store, grammars=grammars, tag=tag, mode=mode,
 +                           rank=rank, session_min=session_min)
++        from .stall import Watch
++
++        # G12: a round past TF_DSV41_STALL_S is reported (phase, plan, the forward's waits, every thread's stack)
++        self.watch = Watch(rank, info=self._stall_info)
++        self.ex.watch = self.watch
++        self._plan_now: Plan | None = None
 +        self.queue: collections.deque[Job] = collections.deque()
 +        self.cv = threading.Condition()
 +        self.seqs: list[Seq | None] = [None] * self.n
@@ -1466,6 +1502,7 @@ index 0000000..44304f9
 +            self.cv.notify_all()
 +        if self.thread is not None:
 +            self.thread.join(timeout=10)
++        self.watch.close()
 +
 +    # -- the round loop (rank 0) -----------------------------------------------------------------------------------
 +    def _serve(self) -> None:
@@ -1483,16 +1520,22 @@ index 0000000..44304f9
 +            while block and not self.stopping and not self._work():
 +                self.cv.wait(timeout=0.5)
 +            t0 = time.perf_counter()
++            self.watch.begin(self.rounds, "plan")
 +            with PH("plan"):
 +                plan = self._plan()
 +            if plan.empty():
++                self.watch.end()
 +                return False
 +            self.in_round = True
++        self._plan_now = plan
 +        try:
++            self.watch.phase("share")
 +            with PH("share"):
 +                self.link.send(plan.encode())
++            self.watch.phase("execute")
 +            with PH("execute"):
 +                res = self.ex.run(plan)
++            self.watch.phase("sample")
 +            with PH("sample"):
 +                self._sample(plan, res)
 +            self.fair.after(res.piece_s, res.window_s,
@@ -1502,6 +1545,8 @@ index 0000000..44304f9
 +            self._fail_all(exc)
 +        finally:
 +            self.in_round = False
++            self.watch.end()
++            self._plan_now = None
 +            if PH.on:
 +                PH.add("round", time.perf_counter() - t0)
 +        self.rounds += 1
@@ -1628,6 +1673,8 @@ index 0000000..44304f9
 +            else:                               # top-p alone: the nucleus' candidates (``nucleus.py``), else all
 +                k = self.nucleus if nuc else self.fwd.vocab
 +            count = max(count, min(k, self.fwd.vocab))
++        if self.log_topk:                       # TF_DSV41_DRAFT_LOG: the target's top-K of every row (``draftlog``)
++            count = max(count, min(self.log_topk, self.fwd.vocab))
 +        plan.count = count
 +
 +    # -- after the forward (rank 0) --------------------------------------------------------------------------------
@@ -1710,15 +1757,36 @@ index 0000000..44304f9
 +        """Rank 1: execute rank 0's plans until a stop plan."""
 +
 +        while True:
-+            plan = Plan.decode(self.link.recv())
++            plan = Plan.decode(self.link.recv())   # idle here is not a stall: the watch is armed per plan
 +            if plan.stop:
++                self.watch.close()
 +                return
 +            t0 = time.perf_counter()
-+            with PH("execute"):
-+                self.ex.run(plan)
++            self.watch.begin(self.rounds, "execute")
++            self._plan_now = plan
++            try:
++                with PH("execute"):
++                    self.ex.run(plan)
++            finally:
++                self.watch.end()
++                self._plan_now = None
 +            if PH.on:
 +                PH.add("round", time.perf_counter() - t0)
 +            self.rounds += 1
++
++    def _stall_info(self) -> list[str]:
++        """The stall report's batcher part (``stall.Watch``): the round's plan, the slots, the forward's waits."""
++
++        from .stall import forward_info
++
++        p = self._plan_now
++        out = []
++        if p is not None:
++            out.append(f"plan: round {p.round}, mode {p.mode}, admits {[(a.slot, len(a.prompt)) for a in p.admits]}, "
++                       f"pieces {p.pieces}, saves {p.saves}, finals {p.finals}, windows "
++                       f"{[(w.slot, w.start, w.depth) for w in p.windows]}, commits {len(p.commits)}")
++        out.append(f"slots: {self.ex.describe()}; queue {len(self.queue)}")
++        return out + forward_info(self.fwd)
 +
 +    def send_stop(self) -> None:
 +        self.link.send(Plan(stop=True).encode())
@@ -7513,10 +7581,10 @@ index 0000000..1f17989
 +           "settings"]
 diff --git a/src/tensorfold/families/deepseek_v41/cuda/draftcap.py b/src/tensorfold/families/deepseek_v41/cuda/draftcap.py
 new file mode 100644
-index 0000000..9e7e966
+index 0000000..c820ce7
 --- /dev/null
 +++ b/src/tensorfold/families/deepseek_v41/cuda/draftcap.py
-@@ -0,0 +1,151 @@
+@@ -0,0 +1,169 @@
 +# SPDX-License-Identifier: MIT
 +# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
 +"""Drafting-log capture on the real checkpoint, both ranks (``python -m ...cuda.draftcap`` on each; rank 1 follows
@@ -7564,6 +7632,13 @@ index 0000000..9e7e966
 +        "Summarize the causes of the First World War for a high-school student.",
 +        "What makes a good teacher? Discuss in a few paragraphs.",
 +        "Compare living in a big city with living in the countryside."]
++TOOLS = ["You can call tools by answering with JSON {\"tool\": name, \"arguments\": {...}}. Tools: get_weather(city), "
++         "search_flights(origin, destination, date), create_event(title, start, duration_min). The user says: {t}"]
++TOOL_ASKS = ["what's the weather like in Hanoi and should I bring an umbrella?",
++             "book me something from Bangkok to Tokyo next Friday, then put the trip in my calendar",
++             "schedule a 45 minute review of the quarterly numbers tomorrow at 10",
++             "compare the weather in Oslo and Lisbon this weekend and suggest where to go",
++             "find flights from Berlin to Rome on 2026-11-02 and summarize the options"]
 +CODE = ["Write a Python function that merges overlapping intervals, with a docstring and two tests.",
 +        "Write a small Rust program that counts word frequencies from stdin and prints the top ten.",
 +        "Write a JavaScript debounce function with comments and an example.",
@@ -7573,7 +7648,8 @@ index 0000000..9e7e966
 +def builtin() -> list[dict]:
 +    out = [{"msg": f.format(t=t), "max": 384} for t in TOPICS for f in FORMS]
 +    out += [{"msg": m, "max": 384} for m in CHAT]
-+    out += [{"msg": m, "max": 384} for m in CODE]
++    out += [{"msg": m, "max": 512} for m in CODE]
++    out += [{"msg": TOOLS[0].replace("{t}", q), "max": 256} for q in TOOL_ASKS]
 +    return out
 +
 +
@@ -7594,18 +7670,25 @@ index 0000000..9e7e966
 +
 +    tok = Tokenizer.from_file(str(Path(a.model) / "tokenizer.json"))
 +    prompts = load_prompts(a.prompts)[a.skip:a.skip + a.count if a.count else None]
++    prompts = [dict(p, max=a.max or p.get("max", 384), t=(0.7 if r else p.get("t", 0.0)))   # repeats sample: new text
++               for r in range(max(1, a.repeat)) for p in prompts]
 +    b = eng.batch
 +    hot = Sampling(seed=4321, temperature=0.7, top_k=0, top_p=0.95)
 +    rep = {"knobs": {k: v for k, v in sorted(os.environ.items()) if k.startswith("TF_DSV41_")}, "requests": []}
 +    t0 = time.perf_counter()
 +    for at in range(0, len(prompts), a.streams):
++        if a.minutes and time.perf_counter() - t0 > a.minutes * 60:
++            print(f"[draftcap] time box: {at} of {len(prompts)} requests", flush=True)
++            break
 +        group = prompts[at:at + a.streams]
 +        jobs, clocks, ths = [], [], []
 +        for j, pr in enumerate(group):
 +            ids = list(tok.encode(encode([{"role": "user", "content": pr["msg"]}], thinking=False),
 +                                  add_special_tokens=False).ids)
 +            n = (at + j)
-+            smp = hot if (a.hot and n % a.hot == a.hot - 1) or float(pr.get("t", 0.0)) > 0 else None
++            smp = None
++            if (a.hot and n % a.hot == a.hot - 1) or float(pr.get("t", 0.0)) > 0:
++                smp = Sampling(seed=int(hot.seed) + n, temperature=hot.temperature, top_k=0, top_p=hot.top_p)
 +            jobs.append(b.submit(Job(ids, int(pr.get("max", 384)), smp)))
 +            c = Clock()
 +            clocks.append(c)
@@ -7641,6 +7724,9 @@ index 0000000..9e7e966
 +    ap.add_argument("--prompts", default="")
 +    ap.add_argument("--skip", type=int, default=0)
 +    ap.add_argument("--count", type=int, default=0)
++    ap.add_argument("--max", type=int, default=0, help="max tokens for every request (0: the prompt's)")
++    ap.add_argument("--repeat", type=int, default=1, help="the prompt set this many times (new seeds at T > 0)")
++    ap.add_argument("--minutes", type=float, default=0.0, help="stop launching requests after this long")
 +    a = ap.parse_args(argv)
 +    if a.rank == 0 and not os.environ.get("TF_DSV41_DRAFT_LOG"):
 +        print("[draftcap] TF_DSV41_DRAFT_LOG is not set: nothing would be logged", file=sys.stderr)
@@ -7670,10 +7756,10 @@ index 0000000..9e7e966
 +    raise SystemExit(main())
 diff --git a/src/tensorfold/families/deepseek_v41/cuda/drafter.py b/src/tensorfold/families/deepseek_v41/cuda/drafter.py
 new file mode 100644
-index 0000000..3c6140c
+index 0000000..7376cb2
 --- /dev/null
 +++ b/src/tensorfold/families/deepseek_v41/cuda/drafter.py
-@@ -0,0 +1,507 @@
+@@ -0,0 +1,510 @@
 +# SPDX-License-Identifier: MIT
 +# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
 +"""DSpark (checkpoint ``mtp.0-2``) on the multi-slot forward: the drafter's weights, its per-slot context rings fed
@@ -7913,6 +7999,9 @@ index 0000000..3c6140c
 +        self.keep_hid = False                       # ``draftlog``: keep the head hidden too (TF_DSV41_DRAFT_LOG_HID)
 +        self.last_hid: list | None = None           # [bf16 [N, D]] a slot, caller order (with ``keep_hid``)
 +        self.on_ingest = None                       # ``draftlog`` (TF_DSV41_DRAFT_LOG_TAPS): (slot, start, taps [n, 3 D])
++        from . import dsparkdelta
++
++        self.delta = dsparkdelta.maybe_apply(self, int(fw.rank), int(fw.world))     # TF_DSV41_DSPARK_DELTA (off)
 +
 +    # -- per slot --------------------------------------------------------------------------------------------------
 +    def _slot(self, slot: int) -> list:
@@ -9628,6 +9717,918 @@ index 0000000..8c8265b
 +
 +__all__ = ["accept", "attention_meta", "block_ids", "candidates", "chain", "positions", "sampling_params",
 +           "verify_positions"]
+diff --git a/src/tensorfold/families/deepseek_v41/cuda/dsparkdata.py b/src/tensorfold/families/deepseek_v41/cuda/dsparkdata.py
+new file mode 100644
+index 0000000..7a83cf4
+--- /dev/null
++++ b/src/tensorfold/families/deepseek_v41/cuda/dsparkdata.py
+@@ -0,0 +1,203 @@
++# SPDX-License-Identifier: MIT
++# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
++"""Self-distillation data for DSpark from drafting logs (``draftlog`` with TF_DSV41_DRAFT_LOG_TAPS=1): a folder of
++per-session arrays that ``dsparktrain`` reads with memory maps.
++
++For every session (a request on a slot, between two ``r`` events) and every position q of its decode:
++
++- ``tok[q]``: the committed token (pending tokens and every commit's kept drafts + bonus);
++- ``taps[q]``: the drafter's input row at q (bf16 bits [3 D]: the streams' mean entering layers 37-39, the rows the
++  engine ingests into the DSpark rings), ``has_taps[q]``;
++- ``lab_ids[q]`` / ``lab_val[q]``: the target's top-K (ids, logits) of the token at q, from the verify row that
++  chose it (a row whose prefix was serial: rows 0 .. accepted of the window committed at that round), ``has_lab[q]``;
++- ``drafts[q]``: the engine's drafts of the pass logged at q (-1 when none): the baseline fidelity check.
++
++A training example is a position P with taps before it, its token and the labels of P + 1 .. P + N: the DSpark pass
++the engine would run there (block-parallel, teacher forced: the Markov head sees the serial tokens).
++
++CLI: python -m tensorfold.families.deepseek_v41.cuda.dsparkdata OUT LOGDIR [LOGDIR ...]
++"""
++
++from __future__ import annotations
++
++import glob
++import json
++import os
++import pickle
++import sys
++
++import numpy as np
++
++PAD_VAL = -60000.0
++
++
++def _files(folder: str) -> list[str]:
++    return sorted(glob.glob(os.path.join(folder, "draftlog-*.pkl")),
++                  key=lambda f: (os.path.basename(f).split("-")[1], f))
++
++
++class _Sess:
++    def __init__(self, sid: int) -> None:
++        self.sid = sid
++        self.tok: dict = {}
++        self.taps: dict = {}
++        self.lab: dict = {}
++        self.drafts: dict = {}
++        self.wins: dict = {}            # start -> (tokens, ids, values) of the slot's last window there
++
++
++def _flush(s: _Sess, out: str, K: int, meta: list, min_tokens: int = 8) -> None:
++    lab_pos = sorted(s.lab)
++    if len(lab_pos) < min_tokens or not s.taps:
++        return
++    lo = min(min(s.taps), min(s.tok))
++    hi = max(max(s.tok), max(lab_pos), max(s.taps), max(s.drafts, default=0)) + 1   # a tap / draft row past the last
++    # token or label (a session's final pass) must fit too (G11: IndexError at 400 of 400)
++    L = hi - lo
++    D3 = next(iter(s.taps.values())).shape[-1]
++    tok = np.full(L, -1, np.int32)
++    taps = np.zeros((L, D3), np.int16)
++    has_taps = np.zeros(L, bool)
++    lab_ids = np.full((L, K), -1, np.int32)
++    lab_val = np.full((L, K), PAD_VAL, np.float16)
++    has_lab = np.zeros(L, bool)
++    drafts = np.full((L, 5), -1, np.int32)
++    for q, t in s.tok.items():
++        tok[q - lo] = t
++    for q, row in s.taps.items():
++        taps[q - lo] = row
++        has_taps[q - lo] = True
++    for q, (ids, vals) in s.lab.items():
++        k = min(K, len(ids))
++        lab_ids[q - lo, :k] = ids[:k]
++        lab_val[q - lo, :k] = np.clip(vals[:k], -60000, 60000)
++        has_lab[q - lo] = True
++    for q, d in s.drafts.items():
++        drafts[q - lo, :min(5, len(d))] = d[:5]
++    name = f"s{s.sid:06d}"
++    np.save(os.path.join(out, f"{name}.taps.npy"), taps)
++    np.savez(os.path.join(out, f"{name}.npz"), tok=tok, has_taps=has_taps, lab_ids=lab_ids, lab_val=lab_val,
++             has_lab=has_lab, drafts=drafts, lo=np.int64(lo))
++    meta.append({"name": name, "lo": int(lo), "len": int(L), "labels": int(has_lab.sum()),
++                 "taps": int(has_taps.sum())})
++
++
++def build(out: str, logs: list[str], K: int = 32) -> dict:
++    """Every log folder's sessions -> ``out`` (``meta.json`` + per-session arrays)."""
++
++    os.makedirs(out, exist_ok=True)
++    meta: list = []
++    nxt = 0
++    for li, folder in enumerate(logs):
++        open_s: dict[int, _Sess] = {}
++        for f in _files(folder):
++            with open(f, "rb") as fh:
++                events = pickle.load(fh)["events"]
++            for kind, ev in events:
++                slot = ev.get("slot")
++                if kind == "r":
++                    if slot in open_s:
++                        _flush(open_s.pop(slot), out, K, meta)
++                    open_s[slot] = _Sess(nxt)
++                    nxt += 1
++                    continue
++                s = open_s.get(slot) if kind != "w" else None
++                if kind != "w" and s is None:
++                    s = open_s[slot] = _Sess(nxt)
++                    nxt += 1
++                if kind == "t":
++                    t = np.asarray(ev["taps"])
++                    for i in range(t.shape[0]):
++                        s.taps[ev["start"] + i] = t[i]
++                elif kind == "d":
++                    s.tok[ev["start"]] = int(ev["pending"])
++                    s.drafts[ev["start"]] = [int(x) for x in ev["drafts"]]
++                elif kind == "w":
++                    for g in ev["segs"]:
++                        ss = open_s.get(g["slot"])
++                        if ss is not None:
++                            ss.wins[g["start"]] = (list(g["tokens"]), g["ids"], g["values"])
++                elif kind == "k":
++                    if "bonus" not in ev or ev.get("start", -1) < 0:
++                        continue
++                    st, acc, toks = ev["start"], ev["accepted"], ev["tokens"]
++                    if toks:
++                        s.tok[st] = int(toks[0])
++                    got = list(toks[1:acc + 1]) + [ev["bonus"]]
++                    for i, t in enumerate(got):
++                        s.tok[st + 1 + i] = int(t)
++                    w = s.wins.pop(st, None)
++                    if w is not None and list(w[0][:acc + 1]) == list(toks[:acc + 1]):
++                        for r in range(min(acc + 1, len(w[1]))):
++                            s.lab[st + 1 + r] = (np.asarray(w[1][r]), np.asarray(w[2][r], np.float32))
++        for s in open_s.values():
++            _flush(s, out, K, meta)
++        print(f"[dsparkdata] {folder}: {len(meta)} sessions so far", flush=True)
++    info = {"K": K, "sessions": meta, "labels": sum(m["labels"] for m in meta), "logs": logs}
++    json.dump(info, open(os.path.join(out, "meta.json"), "w"), indent=1)
++    return info
++
++
++class Data:
++    """The folder's sessions (memory mapped taps) and the training examples (session, P)."""
++
++    def __init__(self, folder: str, n: int = 5, window: int = 128) -> None:
++        self.folder, self.n, self.window = folder, n, window
++        self.meta = json.load(open(os.path.join(folder, "meta.json")))
++        self.sess = []
++        for m in self.meta["sessions"]:
++            z = dict(np.load(os.path.join(folder, f"{m['name']}.npz")))
++            z["taps"] = np.load(os.path.join(folder, f"{m['name']}.taps.npy"), mmap_mode="r")
++            z["name"] = m["name"]
++            self.sess.append(z)
++
++    def examples(self, s: int) -> np.ndarray:
++        """Session-local P with a token, taps before, and labels (and tokens) at P + 1 .. P + n."""
++
++        z = self.sess[s]
++        L = len(z["tok"])
++        ok = (z["tok"] >= 0).copy()
++        cum = np.concatenate([[0], np.cumsum(z["has_taps"])])
++        for i in range(1, self.n + 1):
++            sh = np.zeros(L, bool)
++            sh[:L - i] = z["has_lab"][i:] & (z["tok"][i:] >= 0)
++            ok &= sh
++        before = cum[np.arange(L)] - cum[np.maximum(np.arange(L) - self.window, 0)]
++        return np.flatnonzero(ok & (before > 0))
++
++    def split(self, holdout: float = 0.1, seed: int = 0) -> tuple[list[int], list[int]]:
++        idx = np.random.default_rng(seed).permutation(len(self.sess))
++        k = max(1, int(round(len(idx) * holdout))) if len(idx) > 1 else 0
++        return sorted(idx[k:].tolist()), sorted(idx[:k].tolist())
++
++    def segments(self, sessions, S: int, rng: np.random.Generator | None = None) -> list[tuple[int, np.ndarray]]:
++        """(session, P array) chunks of at most S consecutive examples."""
++
++        out = []
++        for s in sessions:
++            ex = self.examples(s)
++            for a in range(0, len(ex), S):
++                out.append((s, ex[a:a + S]))
++        if rng is not None:
++            rng.shuffle(out)
++        return out
++
++    def batch(self, s: int, Ps: np.ndarray) -> dict:
++        """One segment: taps rows [a, b) (a = min P - window), the passes at Ps (indices into those rows)."""
++
++        z, n, W = self.sess[s], self.n, self.window
++        a = max(0, int(Ps.min()) - W)
++        b = int(Ps.max())
++        rows = np.arange(a, b)
++        return {"taps": np.ascontiguousarray(z["taps"][a:b]), "has_taps": z["has_taps"][a:b].copy(),
++                "pos": (rows + int(z["lo"])).astype(np.int64), "P": (Ps - a).astype(np.int64),
++                "Pabs": (Ps + int(z["lo"])).astype(np.int64), "anchor": z["tok"][Ps].astype(np.int64),
++                "serial": np.stack([z["tok"][Ps + 1 + i] for i in range(n)], 1).astype(np.int64),
++                "lab_ids": np.stack([z["lab_ids"][Ps + 1 + i] for i in range(n)], 1).astype(np.int64),
++                "lab_val": np.stack([z["lab_val"][Ps + 1 + i] for i in range(n)], 1).astype(np.float32),
++                "drafts": z["drafts"][Ps].astype(np.int64)}
++
++
++if __name__ == "__main__":
++    info = build(sys.argv[1], sys.argv[2:], K=int(os.environ.get("DSPARK_TOPK", "32")))
++    print(f"[dsparkdata] {len(info['sessions'])} sessions, {info['labels']} labelled positions -> {sys.argv[1]}")
+diff --git a/src/tensorfold/families/deepseek_v41/cuda/dsparkdelta.py b/src/tensorfold/families/deepseek_v41/cuda/dsparkdelta.py
+new file mode 100644
+index 0000000..31d0945
+--- /dev/null
++++ b/src/tensorfold/families/deepseek_v41/cuda/dsparkdelta.py
+@@ -0,0 +1,151 @@
++# SPDX-License-Identifier: MIT
++# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
++"""A trained DSpark delta on the serving drafter (``TF_DSV41_DSPARK_DELTA=<file.safetensors>``, default off;
++``dsparktrain.export_delta`` writes it). The pack is never modified: the delta is applied at load, on both ranks.
++
++- replacement vectors / tables, copied into the drafter's tensors in place (same shapes; graphs captured later read
++  them): ``mtp.0.main_norm``, ``mtp.{last}.norm``, the Markov head (``markov_head.embed`` / ``.head``), the confidence
++  head, and per block ``attn_norm`` / ``ffn_norm`` / ``attn.q_norm`` / ``attn.kv_norm``;
++- LoRA pairs ``<linear>.lora_A`` [r, K] / ``.lora_B`` [N, r] (scale folded): the linear becomes y = W x + B (A x)
++  (``LoraLin``: fp32 side path, rounded once to the caller's dtype), split like its matrix (``weights`` TP table):
++  ``main_proj`` / ``wq_a`` / ``wkv`` whole; ``wq_b`` (this rank's heads: rows of B); ``wo_a.slice.g`` (this rank's
++  groups); ``wo_b`` (this rank's input rows: columns of A; the partial sums still add up across ranks). A block with
++  a LoRA drops its fused projection path (``fused_proj``), which would bypass the wrapper.
++
++Drafts only propose (verification is exact): replies are serial whatever the delta is.
++"""
++
++from __future__ import annotations
++
++import os
++
++import torch
++
++ENV = "TF_DSV41_DSPARK_DELTA"
++F32 = torch.float32
++
++
++class LoraLin:
++    """``base(x, dtype)`` + B (A x)."""
++
++    def __init__(self, base, A: torch.Tensor, B: torch.Tensor) -> None:
++        self.base, self.A, self.B = base, A, B
++
++    @property
++    def k(self) -> int:
++        return self.base.k
++
++    @property
++    def n(self) -> int:
++        return self.base.n
++
++    def __call__(self, x: torch.Tensor, dtype: torch.dtype = F32) -> torch.Tensor:
++        y = self.base(x, F32)
++        d = (x.to(F32) @ self.A.t()) @ self.B.t()
++        return (y.to(F32) + d).to(dtype)
++
++
++def shard(kind: str, A: torch.Tensor, B: torch.Tensor, rank: int, world: int) -> tuple[torch.Tensor, torch.Tensor]:
++    """This rank's (A, B) of a LoRA on a matrix split ``kind``: "" whole, "col" output columns, "row" input rows."""
++
++    if world <= 1 or kind == "":
++        return A, B
++    if kind == "col":
++        n = B.shape[0] // world
++        return A, B[rank * n:(rank + 1) * n]
++    if kind == "row":
++        k = A.shape[1] // world
++        return A[:, rank * k:(rank + 1) * k], B
++    raise ValueError(kind)
++
++
++def apply(dr, path: str, *, rank: int, world: int) -> dict:
++    """Load ``path`` into ``dr`` (``drafter.Drafter``) -> counts."""
++
++    from safetensors import safe_open
++
++    cfg = dr.cfg
++    nb = cfg.num_nextn_predict_layers
++    dev = dr.dev
++    got = {"vectors": 0, "lora": 0}
++    with safe_open(path, "pt") as fh:
++        keys = set(fh.keys())
++
++        def put(dst: torch.Tensor, k: str) -> None:
++            t = fh.get_tensor(k).reshape(dst.shape) if fh.get_tensor(k).numel() == dst.numel() else None
++            if t is None:
++                raise ValueError(f"{ENV}: {k} has the wrong size for {tuple(dst.shape)}")
++            dst.copy_(t.to(dtype=dst.dtype, device=dst.device))
++            got["vectors"] += 1
++
++        for k in keys:
++            if k.endswith("lora_A") or k.endswith("lora_B"):
++                continue
++            if k.endswith("main_norm.weight"):
++                put(dr.main_norm, k)
++            elif k.endswith("markov_head.embed.weight"):
++                put(dr.w1, k)
++            elif k.endswith("markov_head.head.weight"):
++                put(dr.w2, k)
++            elif k.endswith("confidence_head.proj.weight"):
++                if dr.cw is not None:
++                    put(dr.cw, k)
++            elif k.startswith("mtp.") and k.endswith(".norm.weight") and k.count(".") == 3:
++                put(dr.norm, k)
++            else:
++                parts = k.split(".")
++                b = int(parts[1])
++                if not 0 <= b < nb:
++                    raise ValueError(f"{ENV}: unknown block in {k}")
++                blk = dr.blocks[b]
++                if k.endswith("attn.q_norm.weight"):
++                    put(blk.attn.q_norm, k)
++                elif k.endswith("attn.kv_norm.weight"):
++                    put(blk.attn.kv_norm, k)
++                elif k.endswith(".attn_norm.weight"):
++                    put(blk.attn_norm, k)
++                elif k.endswith(".ffn_norm.weight"):
++                    put(blk.ffn_norm, k)
++                else:
++                    raise ValueError(f"{ENV}: unknown tensor {k}")
++        gl = cfg.o_groups // world
++        for k in sorted(keys):
++            if not k.endswith(".lora_A"):
++                continue
++            p = k[:-len(".lora_A")]
++            A = fh.get_tensor(k).to(device=dev, dtype=F32)
++            B = fh.get_tensor(f"{p}.lora_B").to(device=dev, dtype=F32)
++            if p.endswith("main_proj"):
++                dr.main_proj = LoraLin(dr.main_proj, *shard("", A, B, rank, world))
++                got["lora"] += 1
++                continue
++            parts = p.split(".")
++            blk = dr.blocks[int(parts[1])]
++            name = parts[3]
++            att = blk.attn
++            if name in ("wq_a", "wkv", "wq_b", "wo_b"):
++                kind = {"wq_a": "", "wkv": "", "wq_b": "col", "wo_b": "row"}[name]
++                setattr(att, name, LoraLin(getattr(att, name), *shard(kind, A, B, rank, world)))
++            elif name == "wo_a":
++                g = int(parts[5])
++                if not rank * gl <= g < (rank + 1) * gl:
++                    continue
++                att.wo_a[g - rank * gl] = LoraLin(att.wo_a[g - rank * gl], A, B)
++            else:
++                raise ValueError(f"{ENV}: unknown LoRA {p}")
++            blk.fused = None
++            got["lora"] += 1
++    return got
++
++
++def maybe_apply(dr, rank: int, world: int) -> dict | None:
++    path = os.environ.get(ENV, "").strip()
++    if not path:
++        return None
++    got = apply(dr, path, rank=rank, world=world)
++    if rank == 0:
++        print(f"[tensorfold] dsv41 DSpark delta {path}: {got['vectors']} tensors, {got['lora']} LoRA", flush=True)
++    return got
++
++
++__all__ = ["ENV", "LoraLin", "apply", "maybe_apply", "shard"]
+diff --git a/src/tensorfold/families/deepseek_v41/cuda/dsparktrain.py b/src/tensorfold/families/deepseek_v41/cuda/dsparktrain.py
+new file mode 100644
+index 0000000..22a24ac
+--- /dev/null
++++ b/src/tensorfold/families/deepseek_v41/cuda/dsparktrain.py
+@@ -0,0 +1,540 @@
++# SPDX-License-Identifier: MIT
++# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
++"""Self-distillation of the whole DSpark drafter on our target (one GB10, the engine stopped), from ``dsparkdata``.
++
++The drafter in PyTorch, block-parallel as DSpark drafts (engine/reference/model.py ``DSpark.draft``, the engine's
++``drafter.py``): main_x = rms(main_proj(taps)); per block the 128 context rows rope(rms(wkv(main_x))) and the block
++rows [anchor, noise x 4] at P .. P + 4 attending to all of them (non-causal, sink softmax, V = K); mHC hyper-
++connections (delayed pre-mix, Sinkhorn); the 128-expert top-3 MoE + shared expert; the final collapse, norm and the
++target's head; the Markov head biases row i by the serial token before it (teacher forced, as trained).
++
++Weights come from the pack itself (``weights.Loader``, world 1), EXL3 decoded once to frozen bf16 (on CUDA: upstream's
++kernel applied to the identity, exact; ~29 GB for the 3 blocks' 128 x 3 experts + head + embedding). Only deltas
++train:
++
++- stage ``A`` (heads): the Markov head (w1' = (w1 + w1 M) a, w2' = w2 + w2 Q), the confidence head, main_norm and
++  the final norm (deltas), a LoRA on main_proj;
++- stage ``B``: A + LoRA (rank ``--rank``) on every block's wq_a, wkv, wq_b, the 8 wo_a groups and wo_b, and the
++  blocks' norm vectors (attn / ffn / q / kv). Routed and shared experts stay frozen: on the GPU the shared expert rides
++  in the routed launch, so a delta there would need kernel work.
++
++Loss: forward KL from the target's top-K distribution (T = 1, renormalized over its K) to the draft's full softmax,
++a weight ``gamma^i`` a draft position (later positions only count when the earlier ones are kept); the confidence
++head: BCE against "the row's argmax is the serial token" (inputs detached).
++
++Evaluation (held-out sessions): teacher-forced top-1 a position, and the engine's chain at T = 0 (argmax over each
++row's top-128 base candidates + the Markov bias of the previous draft): conditional acceptance a position and tokens
++a round over all 5; plus ``agree``: the base model's drafts == the engine's logged drafts (the port's fidelity).
++
++Export (``export_delta``): a safetensors file for ``dsparkdelta`` (TF_DSV41_DSPARK_DELTA): replacement vectors and
++tables (norms, Markov, confidence) and LoRA pairs ``<linear>.lora_A`` [r, K] / ``.lora_B`` [N, r] (scale folded).
++The pack is never modified.
++
++CLI: python -m tensorfold.families.deepseek_v41.cuda.dsparktrain --model M --data D --stage A|B --out F
++     [--init F] [--minutes 20] [--rank 32] [--lr ..] [--seg 96] [--eval-only]
++"""
++
++from __future__ import annotations
++
++import argparse
++import json
++import math
++import time
++
++import numpy as np
++import torch
++import torch.nn.functional as F
++
++F32, BF16, F16 = torch.float32, torch.bfloat16, torch.float16
++LORA_ATTN = ("wq_a", "wkv", "wq_b", "wo_b")
++
++
++def bf(x: torch.Tensor) -> torch.Tensor:
++    return x.to(BF16).to(F32)
++
++
++def rms(x: torch.Tensor, w: torch.Tensor | None, eps: float) -> torch.Tensor:
++    x = x.to(F32)
++    y = x * torch.rsqrt(x.square().mean(-1, keepdim=True) + eps)
++    return y if w is None else y * w.to(F32)
++
++
++def dense(x3, device, dtype=BF16) -> torch.Tensor:
++    """An EXL3 matrix as W [K, N] (y = x @ W): on CUDA the engine's kernel on the identity (exact), else the float64
++    oracle."""
++
++    from . import linear as LN
++
++    if torch.device(device).type == "cuda":
++        lin = LN.exl3_from(x3.trellis, x3.suh, x3.svh, x3.codebook, device)
++        K = lin.k
++        out = torch.empty((K, lin.n), dtype=dtype, device=device)
++        for a in range(0, K, 512):
++            b = min(K, a + 512)
++            eye = torch.zeros((b - a, K), dtype=F16, device=device)
++            eye[:, a:b] = torch.eye(b - a, dtype=F16, device=device)
++            out[a:b] = lin(eye, F32).to(dtype)
++        return out
++    return LN.dense_from(x3.trellis, x3.suh, x3.svh, x3.codebook).w.to(dtype)
++
++
++class Lora(torch.nn.Module):
++    def __init__(self, W: torch.Tensor, r: int, alpha: float = 1.0) -> None:
++        super().__init__()
++        self.W = W                                          # frozen [K, N] bf16 (not a parameter)
++        self.r = int(r)
++        if r:
++            K, N = W.shape
++            self.A = torch.nn.Parameter(torch.randn(r, K, device=W.device) / math.sqrt(K))
++            self.B = torch.nn.Parameter(torch.zeros(N, r, device=W.device))
++            self.scale = alpha
++
++    def forward(self, x: torch.Tensor) -> torch.Tensor:
++        y = (x.to(BF16) @ self.W).to(F32)
++        if self.r:
++            y = y + ((x.to(F32) @ self.A.t()) @ self.B.t()) * self.scale
++        return bf(y)
++
++
++def _vec(t: torch.Tensor, train: bool) -> tuple[torch.Tensor, torch.nn.Parameter | None]:
++    t = t.to(F32)
++    return t, (torch.nn.Parameter(torch.zeros_like(t)) if train else None)
++
++
++class Drafter(torch.nn.Module):
++    """The DSpark drafter with trainable deltas (module docstring)."""
++
++    def __init__(self, cfg, model_dir: str, device, *, stage: str = "A", rank: int = 32, src=None) -> None:
++        super().__init__()
++        from . import weights as W
++
++        self.cfg, self.dev, self.stage = cfg, torch.device(device), stage
++        src = src or W.Shards(model_dir)
++        ld = W.Loader(cfg, src, 0, 1, device)
++        nh, nb = cfg.num_hidden_layers, cfg.num_nextn_predict_layers
++        f = lambda s: next(n for i in reversed(range(nb)) for n in [f"mtp.{i}.{s}"]
++                           if n in src or f"{n}.trellis" in src or f"{n}.weight" in src)
++        self.names = {"main_proj": f("main_proj"), "main_norm": f("main_norm"), "norm": f("norm"),
++                      "embed": f("markov_head.embed"), "head": f("markov_head.head"),
++                      "conf": f("confidence_head.proj")}
++        r_b = rank if stage == "B" else 0
++        self.main_proj = Lora(dense(ld.x3(self.names["main_proj"]), device), rank)
++        self.main_norm, self.d_main_norm = _vec(ld.native(f"{self.names['main_norm']}.weight"), True)
++        self.norm, self.d_norm = _vec(ld.native(f"{self.names['norm']}.weight"), True)
++        self.w1 = ld.native(f"{self.names['embed']}.weight", BF16, bf16_param=True)
++        self.w2 = ld.native(f"{self.names['head']}.weight", BF16, bf16_param=True)
++        r = self.w1.shape[1]
++        self.M = torch.nn.Parameter(torch.zeros(r, r, device=self.dev))
++        self.Q = torch.nn.Parameter(torch.zeros(r, r, device=self.dev))
++        self.log_alpha = torch.nn.Parameter(torch.zeros((), device=self.dev))
++        self.cw = torch.nn.Parameter(ld.native(f"{self.names['conf']}.weight").reshape(-1).to(F32))
++        self.embed = src.tensor("embed.weight").to(BF16).to(self.dev)
++        self.head = dense(ld.x3("head"), device)
++        self.blocks = torch.nn.ModuleList()
++        self.bw = []
++        for i in range(nb):
++            lw = ld.layer(nh + i)
++            a, m = lw.attn, lw.moe
++            mod = torch.nn.Module()
++            for nm in LORA_ATTN:
++                setattr(mod, nm, Lora(dense(getattr(a, nm), device), r_b))
++            mod.wo_a = torch.nn.ModuleList([Lora(dense(x, device), r_b) for x in a.wo_a])
++            vecs = {"attn_norm": lw.attn_norm, "ffn_norm": lw.ffn_norm, "q_norm": a.q_norm, "kv_norm": a.kv_norm}
++            d = {}
++            for k, v in vecs.items():
++                base, delta = _vec(v, stage == "B")
++                d[k] = base
++                if delta is not None:
++                    mod.register_parameter(f"d_{k}", delta)
++            E = m.w1.trellis.shape[0]
++            ex = {w: torch.stack([dense(getattr(m, w).item(e), device) for e in range(E)]) for w in ("w1", "w2", "w3")}
++            sh = [tuple(dense(x, device) for x in t) for t in m.shared]
++            self.bw.append({"vec": d, "hc_attn": lw.hc_attn, "hc_ffn": lw.hc_ffn, "sink": a.sink.to(F32),
++                            "gate": m.gate.to(F32), "bias": m.bias.to(F32), "ex": ex, "shared": sh, "E": E})
++            self.blocks.append(mod)
++            lw.attn = lw.moe = None
++        self.inv_freq = 1.0 / (cfg.rope.rope_theta ** (torch.arange(0, cfg.qk_rope_head_dim, 2, dtype=F32,
++                                                                       device=self.dev) / cfg.qk_rope_head_dim))
++        for p in self.parameters():
++            p.requires_grad_(False)
++        for p in self.trainable():
++            p.requires_grad_(True)
++
++    # -- parameters ----------------------------------------------------------------------------------------------------
++    def trainable(self) -> list:
++        out = [self.M, self.Q, self.log_alpha, self.cw, self.d_main_norm, self.d_norm,
++               self.main_proj.A, self.main_proj.B] if self.main_proj.r else [self.M, self.Q, self.log_alpha, self.cw,
++                                                                           self.d_main_norm, self.d_norm]
++        if self.stage == "B":
++            for mod in self.blocks:
++                for n, p in mod.named_parameters():
++                    out.append(p)
++        return out
++
++    def vec(self, b: int, k: str) -> torch.Tensor:
++        base = self.bw[b]["vec"][k]
++        d = getattr(self.blocks[b], f"d_{k}", None)
++        return base if d is None else base + d
++
++    # -- pieces --------------------------------------------------------------------------------------------------------
++    def rope(self, x: torch.Tensor, pos: torch.Tensor, inverse: bool = False) -> torch.Tensor:
++        rd = self.cfg.qk_rope_head_dim
++        fr = pos.to(F32)[:, None] * self.inv_freq[None, :]
++        cos, sin = torch.cos(fr), torch.sin(fr)
++        if inverse:
++            sin = -sin
++        shape = (cos.shape[0],) + (1,) * (x.dim() - 2) + (cos.shape[1],)
++        cos, sin = cos.reshape(shape), sin.reshape(shape)
++        rot = x[..., -rd:].to(F32)
++        ev, od = rot[..., 0::2], rot[..., 1::2]
++        out = torch.stack((ev * cos - od * sin, od * cos + ev * sin), -1).flatten(-2)
++        return torch.cat((x[..., :-rd].to(F32), out), -1)
++
++    def hc_pre(self, streams, hc, pre_in, norm_w):
++        c = self.cfg
++        t, h, _ = streams.shape
++        x = streams.reshape(t, -1)
++        mixes = (x @ hc.fn.to(F32).t()) * torch.rsqrt(x.square().mean(-1, keepdim=True) + c.rms_norm_eps)
++        sc, base = hc.scale.to(F32), hc.base.to(F32)
++        pre = torch.sigmoid(mixes[:, :h] * sc[0] + base[:h]) + c.hc_eps
++        post = torch.sigmoid(mixes[:, h:2 * h] * sc[1] + base[h:2 * h]) * c.hc_post_alpha
++        comb = mixes[:, 2 * h:].reshape(t, h, h) * sc[2] + base[2 * h:].reshape(1, h, h)
++        comb = torch.softmax(comb, -1) + c.hc_eps
++        comb = comb / (comb.sum(-2, keepdim=True) + c.hc_eps)
++        for _ in range(c.hc_sinkhorn_iters - 1):
++            comb = comb / (comb.sum(-1, keepdim=True) + c.hc_eps)
++            comb = comb / (comb.sum(-2, keepdim=True) + c.hc_eps)
++        xin = self.collapse(streams, pre_in)
++        return post, comb, bf(rms(xin, norm_w, c.rms_norm_eps)), pre
++
++    @staticmethod
++    def collapse(streams, pre):
++        if pre is None:
++            return bf(streams[:, 0])
++        return bf((pre.unsqueeze(-1) * streams).sum(1))
++
++    @staticmethod
++    def hc_post(out, streams, post, comb):
++        return bf(torch.einsum("tij,tid->tjd", comb, streams) + post.unsqueeze(-1) * out.unsqueeze(1))
++
++    def kv(self, b: int, x: torch.Tensor, pos: torch.Tensor) -> torch.Tensor:
++        mod = self.blocks[b]
++        k = bf(rms(mod.wkv(x), self.vec(b, "kv_norm"), self.cfg.rms_norm_eps))
++        return bf(self.rope(k, pos))
++
++    def attention(self, b: int, x, qpos, ctx_k, ctx_ok, n: int):
++        c, mod = self.cfg, self.blocks[b]
++        R = x.shape[0]
++        B = R // n
++        qr = bf(rms(mod.wq_a(x), self.vec(b, "q_norm"), c.rms_norm_eps))
++        q = mod.wq_b(qr).view(R, c.num_attention_heads, c.head_dim)
++        q = bf(self.rope(q, qpos))
++        kq = self.kv(b, x, qpos).view(B, n, -1)
++        keys = torch.cat([ctx_k, kq], 1)                                     # [B, W + n, hd]
++        ok = torch.cat([ctx_ok, torch.ones((B, n), dtype=torch.bool, device=x.device)], 1)
++        s = torch.einsum("bnhd,bsd->bnhs", q.view(B, n, c.num_attention_heads, -1), keys) / math.sqrt(c.head_dim)
++        s = s.masked_fill(~ok[:, None, None, :], float("-inf"))
++        sink = self.bw[b]["sink"]
++        m = torch.maximum(s.amax(-1), sink[None, None, :])
++        e = torch.exp(s - m[..., None])
++        den = e.sum(-1) + torch.exp(sink[None, None, :] - m)
++        o = torch.einsum("bnhs,bsd->bnhd", e / den[..., None], keys).reshape(R, c.num_attention_heads, -1)
++        o = bf(self.rope(bf(o), qpos, inverse=True))
++        g = c.o_groups
++        og = o.reshape(R, g, -1)
++        z = torch.cat([mod.wo_a[i](og[:, i]) for i in range(g)], -1)
++        return mod.wo_b(z)
++
++    def moe(self, b: int, x: torch.Tensor) -> torch.Tensor:
++        c, w = self.cfg, self.bw[b]
++        _, topk = c.experts_of(c.num_hidden_layers + b)
++        logits = x @ w["gate"].t()
++        sc = torch.sqrt(F.softplus(logits))
++        ids = (sc + w["bias"][None, :]).topk(topk, -1).indices
++        wt = sc.gather(1, ids)
++        if c.norm_topk_prob:
++            wt = wt / wt.sum(-1, keepdim=True)
++        wt = (wt * c.routed_scaling_factor).to(F16).to(F32)
++        out = torch.zeros_like(x)
++        lim = c.swiglu_limit
++        xb = x.to(BF16)
++        for e in torch.unique(ids).tolist():
++            tok, slot = (ids == e).nonzero(as_tuple=True)
++            h = xb.index_select(0, tok)
++            g1 = (h @ w["ex"]["w1"][e]).to(F32).clamp(max=lim)
++            u = (h @ w["ex"]["w3"][e]).to(F32).clamp(-lim, lim)
++            down = ((F.silu(g1) * u).to(BF16) @ w["ex"]["w2"][e]).to(F32)
++            out = out.index_add(0, tok, down * wt[tok, slot].unsqueeze(-1))
++        for w1, w2, w3 in w["shared"]:
++            g1 = (xb @ w1).to(F32).clamp(max=lim)
++            u = (xb @ w3).to(F32).clamp(-lim, lim)
++            out = out + ((F.silu(g1) * u).to(BF16) @ w2).to(F32)
++        return bf(out)
++
++    # -- a batch of passes -----------------------------------------------------------------------------------------------
++    def forward(self, bt: dict):
++        """bt (``dsparkdata.Data.batch``, as tensors on the device) -> (base logits [B, n, V] fp32, Markov me [B, n, r],
++        hidden [B, n, D])."""
++
++        c, dev = self.cfg, self.dev
++        n = bt["serial"].shape[1]
++        Wn = c.sliding_window
++        taps = bt["taps"].view(BF16).to(dev)
++        mx = bf(rms(self.main_proj(taps), self.main_norm + self.d_main_norm, c.rms_norm_eps))
++        P = bt["P"].to(dev)
++        B = P.shape[0]
++        idx = P[:, None] - Wn + torch.arange(Wn, device=dev)[None, :]          # [B, W] rows of the segment
++        ok = (idx >= 0) & bt["has_taps"].to(dev)[idx.clamp(min=0)]
++        idx = idx.clamp(min=0)
++        pos_rows = bt["pos"].to(dev)
++        ids = torch.full((B, n), int(c.dspark_noise_token_id), dtype=torch.long, device=dev)
++        ids[:, 0] = bt["anchor"].to(dev)
++        qpos = (bt["Pabs"].to(dev)[:, None] + torch.arange(n, device=dev)[None, :]).reshape(-1)
++        x = self.embed[ids.reshape(-1)].to(F32)
++        streams = x.unsqueeze(1).expand(-1, c.hc_mult, -1).contiguous()
++        pre = None
++        for b in range(len(self.blocks)):
++            ctx_k = self.kv(b, mx, pos_rows)[idx]                                   # [B, W, hd]
++            post, comb, xin, pre_a = self.hc_pre(streams, self.bw[b]["hc_attn"], pre, self.vec(b, "attn_norm"))
++            streams = self.hc_post(self.attention(b, xin, qpos, ctx_k, ok, n), streams, post, comb)
++            post, comb, xin, pre = self.hc_pre(streams, self.bw[b]["hc_ffn"], pre_a, self.vec(b, "ffn_norm"))
++            streams = self.hc_post(self.moe(b, xin), streams, post, comb)
++        hidden = self.collapse(streams, pre)
++        hn = bf(rms(hidden, self.norm + self.d_norm, c.rms_norm_eps))
++        logits = (hn.to(BF16) @ self.head).to(F32)
++        prev = torch.cat([bt["anchor"].to(dev)[:, None], bt["serial"].to(dev)[:, :n - 1]], 1)
++        me = self.me(prev.reshape(-1))
++        V = logits.shape[-1]
++        return logits.view(B, n, V), me.view(B, n, -1), hidden.view(B, n, -1)
++
++    def me(self, prev: torch.Tensor) -> torch.Tensor:
++        e = self.w1[prev].to(F32)
++        return (e + e @ self.M) * self.log_alpha.exp()
++
++    def w2p(self) -> torch.Tensor:
++        w = self.w2.to(F32)
++        return w + w @ self.Q
++
++    def bias(self, me: torch.Tensor) -> torch.Tensor:
++        return me @ self.w2p().t()
++
++    def conf_logit(self, hidden: torch.Tensor, me: torch.Tensor) -> torch.Tensor:
++        return torch.cat([hidden.detach(), me.detach()], -1) @ self.cw
++
++
++def _to(bt: dict, dev) -> dict:
++    return {k: (torch.from_numpy(np.ascontiguousarray(v).copy()) if isinstance(v, np.ndarray) else v)
++            for k, v in bt.items()}
++
++
++def losses(model: Drafter, bt: dict, gamma: float = 0.8) -> tuple[torch.Tensor, dict]:
++    base, me, hid = model(bt)
++    dev = base.device
++    B, n, V = base.shape
++    z = base + model.bias(me.reshape(B * n, -1)).view(B, n, V)
++    lab, val = bt["lab_ids"].to(dev), bt["lab_val"].to(dev)
++    live = lab >= 0
++    pt = torch.softmax(val.masked_fill(~live, float("-inf")), -1)
++    logq = torch.log_softmax(z, -1).gather(-1, lab.clamp(min=0))
++    kl = -(pt * logq).masked_fill(~live, 0.0).sum(-1)                                   # [B, n] (+ const)
++    wpos = gamma ** torch.arange(n, device=dev, dtype=F32)
++    loss_kl = (kl * wpos).sum() / (B * wpos.sum())
++    serial = bt["serial"].to(dev)
++    hit = (z.argmax(-1) == serial).to(F32)
++    cl = model.conf_logit(hid.reshape(B * n, -1), me.reshape(B * n, -1)).view(B, n)
++    loss_c = F.binary_cross_entropy_with_logits(cl, hit)
++    return loss_kl + 0.1 * loss_c, {"kl": float(loss_kl.detach()), "conf": float(loss_c.detach()),
++                                    "top1": hit.mean(0).tolist()}
++
++
++@torch.no_grad()
++def evaluate(model: Drafter, data, sessions, *, seg: int = 96, max_segments: int = 0, cands: int = 128) -> dict:
++    """Held-out: teacher-forced top-1, the engine's T = 0 chain (top-``cands`` base candidates + Markov), agreement of
++    the chain with the logged drafts."""
++
++    n = data.n
++    tf = np.zeros(n)
++    reach, kept = np.zeros(n), np.zeros(n)
++    lens, agree, agree1, agree_n, rows = [], 0, 0, 0, 0
++    segs = data.segments(sessions, seg)
++    if max_segments:
++        segs = segs[:max_segments]
++    w2p = model.w2p()
++    for s, Ps in segs:
++        bt = _to(data.batch(s, Ps), model.dev)
++        base, me, _ = model(bt)
++        B = base.shape[0]
++        serial = bt["serial"].to(model.dev)
++        z = base + (me.reshape(B * n, -1) @ w2p.t()).view(B, n, -1)
++        tf += (z.argmax(-1) == serial).float().sum(0).cpu().numpy()
++        top = base.topk(cands, -1).indices                                     # [B, n, C]
++        prev = bt["anchor"].to(model.dev)
++        d = []
++        for i in range(n):
++            zc = base[:, i].gather(-1, top[:, i]) + torch.einsum("br,bcr->bc", model.me(prev), w2p[top[:, i]])
++            tok = top[:, i].gather(-1, zc.argmax(-1, keepdim=True)).squeeze(-1)
++            d.append(tok)
++            prev = tok
++        d = torch.stack(d, 1)
++        eq = (d == serial).cpu().numpy()
++        for row in eq:
++            a = 0
++            while a < n and row[a]:
++                a += 1
++            lens.append(a)
++            for i in range(min(a + 1, n)):
++                reach[i] += 1
++                kept[i] += int(i < a)
++        lg = bt["drafts"].numpy()[:, :n]
++        dn = d.cpu().numpy()
++        m = lg[:, 0] >= 0
++        agree += int(((lg[m] == dn[m]) | (lg[m] < 0)).all(1).sum())
++        agree1 += int((lg[m, 0] == dn[m, 0]).sum())
++        agree_n += int(m.sum())
++        rows += B
++    return {"rows": rows, "teacher_forced_top1": (tf / max(rows, 1)).round(4).tolist(),
++            "conditional": (kept / np.maximum(reach, 1)).round(4).tolist(),
++            "tokens_per_round_all5": round(1 + float(np.mean(lens)), 4) if lens else None,
++            "agree_logged_drafts": round(agree / agree_n, 4) if agree_n else None,
++            "agree_logged_first": round(agree1 / agree_n, 4) if agree_n else None, "logged_passes": agree_n}
++
++
++def train(model: Drafter, data, sessions, *, minutes: float, lr: float, seg: int = 96, gamma: float = 0.8,
++          seed: int = 0, log=print) -> dict:
++    rng = np.random.default_rng(seed)
++    params = model.trainable()
++    opt = torch.optim.AdamW(params, lr=lr, weight_decay=0.0)
++    t0, step, hist = time.time(), 0, []
++    budget = minutes * 60.0
++    segs = data.segments(sessions, seg, rng)
++    total = max(1, len(segs))
++    while time.time() - t0 < budget:
++        for s, Ps in segs:
++            if time.time() - t0 >= budget:
++                break
++            frac = min(1.0, (time.time() - t0) / budget)
++            for g in opt.param_groups:
++                g["lr"] = lr * (min(1.0, (step + 1) / 50) * 0.5 * (1 + math.cos(math.pi * frac)))
++            loss, info = losses(model, _to(data.batch(s, Ps), model.dev), gamma)
++            opt.zero_grad(set_to_none=True)
++            loss.backward()
++            torch.nn.utils.clip_grad_norm_(params, 1.0)
++            opt.step()
++            step += 1
++            hist.append(info["kl"])
++            if step % 50 == 0:
++                log(f"[dsparktrain] step {step} ({step / total:.2f} epochs, {time.time() - t0:.0f} s): kl "
++                    f"{np.mean(hist[-50:]):.4f}, top1 {[round(x, 3) for x in info['top1']]}")
++        segs = data.segments(sessions, seg, rng)
++    return {"steps": step, "epochs": round(step / total, 3), "kl_last": float(np.mean(hist[-50:])) if hist else None,
++            "seconds": round(time.time() - t0, 1)}
++
++
++@torch.no_grad()
++def export_delta(model: Drafter, path: str) -> dict:
++    """The trained deltas as the engine applies them (``dsparkdelta``)."""
++
++    from safetensors.torch import save_file
++
++    nm = model.names
++    t = {f"{nm['main_norm']}.weight": (model.main_norm + model.d_main_norm).float(),
++         f"{nm['norm']}.weight": (model.norm + model.d_norm).float(),
++         f"{nm['embed']}.weight": model.me(torch.arange(model.w1.shape[0], device=model.dev)).to(BF16),
++         f"{nm['head']}.weight": model.w2p().to(BF16), f"{nm['conf']}.weight": model.cw.float().reshape(1, -1)}
++
++    def lora(prefix, mod):
++        if mod.r and float(mod.B.abs().max()) > 0:
++            t[f"{prefix}.lora_A"] = mod.A.float().contiguous()
++            t[f"{prefix}.lora_B"] = (mod.B * mod.scale).float().contiguous()
++    lora(nm["main_proj"], model.main_proj)
++    for b, mod in enumerate(model.blocks):
++        p = f"mtp.{b}"
++        for k in ("attn_norm", "ffn_norm"):
++            if getattr(mod, f"d_{k}", None) is not None:
++                t[f"{p}.{k}.weight"] = model.vec(b, k).float()
++        for k in ("q_norm", "kv_norm"):
++            if getattr(mod, f"d_{k}", None) is not None:
++                t[f"{p}.attn.{k}.weight"] = model.vec(b, k).float()
++        for k in LORA_ATTN:
++            lora(f"{p}.attn.{k}", getattr(mod, k))
++        for g, lin in enumerate(mod.wo_a):
++            lora(f"{p}.attn.wo_a.slice.{g}", lin)
++    t = {k: v.detach().cpu().contiguous() for k, v in t.items()}
++    save_file(t, path, metadata={"source": "dsparktrain", "stage": model.stage})
++    return {"tensors": len(t), "lora": sum(1 for k in t if k.endswith("lora_A"))}
++
++
++@torch.no_grad()
++def load_delta(model: Drafter, path: str) -> None:
++    """A stage-A export into a fresh model (stage B starts from it): vectors and tables as bases, LoRA A / B."""
++
++    from safetensors import safe_open
++
++    nm = model.names
++    with safe_open(path, "pt") as fh:
++        keys = set(fh.keys())
++        g = lambda k: fh.get_tensor(k).to(model.dev)
++        model.main_norm = g(f"{nm['main_norm']}.weight").float()
++        model.norm = g(f"{nm['norm']}.weight").float()
++        model.w1 = g(f"{nm['embed']}.weight").to(BF16)
++        model.w2 = g(f"{nm['head']}.weight").to(BF16)
++        model.cw.copy_(g(f"{nm['conf']}.weight").reshape(-1).float())
++        p = nm["main_proj"]
++        if f"{p}.lora_A" in keys and model.main_proj.r:
++            A, Bm = g(f"{p}.lora_A"), g(f"{p}.lora_B")
++            if A.shape[0] == model.main_proj.r:
++                model.main_proj.A.copy_(A)
++                model.main_proj.B.copy_(Bm / model.main_proj.scale)
++            else:                                   # another rank: fold it into the frozen base
++                model.main_proj.W = (model.main_proj.W.float() + (Bm @ A).t()).to(BF16)
++
++
++def main(argv=None) -> int:
++    from .config import Config
++    from .dsparkdata import Data
++
++    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
++    ap.add_argument("--model", required=True)
++    ap.add_argument("--data", required=True)
++    ap.add_argument("--stage", choices=("A", "B"), default="A")
++    ap.add_argument("--out", required=True)
++    ap.add_argument("--init", default="", help="a stage-A delta to start from")
++    ap.add_argument("--minutes", type=float, default=20.0)
++    ap.add_argument("--rank", type=int, default=32)
++    ap.add_argument("--lr", type=float, default=0.0)
++    ap.add_argument("--seg", type=int, default=96)
++    ap.add_argument("--gamma", type=float, default=0.8)
++    ap.add_argument("--holdout", type=float, default=0.1)
++    ap.add_argument("--eval-segments", type=int, default=400)
++    ap.add_argument("--report", default="")
++    a = ap.parse_args(argv)
++    dev = "cuda" if torch.cuda.is_available() else "cpu"
++    from pathlib import Path
++
++    cfg = Config.from_file(Path(a.model) / "config.json")
++    data = Data(a.data, n=int(cfg.dspark_block_size), window=int(cfg.sliding_window))
++    tr, te = data.split(a.holdout)
++    t0 = time.time()
++    model = Drafter(cfg, a.model, dev, stage=a.stage, rank=a.rank)
++    print(f"[dsparktrain] stage {a.stage}: weights in {time.time() - t0:.0f} s, "
++          f"{sum(p.numel() for p in model.trainable()) / 1e6:.2f} M trainable, sessions {len(tr)} / {len(te)}", flush=True)
++    rep = {"stage": a.stage, "rank": a.rank}
++    rep["eval_base"] = evaluate(model, data, te, seg=a.seg, max_segments=a.eval_segments)
++    print(f"[dsparktrain] base: {json.dumps(rep['eval_base'])}", flush=True)
++    if a.init:
++        load_delta(model, a.init)
++        rep["eval_init"] = evaluate(model, data, te, seg=a.seg, max_segments=a.eval_segments)
++        print(f"[dsparktrain] init: {json.dumps(rep['eval_init'])}", flush=True)
++    lr = a.lr or (2e-3 if a.stage == "A" else 3e-4)
++    rep["train"] = train(model, data, tr, minutes=a.minutes, lr=lr, seg=a.seg, gamma=a.gamma)
++    rep["eval_after"] = evaluate(model, data, te, seg=a.seg, max_segments=a.eval_segments)
++    print(f"[dsparktrain] after: {json.dumps(rep['eval_after'])}", flush=True)
++    rep["export"] = export_delta(model, a.out)
++    if a.report:
++        Path(a.report).write_text(json.dumps(rep, indent=1))
++    print(json.dumps(rep), flush=True)
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
 diff --git a/src/tensorfold/families/deepseek_v41/cuda/encoding.py b/src/tensorfold/families/deepseek_v41/cuda/encoding.py
 new file mode 100644
 index 0000000..d6ffdfe
@@ -9932,10 +10933,10 @@ index 0000000..d6ffdfe
 +    return ASSISTANT + (THINK_OPEN if thinking else THINK_END)
 diff --git a/src/tensorfold/families/deepseek_v41/cuda/engine.py b/src/tensorfold/families/deepseek_v41/cuda/engine.py
 new file mode 100644
-index 0000000..d113286
+index 0000000..4e675d3
 --- /dev/null
 +++ b/src/tensorfold/families/deepseek_v41/cuda/engine.py
-@@ -0,0 +1,379 @@
+@@ -0,0 +1,382 @@
 +# SPDX-License-Identifier: MIT
 +# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
 +"""DeepSeek-V4.1-Flash's CUDA engine on two ranks (one a DGX Spark), the GLM Spark engine's contract for one slot
@@ -10078,6 +11079,9 @@ index 0000000..d113286
 +
 +        fastboot.set_rank(rank)
 +        fastboot.mark("start: imports, CLI")
++        from . import hostmem
++
++        hostmem.numpy_hugepages()           # G12: no THP faults (direct compaction) on NumPy's buffers
 +        self.torch = torch
 +        self.model_dir, self.rank = Path(model_dir), rank
 +        self.master, self.port = master, int(port)        # the plan link's address (``planlink``, TF_DSV41_PLAN_LINK)
@@ -10889,10 +11893,10 @@ index 0000000..6c2e75a
 +}
 diff --git a/src/tensorfold/families/deepseek_v41/cuda/engram_gate.py b/src/tensorfold/families/deepseek_v41/cuda/engram_gate.py
 new file mode 100644
-index 0000000..31f7fa4
+index 0000000..5ec5af4
 --- /dev/null
 +++ b/src/tensorfold/families/deepseek_v41/cuda/engram_gate.py
-@@ -0,0 +1,483 @@
+@@ -0,0 +1,491 @@
 +# SPDX-License-Identifier: MIT
 +# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
 +"""Engram reads off the critical path of decode (``TF_DSV41_ENGRAM_GATE=1``; docs/DECODE-ROOFLINE.md section 6).
@@ -11231,7 +12235,11 @@ index 0000000..31f7fa4
 +    def _check(self) -> None:
 +        t = self.armed
 +        if t is not None:
-+            t.finished.wait()
++            s = float(os.environ.get("TF_DSV41_ENGRAM_WAIT_S", "") or 300)
++            if not t.finished.wait(s if s > 0 else None):     # G12 bug 2: no round waits on the worker forever
++                alive = self.thread.is_alive()
++                raise RuntimeError(f"Engram gate: round {t.seq}'s reads not finished after {s:g} s "
++                                   f"(TF_DSV41_ENGRAM_WAIT_S; worker {'alive' if alive else 'dead'})")
 +            t.fail()
 +        if int(self.ctl[CTL_ERR]):
 +            slot = int(self.ctl[CTL_ERR])
@@ -11262,7 +12270,11 @@ index 0000000..31f7fa4
 +                print(f"[tensorfold] dsv41 Engram gate: round {t.seq} failed: {exc!r}", file=sys.stderr, flush=True)
 +                if t.seq:
 +                    for k in range(len(self.layers)):
-+                        self._publish(t, k)
++                        try:                    # the flags must go up (the GPU waits on them); the worker lives on
++                            self._publish(t, k)
++                        except BaseException as exc2:   # noqa: BLE001
++                            print(f"[tensorfold] dsv41 Engram gate: publish {k} of round {t.seq} failed: {exc2!r}",
++                                  file=sys.stderr, flush=True)
 +            finally:
 +                t.finished.set()
 +
@@ -11378,10 +12390,10 @@ index 0000000..31f7fa4
 +__all__ = ["Gate", "GatedEngram", "RowCache", "Ticket", "bf16_lut", "enabled", "make"]
 diff --git a/src/tensorfold/families/deepseek_v41/cuda/engram_host.py b/src/tensorfold/families/deepseek_v41/cuda/engram_host.py
 new file mode 100644
-index 0000000..92a8b03
+index 0000000..fcdf4a7
 --- /dev/null
 +++ b/src/tensorfold/families/deepseek_v41/cuda/engram_host.py
-@@ -0,0 +1,347 @@
+@@ -0,0 +1,403 @@
 +# SPDX-License-Identifier: MIT
 +# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
 +"""Engram's host side for DeepSeek-V4.1-Flash: the table layout, the n-gram hashes, and the rows (in memory, or
@@ -11585,6 +12597,62 @@ index 0000000..92a8b03
 +    return (v.reshape(v.shape[0], -1, block) * s[..., None]).reshape(v.shape)
 +
 +
++class HostBuffers:
++    """A few reusable NumPy-owned fp32 buffers for ``dequant_host`` (G12 bug 1). A buffer goes back to the pool when
++    the last user of the array handed out is gone (``weakref.finalize`` on that array, which the tensor's storage
++    holds: views of the tensor keep it alive too), so a buffer is never reused while in use. Fresh buffers cost a
++    ~25 MB mmap / munmap a layer a segment (page faults and SMMU TLB invalidations on GB10: G12 measured the 299K
++    prefill 13-29% slower with them); kept buffers cost nothing but their RSS (``keep`` a size, 6: ~150 MB)."""
++
++    def __init__(self, keep: int = 6) -> None:
++        import threading
++
++        self.keep = int(keep)
++        self.free: dict[int, list] = {}
++        self.lock = threading.Lock()
++        self.stats = {"new": 0, "reused": 0, "dropped": 0}
++
++    def take(self, n: int, width: int):
++        import weakref
++
++        cap = -(-max(1, n) // 4096) * 4096 * width             # elements: rows rounded up to 4,096
++        with self.lock:
++            pool = self.free.get(cap)
++            buf = pool.pop() if pool else None
++            self.stats["reused" if buf is not None else "new"] += 1
++        if buf is None:
++            buf = np.empty(cap, dtype=np.float32)
++        arr = buf[:n * width].reshape(n, width)
++        weakref.finalize(arr, self._give, cap, buf)
++        return arr
++
++    def _give(self, cap: int, buf) -> None:
++        with self.lock:
++            pool = self.free.setdefault(cap, [])
++            if len(pool) < self.keep:
++                pool.append(buf)
++            else:
++                self.stats["dropped"] += 1
++
++
++BUFFERS = HostBuffers(int(os.environ.get("TF_DSV41_HOST_BUFFERS", "") or 6))
++
++
++def dequant_host(raw: torch.Tensor, scale: torch.Tensor, block: int = 32) -> torch.Tensor:
++    """``dequant``'s values (the same conversion and products, bit for bit) in a NumPy-owned fp32 buffer
++    (``HostBuffers``): glibc memory, reused or given back wherever it is freed (``prefetch.bulk_rows``: made on a
++    prefetch thread, freed on the round thread; c10's mimalloc keeps such blocks). No fp32 temporaries besides the
++    result."""
++
++    n, width = raw.shape[0], raw.shape[1]
++    out = torch.from_numpy(BUFFERS.take(n, width) if BUFFERS.keep else np.empty((n, width), dtype=np.float32))
++    out.copy_(raw.contiguous().view(torch.float8_e4m3fn))
++    e = scale.contiguous().view(torch.uint8).to(torch.int32)
++    s = (e << 23).view(torch.float32)
++    out.view(n, -1, block).mul_(s[..., None])
++    return out
++
++
 +class MemoryRows:
 +    """A table held in memory: fp32 rows (tests), or FP8 bytes + UE8M0 scales."""
 +
@@ -11731,10 +12799,10 @@ index 0000000..92a8b03
 +    return out
 diff --git a/src/tensorfold/families/deepseek_v41/cuda/engram_native.py b/src/tensorfold/families/deepseek_v41/cuda/engram_native.py
 new file mode 100644
-index 0000000..c4d6c0f
+index 0000000..c2c21cd
 --- /dev/null
 +++ b/src/tensorfold/families/deepseek_v41/cuda/engram_native.py
-@@ -0,0 +1,371 @@
+@@ -0,0 +1,379 @@
 +# SPDX-License-Identifier: MIT
 +# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
 +"""The native Engram reader for prefill (ENGINE-PLAN section 13 item 4): a prompt segment's rows of a packed shard in
@@ -12014,7 +13082,15 @@ index 0000000..c4d6c0f
 +                                  threads())
 +    if rc != 0:
 +        raise OSError(rc, f"Engram shard read failed: {os.strerror(rc)}")
-+    return buf[at[:, None] + np.arange(row_bytes)]
++    return _gather(buf, at, row_bytes)
++
++
++def _gather(buf: np.ndarray, at: np.ndarray, row_bytes: int) -> np.ndarray:
++    """[N, row_bytes] copies of ``buf[at[i]:at[i] + row_bytes]``: one fancy index of a strided view (G12 bug 1: the old
++    ``at[:, None] + arange(row_bytes)`` index array was int64 [N, 264], ~52 MB a layer a 2,048-row segment, 8x the
++    records it gathered)."""
++
++    return np.lib.stride_tricks.sliding_window_view(buf, row_bytes)[at]
 +
 +
 +def records(src, index) -> np.ndarray:
@@ -12075,7 +13151,7 @@ index 0000000..c4d6c0f
 +    for i, pl in enumerate(plans):
 +        if pl is not None:
 +            b0, at, rb = pl
-+            out[i] = buf[b0 + at[:, None] + np.arange(rb)]
++            out[i] = _gather(buf, b0 + at, rb)
 +    return out
 +
 +
@@ -15364,6 +16440,304 @@ index 0000000..3673a05
 +    "make_key",
 +    "warmup_keys",
 +]
+diff --git a/src/tensorfold/families/deepseek_v41/cuda/hostmem.py b/src/tensorfold/families/deepseek_v41/cuda/hostmem.py
+new file mode 100644
+index 0000000..43b964f
+--- /dev/null
++++ b/src/tensorfold/families/deepseek_v41/cuda/hostmem.py
+@@ -0,0 +1,292 @@
++# SPDX-License-Identifier: MIT
++# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
++"""Host memory during long prefills (G12, bug 1): give freed memory back as a prompt goes, and a probe that says
++where a rank's anonymous memory goes.
++
++G10's stress (one 299K prefill, three 64K prompts queued): the worker's RssAnon climbed 0.87 -> ~7 GB during the
++prefill and partly came down only later; MALLOC_ARENA_MAX=2, prefetch-ahead, sessions, L2PF and pruning off changed
++nothing. A prefill segment's host side allocates and frees tens of MB a layer (the Engram bulk reads: a 4 KiB-padded
++read buffer of ~100 MB, the records, fp32 rows [24,576, 256] and their bf16 copy; the hashes) on the Prefetcher's
++threads and the round thread; glibc keeps freed chunks in its arenas (no trim below the top chunk, one arena a
++thread). Both ranks run ``rounds.Executor`` alike, so both trim alike:
++
++- ``Trimmer.prefilled(rows)``: every ``TF_DSV41_HOST_TRIM_ROWS`` (32,768; 0 = off) prompt rows, ``malloc_trim(0)``
++  (every arena's free pages back to the kernel: ~10-50 ms, once every ~16 segments);
++- ``Trimmer.prompt_done()`` after a prompt of at least that many rows: ``gc.collect()`` (cyclic garbage holding
++  buffers), ``malloc_trim(0)`` and torch's cached pinned blocks (``_host_emptyCache``: on a GB10 that memory is the
++  GPU's).
++
++``TF_DSV41_MEMPROBE=N`` (0 = off): every N rounds one line a rank (RssAnon / RssShmem / VmRSS, MemAvailable, torch's
++device and pinned-host counters, gc counts, prompt rows so far); ``TF_DSV41_MEMPROBE_TRACE=K`` also starts
++``tracemalloc`` (12 frames) and prints the K tracebacks that grew most since the last line (slow: diagnostics only).
++"""
++
++from __future__ import annotations
++
++import ctypes
++import gc
++import os
++import sys
++import time
++
++
++def _env_int(name: str, default: int) -> int:
++    raw = os.environ.get(name, "").strip()
++    v = int(raw) if raw else default
++    if v < 0:
++        raise ValueError(f"{name}={v}: expected >= 0")
++    return v
++
++
++def status_kib() -> dict[str, int]:
++    """{RssAnon, RssShmem, RssFile, VmRSS} of this process in KiB (empty off Linux)."""
++
++    out = {}
++    try:
++        with open("/proc/self/status") as f:
++            for line in f:
++                k, _, v = line.partition(":")
++                if k in ("RssAnon", "RssShmem", "RssFile", "VmRSS"):
++                    out[k] = int(v.split()[0])
++    except OSError:
++        pass
++    return out
++
++
++def mem_available_gib() -> float | None:
++    try:
++        with open("/proc/meminfo") as f:
++            for line in f:
++                if line.startswith("MemAvailable:"):
++                    return int(line.split()[1]) / 2 ** 20
++    except OSError:
++        pass
++    return None
++
++
++def malloc_trim() -> None:
++    try:
++        ctypes.CDLL("libc.so.6").malloc_trim(0)
++    except (OSError, AttributeError):
++        pass
++
++
++def trim(full: bool = False) -> float:
++    """``malloc_trim(0)``; ``full``: Python's cyclic garbage first and torch's cached pinned blocks after. -> MiB of
++    RssAnon given back."""
++
++    before = status_kib().get("RssAnon", 0)
++    if full:
++        gc.collect()
++    malloc_trim()
++    if full:
++        try:
++            import torch
++
++            torch._C._host_emptyCache()
++        except (ImportError, AttributeError, RuntimeError):
++            pass
++    return max(0, before - status_kib().get("RssAnon", before)) / 1024
++
++
++def numpy_hugepages(on: bool | None = None) -> bool | None:
++    """NumPy's ``madvise(MADV_HUGEPAGE)`` on its buffers of >= 4 MiB: off unless ``TF_DSV41_NUMPY_HUGEPAGE=1``.
++    -> the setting applied (None: this NumPy has no switch).
++
++    G12 (bugs 1 and 2): NumPy madvises every large buffer for transparent huge pages by default, and with the
++    Sparks' THP mode ``madvise`` / defrag ``madvise`` each first touch of such a range is a huge-page fault that
++    compacts memory synchronously when no free 2 MiB block is left. With ~103 GiB held by the weights and the KV
++    pool, a long prefill's host side (the Engram bulk reads: records, fp32 / bf16 rows, ~6-25 MB each, a layer a
++    segment, on the prefetch threads) faulted into direct compaction over and over: page migration with SMMU TLB
++    invalidations (the GPU shares the page tables), 45-51% system CPU, PSI memory "full" 64-71% on both nodes,
++    the GPUs spinning at 17 W, a 299K prefill at ~150 instead of ~1,650 tokens/s. The madvise also lands inside
++    glibc's arena heaps (buffers under the mmap threshold), whose huge pages a free or a trim then splits, so
++    RssAnon grew with the prompt too. Small pages cost nothing measurable here (the buffers are streamed once)."""
++
++    if on is None:
++        on = (os.environ.get("TF_DSV41_NUMPY_HUGEPAGE", "0").strip() or "0") != "0"
++    try:
++        import numpy as np
++
++        mod = getattr(getattr(np, "_core", None), "multiarray", None) or np.core.multiarray
++        mod._set_madvise_hugepage(bool(on))
++    except (ImportError, AttributeError):
++        return None
++    return bool(on)
++
++
++class Trimmer:
++    """One rank's trims (``rounds.Executor``: the same plan on both ranks, so the same trims)."""
++
++    def __init__(self, every: int | None = None, trim_fn=trim) -> None:
++        self.every = _env_int("TF_DSV41_HOST_TRIM_ROWS", 32768) if every is None else int(every)
++        self.trim_fn = trim_fn
++        self.rows = 0               # prompt rows since the last trim
++        self.long = False           # a prompt of >= ``every`` rows ran since the last full trim
++        self.stats = {"trims": 0, "full": 0, "mib": 0.0}
++
++    def prefilled(self, rows: int) -> None:
++        if not self.every:
++            return
++        self.rows += int(rows)
++        if self.rows >= self.every:
++            self.rows = 0
++            self.long = True
++            self._trim(False)
++
++    def prompt_done(self) -> None:
++        if self.every and self.long:
++            self.long, self.rows = False, 0
++            self._trim(True)
++
++    def _trim(self, full: bool) -> None:
++        self.stats["trims"] += 1
++        self.stats["full"] += int(full)
++        self.stats["mib"] += float(self.trim_fn(full) or 0.0)
++
++
++def anon_by_mapping() -> str:
++    """This process's anonymous RSS by kind of mapping (``/proc/self/smaps``): 1 GiB MAP_NORESERVE reservations
++    (mimalloc's arenas: c10's CPU allocator in NVIDIA's torch builds), glibc's [heap], 64 MiB-aligned regions of at
++    most 64 MiB (glibc's thread arenas), other anonymous mappings; and how much of it is in huge pages."""
++
++    kinds: dict[str, int] = {}
++    thp = 0
++    try:
++        with open("/proc/self/smaps") as f:
++            lines = f.read().split("\n")
++    except OSError:
++        return ""
++    lo = hi = 0
++    name = ""
++    rss = 0
++    for line in lines:
++        head = line.split(" ", 1)[0]
++        if "-" in head and all(c in "0123456789abcdef-" for c in head):
++            parts = line.split()
++            lo, hi = (int(v, 16) for v in head.split("-"))
++            name = parts[5] if len(parts) > 5 else ""
++            rss = 0
++        elif line.startswith("Rss:"):
++            rss = int(line.split()[1])
++        elif line.startswith("AnonHugePages:"):
++            thp += int(line.split()[1])
++        elif line.startswith("VmFlags:") and rss and (name in ("", "[heap]")):
++            size = hi - lo
++            if name == "[heap]":
++                k = "heap"
++            elif size == 1 << 30 and " nr" in line:
++                k = "mimalloc"
++            elif size <= 64 << 20 and lo % (64 << 20) == 0:
++                k = "glibc-arenas"
++            else:
++                k = "other"
++            kinds[k] = kinds.get(k, 0) + rss
++    return ("; anon rss " + ", ".join(f"{k} {v / 2 ** 20:.2f}" for k, v in sorted(kinds.items()))
++            + f" GiB (THP {thp / 2 ** 20:.2f})")
++
++
++def cpu_tensors(top: int = 8) -> str:
++    """Live CPU tensors (``gc``; each storage once): their bytes and the ``top`` largest (shape, dtype) groups.
++    torch's CPU allocations are invisible to tracemalloc (c10's own allocator; mimalloc in NVIDIA's builds), so this
++    tells live data from allocator retention (G12, bug 1). Slow: diagnostics only."""
++
++    try:
++        import torch
++    except ImportError:
++        return ""
++    seen: dict[int, tuple[int, tuple, str]] = {}
++    for o in gc.get_objects():
++        try:
++            if not issubclass(type(o), torch.Tensor) or o.device.type != "cpu":
++                continue
++            st = o.untyped_storage()
++            ptr = st.data_ptr()
++            if ptr and ptr not in seen:
++                seen[ptr] = (st.nbytes(), tuple(o.shape), str(o.dtype).replace("torch.", ""))
++        except Exception:                       # noqa: BLE001  (sparse / meta / wrapper tensors)
++            continue
++    groups: dict[tuple, list[int]] = {}
++    for nb, shape, dt in seen.values():
++        g = groups.setdefault((shape[1:] if len(shape) > 1 else (), dt), [0, 0])
++        g[0] += nb
++        g[1] += 1
++    big = sorted(groups.items(), key=lambda kv: -kv[1][0])[:top]
++    parts = [f"[*,{','.join(map(str, k[0]))}] {k[1]} x{v[1]} {v[0] / 2 ** 20:.1f} MiB" for k, v in big]
++    return (f"; cpu tensors {sum(v[0] for v in seen.values()) / 2 ** 20:.1f} MiB in {len(seen)} storages: "
++            + "; ".join(parts))
++
++
++class Probe:
++    """``TF_DSV41_MEMPROBE``: a line every ``every`` rounds (stderr)."""
++
++    def __init__(self, rank: int, every: int | None = None, trace: int | None = None, out=None) -> None:
++        self.rank = int(rank)
++        self.every = _env_int("TF_DSV41_MEMPROBE", 0) if every is None else int(every)
++        self.trace = _env_int("TF_DSV41_MEMPROBE_TRACE", 0) if trace is None else int(trace)
++        self.tensors = _env_int("TF_DSV41_MEMPROBE_TENSORS", 0)    # K: live CPU tensors, the K largest groups
++        self.smaps = _env_int("TF_DSV41_MEMPROBE_SMAPS", 0)        # 1: anonymous RSS by kind of mapping
++        self.out = out
++        self.rounds = 0
++        self.rows = 0
++        self.snap = None
++        self.t0 = time.monotonic()
++        if self.every and self.trace:
++            import tracemalloc
++
++            if not tracemalloc.is_tracing():
++                tracemalloc.start(12)
++
++    def round(self, prompt_rows: int = 0) -> str | None:
++        self.rows += int(prompt_rows)
++        if not self.every:
++            return None
++        self.rounds += 1
++        if self.rounds % self.every:
++            return None
++        st = status_kib()
++        gib = (lambda k: st.get(k, 0) / 2 ** 20)                    # noqa: E731
++        parts = [f"[dsv41 memprobe] r{self.rank} round {self.rounds} t {time.monotonic() - self.t0:.0f}s "
++                 f"prompt rows {self.rows}", f"RssAnon {gib('RssAnon'):.2f} RssShmem {gib('RssShmem'):.2f} "
++                 f"VmRSS {gib('VmRSS'):.2f} GiB", f"MemAvailable {mem_available_gib() or 0:.2f} GiB",
++                 f"gc {gc.get_count()}"]
++        try:
++            import torch
++
++            if torch.cuda.is_available() and torch.cuda.is_initialized():
++                parts.append(f"cuda alloc {torch.cuda.memory_allocated() / 2 ** 30:.2f} reserved "
++                             f"{torch.cuda.memory_reserved() / 2 ** 30:.2f} GiB")
++                hs = getattr(torch.cuda, "host_memory_stats", None)
++                if callable(hs):
++                    h = hs()
++                    got = (lambda k: h.get(f"{k}.current", h.get(k, 0)) / 2 ** 30)      # noqa: E731
++                    parts.append(f"pinned {got('allocated_bytes'):.2f} / reserved {got('reserved_bytes'):.2f} GiB")
++        except Exception:                       # noqa: BLE001  (a report)
++            pass
++        line = "; ".join(parts)
++        if self.trace:
++            line += self._trace()
++        if self.tensors:
++            line += cpu_tensors(self.tensors)
++        if self.smaps:
++            line += anon_by_mapping()
++        print(line, file=self.out or sys.stderr, flush=True)
++        return line
++
++    def _trace(self) -> str:
++        import tracemalloc
++
++        if not tracemalloc.is_tracing():
++            return ""
++        snap = tracemalloc.take_snapshot().filter_traces([tracemalloc.Filter(False, tracemalloc.__file__)])
++        prev, self.snap = self.snap, snap
++        if prev is None:
++            return f"; tracemalloc {tracemalloc.get_traced_memory()[0] / 2 ** 20:.1f} MiB (baseline)"
++        lines = [f"; tracemalloc {tracemalloc.get_traced_memory()[0] / 2 ** 20:.1f} MiB, grew:"]
++        for d in snap.compare_to(prev, "traceback")[:self.trace]:
++            frames = " <- ".join(f"{f.filename.rsplit('/', 1)[-1]}:{f.lineno}" for f in list(d.traceback)[::-1][:6])
++            lines.append(f"\n    {d.size_diff / 2 ** 20:+.1f} MiB ({d.count_diff:+d} blocks) {frames}")
++        return "".join(lines)
++
++
++__all__ = ["Probe", "Trimmer", "anon_by_mapping", "cpu_tensors", "malloc_trim", "mem_available_gib", "numpy_hugepages", "status_kib", "trim"]
 diff --git a/src/tensorfold/families/deepseek_v41/cuda/joint.py b/src/tensorfold/families/deepseek_v41/cuda/joint.py
 new file mode 100644
 index 0000000..cda93c8
@@ -19557,10 +20931,10 @@ index 0000000..7354f73
 +    return end
 diff --git a/src/tensorfold/families/deepseek_v41/cuda/planlink.py b/src/tensorfold/families/deepseek_v41/cuda/planlink.py
 new file mode 100644
-index 0000000..de5dd10
+index 0000000..e8fb0d5
 --- /dev/null
 +++ b/src/tensorfold/families/deepseek_v41/cuda/planlink.py
-@@ -0,0 +1,113 @@
+@@ -0,0 +1,128 @@
 +# SPDX-License-Identifier: MIT
 +# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
 +"""The round plan from rank 0 to rank 1 over a TCP socket instead of the communicator (``TF_DSV41_PLAN_LINK=tcp``).
@@ -19605,6 +20979,20 @@ index 0000000..de5dd10
 +    return int(raw) if raw else int(master_port) + 7
 +
 +
++def keepalive(conn: socket.socket, idle: int = 30, interval: int = 10, count: int = 6) -> None:
++    """TCP keepalive: a peer that is gone (host down, cable out, process killed without a FIN) fails ``recv`` /
++    ``sendall`` after ~idle + interval x count s (90 s) instead of never. Silently skipped where unsupported."""
++
++    try:
++        conn.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
++        for name, v in (("TCP_KEEPIDLE", idle), ("TCP_KEEPINTVL", interval), ("TCP_KEEPCNT", count)):
++            opt = getattr(socket, name, None)
++            if opt is not None:
++                conn.setsockopt(socket.IPPROTO_TCP, opt, v)
++    except OSError:
++        pass
++
++
 +class TcpLink:
 +    """``protocol.Link`` over one TCP connection: rank 0 ``send``s, rank 1 ``recv``s."""
 +
@@ -19632,8 +21020,9 @@ index 0000000..de5dd10
 +                    if time.monotonic() > end:
 +                        raise
 +                    time.sleep(0.05)
-+        conn.settimeout(None)
++        conn.settimeout(None)                   # rank 1 may idle in recv for hours: no read deadline ...
 +        conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
++        keepalive(conn)                         # ... but a dead peer or link ends it (G12 bug 2)
 +        self.conn = conn
 +
 +    def send(self, plan) -> None:
@@ -19945,10 +21334,10 @@ index 0000000..8d355c0
 +        return True
 diff --git a/src/tensorfold/families/deepseek_v41/cuda/prefetch.py b/src/tensorfold/families/deepseek_v41/cuda/prefetch.py
 new file mode 100644
-index 0000000..9147f44
+index 0000000..e318e4f
 --- /dev/null
 +++ b/src/tensorfold/families/deepseek_v41/cuda/prefetch.py
-@@ -0,0 +1,391 @@
+@@ -0,0 +1,422 @@
 +# SPDX-License-Identifier: MIT
 +# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
 +"""Engram reads off the critical path (docs/ENGINE-PLAN.md section 6; the serving protocol's ``Prefetch`` hook).
@@ -19985,7 +21374,9 @@ index 0000000..9147f44
 +  read then, the same bytes.
 +
 +Knobs: TF_DSV41_PREFETCH (1; 0 = synchronous reads), TF_DSV41_PREFETCH_WORKERS (16), TF_DSV41_ENGRAM_CACHE (65536
-+rows a layer; 0 = no cache), TF_DSV41_PREFETCH_AHEAD (0; 1 = the next prefill segment's bulk reads a round early).
++rows a layer; 0 = no cache), TF_DSV41_PREFETCH_AHEAD (0; 1 = the next prefill segment's bulk reads a round early),
++TF_DSV41_HASH_MEMO_ROWS (16384: rows the hash memo holds), TF_DSV41_ENGRAM_WAIT_S (300: the longest wait for a read
++issued ahead before it raises; 0 = no deadline).
 +"""
 +
 +from __future__ import annotations
@@ -19993,6 +21384,7 @@ index 0000000..9147f44
 +import os
 +from collections import OrderedDict
 +from concurrent.futures import Future, ThreadPoolExecutor
++from concurrent.futures import TimeoutError as FutTimeout
 +
 +import numpy as np
 +import torch
@@ -20016,12 +21408,30 @@ index 0000000..9147f44
 +    return v
 +
 +
++def wait(fut: Future):
++    """``fut.result()`` with a deadline (``TF_DSV41_ENGRAM_WAIT_S``, 300 s; 0 = none): a wedged read raises (G12 bug
++    2: no host wait of a round without a deadline) instead of holding the round, and both ranks, forever."""
++
++    s = float(os.environ.get("TF_DSV41_ENGRAM_WAIT_S", "") or 300)
++    try:
++        return fut.result(timeout=s if s > 0 else None)
++    except FutTimeout as exc:       # concurrent.futures' (the builtin TimeoutError since Python 3.11)
++        raise TimeoutError(f"dsv41 Engram read: no result after {s:g} s (TF_DSV41_ENGRAM_WAIT_S)") from exc
++
++
 +class CachedHasher:
 +    """The forward's hasher with a small memo keyed by (ids, lookback): the prefetch and the forward hash a window
-+    once. Calls with ``dead`` or other keywords go straight through (the hash is a function of its arguments only)."""
++    once. Calls with ``dead`` or other keywords go straight through (the hash is a function of its arguments only).
 +
-+    def __init__(self, inner, size: int = 256) -> None:
++    Bounded by entries (``size``) AND by the rows they hold (``rows``, ``TF_DSV41_HASH_MEMO_ROWS``, 16,384: ~8 prefill
++    segments). G12 (bug 1): bounded by entries alone, a long prefill kept every 2,048-row segment's key (2,048 Python
++    ints) and hashes ([2,048, 2, 24] int64) -- 256 x ~0.9 MB a rank, growing with the prompt for its first 256
++    segments; a window of more than ``rows`` rows is hashed and not kept."""
++
++    def __init__(self, inner, size: int = 256, rows: int | None = None) -> None:
 +        self.inner, self.size = inner, size
++        self.rows = _env_int("TF_DSV41_HASH_MEMO_ROWS", 16384) if rows is None else int(rows)
++        self.held = 0                                   # rows in the memo
 +        self.memo: OrderedDict = OrderedDict()
 +        self.stats = {"hits": 0, "calls": 0}
 +
@@ -20040,9 +21450,14 @@ index 0000000..9147f44
 +            self.stats["hits"] += 1
 +            return got.clone()
 +        out = self.inner(ids, lookback=lookback)
++        n = len(key[0])
++        if n > self.rows:
++            return out
 +        self.memo[key] = out
-+        if len(self.memo) > self.size:
-+            self.memo.popitem(last=False)
++        self.held += n
++        while len(self.memo) > self.size or self.held > self.rows:
++            old, _ = self.memo.popitem(last=False)
++            self.held -= len(old[0])
 +        return out.clone()
 +
 +
@@ -20111,13 +21526,13 @@ index 0000000..9147f44
 +                missing.append(r)
 +        for r in [r for r, v in got.items() if v is None]:
 +            fut = self.flight.pop(r)
-+            rows = fut.result()
++            rows = wait(fut)
 +            self.stats["waited"] += 1
 +            got[r] = rows[r]
 +        if missing:
 +            futs = self._read(np.asarray(missing, dtype=np.int64))
 +            for r, fut in futs.items():
-+                got[r] = fut.result()[r]
++                got[r] = wait(fut)[r]
 +        for r in uniq.tolist():
 +            self._put(r, got[r])
 +        out = np.stack([got[r] for r in uniq.tolist()]) if uniq.size else \
@@ -20187,12 +21602,12 @@ index 0000000..9147f44
 +        if lr is not None and index.numel() >= BULK_ROWS:
 +            fut = self.bulk.pop(self._key(layer, index), None)
 +            self.stats["hits" if fut is not None else "misses"] += 1
-+            return fut.result() if fut is not None else bulk_rows(lr.src, index)
++            return wait(fut) if fut is not None else bulk_rows(lr.src, index)
 +        if lr is None:
 +            fut = self.take(layer, index)
 +            if fut is not None:
 +                self.stats["hits"] += 1
-+                return fut.result()
++                return wait(fut)
 +            self.stats["misses"] += 1
 +            return self.sources[layer].rows(index)
 +        from .engram_host import VALUES, dequant
@@ -20285,12 +21700,17 @@ index 0000000..9147f44
 +
 +def bulk_rows(src, index: torch.Tensor) -> torch.Tensor:
 +    """A prompt segment's rows of a packed shard at once (``engram_native`` when built, else the shard's reader),
-+    dequantized by the source's rule: fp32 [N, 256], the bytes and values ``rows`` gives."""
++    dequantized by the source's rule: fp32 [N, 256], the bytes and values ``rows`` gives.
 +
-+    from .engram_host import VALUES, dequant
++    The rows are written into a NumPy-owned buffer (``engram_host.dequant_host``), not a c10 allocation (G12 bug 1):
++    this runs on a prefetch thread and the round thread frees the result. c10's CPU allocator in NVIDIA's torch
++    builds is mimalloc, which keeps a block freed by another thread (a ~25 MB huge page here, two a segment) in the
++    owning thread's segment, only MADV_FREE'd: rank 1's anonymous memory grew ~0.75 GiB every 32K prompt rows."""
++
++    from .engram_host import VALUES, dequant_host
 +
 +    rec = torch.from_numpy(src.raw(index))
-+    return dequant(rec[:, :src.dim], rec[:, VALUES:VALUES + src.dim // 32])
++    return dequant_host(rec[:, :src.dim], rec[:, VALUES:VALUES + src.dim // 32])
 +
 +
 +def lookback_after(tail: list[int], ids, keep: int) -> list[int]:
@@ -21836,10 +23256,10 @@ index 0000000..fe455d6
 +__all__ = ["BK", "eligible", "enabled", "pair_enabled", "rms", "rms_pair"]
 diff --git a/src/tensorfold/families/deepseek_v41/cuda/rope.py b/src/tensorfold/families/deepseek_v41/cuda/rope.py
 new file mode 100644
-index 0000000..aa0f015
+index 0000000..9a9184a
 --- /dev/null
 +++ b/src/tensorfold/families/deepseek_v41/cuda/rope.py
-@@ -0,0 +1,125 @@
+@@ -0,0 +1,140 @@
 +# SPDX-License-Identifier: MIT
 +# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
 +"""DeepSeek-V4.1 RoPE: GPT-J interleaved pairs on the LAST ``rope_dim`` dims, two flavours a layer, as tables.
@@ -21867,6 +23287,7 @@ index 0000000..aa0f015
 +from . import numerics as N
 +
 +F32 = torch.float32
++BLOCK_ELEMS = 8192         # angles a cos / sin call when a table is built (Table.build)
 +
 +
 +def inplace() -> bool:
@@ -21910,9 +23331,23 @@ index 0000000..aa0f015
 +
 +    @classmethod
 +    def build(cls, freqs: torch.Tensor, max_pos: int, device="cpu") -> "Table":
-+        t = torch.arange(max_pos, dtype=F32)
-+        ang = t[:, None] * freqs.to(F32)[None, :]
-+        return cls(torch.cat([torch.cos(ang), torch.sin(ang)], 1).contiguous().to(device), 2 * freqs.numel())
++        """Entries are a function of (position, freqs) alone, never of ``max_pos`` (G12 bug 3): torch's CPU cos / sin
++        give other bits for an element depending on where it falls in the call (vector body vs scalar tail, one
++        thread's chunk vs another's), so one call over [max_pos, F] made a position's entry depend on the table's
++        length. The forward's length is ``limit + pchunk`` (the segment size), which made the fast tag's prefill
++        depend on the segmentation (G7's 1-ulp rows). Built in fixed blocks of ``BLOCK_ELEMS`` angles (below
++        ATen's 32,768 parallel grain: one thread, the same call shape every block), the last block padded."""
++
++        f = freqs.to(F32).reshape(-1)
++        per = max(1, BLOCK_ELEMS // max(1, f.numel()))        # positions a block
++        n = -(-max(0, int(max_pos)) // per) * per
++        t = torch.arange(n, dtype=F32).view(-1, per)
++        parts = []
++        for blk in t:
++            ang = blk[:, None] * f[None, :]
++            parts.append(torch.cat([torch.cos(ang), torch.sin(ang)], 1))
++        cs = torch.cat(parts)[:max_pos] if parts else torch.empty((0, 2 * f.numel()), dtype=F32)
++        return cls(cs.contiguous().to(device), 2 * f.numel())
 +
 +    def cos_sin(self, positions: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
 +        rows = self.cs.index_select(0, positions.reshape(-1).to(device=self.cs.device, dtype=torch.long))
@@ -22083,10 +23518,10 @@ index 0000000..a239ee6
 +__all__ = ["apply", "apply_", "eligible", "enabled"]
 diff --git a/src/tensorfold/families/deepseek_v41/cuda/rounds.py b/src/tensorfold/families/deepseek_v41/cuda/rounds.py
 new file mode 100644
-index 0000000..9abbd0b
+index 0000000..9be58da
 --- /dev/null
 +++ b/src/tensorfold/families/deepseek_v41/cuda/rounds.py
-@@ -0,0 +1,263 @@
+@@ -0,0 +1,285 @@
 +# SPDX-License-Identifier: MIT
 +# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
 +"""The round executor of the V4.1 batcher: one ``plan.Plan`` applied to the forward, the pool, the session store and
@@ -22147,11 +23582,21 @@ index 0000000..9abbd0b
 +        self.cons: list[Any] = [None] * n_slots
 +        self.last: list[Rows | None] = [None] * n_slots
 +        self.rounds = 0
++        from . import hostmem
++
++        self.watch = None                       # ``stall.Watch`` (the batcher's): the round's phase names
++        self.trim = hostmem.Trimmer()           # G12 bug 1: freed host memory back during long prefills
++        self.probe = hostmem.Probe(rank)        # TF_DSV41_MEMPROBE: a memory line every N rounds
 +
 +    # -- steps ---------------------------------------------------------------------------------------------------
++    def _phase(self, name: str) -> None:
++        if self.watch is not None:
++            self.watch.phase(name)
++
 +    def run(self, plan: Plan) -> Result:
 +        res = Result()
 +        self.rounds += 1
++        self._phase("commit")
 +        with PH("commit"):
 +            for slot, acc, bonus in plan.commits:
 +                self._commit(slot, int(acc), int(bonus))
@@ -22159,9 +23604,12 @@ index 0000000..9abbd0b
 +            self._finish(slot, bool(save))
 +        for key in plan.spills:
 +            self.store.evict(key)
++        self._phase("admit")
 +        for a in plan.admits:
 +            self._admit(a, res)
++        rows = 0
 +        if plan.pieces:
++            self._phase("prefill")
 +            pieces = []
 +            for slot, start, end in plan.pieces:
 +                if res.out(slot):
@@ -22176,19 +23624,28 @@ index 0000000..9abbd0b
 +                    self._prefetch(pieces, [], ahead=True)
 +                    self.fwd.prefill(pieces, mode=plan.mode)
 +                res.piece_s = time.perf_counter() - t0
++                rows = sum(len(pc.ids) for pc in pieces)
++                self.trim.prefilled(rows)
++        self._phase("saves")
 +        for slot in plan.saves:
 +            if not res.out(slot):
 +                self._save(slot, "prompt")
++        if plan.finals:
++            self._phase("finals")
 +        for slot in plan.finals:
 +            if res.out(slot):
 +                continue
 +            p = self.prompts[slot]
 +            n = len(p)
 +            self.fwd.finish_prompt(slot, n - 1, tuple(p[max(0, n - REPLAY):n - 1]), mode=plan.mode)
++        if plan.finals:
++            self.trim.prompt_done()             # after a long prompt: gc, malloc_trim, torch's pinned cache
 +        if plan.windows:
++            self._phase("window")
 +            t0 = time.perf_counter()
 +            self._windows(plan, res)
 +            res.window_s = time.perf_counter() - t0
++        self.probe.round(rows)
 +        return res
 +
 +    def _commit(self, slot: int, acc: int, bonus: int) -> None:
@@ -26670,6 +28127,226 @@ index 0000000..9c4c44c
 +        print(f"[tensorfold] serving: {batch.describe()}; prefill {mode} {tag.prefill}; floor {floor.target_gib if floor else '-'}"
 +              f" GiB", flush=True)
 +    return batch, host
+diff --git a/src/tensorfold/families/deepseek_v41/cuda/stall.py b/src/tensorfold/families/deepseek_v41/cuda/stall.py
+new file mode 100644
+index 0000000..7403be1
+--- /dev/null
++++ b/src/tensorfold/families/deepseek_v41/cuda/stall.py
+@@ -0,0 +1,214 @@
++# SPDX-License-Identifier: MIT
++# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
++"""A round stall watchdog on both ranks (G12, bug 2).
++
++G10's first diagnostic stress (``7d940f0``) hung 19 minutes: both GPUs at 92-96% utilization and 17-19 W (spinning),
++four requests in flight, nothing logged. What can wait like that without a word: an NCCL all-gather (every prefill
++exchange over ``GLM53_TF_ROCE_MAX_KB``; NCCL is called through ctypes with no async-error poll and no abort), a RoCE
++wait whose clock check is defeated, a host thread waiting on a flag, an event, a future or a socket. A round is
++seconds at most (a 2,048-row prefill segment ~1.3 s, a decode window ~30 ms; a cold first segment that builds an
++extension ~2 min), so a round that runs far longer is a stall, and the useful thing is to say where it is.
++
++``Watch`` (one a rank, armed by ``batch.Batcher``: rank 0 around ``step``'s plan / share / execute / sample, rank 1
++from a plan's arrival to the end of its execution -- its idle wait for the next plan is not a stall; the executor
++names its phases: admit, prefill, finals, window, ...): a daemon thread that, once a round has run
++``TF_DSV41_STALL_S`` seconds (300; 0 = off), prints one report to stderr and again every 4x that:
++
++- rank, round, phase, seconds in the round and in the phase, the round's plan (admits / pieces / windows), the busy
++  slots;
++- the forward's waits, each read without blocking: the CUDA stream's ``query()`` (False: the GPU is still in a
++  kernel -- a spinning collective or gate; True: the host is waiting on something else), the Engram gate (its
++  control words, worker alive, queue), the prefetcher's reads in flight, the RoCE runtime's ``snapshot()``, NCCL's
++  ``ncclCommGetAsyncError``;
++- every Python thread's stack (``faulthandler``).
++
++``TF_DSV41_STALL_EXIT_S`` (0 = never): after that long in one round the process exits (code 70) after the report,
++so ``serve.sh watch`` restarts both ranks instead of a silent hang that ``/health`` still answers. The peer rank sees
++its collective fail or its own watchdog fire.
++"""
++
++from __future__ import annotations
++
++import faulthandler
++import os
++import sys
++import threading
++import time
++
++
++def _env_float(name: str, default: float) -> float:
++    raw = os.environ.get(name, "").strip()
++    v = float(raw) if raw else default
++    if v < 0:
++        raise ValueError(f"{name}={v}: expected >= 0")
++    return v
++
++
++class Watch:
++    """``begin(round)`` / ``phase(name)`` / ``end()`` from the round thread (plain attribute stores); a daemon thread
++    reports a round past ``limit_s`` and exits the process past ``exit_s``."""
++
++    def __init__(self, rank: int, *, limit_s: float | None = None, exit_s: float | None = None, info=None, out=None,
++                 exit_fn=None, poll_s: float = 1.0) -> None:
++        self.rank = int(rank)
++        self.limit_s = _env_float("TF_DSV41_STALL_S", 300.0) if limit_s is None else float(limit_s)
++        self.exit_s = _env_float("TF_DSV41_STALL_EXIT_S", 0.0) if exit_s is None else float(exit_s)
++        self.info = info                        # () -> list[str]: what the batcher / forward can say
++        self.out = out
++        self.exit_fn = exit_fn or os._exit
++        self.poll_s = float(poll_s)
++        self.round = -1
++        self.name = "idle"
++        self.t_round = self.t_phase = 0.0
++        self.armed = False
++        self.reports = 0
++        self._next = 0.0                        # monotonic time of the next report of this round
++        self._stop = threading.Event()
++        self._thread: threading.Thread | None = None
++
++    @property
++    def on(self) -> bool:
++        return self.limit_s > 0 or self.exit_s > 0
++
++    # -- the round thread ---------------------------------------------------------------------------------------------
++    def begin(self, round_no: int, name: str = "round") -> None:
++        if not self.on:
++            return
++        now = time.monotonic()
++        self.round, self.name, self.t_round, self.t_phase = int(round_no), name, now, now
++        self._next = now + (self.limit_s if self.limit_s > 0 else float("inf"))
++        self.armed = True
++        if self._thread is None:
++            self._thread = threading.Thread(target=self._loop, name=f"dsv41-stall-r{self.rank}", daemon=True)
++            self._thread.start()
++
++    def phase(self, name: str) -> None:
++        if self.armed:
++            self.name, self.t_phase = name, time.monotonic()
++
++    def end(self) -> None:
++        self.armed = False
++        self.name = "idle"
++
++    def close(self) -> None:
++        self._stop.set()
++        if self._thread is not None:
++            self._thread.join(timeout=5)
++
++    # -- the watchdog thread ----------------------------------------------------------------------------------------
++    def _loop(self) -> None:
++        while not self._stop.wait(self.poll_s):
++            self.tick()
++
++    def tick(self, now: float | None = None) -> bool:
++        """One look (the thread's; tests call it): True when it reported."""
++
++        if not self.armed:
++            return False
++        now = time.monotonic() if now is None else now
++        rnd, t_round = self.round, self.t_round
++        late = now - t_round
++        reported = False
++        if now >= self._next:
++            self._next = now + 4 * (self.limit_s if self.limit_s > 0 else self.exit_s)
++            self.report(now)
++            reported = True
++        if self.exit_s > 0 and late >= self.exit_s and self.armed and self.round == rnd:
++            if not reported:
++                self.report(now)
++            self._print(f"[dsv41 stall] r{self.rank}: round {rnd} ran {late:.0f} s >= TF_DSV41_STALL_EXIT_S="
++                        f"{self.exit_s:g}: exiting (70) so the watchdog restarts both ranks")
++            self.exit_fn(70)
++            return True
++        return reported
++
++    def _print(self, msg: str) -> None:
++        print(msg, file=self.out or sys.stderr, flush=True)
++
++    def report(self, now: float | None = None) -> str:
++        now = time.monotonic() if now is None else now
++        self.reports += 1
++        lines = [f"[dsv41 stall] r{self.rank}: round {self.round} has run {now - self.t_round:.1f} s (phase "
++                 f"{self.name!r} for {now - self.t_phase:.1f} s; TF_DSV41_STALL_S={self.limit_s:g})"]
++        if self.info is not None:
++            try:
++                lines += [f"  {x}" for x in self.info()]
++            except Exception as exc:            # noqa: BLE001  (a report must not raise)
++                lines.append(f"  (state not readable: {exc!r})")
++        text = "\n".join(lines)
++        self._print(text)
++        out = self.out or sys.stderr
++        try:
++            faulthandler.dump_traceback(file=out, all_threads=True)
++        except (ValueError, OSError, AttributeError):   # a stream without a file descriptor (tests): Python's view
++            import traceback
++
++            for tid, frame in sys._current_frames().items():
++                print(f"Thread {tid:#x}:\n" + "".join(traceback.format_stack(frame)), file=out, flush=True)
++        return text
++
++
++# -- what the forward can say without blocking ------------------------------------------------------------------------
++def forward_info(fw) -> list[str]:
++    out = []
++    try:
++        import torch
++
++        dev = getattr(fw, "device", None)
++        if dev is not None and getattr(dev, "type", "") == "cuda" and torch.cuda.is_initialized():
++            done = torch.cuda.current_stream(dev).query()
++            why = "the host waits on something else" if done else "a kernel still runs: a spinning wait?"
++            out.append(f"cuda stream idle: {done} ({why})")
++    except Exception as exc:                    # noqa: BLE001
++        out.append(f"cuda stream: {exc!r}")
++    gate = getattr(fw, "gate", None)
++    if gate is not None:
++        try:
++            ctl = [int(v) for v in gate.ctl[:8].tolist()]
++            th = getattr(gate, "thread", None)
++            out.append(f"Engram gate: ctl {ctl}, seq {getattr(gate, 'seq', '?')}, worker "
++                       f"{'alive' if th is not None and th.is_alive() else 'DEAD'}, queue {gate.q.qsize()}")
++        except Exception as exc:                # noqa: BLE001
++            out.append(f"Engram gate: {exc!r}")
++    pf = getattr(fw, "prefetcher", None)
++    if pf is not None:
++        try:
++            busy = sum(1 for f in pf.bulk.values() if not f.done())
++            out.append(f"Engram prefetch: {len(pf.bulk)} bulk reads held ({busy} running), stats {pf.stats}")
++        except Exception as exc:                # noqa: BLE001
++            out.append(f"Engram prefetch: {exc!r}")
++    comm = getattr(fw, "comm", None)
++    rt = getattr(comm, "rt", None) if comm is not None else None
++    if rt is not None and hasattr(rt, "snapshot"):
++        try:
++            snap = rt.snapshot()
++            snap.pop("flags", None)
++            out.append(f"RoCE: {snap}")
++        except Exception as exc:                # noqa: BLE001
++            out.append(f"RoCE: {exc!r}")
++    if comm is not None:
++        out.append(f"NCCL async error: {nccl_async_error(comm)}")
++    return out
++
++
++def nccl_async_error(comm) -> str:
++    """``ncclCommGetAsyncError`` of the communicator (thread-safe, made to be polled): 0 = ncclSuccess, 7 =
++    ncclInProgress; anything else names a failed transport."""
++
++    try:
++        import ctypes
++
++        lib, handle = getattr(comm, "lib", None), getattr(comm, "comm", None)
++        if lib is None or handle is None:
++            return "n/a"
++        fn = lib.ncclCommGetAsyncError
++        fn.argtypes = [ctypes.c_void_p, ctypes.POINTER(ctypes.c_int)]
++        err = ctypes.c_int(-1)
++        rc = fn(handle, ctypes.byref(err))
++        name = lib.ncclGetErrorString(err.value) if err.value > 0 else b"ok"
++        return f"{err.value} ({name.decode() if isinstance(name, bytes) else name}; call rc {rc})"
++    except Exception as exc:                    # noqa: BLE001
++        return f"? ({exc!r})"
++
++
++__all__ = ["Watch", "forward_info", "nccl_async_error"]
 diff --git a/src/tensorfold/families/deepseek_v41/cuda/state.py b/src/tensorfold/families/deepseek_v41/cuda/state.py
 new file mode 100644
 index 0000000..75ceab0
@@ -42036,6 +43713,158 @@ index 0000000..15d03de
 +        torch.testing.assert_close(out[r].double(), want, rtol=2e-2, atol=2e-2)
 +    # the plain hi window (128 rows ending at the block's end) would miss the n oldest context rows
 +    assert int(cnt[0]) == 128 and int(lo[0]) == P and int(hi[0]) == P + n - 1
+diff --git a/tests/test_dsv41_dsparktrain.py b/tests/test_dsv41_dsparktrain.py
+new file mode 100644
+index 0000000..e0f6861
+--- /dev/null
++++ b/tests/test_dsv41_dsparktrain.py
+@@ -0,0 +1,146 @@
++# SPDX-License-Identifier: MIT
++# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
++"""DSpark self-distillation (``dsparkdata`` / ``dsparktrain`` / ``dsparkdelta``) on the synthetic DSpark checkpoint,
++CPU twin:
++
++- a logged run (TF_DSV41_DRAFT_LOG with taps) becomes training data whose tokens are the replies;
++- the PyTorch port of the drafter reproduces the engine's drafts at the logged passes (fidelity);
++- stage B trains (loss falls), exports a delta; the engine with TF_DSV41_DSPARK_DELTA drafts what the port drafts
++  with the same delta, and replies stay serial;
++- LoRA under TP: the col / row shards of a delta sum to the whole one.
++"""
++
++from __future__ import annotations
++
++import numpy as np
++import pytest
++
++torch = pytest.importorskip("torch")
++pytest.importorskip("triton")
++pytest.importorskip("safetensors")
++pytestmark = pytest.mark.torch
++
++import dsv41_dspark_fakes as DF  # noqa: E402
++
++from tensorfold.engine.exact_sampling import Sampling  # noqa: E402
++from tensorfold.families.deepseek_v41.cuda import dsparkdelta as DD  # noqa: E402
++from tensorfold.families.deepseek_v41.cuda import dsparktrain as DT  # noqa: E402
++from tensorfold.families.deepseek_v41.cuda.batch import Job  # noqa: E402
++from tensorfold.families.deepseek_v41.cuda.depth import Costs  # noqa: E402
++from tensorfold.families.deepseek_v41.cuda.dsparkdata import Data, build  # noqa: E402
++
++N_TOK = 40
++NB = 3                                  # the fake checkpoint's DSpark block
++CAP = 720
++PROMPTS = [[int(t) for t in np.random.default_rng(80 + i).integers(3, 250, size=n)] for i, n in enumerate((300, 200, 260))]
++SAMPLINGS = [None, Sampling(seed=3, temperature=0.8, top_k=20, top_p=0.95), None]
++
++
++@pytest.fixture(scope="module")
++def ck(tmp_path_factory):
++    return DF.ckpt(tmp_path_factory.mktemp("dsv41dsparktrain"))
++
++
++def _run(ck, mp, log=None, delta=None):
++    mp.setenv("TF_DSV41_TREE", "0")
++    mp.setenv("TF_DSV41_DRAFT_SKIP", "0")
++    mp.setenv("TF_DSV41_DRAFT_DEPTH", "5")
++    for k, v in (("TF_DSV41_DRAFT_LOG", log), ("TF_DSV41_DSPARK_DELTA", delta)):
++        if v:
++            mp.setenv(k, str(v))
++        else:
++            mp.delenv(k, raising=False)
++    mp.setenv("TF_DSV41_DRAFT_LOG_TAPS", "1")
++    mp.setenv("TF_DSV41_DRAFT_LOG_TOPK", "16")
++    fw = DF.forward(ck, limit=CAP)
++    b = DF.batcher(ck, fw, capacity=CAP, pool_tokens=4 * CAP)
++    c = Costs([10.0] * 16, 1.0)
++    fw.set_costs(c)
++    b.planner.costs = c
++    got = DF.run(b, [Job(p, N_TOK, s) for p, s in zip(PROMPTS, SAMPLINGS)])
++    if fw.dlog is not None:
++        fw.dlog.flush()
++    return fw, got
++
++
++@pytest.fixture(scope="module")
++def logged(ck, tmp_path_factory):
++    root = tmp_path_factory.mktemp("dsparkdata")
++    with pytest.MonkeyPatch.context() as mp:
++        fw, got = _run(ck, mp, log=root / "log")
++    info = build(str(root / "data"), [str(root / "log")], K=16)
++    return root, got, info
++
++
++def _model(ck, stage="B", rank=4):
++    return DT.Drafter(ck[1], str(ck[0]), "cpu", stage=stage, rank=rank)
++
++
++def test_data_matches_replies(logged):
++    root, got, info = logged
++    d = Data(str(root / "data"), n=NB)
++    assert info["labels"] > 0 and len(d.sess) == len(PROMPTS)
++    seqs = [p + r for p, r in zip(PROMPTS, got)]
++    for si, z in enumerate(d.sess):
++        lo, tok = int(z["lo"]), z["tok"]
++        s = next(q for q in seqs if all(q[lo + i] == t for i, t in enumerate(tok) if t >= 0 and lo + i < len(q)))
++        assert s is not None and z["has_lab"].sum() > 10 and z["has_taps"].sum() > 10
++        ex = d.examples(si)
++        assert len(ex) > 0
++
++
++def test_port_reproduces_engine_drafts(ck, logged):
++    root, _, _ = logged
++    d = Data(str(root / "data"), n=NB)
++    m = _model(ck, "A", 0)
++    ev = DT.evaluate(m, d, list(range(len(d.sess))), seg=16, cands=16)
++    print("[dsparktrain] port fidelity", ev)
++    assert ev["logged_passes"] > 0 and ev["agree_logged_drafts"] >= 0.6
++
++
++def test_train_export_apply(ck, logged, monkeypatch, tmp_path):
++    root, serial, _ = logged
++    d = Data(str(root / "data"), n=NB)
++    m = _model(ck, "B", 4)
++    sess = list(range(len(d.sess)))
++    segs = d.segments(sess, 16)
++    with torch.no_grad():
++        l0 = float(np.mean([DT.losses(m, DT._to(d.batch(s, P), m.dev))[1]["kl"] for s, P in segs]))
++    rep = DT.train(m, d, sess, minutes=0.4, lr=3e-3, seg=16, log=lambda *_: None)
++    with torch.no_grad():
++        l1 = float(np.mean([DT.losses(m, DT._to(d.batch(s, P), m.dev))[1]["kl"] for s, P in segs]))
++    assert rep["steps"] > 3 and l1 < l0
++    path = str(tmp_path / "delta.safetensors")
++    ex = DT.export_delta(m, path)
++    assert ex["lora"] >= 1
++    fw, got = _run(ck, monkeypatch, delta=path)
++    assert got == serial                            # drafts never change a reply
++    assert fw.drafter.delta["lora"] == ex["lora"]
++    # the engine with the delta drafts what the port drafts with it: a fresh log, the port's chain
++    fw2, _ = _run(ck, monkeypatch, log=tmp_path / "log2", delta=path)
++    build(str(tmp_path / "d2"), [str(tmp_path / "log2")], K=16)
++    d2 = Data(str(tmp_path / "d2"), n=NB)
++    ev = DT.evaluate(m, d2, list(range(len(d2.sess))), seg=16, cands=16)
++    assert ev["agree_logged_drafts"] >= 0.6
++
++
++def test_lora_shards_sum_to_whole():
++    g = torch.Generator().manual_seed(0)
++    K, N, r = 64, 48, 4
++    W = torch.randn(K, N, generator=g)
++    A, B = torch.randn(r, K, generator=g), torch.randn(N, r, generator=g)
++    x = torch.randn(5, K, generator=g)
++
++    class Lin:
++        def __init__(self, w):
++            self.w, self.k, self.n = w, w.shape[0], w.shape[1]
++
++        def __call__(self, x, dtype=torch.float32):
++            return (x @ self.w).to(dtype)
++    whole = DD.LoraLin(Lin(W), A, B)(x)
++    assert torch.allclose(whole, x @ (W + (B @ A).t()), atol=1e-4)
++    cols = [DD.LoraLin(Lin(W[:, i * N // 2:(i + 1) * N // 2]), *DD.shard("col", A, B, i, 2))(x) for i in range(2)]
++    assert torch.allclose(torch.cat(cols, 1), whole, atol=1e-4)
++    rows = [DD.LoraLin(Lin(W[i * K // 2:(i + 1) * K // 2]), *DD.shard("row", A, B, i, 2))(x[:, i * K // 2:(i + 1) * K // 2])
++            for i in range(2)]
++    assert torch.allclose(rows[0] + rows[1], whole, atol=1e-4)
 diff --git a/tests/test_dsv41_dtopk_interp.py b/tests/test_dsv41_dtopk_interp.py
 new file mode 100644
 index 0000000..41441c6
@@ -45225,6 +47054,405 @@ index 0000000..e502ff9
 +    one = calib.measure(fw, p, ensure=lambda s, end: b.ex.slots[s].ensure(end), gather_max=lambda v: list(v),
 +                        sync=lambda: None, reps=1, slots=1)
 +    assert len(one.verify) == 16 and one.slot == 0.0
+diff --git a/tests/test_dsv41_long_prefill_memory.py b/tests/test_dsv41_long_prefill_memory.py
+new file mode 100644
+index 0000000..5833c6e
+--- /dev/null
++++ b/tests/test_dsv41_long_prefill_memory.py
+@@ -0,0 +1,393 @@
++# SPDX-License-Identifier: MIT
++# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
++"""Host memory of a long prefill on both ranks (G12, bug 1), on the CPU with a fake forward:
++
++- the hash memo (``prefetch.CachedHasher``) is bounded by the rows it holds, not just its entries: before, a 299K
++  prefill kept every 2,048-row segment's key and hashes (256 x ~0.9 MB a rank, growing with the prompt);
++- a 299K-token prompt through rank 0's ``Batcher`` and rank 1's ``follow`` (a queue link, a thread) with a forward
++  that allocates and frees what the real one does a segment on the host (the Engram bulk read's buffers, its fp32 /
++  bf16 rows, the hashes, twice: the prefetch issue and the forward): the process's anonymous memory does not grow
++  with the prompt, the executors hold nothing of it after the reply, and both ranks trim alike
++  (``hostmem.Trimmer``: every 32,768 prompt rows, a full trim at the prompt's end);
++- ``hostmem.Probe`` lines and the Engram native gather without the int64 index array.
++"""
++
++from __future__ import annotations
++
++import io
++import queue
++import threading
++
++import numpy as np
++import pytest
++
++torch = pytest.importorskip("torch")
++
++from tensorfold.families.deepseek_v41.cuda import hostmem  # noqa: E402
++from tensorfold.families.deepseek_v41.cuda import prefetch as PF  # noqa: E402
++from tensorfold.families.deepseek_v41.cuda.batch import Batcher, Job  # noqa: E402
++from tensorfold.families.deepseek_v41.cuda.protocol import Bounded, Candidates  # noqa: E402
++
++SEG = 2048
++HEADS = 12                      # Engram heads a rank a layer (the real pack's)
++
++
++class FakeHasher:
++    """``engram_host.NgramHasher``'s output shape: [T, 2 layers, 24 columns] int64."""
++
++    calls = 0
++
++    def __call__(self, ids, dead=None, lookback=None):
++        FakeHasher.calls += 1
++        ids = torch.as_tensor(ids, dtype=torch.int64).reshape(-1)
++        return (ids[:, None, None] * 7919 + torch.arange(48).view(1, 2, 24)) % 1_000_003
++
++
++def _rss_anon_mib() -> float | None:
++    v = hostmem.status_kib().get("RssAnon")
++    return None if v is None else v / 1024
++
++
++class _Slot:
++    def __init__(self) -> None:
++        self.pages: list[int] = []
++
++    def reserve(self, quota: int) -> None:
++        self.pages = [0] * 0
++
++    def ensure(self, end: int) -> None:
++        pass
++
++    def release(self) -> int:
++        self.pages = []
++        return 0
++
++    def truncate(self, keep: int) -> int:
++        return 0
++
++
++class _Pool:
++    npages = 1 << 20
++
++    def need_pages(self, prompt: int, max_tokens: int, capacity: int) -> int:
++        return 1
++
++    def available(self) -> int:
++        return self.npages
++
++    def new_slot(self, capacity: int) -> _Slot:
++        return _Slot()
++
++    def describe(self) -> str:
++        return "fake"
++
++
++class HostForward:
++    """``protocol.Forward`` with the real prefill's host allocations a segment (freed when the segment ends)."""
++
++    vocab = 512
++
++    def __init__(self) -> None:
++        self.hasher = PF.CachedHasher(FakeHasher())
++        self.pos: dict[int, int] = {}
++        self.tail: dict[int, list[int]] = {}
++        self.segments = 0
++
++    def reset(self, slot: int) -> None:
++        self.pos[slot], self.tail[slot] = 0, []
++
++    def _segment(self, slot: int, ids: tuple) -> None:
++        lb = torch.tensor(self.tail[slot], dtype=torch.long)
++        for _ in range(2):                                  # the prefetch's issue, then the forward
++            h = self.hasher(torch.tensor(ids), lookback=lb)
++        idx = h[:, :, :HEADS].reshape(-1).numpy()
++        raw = np.empty(idx.size * 4096 // 8, dtype=np.uint8)       # the 4 KiB-padded read buffer (~100 MB real)
++        raw[::4096] = 1
++        rec = np.lib.stride_tricks.sliding_window_view(raw, 264)[np.arange(idx.size) * 4 % (raw.size - 264)]
++        rows = torch.from_numpy(rec[:, :256].astype(np.float32))    # fp32 rows, then bf16 (the forward's copy)
++        rows.to(torch.bfloat16)
++        self.pos[slot] += len(ids)
++        self.tail[slot] = (self.tail[slot] + list(ids))[-3:]
++        self.segments += 1
++
++    def prefill(self, pieces, *, mode: str = "full") -> None:
++        for pc in pieces:
++            if pc.start != self.pos[pc.slot]:
++                raise RuntimeError(f"slot {pc.slot}: a piece at {pc.start}, the slot is at {self.pos[pc.slot]}")
++            for a in range(0, len(pc.ids), SEG):
++                self._segment(pc.slot, tuple(pc.ids[a:a + SEG]))
++
++    def finish_prompt(self, slot: int, end: int, tail, *, mode: str = "full") -> None:
++        if self.pos[slot] != end:
++            raise RuntimeError("finish_prompt at the wrong position")
++
++    def window(self, windows, *, count: int, masks=None) -> Candidates:
++        n = sum(len(w.tokens) for w in windows)
++        ids = np.tile(np.arange(count, dtype=np.int64) + 3, (n, 1))
++        return Candidates(ids, -np.tile(np.arange(count, dtype=np.float32), (n, 1)))
++
++    def commit(self, slot: int, accepted: int) -> None:
++        self.pos[slot] += accepted + 1
++
++    def snapshot(self, slot: int) -> Bounded:
++        return Bounded(self.pos[slot])
++
++    def restore(self, slot: int, snap: Bounded) -> None:
++        self.pos[slot] = snap.pos
++
++
++class QueueLink:
++    def __init__(self, q: queue.Queue) -> None:
++        self.q = q
++
++    def send(self, plan) -> None:
++        self.q.put(list(plan))
++
++    def recv(self):
++        return self.q.get(timeout=60)
++
++
++# -- the hash memo ------------------------------------------------------------------------------------------------------
++def test_hash_memo_is_bounded_by_rows():
++    h = PF.CachedHasher(FakeHasher(), rows=8 * SEG)
++    rng = np.random.default_rng(0)
++    segs = [tuple(int(t) for t in rng.integers(3, 129000, size=SEG)) for _ in range(40)]
++    for s in segs:
++        h(torch.tensor(s), lookback=torch.tensor([1, 2, 3]))
++        assert h.held <= 8 * SEG and len(h.memo) <= 8
++    hits = h.stats["hits"]
++    h(torch.tensor(segs[-1]), lookback=torch.tensor([1, 2, 3]))       # the latest segment: still a hit
++    assert h.stats["hits"] == hits + 1
++    h(torch.tensor(segs[0]), lookback=torch.tensor([1, 2, 3]))        # long gone
++    assert h.stats["hits"] == hits + 1
++    big = PF.CachedHasher(FakeHasher(), rows=100)
++    big(torch.arange(101))                                             # more rows than the memo: hashed, not kept
++    assert not big.memo and big.held == 0
++    small = PF.CachedHasher(FakeHasher(), size=2)                     # the entry bound still holds (decode rows)
++    for t in range(5):
++        small(torch.tensor([t]))
++    assert len(small.memo) == 2 and small.held == 2
++
++
++# -- a 299K prompt through both ranks ----------------------------------------------------------------------------------
++def test_long_prompt_host_memory_bounded_on_both_ranks(monkeypatch):
++    monkeypatch.setenv("TF_DSV41_STALL_S", "0")
++    trims: list[tuple[int, bool]] = []
++    q: queue.Queue = queue.Queue()
++    f0, f1 = HostForward(), HostForward()
++    kw = dict(n_slots=2, capacity=310_000, prefill_rows=SEG, depth=0, start=False, long_prompt=32768)
++    b0 = Batcher(f0, _Pool(), link=QueueLink(q), rank=0, **kw)
++    b1 = Batcher(f1, _Pool(), link=QueueLink(q), rank=1, **kw)
++    for r, b in ((0, b0), (1, b1)):
++        b.ex.trim = hostmem.Trimmer(every=32768, trim_fn=lambda full, r=r: trims.append((r, full)) or 0.0)
++    errors: list[BaseException] = []
++
++    def follow():
++        try:
++            b1.follow()
++        except BaseException as exc:            # noqa: BLE001
++            errors.append(exc)
++
++    th = threading.Thread(target=follow, daemon=True)
++    th.start()
++    rng = np.random.default_rng(1)
++    prompt = [int(t) for t in rng.integers(3, 129000, size=299_000)]
++    job = b0.submit(Job(prompt, 4))
++    del prompt
++    rss, rounds = [], 0
++    while b0.step():
++        rounds += 1
++        if rounds in (12, 140):
++            hostmem.malloc_trim()
++            rss.append(_rss_anon_mib())
++    b0.send_stop()
++    th.join(timeout=60)
++    assert not errors and not th.is_alive()
++    out = []
++    while True:
++        item = job.out.get_nowait()
++        if item is None:
++            break
++        out += item
++    assert len(out) == 4
++    assert f0.segments == f1.segments == -(-298_999 // SEG)
++    for f in (f0, f1):                          # the memo holds ~8 segments, not the prompt
++        assert f.hasher.held <= 16384 and len(f.hasher.memo) <= 8
++    for b in (b0, b1):                          # nothing of the prompt left in the executor
++        assert all(not h for h in b.ex.hist) and all(p is None for p in b.ex.prompts)
++    per = {r: [full for rr, full in trims if rr == r] for r in (0, 1)}
++    assert per[0] == per[1] and per[0].count(True) == 1 and per[0].count(False) == 298_999 // 32768
++    if rss[0] is not None:                      # ~128 segments between the two samples: no growth with the prompt
++        assert rss[1] - rss[0] < 64, rss
++
++
++def test_trimmer_and_probe(monkeypatch):
++    calls = []
++    t = hostmem.Trimmer(every=1000, trim_fn=lambda full: calls.append(full) or 1.5)
++    t.prompt_done()                             # a short prompt: nothing
++    t.prefilled(600)
++    t.prefilled(600)
++    t.prompt_done()
++    assert calls == [False, True] and t.stats == {"trims": 2, "full": 1, "mib": 3.0}
++    assert hostmem.Trimmer(every=0, trim_fn=lambda full: calls.append(full)).prefilled(10**6) is None
++    assert hostmem.trim(full=True) >= 0.0
++    buf = io.StringIO()
++    p = hostmem.Probe(1, every=2, trace=3, out=buf)
++    assert p.round(2048) is None
++    p.round(2048)
++    _keep = [bytearray(1 << 20) for _ in range(4)]   # noqa: F841  (something to see grow)
++    p.round(0)
++    line = p.round(0)
++    assert "r1 round 4" in line and "prompt rows 4096" in line and "RssAnon" in line and "grew" in line
++    import tracemalloc
++
++    tracemalloc.stop()
++
++
++def test_native_gather_without_index_array():
++    from tensorfold.families.deepseek_v41.cuda import engram_native as EN
++
++    buf = np.random.default_rng(3).integers(0, 255, size=1 << 16, dtype=np.uint8)
++    at = np.array([0, 5, 4096, 65536 - 264, 777], dtype=np.int64)
++    want = buf[at[:, None] + np.arange(264)]
++    got = EN._gather(buf, at, 264)
++    assert got.shape == (5, 264) and np.array_equal(got, want) and got.flags.c_contiguous
++
++
++def _hugepage_flag(arr) -> bool | None:
++    """VmFlags ``hg`` (MADV_HUGEPAGE) of the mapping holding ``arr``'s data, None off Linux."""
++
++    addr = arr.__array_interface__["data"][0]
++    try:
++        smaps = open("/proc/self/smaps").read().split("\n")
++    except OSError:
++        return None
++    inside = False
++    for line in smaps:
++        head = line.split(" ", 1)[0]
++        if "-" in head and all(c in "0123456789abcdef-" for c in head):
++            lo, hi = (int(v, 16) for v in head.split("-"))
++            inside = lo <= addr < hi
++        elif inside and line.startswith("VmFlags:"):
++            return " hg" in line
++    return None
++
++
++def test_numpy_hugepages_off_by_default():
++    """G12: NumPy's MADV_HUGEPAGE on its >= 4 MiB buffers is off on the ranks (THP faults compacted memory
++    synchronously in long prefills: 150 instead of 1,650 tokens/s); TF_DSV41_NUMPY_HUGEPAGE=1 restores NumPy's
++    default. In a fresh interpreter (an earlier test's madvise can leave a heap range flagged)."""
++
++    import os
++    import subprocess
++    import sys
++
++    if not os.path.exists("/proc/self/smaps"):
++        pytest.skip("no /proc/self/smaps")
++    code = (
++        "import sys; sys.path[:0] = %r\n"
++        "import numpy as np\n"
++        "from tensorfold.families.deepseek_v41.cuda import hostmem\n"
++        "from test_dsv41_long_prefill_memory import _hugepage_flag\n"
++        "on = hostmem.numpy_hugepages()\n"
++        "a = np.ones(48 << 20, dtype=np.uint8)\n"
++        "print(on, _hugepage_flag(a))\n"
++    ) % ([os.path.dirname(__file__)] + sys.path,)
++    env = {k: v for k, v in os.environ.items() if k != "TF_DSV41_NUMPY_HUGEPAGE"}
++    out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, env=env, timeout=300)
++    assert out.returncode == 0, out.stderr[-2000:]
++    assert out.stdout.split()[-2:] == ["False", "False"]
++    env["TF_DSV41_NUMPY_HUGEPAGE"] = "1"
++    out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, env=env, timeout=300)
++    assert out.returncode == 0 and out.stdout.split()[-2] == "True"
++
++
++def test_probe_cpu_tensors_and_mappings(monkeypatch):
++    """TF_DSV41_MEMPROBE_TENSORS / _SMAPS (G12 diagnostics): live CPU tensors by group, anonymous RSS by mapping."""
++
++    keep = [torch.zeros(1000, 256, dtype=torch.float32) for _ in range(3)]
++    view = keep[0][:10]                                     # a view: its storage counted once
++    line = hostmem.cpu_tensors(100_000)                  # every group (earlier tests may leave bigger ones)
++    assert "cpu tensors" in line and "[*,256] float32" in line
++    assert line.count("[*,256] float32 x") == 1 and view.numel() == 2560
++    monkeypatch.setenv("TF_DSV41_MEMPROBE_TENSORS", "3")
++    monkeypatch.setenv("TF_DSV41_MEMPROBE_SMAPS", "1")
++    out = io.StringIO()
++    p = hostmem.Probe(1, every=1, trace=0, out=out)
++    got = p.round(5)
++    assert got is not None and "cpu tensors" in got and out.getvalue().strip() == got
++    import os
++
++    if os.path.exists("/proc/self/smaps"):
++        assert "anon rss" in got
++
++
++def test_bulk_rows_numpy_owned_and_exact(monkeypatch):
++    """G12 bug 1: a prompt segment's Engram rows (made on a prefetch thread, freed on the round thread) live in a
++    NumPy-owned buffer, not c10's allocator (mimalloc in NVIDIA's builds keeps cross-thread frees), with ``dequant``'s
++    bits exactly (every FP8 byte incl. NaN / subnormals, scales 2^-20 .. 2^7)."""
++
++    from tensorfold.families.deepseek_v41.cuda import engram_host as EH
++
++    g = torch.Generator().manual_seed(7)
++    n = 3000
++    raw = torch.randint(0, 256, (n, 264), dtype=torch.uint8, generator=g)
++    raw[:256, 0] = torch.arange(256, dtype=torch.uint8)
++    scale = torch.randint(127 - 20, 127 + 8, (n, 8), dtype=torch.uint8, generator=g)
++    want = EH.dequant(raw[:, :256], scale)
++    made = []
++    real = np.empty
++
++    def spy(*a, **k):
++        arr = real(*a, **k)
++        made.append(arr)
++        return arr
++
++    monkeypatch.setattr(EH.np, "empty", spy)
++    monkeypatch.setattr(EH, "BUFFERS", EH.HostBuffers(2))
++    got = EH.dequant_host(raw[:, :256], scale)
++    assert got.dtype == torch.float32 and got.shape == (n, 256)
++    assert torch.equal(got.view(torch.int32), want.view(torch.int32))
++    assert len(made) == 1 and got.data_ptr() == made[0].ctypes.data
++
++    class Src:
++        dim = 256
++
++        def raw(self, index):
++            return np.concatenate([raw[:, :256].numpy(), scale.numpy()], 1)[index.numpy()]
++
++    idx = torch.arange(n - 1, -1, -1)
++    rows = PF.bulk_rows(Src(), idx)
++    assert torch.equal(rows.view(torch.int32), want[idx].view(torch.int32))
++    assert rows.data_ptr() == made[-1].ctypes.data
++
++
++def test_host_buffers_reused_only_when_free(monkeypatch):
++    """``engram_host.HostBuffers``: a buffer comes back once every user of the rows is gone (a view of the tensor
++    keeps it), then the next segment reuses it (no mmap / munmap a segment); at most ``keep`` kept a size."""
++
++    import gc
++
++    from tensorfold.families.deepseek_v41.cuda import engram_host as EH
++
++    pool = EH.HostBuffers(1)
++    monkeypatch.setattr(EH, "BUFFERS", pool)
++    raw = torch.randint(0, 120, (5000, 256), dtype=torch.uint8)
++    scale = torch.full((5000, 8), 127, dtype=torch.uint8)
++    a = EH.dequant_host(raw, scale)
++    view = a[10:20]
++    ptr = a.data_ptr()
++    del a
++    gc.collect()
++    b = EH.dequant_host(raw, scale)                     # the view still holds the first buffer
++    other = b.data_ptr() != ptr
++    want = view.clone()
++    b.fill_(0)
++    intact = torch.equal(view, want)
++    del view, b                                          # (no assert names them: pytest keeps its operands)
++    gc.collect()
++    assert other and intact and pool.stats["new"] == 2 and pool.stats["reused"] == 0
++    assert pool.stats["dropped"] == 1, (pool.stats, {k: len(v) for k, v in pool.free.items()})  # keep 1
++    c = EH.dequant_host(raw[:4500], scale[:4500])       # another row count, the same bucket (8,192 rows)
++    assert pool.stats["reused"] == 1 and c.shape == (4500, 256)
++    assert torch.equal(c, EH.dequant(raw[:4500], scale[:4500]))
 diff --git a/tests/test_dsv41_m2_decode.py b/tests/test_dsv41_m2_decode.py
 new file mode 100644
 index 0000000..4b82662
@@ -49128,6 +51356,71 @@ index 0000000..d21ad13
 +    x = torch.zeros(2, 4, 512)
 +    assert not RF.eligible(x, torch.zeros(2), 64, torch.bfloat16)                # CPU: the torch form
 +    assert RF.eligible.__doc__ and RF.enabled()
+diff --git a/tests/test_dsv41_rope_tables.py b/tests/test_dsv41_rope_tables.py
+new file mode 100644
+index 0000000..53508c9
+--- /dev/null
++++ b/tests/test_dsv41_rope_tables.py
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: MIT
++# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
++"""G12 bug 3: a RoPE table's entries do not depend on the table's length (CPU).
++
++On the Sparks' aarch64 CPU, one torch cos / sin call over [max_pos, 32] angles gave other bits at hundreds of
++positions for lengths 4,224 / 4,608 / 6,144 than for 8,192 (``results/G12-*/segdiag-tables.txt``); the forward's
++table length is ``limit + pchunk``, so the fast tag's prefill depended on the segment size (G7's 1-ulp rows, layer 3's
++``cs`` the first differing step). ``Table.build`` now computes fixed blocks; these checks hold on any CPU.
++"""
++
++from __future__ import annotations
++
++import torch
++
++from tensorfold.families.deepseek_v41.cuda import rope as RP
++
++
++def _freqs():
++    return {"plain": RP.inv_freq(64, 10000.0), "yarn": RP.inv_freq(64, 160000.0, 16.0)}
++
++
++def test_entries_independent_of_length():
++    for name, f in _freqs().items():
++        ref = RP.Table.build(f, 8192).cs
++        for n in (1, 255, 256, 257, 4224, 4352, 4608, 5120, 6144, 9001):
++            cs = RP.Table.build(f, n).cs
++            m = min(n, 8192)
++            assert cs.shape == (n, 64) and cs.dtype == torch.float32
++            assert torch.equal(cs[:m], ref[:m]), (name, n)
++
++
++def test_entries_independent_of_threads():
++    f = _freqs()["yarn"]
++    old = torch.get_num_threads()
++    try:
++        torch.set_num_threads(1)
++        one = RP.Table.build(f, 20000).cs
++        torch.set_num_threads(max(2, old))
++        many = RP.Table.build(f, 20000).cs
++    finally:
++        torch.set_num_threads(old)
++    assert torch.equal(one, many)
++
++
++def test_values_are_the_rope_angles():
++    f = _freqs()["yarn"]
++    cs = RP.Table.build(f, 3000).cs.double()
++    ang = torch.arange(3000, dtype=torch.float32)[:, None] * f[None, :]        # fp32 angles, as before
++    want = torch.cat([torch.cos(ang.double()), torch.sin(ang.double())], 1)
++    assert (cs - want).abs().max().item() < 1e-6                              # fp32 cos / sin of those angles
++    assert RP.Table.build(f, 0).cs.shape == (0, 64)
++
++
++def test_small_table_unchanged():
++    """A table of at most one block is the old single call (the kernels' unit tests build 256-position tables)."""
++
++    f = _freqs()["yarn"]
++    ang = torch.arange(256, dtype=torch.float32)[:, None] * f[None, :]
++    assert torch.equal(RP.Table.build(f, 256).cs, torch.cat([torch.cos(ang), torch.sin(ang)], 1))
 diff --git a/tests/test_dsv41_router_fused_interp.py b/tests/test_dsv41_router_fused_interp.py
 new file mode 100644
 index 0000000..d306448
@@ -51872,6 +54165,164 @@ index 0000000..0265a01
 +    assert not t.is_alive()
 +    one = run(batcher(ckpt, forward(ckpt)), [Job([int(t) for t in p], 4, None) for p in PROMPTS])
 +    assert len(got[0]) == 4 and [g[0] for g in got] == [o[0] for o in one]
+diff --git a/tests/test_dsv41_stall.py b/tests/test_dsv41_stall.py
+new file mode 100644
+index 0000000..18173bb
+--- /dev/null
++++ b/tests/test_dsv41_stall.py
+@@ -0,0 +1,152 @@
++# SPDX-License-Identifier: MIT
++# Copyright (c) 2026 Jay Leaton. The DeepSeek-V4.1-Flash family of TensorFold (Apache-2.0): see THIRD_PARTY_NOTICES.md.
++"""Stall deadlines and diagnostics (G12, bug 2), on the CPU:
++
++- ``stall.Watch``: a round past ``TF_DSV41_STALL_S`` is reported once (rank, round, phase, the batcher's and the
++  forward's state, every thread's stack), again every 4x that, and past ``TF_DSV41_STALL_EXIT_S`` the process exits
++  (70); idle (between rounds, rank 1 waiting for a plan) is never a stall; off when both are 0;
++- the batcher arms it on both ranks and the executor names its phases (rank 0's plan / share / execute; prefill,
++  window, ...), and the report carries the round's plan;
++- the waits that had no deadline: a prefetched Engram read (``prefetch.wait``, ``TF_DSV41_ENGRAM_WAIT_S``) raises,
++  the plan link's socket has TCP keepalive (a dead peer ends rank 1's ``recv``).
++"""
++
++from __future__ import annotations
++
++import io
++import socket
++from concurrent.futures import Future
++
++import pytest
++
++pytest.importorskip("torch")
++
++from test_dsv41_long_prefill_memory import HostForward, QueueLink, _Pool  # noqa: E402
++
++from tensorfold.families.deepseek_v41.cuda import planlink  # noqa: E402
++from tensorfold.families.deepseek_v41.cuda import prefetch as PF  # noqa: E402
++from tensorfold.families.deepseek_v41.cuda import stall  # noqa: E402
++from tensorfold.families.deepseek_v41.cuda.batch import Batcher, Job  # noqa: E402
++
++
++def test_watch_reports_then_exits():
++    out, exits = io.StringIO(), []
++    w = stall.Watch(1, limit_s=10, exit_s=60, out=out, exit_fn=exits.append, info=lambda: ["state: x"])
++    w._thread = object()                        # no thread: the test ticks by hand
++    assert not w.tick(1e9)                      # idle: never a stall
++    w.begin(7, "execute")
++    t0 = w.t_round
++    w.phase("prefill")
++    assert not w.tick(t0 + 9)
++    assert w.tick(t0 + 11) and w.reports == 1
++    text = out.getvalue()
++    assert "r1: round 7 has run 11.0 s" in text and "'prefill'" in text and "state: x" in text
++    assert "test_watch_reports_then_exits" in text          # every thread's stack
++    assert not w.tick(t0 + 30)                  # the next report at 4x the limit
++    assert w.tick(t0 + 52) and w.reports == 2
++    assert not exits
++    assert w.tick(t0 + 61) and exits == [70] and "exiting (70)" in out.getvalue()
++    w.end()
++    assert not w.tick(t0 + 1000)
++
++
++def test_watch_off_and_info_errors():
++    w = stall.Watch(0, limit_s=0, exit_s=0)
++    w.begin(1)
++    assert not w.armed and w._thread is None and not w.tick(1e12)
++    out = io.StringIO()
++
++    def bad():
++        raise RuntimeError("boom")
++
++    w = stall.Watch(0, limit_s=1, exit_s=0, out=out, info=bad)
++    w._thread = object()
++    w.begin(3)
++    assert w.tick(w.t_round + 2) and "state not readable: RuntimeError('boom')" in out.getvalue()
++
++
++def test_watch_thread_fires_on_its_own():
++    out = io.StringIO()
++    w = stall.Watch(0, limit_s=0.05, exit_s=0, out=out, poll_s=0.01)
++    w.begin(1, "window")
++    import time
++
++    deadline = time.monotonic() + 5
++    while not w.reports and time.monotonic() < deadline:
++        time.sleep(0.01)
++    w.end()
++    w.close()
++    assert w.reports >= 1 and "'window'" in out.getvalue()
++
++
++def test_batcher_arms_the_watch_on_both_ranks(monkeypatch):
++    monkeypatch.setenv("TF_DSV41_STALL_S", "300")
++    seen = []
++
++    class Spy(HostForward):
++        def __init__(self, rank):
++            super().__init__()
++            self.rank = rank
++
++        def prefill(self, pieces, *, mode="full"):
++            w = self.batcher.watch
++            seen.append((self.rank, w.armed, w.name, "pieces [(0, 0, 64)]" in "\n".join(self.batcher._stall_info())))
++            super().prefill(pieces, mode=mode)
++
++    import queue
++    import threading
++
++    q: queue.Queue = queue.Queue()
++    f0, f1 = Spy(0), Spy(1)
++    b0 = Batcher(f0, _Pool(), link=QueueLink(q), rank=0, n_slots=1, capacity=1024, depth=0, start=False)
++    b1 = Batcher(f1, _Pool(), link=QueueLink(q), rank=1, n_slots=1, capacity=1024, depth=0, start=False)
++    f0.batcher, f1.batcher = b0, b1
++    th = threading.Thread(target=b1.follow, daemon=True)
++    th.start()
++    b0.submit(Job(list(range(3, 68)), 2))
++    while b0.step():
++        assert not b0.watch.armed               # disarmed between rounds
++    b0.send_stop()
++    th.join(timeout=30)
++    assert sorted(seen) == [(0, True, "prefill", True), (1, True, "prefill", True)]
++    assert not b1.watch.armed
++    b0.stop()
++
++
++def test_engram_wait_deadline(monkeypatch):
++    monkeypatch.setenv("TF_DSV41_ENGRAM_WAIT_S", "0.05")
++    with pytest.raises(TimeoutError, match="TF_DSV41_ENGRAM_WAIT_S"):
++        PF.wait(Future())
++    f = Future()
++    f.set_result(3)
++    assert PF.wait(f) == 3
++
++
++def test_plan_link_keepalive():
++    srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
++    srv.bind(("127.0.0.1", 0))
++    srv.listen(1)
++    a = socket.create_connection(srv.getsockname())
++    b, _ = srv.accept()
++    srv.close()
++    try:
++        planlink.keepalive(a, idle=11, interval=3, count=4)
++        assert a.getsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE) == 1
++        if hasattr(socket, "TCP_KEEPIDLE"):
++            assert a.getsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPIDLE) == 11
++            assert a.getsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPCNT) == 4
++    finally:
++        a.close()
++        b.close()
++
++
++def test_forward_info_without_cuda():
++    class Comm:
++        pass
++
++    class Fw:
++        device = None
++        comm = Comm()
++
++    lines = stall.forward_info(Fw())
++    assert lines == ["NCCL async error: n/a"]
 diff --git a/tests/test_dsv41_stream_topk_interp.py b/tests/test_dsv41_stream_topk_interp.py
 new file mode 100644
 index 0000000..c1a2713

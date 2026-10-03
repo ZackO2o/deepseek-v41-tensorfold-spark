@@ -1,7 +1,7 @@
 # Results
 
 Everything measured on one pair of DGX Sparks (GB10, 128 GB each, CX7 link, RoCE), 2026-10-01 to 10-03, on
-`dealignai/DeepSeek-V4.1-Flash-UNCENSORED-EXL3-2.9bpw`. Development ran in numbered test windows (G1-G11); the window
+`dealignai/DeepSeek-V4.1-Flash-UNCENSORED-EXL3-2.9bpw`. Development ran in numbered test windows (G1-G12); the window
 names are kept so the raw files in [`../results/`](../results/README.md) can be matched to a row. How each cell is
 measured: [BENCHMARKS.md](BENCHMARKS.md).
 
@@ -108,10 +108,36 @@ prepared folders with parallel O_DIRECT readers; M1 measured 18 s for the weight
 | decode benchmarks (1-4 streams) | >= 10.3 | >= 7.3 |
 | prefill to 128K | 7.6 | 5.66 |
 | soak, 30 min | 5.11 | 4.07 |
-| stress 4 x 300K (six runs on the final engine) | 5.5 | 3.6-4.4 |
+| stress 4 x 300K, current engine (G12, `a6f5792` + `MIMALLOC_ALLOW_THP=0`) | 4.31 | 3.60 |
+| stress 4 x 300K, G12 runs on the way to the fixes (six runs) | 3.78-6.00 | 3.00-3.69 |
+| stress 4 x 300K (six runs on the G10 engine `38f6500`) | 5.5 | 3.6-4.4 |
 | stress, the G8 engine | | 4.07 |
 | stress, the G4 engine | 5.46 | 4.38 |
 
-MemAvailable minimum, GiB, 0.5-1 s samplers. The dip is rank 1's host anonymous memory growing from ~0.9 GB at boot
-to 2.7-4.7 GB during the 299K prefill (and ~7 GB later), not returned. Excluded: the session tier, malloc arenas
-(`MALLOC_ARENA_MAX=2`: same), the Engram row cache (17 MB), prefetch-ahead, L2 prefetch, pruning. Open.
+MemAvailable minimum, GiB, 0.5-1 s samplers.
+
+**Fixed in G12** ([campaign/G12-RESULTS.md](campaign/G12-RESULTS.md)):
+
+- **Host memory growth.** Up to G10 each rank's anonymous RSS grew 4-5.6 GiB during the 299K prefill and was not
+  returned. The cause was torch's CPU allocator: in NVIDIA's PyTorch build it is an embedded mimalloc. A prompt
+  segment's Engram rows (~25 MB) were made on a prefetch thread and freed on the round thread, and mimalloc keeps
+  such cross-thread frees of large blocks until the owning thread collects. Live CPU tensors stayed under 100 MiB
+  while mimalloc's arenas held ~1.9 GiB. The rows now live in reused NumPy-owned buffers (same values, bit for bit).
+  Growth is now 0.67-0.69 GiB a rank, flat from ~18K rows to the end. The 299K prefill under the stress takes 175 s,
+  against 181-185 s in the same window's runs before the fix.
+- **The stall** (19 minutes once in G10). It was not an NCCL hang. Transparent-huge-page faults under ~103 GiB of
+  weights and KV each triggered a synchronous memory compaction (GPUs spinning at 17 W, PSI memory "full" 64-71%,
+  one stress prefill at ~150 tok/s). NumPy's huge-page request is now off in the engine, and
+  `MIMALLOC_ALLOW_THP=0` in the config turns off mimalloc's. No stall in the stress runs after the fix, one of
+  them with `nvidia-smi` polling every second. A stall watchdog and deadlines stay as a safety net.
+- **Fast-prefill segmentation dependence** (~1 ulp in a few rows when one prompt is prefilled in different segment
+  sizes). The RoPE tables were built at a length that followed the segment size, and one torch `cos` / `sin` call on
+  the Sparks' CPU gives other bits at some positions for different lengths. The tables are now built in fixed
+  blocks, so an entry depends only on its position. The two red tests pass. At 302K positions, 0.08-0.15% of
+  entries change, by at most 1 fp32 ulp. The engine's code digest changes too, so session entries an older engine saved
+  on NVMe are not resumed.
+
+**Open:** the worker's minimum, 3.0-3.7 GiB in every G12 run. The worker is at 4.5-7.8 GiB when the server is ready,
+and the minimum comes in the first ~20K prompt rows (+1.3 GiB of CUDA reservations as the first segments run). It
+comes from the boot budget (4 x 300K pool) and that device-side part, not from growth: from 80K rows on the worker
+stays at 3.7-5.0 GiB. The minimum is under the 5 GiB target and the 4 GiB admission floor.

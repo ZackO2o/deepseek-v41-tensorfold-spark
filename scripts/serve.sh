@@ -18,7 +18,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 CONFIG="${CONFIG:-config/prod.env}"
 [[ -f "$CONFIG" ]] || { echo "[dsv41-tf] no config file $CONFIG (cp config/prod.env.example config/prod.env and fill it in)" >&2; exit 2; }
 export CONFIG
-caller_env=$(env | grep -E '^(CONTEXT|PARALLEL|IMAGE|PORT|HOST|NAME|SERVED_NAME|ALIASES|MAX_TOKENS|KV_DTYPE|MASTER_PORT|CANARY|DROP_CACHES|MEM_GATE_[A-Z]+|READY_TIMEOUT|PREFLIGHT|HEAD_STATE|WORKER_STATE|HEAD_PREPARED|WORKER_PREPARED|CACHE_VOL|STATE_DIR|LOG_MAX_[A-Z]+|WATCH_[A-Z_]+|OUT|TF_DSV41_[A-Z0-9_]+|GLM53_TF_[A-Z0-9_]+|MALLOC_[A-Z_]+)=.' || true)
+caller_env=$(env | grep -E '^(CONTEXT|PARALLEL|IMAGE|PORT|HOST|NAME|SERVED_NAME|ALIASES|MAX_TOKENS|KV_DTYPE|MASTER_PORT|CANARY|DROP_CACHES|MEM_GATE_[A-Z]+|READY_TIMEOUT|PREFLIGHT|HEAD_STATE|WORKER_STATE|HEAD_PREPARED|WORKER_PREPARED|CACHE_VOL|STATE_DIR|LOG_MAX_[A-Z]+|WATCH_[A-Z_]+|OUT|TF_DSV41_[A-Z0-9_]+|GLM53_TF_[A-Z0-9_]+|(MI)?MALLOC_[A-Z_]+)=.' || true)
 set -a
 # shellcheck disable=SC1090
 source "$CONFIG"
@@ -60,7 +60,7 @@ container_args() { # $1 = rank: `docker run` options of that rank's container (n
     a+=" -e TORCH_EXTENSIONS_DIR=/cache/torch_extensions -e TRITON_CACHE_DIR=/cache/triton"
     a+=" -e CUDA_CACHE_PATH=/cache/nv/ComputeCache -e TF_DSV41_IMAGE_ID=${IMAGE_ID:-$IMAGE}"
     a+=" -e TF_DSV41_LAUNCH_T0=$(date +%s.%N)"
-    a+=" $(env | grep -E '^(TF_DSV41_[A-Z0-9_]+|GLM53_TF_[A-Z0-9_]+|MALLOC_[A-Z_]+)=' | grep -vE '^TF_DSV41_(LAUNCH_T0|IMAGE_ID)=' | sort | sed 's/^/-e /' | tr '\n' ' ')"
+    a+=" $(env | grep -E '^(TF_DSV41_[A-Z0-9_]+|GLM53_TF_[A-Z0-9_]+|(MI)?MALLOC_[A-Z_]+)=' | grep -vE '^TF_DSV41_(LAUNCH_T0|IMAGE_ID)=' | sort | sed 's/^/-e /' | tr '\n' ' ')"
     a+=" -e NCCL_SOCKET_IFNAME=$NCCL_SOCKET_IFNAME -e NCCL_IB_HCA=$NCCL_IB_HCA -e GLOO_SOCKET_IFNAME=$NCCL_SOCKET_IFNAME"
     echo "$a"
 }
