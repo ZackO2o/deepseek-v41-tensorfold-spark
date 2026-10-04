@@ -51,6 +51,8 @@ RUN cd /src/TensorFold \
  && if [ "$PATCHES" != none ]; then for p in $(ls /src/patches/*.patch | sort); do \
       echo "applying $p"; git apply --whitespace=nowarn "$p" || patch -p1 --forward < "$p" || exit 1; done; fi \
  && pip install --no-deps /src/TensorFold \
+ && cp -a /src/TensorFold/src/tensorfold/. /usr/local/lib/python3.12/dist-packages/tensorfold/ \
+ && find /usr/local/lib/python3.12/dist-packages/tensorfold -name '__pycache__' -prune -exec rm -rf {} + \
  && pip install "huggingface-hub>=0.24" "tokenizers>=0.20" "safetensors>=0.4" "jinja2>=3.1" \
  && python -c "import tensorfold.families.deepseek_v41 as f, torch, triton; \
 print('tensorfold', f.__file__, 'torch', torch.__version__, 'triton', triton.__version__)"
